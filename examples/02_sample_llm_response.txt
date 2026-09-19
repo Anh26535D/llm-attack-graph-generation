@@ -1,0 +1,43 @@
+```json
+{
+  "nodes": [
+    {
+      "id": "n1",
+      "label": "CVE-2024-90005: Raspberry Pi OS Default Password",
+      "precondition": "Network access to Raspberry Pi (SSH/console login prompt)",
+      "postcondition": "Administrator (root) access to Raspberry Pi OS"
+    },
+    {
+      "id": "n2",
+      "label": "CVE-2024-90002: RaspAP Web Console Command Injection",
+      "precondition": "Authenticated access to RaspAP web console on Raspberry Pi",
+      "postcondition": "Arbitrary OS command execution as root on Raspberry Pi"
+    },
+    {
+      "id": "n3",
+      "label": "CVE-2020-25299: piSignage Path Traversal",
+      "precondition": "Authenticated low-privilege access to piSignage on Raspberry Pi",
+      "postcondition": "Arbitrary file read on Raspberry Pi (harvest credentials/SSH keys)"
+    },
+    {
+      "id": "n4",
+      "label": "CVE-2024-90003: OVRServiceLauncher.exe Handle Leak",
+      "precondition": "Local unprivileged access to Oculus Desktop (via credentials harvested from Raspberry Pi)",
+      "postcondition": "Local privilege escalation (SYSTEM) on Oculus Desktop"
+    },
+    {
+      "id": "n5",
+      "label": "CVE-2020-1885: OVRRedir.exe Arbitrary File Write",
+      "precondition": "Local access to Oculus Desktop as an unprivileged user",
+      "postcondition": "Arbitrary file write leading to persistence/further privilege gain on Oculus Desktop"
+    }
+  ],
+  "edges": [
+    {"from": "n1", "to": "n2", "label": "root access used to authenticate to RaspAP web console"},
+    {"from": "n1", "to": "n3", "label": "root access used to authenticate to piSignage"},
+    {"from": "n2", "to": "n4", "label": "root shell used to harvest credentials, cross-device lateral movement to Oculus Desktop"},
+    {"from": "n3", "to": "n4", "label": "harvested SSH keys/files used for cross-device lateral movement to Oculus Desktop"},
+    {"from": "n4", "to": "n5", "label": "SYSTEM privileges used to trigger OVRRedir.exe for persistence"}
+  ]
+}
+```

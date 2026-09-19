@@ -1,0 +1,11 @@
+Create an attack graph in json format using only nodes and edges as keys from the vulnerability information given below. node should have id, label, precondition and postcondition as properties. edge should have from, to and label properties. Do not give a simplified graph. Add as much detail as possible. Incorporate all possible information in nodes and edges. Do not create separate keys for them in the json. Chain the vulnerabilities if applicable. Vulnerabilities can be chained if precondition of one vulnerability is similar to the post condition of another vulnerability. Vulnerability with matching postcondition should be ahead in the chain. Return only the json as response. Do not put any text before or after the json.
+
+Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.
+---
+The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal. In other words, this issue is in the player API for log download.
+---
+An issue was discovered in includes/webconsole.php in RaspAP 2.5. With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).
+---
+Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation. This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.
+---
+Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.

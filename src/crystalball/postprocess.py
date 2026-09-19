@@ -131,20 +131,21 @@ def visualize_graph(graph: AttackGraph, out_path: Path) -> Path:
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
-    fig_width = max(8, len(g.nodes) * 1.2)
-    fig_height = max(6, len(g.nodes) * 0.8)
+    n_nodes = max(len(g.nodes), 1)
+    fig_width = max(10, n_nodes * 2.2)
+    fig_height = max(8, n_nodes * 1.6)
     plt.figure(figsize=(fig_width, fig_height))
-    pos = nx.spring_layout(g, seed=42, k=1.5 / max(len(g.nodes), 1) ** 0.5)
+    pos = nx.spring_layout(g, seed=42, k=2.5 / n_nodes**0.5)
 
-    nx.draw_networkx_nodes(g, pos, node_color="#4C78A8", node_size=1400)
+    nx.draw_networkx_nodes(g, pos, node_color="#4C78A8", node_size=1800)
     nx.draw_networkx_labels(
-        g, pos, labels={n: id_to_label.get(n, n) for n in g.nodes}, font_size=7
+        g, pos, labels={n: id_to_label.get(n, n) for n in g.nodes}, font_size=8
     )
     nx.draw_networkx_edges(g, pos, edge_color="#B0413E", arrows=True, arrowsize=15)
     edge_labels = nx.get_edge_attributes(g, "label")
-    nx.draw_networkx_edge_labels(g, pos, edge_labels=edge_labels, font_size=6)
+    nx.draw_networkx_edge_labels(g, pos, edge_labels=edge_labels, font_size=6.5)
 
-    plt.margins(0.15)
+    plt.margins(0.2)
     plt.axis("off")
     plt.tight_layout()
     plt.savefig(out_path, dpi=150, bbox_inches="tight")

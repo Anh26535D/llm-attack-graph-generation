@@ -56,6 +56,11 @@ uv run python scripts/ingest_response.py --response path/to/pasted_answer.txt
 - Kết quả đồ thị nằm ở `outputs/graphs/`: `graph_<ts>.json` (dữ liệu thô) + `graph_<ts>.png` (ảnh tĩnh vẽ bằng networkx/matplotlib).
 - **Chưa có UI tương tác** (web/zoom/kéo node) — hiện chỉ có ảnh PNG + JSON. Nếu cần xem đẹp hơn (vd. web viewer bằng pyvis/vis.js) có thể bổ sung thêm, nói mình biết nếu muốn làm.
 
+Xem trước không cần chạy gì: `examples/` có sẵn 1 bộ input/output mẫu
+(`01_input_prompt.txt` → `02_sample_llm_response.txt` → `03_output_graph.json`/`.png`).
+Lưu ý file response ở đó là **tự soạn tay** (không gọi LLM thật) để minh hoạ
+post-processor, không phải kết quả GPT-4/Gemini thật — xem `examples/README.md`.
+
 ## 4. Đánh giá
 
 Paper đánh giá **định tính, không có metric số**, dựa trên:
