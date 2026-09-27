@@ -2,10 +2,10 @@
 """Step 1: ingest CVE JSON records into the database (Algorithm 1).
 
 Usage:
-    python scripts/ingest_cves.py                       # ingest data/cve_samples
+    python scripts/ingest_cves.py                       # ingest data/cve_official
     python scripts/ingest_cves.py --input path/to/dir    # ingest a custom directory
 
-Set EXTRACTOR_BACKEND=llm (and LLM_BACKEND=openai/gemini with the matching
+Set EXTRACTOR_BACKEND=llm (and LLM_BACKEND=openai/openrouter/gemini with the matching
 API key in .env) to use a real LLM for property extraction as in the paper;
 defaults to a dependency-free heuristic extractor.
 """
@@ -28,7 +28,7 @@ def main() -> None:
     parser.add_argument(
         "--input",
         type=Path,
-        default=DATA_DIR / "cve_samples",
+        default=DATA_DIR / "cve_official",
         help="Directory of CVE Record Format v5 JSON files.",
     )
     args = parser.parse_args()

@@ -104,18 +104,16 @@ def embedding_path(embeddings_dir: Path, cve_id: str, kind: str) -> Path:
 
 @lru_cache(maxsize=1)
 def _cached_model(backend: str, model_name: str) -> EmbeddingModel:
+    if backend == "hashing":
+        return HashingEmbedding()
     if backend == "sentence-transformers":
-        try:
-            return SentenceTransformerEmbedding(model_name)
-        except ImportError:
-            print(
-                "[crystalball] sentence-transformers unavailable, "
-                "falling back to the hashing embedding backend."
-            )
-            return HashingEmbedding()
-    return HashingEmbedding()
+        return SentenceTransformerEmbedding(model_name)
+    raise ValueError(
+        f"Unknown EMBEDDING_BACKEND: {backend!r}. "
+        "Choose 'hashing' or 'sentence-transformers'."
+    )
 
 
 def get_embedding_model(settings: Settings | None = None) -> EmbeddingModel:
     settings = settings or get_settings()
-    return _cached_model(settings.embedding_backend, settings.embedding_model)
+    return _cached_model(settings.embedding_backend.lower(), settings.embedding_model)

@@ -60,12 +60,24 @@ class Settings:
     # "manual" -> no API call is made; scripts write a prompt file for the user to
     #             paste into ChatGPT/Gemini/etc, and read the pasted answer back in.
     # "openai" -> calls the OpenAI Chat Completions API (needs OPENAI_API_KEY)
+    # "openrouter" -> calls a selected OpenRouter model (needs OPENROUTER_API_KEY)
     # "gemini" -> calls the Google Gemini API (needs GEMINI_API_KEY)
     llm_backend: str = field(default_factory=lambda: os.getenv("LLM_BACKEND", "manual"))
     openai_model: str = field(default_factory=lambda: os.getenv("OPENAI_MODEL", "gpt-4o-mini"))
     openai_api_key: str | None = field(default_factory=lambda: os.getenv("OPENAI_API_KEY"))
-    gemini_model: str = field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-1.5-pro"))
+    openrouter_model: str = field(default_factory=lambda: os.getenv("OPENROUTER_MODEL", ""))
+    openrouter_api_key: str | None = field(default_factory=lambda: os.getenv("OPENROUTER_API_KEY"))
+    gemini_model: str = field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-3.8-flash"))
     gemini_api_key: str | None = field(default_factory=lambda: os.getenv("GEMINI_API_KEY"))
+
+    # --- Generation controls shared by the Gemini and OpenRouter clients ---
+    # Callers may override these per request through LLMClient.complete().
+    llm_max_output_tokens: int = field(
+        default_factory=lambda: int(os.getenv("LLM_MAX_OUTPUT_TOKENS", "4096"))
+    )
+    llm_reasoning_level: str = field(
+        default_factory=lambda: os.getenv("LLM_REASONING_LEVEL", "low")
+    )
 
 
 def get_settings() -> Settings:

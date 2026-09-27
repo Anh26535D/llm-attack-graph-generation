@@ -93,11 +93,12 @@ def call_llm_and_save(
     built: BuiltPrompt,
     llm_client: LLMClient,
     db: Database,
+    metadata: dict | None = None,
 ) -> tuple[str, int]:
     """Calls the LLM, saves (prompt, raw response) to the DB, returns
     (raw_response, graph_row_id). Parsing into a graph dict is done by
     postprocess.parse_llm_json separately so callers can inspect malformed
     output before it is discarded."""
     raw_response = llm_client.complete(built.prompt)
-    row_id = db.save_graph(built.query, built.prompt, raw_response, graph=None)
+    row_id = db.save_graph(built.query, built.prompt, raw_response, graph=None, metadata=metadata)
     return raw_response, row_id

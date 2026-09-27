@@ -58,6 +58,7 @@ CREATE TABLE IF NOT EXISTS graphs (
     prompt       TEXT NOT NULL,
     raw_response TEXT,
     graph_json   TEXT,
+    metadata_json TEXT,
     created_at   TEXT NOT NULL DEFAULT (datetime('now'))
 );
 """
@@ -79,6 +80,9 @@ def connect(db_path: Path | None = None) -> Iterator[sqlite3.Connection]:
 def init_db(db_path: Path | None = None) -> None:
     with connect(db_path) as conn:
         conn.executescript(SCHEMA)
+        columns = {row["name"] for row in conn.execute("PRAGMA table_info(graphs)")}
+        if "metadata_json" not in columns:
+            conn.execute("ALTER TABLE graphs ADD COLUMN metadata_json TEXT")
 
 
 @dataclass
@@ -107,10 +111,23 @@ class Database:
     def store_cve(self, cve_id: str, description: str, state: str) -> None:
         with connect(self.db_path) as conn:
             conn.execute(
-                "INSERT OR REPLACE INTO cve_info (cve_id, description, state) "
-                "VALUES (?, ?, ?)",
+                "INSERT INTO cve_info (cve_id, description, state) VALUES (?, ?, ?) "
+                "ON CONFLICT(cve_id) DO UPDATE SET description = excluded.description, "
+                "state = excluded.state",
                 (cve_id, description, state),
             )
+
+    def clear_cve_properties(self, cve_id: str) -> None:
+        """Remove extracted rows for one CVE before replacing them on reingest."""
+        with connect(self.db_path) as conn:
+            conn.execute(
+                "DELETE FROM version_info WHERE product_id IN "
+                "(SELECT id FROM product_info WHERE cve_id = ?)",
+                (cve_id,),
+            )
+            conn.execute("DELETE FROM product_info WHERE cve_id = ?", (cve_id,))
+            conn.execute("DELETE FROM problem_type WHERE cve_id = ?", (cve_id,))
+            conn.execute("DELETE FROM platform WHERE cve_id = ?", (cve_id,))
 
     def store_product(self, cve_id: str, product_name: str, embedding_file: str) -> int:
         with connect(self.db_path) as conn:
@@ -149,6 +166,11 @@ class Database:
 
     def delete_cve(self, cve_id: str) -> None:
         with connect(self.db_path) as conn:
+            conn.execute(
+                "DELETE FROM version_info WHERE product_id IN "
+                "(SELECT id FROM product_info WHERE cve_id = ?)",
+                (cve_id,),
+            )
             conn.execute("DELETE FROM product_info WHERE cve_id = ?", (cve_id,))
             conn.execute("DELETE FROM problem_type WHERE cve_id = ?", (cve_id,))
             conn.execute("DELETE FROM platform WHERE cve_id = ?", (cve_id,))
@@ -184,10 +206,38 @@ class Database:
         with connect(self.db_path) as conn:
             return conn.execute("SELECT COUNT(*) FROM cve_info").fetchone()[0]
 
-    def save_graph(self, query: str, prompt: str, raw_response: str | None, graph: dict | None) -> int:
+    def save_graph(
+        self,
+        query: str,
+        prompt: str,
+        raw_response: str | None,
+        graph: dict | None,
+        metadata: dict | None = None,
+    ) -> int:
         with connect(self.db_path) as conn:
             cur = conn.execute(
-                "INSERT INTO graphs (query, prompt, raw_response, graph_json) VALUES (?, ?, ?, ?)",
-                (query, prompt, raw_response, json.dumps(graph) if graph is not None else None),
+                "INSERT INTO graphs (query, prompt, raw_response, graph_json, metadata_json) "
+                "VALUES (?, ?, ?, ?, ?)",
+                (
+                    query,
+                    prompt,
+                    raw_response,
+                    json.dumps(graph) if graph is not None else None,
+                    json.dumps(metadata, ensure_ascii=False) if metadata is not None else None,
+                ),
             )
             return cur.lastrowid
+
+    def update_graph_result(
+        self, graph_id: int, graph: dict | None, metadata: dict
+    ) -> None:
+        """Attach parse status/metadata and the parsed graph to an existing run."""
+        with connect(self.db_path) as conn:
+            conn.execute(
+                "UPDATE graphs SET graph_json = ?, metadata_json = ? WHERE id = ?",
+                (
+                    json.dumps(graph, ensure_ascii=False) if graph is not None else None,
+                    json.dumps(metadata, ensure_ascii=False),
+                    graph_id,
+                ),
+            )

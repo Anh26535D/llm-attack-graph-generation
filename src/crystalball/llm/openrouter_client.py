@@ -1,4 +1,4 @@
-"""Google Gemini backend through the current ``google-genai`` SDK."""
+"""OpenRouter Chat Completions via its OpenAI-compatible API."""
 
 from __future__ import annotations
 
@@ -8,31 +8,29 @@ from ..config import get_settings
 from .base import LLMClient, to_metadata_value, validate_generation_options
 
 
-class GeminiLLMClient(LLMClient):
-    name = "gemini"
+class OpenRouterLLMClient(LLMClient):
+    name = "openrouter"
 
     def __init__(
         self,
         api_key: str,
-        model: str = "gemini-3.8-flash",
+        model: str,
         *,
         max_output_tokens: int | None = None,
         reasoning_level: str | None = None,
     ) -> None:
+        if not model.strip():
+            raise ValueError("OPENROUTER_MODEL must be an exact, non-empty model slug.")
         try:
-            from google import genai
+            from openai import OpenAI
         except ImportError as exc:  # pragma: no cover
             raise ImportError(
-                'The google-genai package is required. Run `pip install -e ".[gemini]"`.'
+                'The openai package is required. Run `pip install -e ".[openrouter]"`.'
             ) from exc
-        self._genai = genai
-        self._client = genai.Client(
-            api_key=api_key,
-            http_options=genai.types.HttpOptions(
-                retry_options=genai.types.HttpRetryOptions(attempts=1)
-            ),
-        )
-        self.model = model
+        # Each runner-level call is one request; avoid SDK retries silently
+        # exceeding the experiment's explicit API-call budget.
+        self._client = OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1", max_retries=0)
+        self.model = model.strip()
         settings = get_settings()
         self.max_output_tokens = (
             settings.llm_max_output_tokens if max_output_tokens is None else max_output_tokens
@@ -51,8 +49,8 @@ class GeminiLLMClient(LLMClient):
         reasoning_level: str | None = None,
     ) -> str:
         output_limit = self.max_output_tokens if max_output_tokens is None else max_output_tokens
-        thinking_level = self.reasoning_level if reasoning_level is None else reasoning_level
-        validate_generation_options(output_limit, thinking_level)
+        effort = self.reasoning_level if reasoning_level is None else reasoning_level
+        validate_generation_options(output_limit, effort)
         self.last_usage = None
         self.last_response_metadata = {
             "requested_model": self.model,
@@ -61,31 +59,28 @@ class GeminiLLMClient(LLMClient):
             "usage": None,
             "generation_config": {
                 "max_output_tokens": output_limit,
-                "thinking_level": thinking_level,
+                "reasoning_effort": effort,
             },
         }
-
-        response = self._client.models.generate_content(
+        response = self._client.chat.completions.create(
             model=self.model,
-            contents=prompt,
-            config=self._genai.types.GenerateContentConfig(
-                max_output_tokens=output_limit,
-                thinking_config=self._genai.types.ThinkingConfig(thinking_level=thinking_level),
-            ),
+            messages=[{"role": "user", "content": prompt}],
+            max_tokens=output_limit,
+            reasoning_effort=effort,
         )
-        usage = getattr(response, "usage_metadata", None)
+        usage = getattr(response, "usage", None)
         if usage is not None:
             serialized_usage = to_metadata_value(usage)
             self.last_usage = serialized_usage if isinstance(serialized_usage, dict) else None
 
-        candidates = getattr(response, "candidates", None) or []
+        choices = getattr(response, "choices", None) or []
         finish_reasons = [
-            to_metadata_value(getattr(candidate, "finish_reason", None))
-            for candidate in candidates
+            to_metadata_value(getattr(choice, "finish_reason", None))
+            for choice in choices
         ]
         actual_model = (
-            getattr(response, "model_version", None)
-            or getattr(response, "model", None)
+            getattr(response, "model", None)
+            or getattr(response, "model_id", None)
             or getattr(response, "actual_model", None)
         )
         self.last_response_metadata = {
@@ -95,4 +90,4 @@ class GeminiLLMClient(LLMClient):
             "finish_reasons": finish_reasons,
             "usage": self.last_usage,
         }
-        return response.text or ""
+        return response.choices[0].message.content or ""

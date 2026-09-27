@@ -77,3 +77,23 @@ def test_llm_extractor_parses_fenced_json():
     assert props.version.qualifier == "<"
     assert props.platform == "Raspberry Pi OS"
     assert props.problem_type == "Path Traversal"
+
+
+def test_llm_extractor_preserves_version_range_returned_as_list():
+    payload = {
+        "ProductInfo": {
+            "ProductName": "Oculus Browser",
+            "Version": [
+                {"VersionNumber": "5.2.7", "Qualifier": ">="},
+                {"VersionNumber": "5.7.11", "Qualifier": "<="},
+            ],
+        }
+    }
+    extractor = LLMExtractor(FakeLLMClient(json.dumps(payload)))
+
+    props = extractor.extract("irrelevant description", {})
+
+    assert [(item.version_number, item.qualifier) for item in props.versions] == [
+        ("5.2.7", ">="),
+        ("5.7.11", "<="),
+    ]

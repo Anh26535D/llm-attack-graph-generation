@@ -1,0 +1,17 @@
+Create an attack graph in json format using only nodes and edges as keys from the vulnerability information given below. node should have id, label, precondition and postcondition as properties. edge should have from, to and label properties. Do not give a simplified graph. Add as much detail as possible. Incorporate all possible information in nodes and edges. Do not create separate keys for them in the json. Chain the vulnerabilities if applicable. Vulnerabilities can be chained if precondition of one vulnerability is similar to the post condition of another vulnerability. Vulnerability with matching postcondition should be ahead in the chain. Return only the json as response. Do not put any text before or after the json.
+
+The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal. In other words, this issue is in the player API for log download.
+
+A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code. This affects the Oculus Browser starting from version 5.2.7 until 5.7.11.
+
+Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.
+
+An issue was discovered in includes/webconsole.php in RaspAP 2.5. With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).
+
+Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation. This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.
+
+Raspberry Pi 3 B+ and 4 B devices through 2021-08-09, in certain specific use cases in which the device supplies power to audio-output equipment, allow remote attackers to recover speech signals from an LED on the device, via a telescope and an electro-optical sensor, aka a "Glowworm" attack. We assume that the Raspberry Pi supplies power to some speakers. The power indicator LED of the Raspberry Pi is connected directly to the power line, as a result, the intensity of a device's power indicator LED is correlative to the power consumption. The sound played by the speakers affects the Raspberry Pi's power consumption and as a result is also correlative to the light intensity of the LED. By analyzing measurements obtained from an electro-optical sensor directed at the power indicator LED of the Raspberry Pi, we can recover the sound played by the speakers.
+
+Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.
+
+NVIDIA distributions of Jetson Linux contain a vulnerability where an error in the IOMMU configuration may allow an unprivileged attacker with physical access to the board direct read/write access to the entire system address space through the PCI bus. Such an attack could result in denial of service, code execution, escalation of privileges, and impact to data integrity and confidentiality. The scope impact may extend to other components.

@@ -1,0 +1,53 @@
+{
+  "source_pdf": {
+    "relative_path_from_repo_root": "../Using Retriever Augmented Large Language Models for Attack Graph Generation.pdf",
+    "sha256": "35ff9f46c709020bf70d4e040a3b8e672f8ce93b48b6ca91fd7bfb481e72d20e",
+    "pages_total": 14
+  },
+  "normalization": [
+    "Extract from the listed printed PDF pages with pypdf.",
+    "Remove printed page-number lines; reflow physical line wraps and retain paragraph breaks.",
+    "Rejoin line-end hyphenation; preserve semantic hyphens in audio-output, Core-v, cross-referencing, delete-create and post-compounds.",
+    "Normalize curly quotes to ASCII; restore PDF text-layer glyph U+015B as the possessive sequence apostrophe+s.",
+    "Separate source headings into paragraphs; preserve wording, order, and technical strings.",
+    "Each text file contains the paper prompt wrapper followed by its source/context; Appendix A CVE descriptions follow the printed order."
+  ],
+  "files": {
+    "appendix_a_context.txt": {
+      "condition": "C2",
+      "source_pages": [
+        9
+      ],
+      "sha256": "fa3bf955bfe73ca6f691b2bc24eea7d1213a1698f94c034c59c3570386fe717e",
+      "bytes_utf8": 3549
+    },
+    "kubernetes_appendix_b.txt": {
+      "condition": "T0",
+      "source_pages": [
+        10
+      ],
+      "sha256": "66107bb7d63024ae56c603ebc289af393487e1d45df05d31f35267b28d1355f3",
+      "bytes_utf8": 1185
+    },
+    "solarwinds_full_appendix_c1.txt": {
+      "condition": "T1",
+      "source_pages": [
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "sha256": "2a84c0a9579144a58d2cd1e0b6085bda1ac9d05190593776f50fd8809d8842af",
+      "bytes_utf8": 25486
+    },
+    "solarwinds_evasion_appendix_c2.txt": {
+      "condition": "T2",
+      "source_pages": [
+        14
+      ],
+      "sha256": "4c7bd69dc15dd294ff609171a6a0ceead961fc2d23ce0b54331e0c9bab3a7ad0",
+      "bytes_utf8": 2998
+    }
+  }
+}

@@ -51,6 +51,7 @@ class VersionInfo:
 class ExtractedProperties:
     product_name: str | None = None
     version: VersionInfo = field(default_factory=VersionInfo)
+    versions: list[VersionInfo] = field(default_factory=list)
     platform: str | None = None
     problem_type: str | None = None
 
@@ -165,13 +166,31 @@ class LLMExtractor(Extractor):
         data = _extract_json_object(raw)
 
         product_info = data.get("ProductInfo", {}) or {}
-        version = product_info.get("Version", {}) or {}
+        raw_version = product_info.get("Version", {}) or {}
+        if isinstance(raw_version, list):
+            versions = [
+                VersionInfo(
+                    version_number=item.get("VersionNumber"),
+                    qualifier=item.get("Qualifier"),
+                )
+                for item in raw_version
+                if isinstance(item, dict)
+                and (item.get("VersionNumber") or item.get("Qualifier"))
+            ]
+            version = versions[0] if versions else VersionInfo()
+        elif isinstance(raw_version, dict):
+            version = VersionInfo(
+                version_number=raw_version.get("VersionNumber"),
+                qualifier=raw_version.get("Qualifier"),
+            )
+            versions = [version] if version.version_number or version.qualifier else []
+        else:
+            version = VersionInfo()
+            versions = []
         return ExtractedProperties(
             product_name=product_info.get("ProductName"),
-            version=VersionInfo(
-                version_number=version.get("VersionNumber"),
-                qualifier=version.get("Qualifier"),
-            ),
+            version=version,
+            versions=versions,
             platform=data.get("Platform"),
             problem_type=data.get("ProblemType"),
         )

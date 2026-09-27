@@ -61,17 +61,22 @@ def preprocess_cve(
     if not description:
         return PreprocessResult(cve_id=cve_id, skipped=True, reason="no description")
 
-    db.store_cve(cve_id, description, state)
-
     props = extractor.extract(description, cve_json)
+
+    # Reingesting an updated record replaces its derived metadata rather than
+    # accumulating duplicate products/platforms/problem types.
+    db.store_cve(cve_id, description, state)
+    db.clear_cve_properties(cve_id)
 
     if props.product_name:
         product_vec = embedding_model.encode(props.product_name)
         product_vec_path = embedding_path(embeddings_dir, cve_id, "product")
         save_embedding(product_vec, product_vec_path)
         product_id = db.store_product(cve_id, props.product_name, str(product_vec_path))
-        if props.version.version_number or props.version.qualifier:
-            db.store_version(product_id, props.version.version_number, props.version.qualifier)
+        versions = props.versions or [props.version]
+        for version in versions:
+            if version.version_number or version.qualifier:
+                db.store_version(product_id, version.version_number, version.qualifier)
 
     if props.problem_type:
         problem_vec = embedding_model.encode(props.problem_type)
