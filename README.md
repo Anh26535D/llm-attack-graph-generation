@@ -2,18 +2,33 @@
 
 Repo tái hiện phương pháp và các nhóm thí nghiệm §5.1–5.4 của Prapty, Kundu, Iyengar, [Using Retriever Augmented Large Language Models for Attack Graph Generation](https://arxiv.org/abs/2408.05855). CVE hoặc threat report được đưa vào prompt, LLM sinh graph, sau đó code kiểm tra cấu trúc và nhóm đọc bằng chứng để đánh giá ngữ nghĩa.
 
-**Kết quả hiện có:** run `20260927_full_reproduction` đã lưu 130 response, dùng Gemini `gemini-3.8-flash` và GPT-5.6 Luna qua OpenRouter (`openai/gpt-5.6-luna`), mỗi tổ hợp chính lặp 5 lần. Đây là mô hình thay thế mô hình trong bài báo. Kết quả đã được đánh giá lại offline để sửa lỗi parser và cách diễn giải; nhãn thủ công vẫn là **Codex sơ bộ, chưa được chuyên gia xác nhận**. Đọc [báo cáo hiện hành](REPRODUCTION_REPORT.md) trước khi trích số liệu.
+**Phạm vi hiện tại:** demo và chuẩn bị thí nghiệm bằng **ba mô hình độc lập**, để đối chiếu các nhóm so sánh ba mô hình của bài báo:
+
+| Mô hình | Model ID | Backend để chạy demo |
+|---|---|---|
+| Gemini | `gemini-3.8-flash` | `gemini` |
+| GPT-5.6 Luna | `openai/gpt-5.6-luna` | `openrouter` |
+| DeepSeek | `deepseek/deepseek-v4.1-flash` | `openrouter_v2` |
+
+DeepSeek là mô hình thứ ba. Tên backend `openrouter_v2` và các biến `_V2` chỉ phân biệt cấu hình OpenRouter thứ hai đã có, không phải phiên bản của dự án. Client/demo đã hỗ trợ chọn cả ba; **batch runner và exporter hiện vẫn chỉ xử lý hai mô hình cũ**. Xem [quy trình và thiết kế ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md) để chạy demo cùng đầu vào và biết phần code còn cần bổ sung.
+
+**Kết quả hiện có — hai mô hình:** run `20260927_full_reproduction` đã lưu 130 response của Gemini và Luna, mỗi tổ hợp chính lặp 5 lần; chưa có kết quả thí nghiệm DeepSeek. Đây là mô hình thay thế mô hình trong bài báo. Kết quả đã được đánh giá lại offline để sửa lỗi parser và cách diễn giải; nhãn thủ công vẫn là **Codex sơ bộ, chưa được chuyên gia xác nhận**. Đọc [báo cáo số liệu lịch sử](REPRODUCTION_REPORT.md) trước khi trích số liệu.
 
 ## 1. Đọc gì, ở đâu?
 
 | Tài liệu / thư mục                                                                                               | Mục đích                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | [README này](README.md)                                                                                              | Cài đặt, vận hành, phân biệt lệnh offline/API, cách đọc và đánh giá output    |
-| [REPRODUCTION_REPORT.md](REPRODUCTION_REPORT.md)                                                                      | Báo cáo tổng hợp hiện hành: thiết kế, số liệu đã sửa, kết luận và giới hạn |
+| [Thí nghiệm ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md) | Cấu hình Gemini/Luna/DeepSeek, demo cùng prompt, thiết kế và phần batch còn thiếu |
+| [Demo và trình bày](docs/HUONG_DAN_DEMO_VA_TRINH_BAY.md) | Lệnh chạy, luồng tạo ảnh, file đưa vào báo cáo và dàn ý slide |
+| [Đối chiếu chín graph](docs/DOI_CHIEU_9_DO_THI_VA_PHAM_VI_TAI_HIEN.md) | Mapping hình gốc → năm kịch bản, nguồn prompt và hình tái hiện |
+| [REPRODUCTION_REPORT.md](REPRODUCTION_REPORT.md)                                                                      | Báo cáo run hai mô hình: thiết kế, số liệu đã sửa, kết luận và giới hạn |
+| [E1 — nhất quán với môi trường](experiments/env_consistency/README.md) | Thí nghiệm phụ về thay đổi phiên bản/cấu hình và CVE còn xuất hiện trong graph |
+| [H1 — cạnh bám nguồn](experiments/h1_edge_support/README.md) | Thí nghiệm phụ trích cạnh CVE→CVE và chấm mức độ được nguồn hỗ trợ |
 | [data/cve_official/manifest.json](data/cve_official/manifest.json)                                                    | Tám CVE chính thức: ID, URL, commit nguồn và SHA-256                                    |
 | [data/reproduction/manifest.json](data/reproduction/manifest.json)                                                    | Nguồn Appendix A/B/C, trang PDF, chuẩn hóa văn bản và hash                             |
 
-**Phạm vi bản Git:** code vận hành, tests, dependency lock, tám CVE chính thức, prompt nguồn Appendix và hai tài liệu chính. Raw response, output từng đợt, DB/vector/cache và `docs/archive/` giữ cục bộ, không nằm trong bản clone. Muốn kiểm toán lại run lịch sử cần xin bộ bằng chứng từ người phụ trách; không cần bộ đó để chạy pipeline hoặc tạo run mới.
+**Phạm vi chia sẻ:** code vận hành, tests, dependency lock, tám CVE chính thức, prompt nguồn Appendix và tài liệu hướng dẫn. Raw response, output từng đợt, DB/vector/cache và `docs/archive/` giữ cục bộ, không nằm trong bản clone. Muốn kiểm toán lại run lịch sử cần xin bộ bằng chứng từ người phụ trách; không cần bộ đó để chạy pipeline hoặc tạo run mới.
 
 ## 2. Luồng xử lý và code
 
@@ -41,7 +56,9 @@ Threat report đi trực tiếp vào prompt, không qua truy hồi CVE. Extracti
 | Parse / vẽ graph                                  | [postprocess.py](src/crystalball/postprocess.py)                                                                                             |
 | Điều phối thí nghiệm, journal và ngân sách | [run_paired_experiment.py](scripts/run_paired_experiment.py)                                                                                 |
 
-Thư mục `scripts/` chỉ có bốn lệnh: `ingest_cves.py` nạp dữ liệu; `build_prompt.py` tạo prompt/gọi model; `ingest_response.py` đọc response đã có; `run_paired_experiment.py` điều phối bộ thí nghiệm. Script tạo dữ liệu giả, demo cũ và đánh giá lại riêng run lịch sử đã được lưu cục bộ trong `docs/archive/`.
+Các lệnh chính trong `scripts/`: `ingest_cves.py` nạp dữ liệu; `build_prompt.py` tạo prompt/gọi model; `ingest_response.py` đọc response đã có; `run_paired_experiment.py` điều phối bộ thí nghiệm hai mô hình; `demo_online.py` chọn một trong ba mô hình cho mỗi lần demo; `export_paper_demo.py` vẽ gallery offline từ run lịch sử. Script tạo dữ liệu giả, demo cũ và đánh giá lại riêng run lịch sử đã được lưu cục bộ trong `docs/archive/`.
+
+Thư mục `experiments/` bổ sung E1 và H1, tách khỏi bộ tái hiện §5.1–5.4. Các lệnh chuẩn bị/chấm dùng response đã lưu; `experiments.env_consistency.generate` có gọi API và dùng riêng `OPENAI_API_KEY`, chưa tích hợp cấu hình ba mô hình/provider của demo. E1 chấm theo luật môi trường tự viết, H1 có nhãn sơ bộ do Claude gán; chưa coi các chỉ số này là độ chính xác khai thác thực tế hoặc xác nhận chuyên gia.
 
 ## 3. Cài đặt
 
@@ -56,13 +73,79 @@ if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 uv run --no-sync pytest -q
 ```
 
-Để chạy Contriever và hai API backend, cài thêm:
+Để chạy Contriever và ba mô hình qua hai dịch vụ API Gemini/OpenRouter, cài thêm:
 
 ```powershell
 uv sync --locked --extra dev --extra embeddings --extra gemini --extra openrouter
 ```
 
 Dùng `uv run --no-sync` sau khi sync để giữ các extras đã cài. Không cần `tokens` extra cho cấu hình lịch sử: run dùng bộ ước lượng token theo từ. Cài `tiktoken` có thể đổi cách đếm và cắt context; bộ đếm đó cũng không phải tokenizer của cả hai nhà cung cấp.
+
+### Demo online bằng một file BAT trên Windows
+
+Nhấp đúp `demo_online.bat`, hoặc chạy `./demo_online.bat` trong PowerShell.
+Script cài/kiểm tra dependency bằng `uv`, đọc cấu hình `.env`, dùng **báo cáo
+SolarWinds đầy đủ ở Appendix C.1** và gọi **một request API** để sinh graph chi tiết.
+Đây là cùng case study với hình SolarWinds trong bài; CVE RAG được chọn riêng bằng `--cve`.
+Trong `.env`, đặt `LLM_BACKEND=gemini`, `openrouter` hoặc `openrouter_v2`, API key và model tương ứng.
+`.env` được ưu tiên hơn biến môi trường còn sót lại từ demo offline.
+
+Kết quả mỗi lần chạy nằm riêng trong `outputs/demo_online/<timestamp>/`:
+`prompt.txt`, `response.txt`, `metadata.json`, `sources.json`, `graph.json`,
+`graph.png`, `graph.svg`, `graph.html`. Bản HTML tự mở, hoạt động offline,
+cho phép kéo/phóng to, tìm nút, xem nhãn cạnh và nhấn nút/cạnh để đọc chi tiết cùng đoạn nguồn.
+PNG và SVG giữ đầy đủ nhãn nút/cạnh; màu phân biệt tấn công, né tránh, phát hiện và giảm thiểu.
+Giữ cửa sổ terminal để xem lỗi nếu có.
+Request có thể tính phí; đây là demo một lần, không dùng budget của full runner.
+
+Mặc định dùng prompt chi tiết bổ sung yêu cầu bám nguồn và giới hạn output 16.384 token,
+reasoning medium cho Gemini/Luna và high cố định cho DeepSeek. Đây là biến thể demo, không phải prompt nguyên bản của bài báo.
+Dùng `--paper-prompt` để giữ nguyên prompt Appendix. Script không thêm nút/cạnh để đạt
+số lượng; số nút phụ thuộc nội dung và mô hình. Tham chiếu đoạn nguồn chỉ giúp kiểm toán,
+chưa phải chứng minh quan hệ đúng. Output bị cắt/repair được báo riêng, không tự gọi lại API.
+
+```powershell
+.\demo_online.bat                         # SolarWinds đầy đủ, graph chi tiết
+.\demo_online.bat --backend openrouter    # GPT-5.6 Luna
+.\demo_online.bat --backend openrouter_v2 # DeepSeek, mô hình thứ ba
+.\demo_online.bat --paper-prompt          # SolarWinds với prompt nguyên bản của bài
+.\demo_online.bat --evasion               # Chuyên sâu phần né tránh phát hiện
+.\demo_online.bat --cve                   # CVE RAG, cần index Contriever đã dựng
+.\demo_online.bat --report                # Appendix B, không cần index/Contriever để tạo prompt
+.\demo_online.bat --check --no-open       # Kiểm tra prompt, không gọi LLM API
+.\demo_online.bat --replay "outputs/demo_online/RUN_ID/response.txt"  # Vẽ lại SolarWinds, không gọi API
+```
+
+Demo SolarWinds mặc định không cần index hoặc tải Contriever. Để dùng `--cve`, dựng index theo mục 6.
+
+Mô hình thứ ba DeepSeek chỉ cần ba biến trong `.env`:
+
+```dotenv
+OPENROUTER_API_KEY_V2=YOUR_API_KEY
+OPENROUTER_MODEL_V2=deepseek/deepseek-v4.1-flash
+OPENROUTER_PROVIDER_CONFIG_V2='{"only":["baidu/fp8"],"allow_fallbacks":false}'
+```
+
+Chạy `uv run --no-sync python scripts/demo_online.py --backend openrouter_v2`,
+hoặc dùng BAT như trên. Reasoning của DeepSeek cố định `high` trong code
+(`OPENROUTER_V2_REASONING_LEVEL` ở `config.py`), không cần thêm biến môi trường.
+Muốn đổi nhà cung cấp, sửa slug trong `only`. Dùng `--check --no-open` để kiểm tra
+cấu hình và tạo prompt mà không gọi API; kết hợp được với `--report`, `--cve`, `--evasion`.
+
+Để demo cùng prompt Appendix B trên cả ba mô hình (mỗi lệnh một request):
+
+```powershell
+uv run --no-sync python scripts/demo_online.py --backend gemini --report --reasoning high
+uv run --no-sync python scripts/demo_online.py --backend openrouter --report --reasoning high
+uv run --no-sync python scripts/demo_online.py --backend openrouter_v2 --report --reasoning high
+```
+
+Thêm `--check --no-open` để chỉ chuẩn bị, không gọi LLM API. Mỗi lần lưu output riêng;
+đây là một repeat minh họa, chưa phải bộ thí nghiệm năm repeat. Xem [thiết kế ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md)
+cho phạm vi năm kịch bản × ba mô hình × năm repeat = **75 response dự kiến**.
+
+Chế độ report dùng nguyên prompt Appendix B, không bọc thêm instruction.
+Để chạy không chờ phím trong terminal tự động, đặt `$env:CRYSTALBALL_DEMO_NO_PAUSE="1"`.
 
 ## 4. Chạy demo không gọi API
 
@@ -103,9 +186,11 @@ uv run --no-sync python scripts/ingest_cves.py --input path/to/cve_folder
 
 `ingest_cves.py` quét `*.json` trực tiếp trong thư mục, không quét đệ quy. Chọn `CRYSTALBALL_DB_PATH` và `CRYSTALBALL_EMBEDDINGS_DIR` trước khi chạy; giữ nguyên chúng khi build prompt. Không trộn hashing và Contriever trong cùng index. Ingest tổng quát này không tạo manifest index mà runner thí nghiệm chính yêu cầu.
 
-**Lệnh có thể tính phí:** `ingest_cves.py` khi `EXTRACTOR_BACKEND=llm`; `build_prompt.py` khi `LLM_BACKEND` là `gemini`, `openrouter` hoặc `openai`. Các lệnh riêng lẻ này không dùng bộ giới hạn ngân sách 50.000 VND của full runner.
+**Lệnh có thể tính phí:** `ingest_cves.py` khi `EXTRACTOR_BACKEND=llm`; `build_prompt.py` khi `LLM_BACKEND` là `gemini`, `openrouter`, `openrouter_v2` hoặc `openai`. Các lệnh riêng lẻ này không dùng bộ giới hạn ngân sách 50.000 VND của full runner.
 
-## 6. Bộ thí nghiệm §5.1–5.4
+## 6. Runner lịch sử §5.1–5.4 — hai mô hình
+
+Mục này mô tả runner đã dùng cho run 130 response, **không tự chạy DeepSeek** dù `.env` có cấu hình mô hình thứ ba. Thiết kế đợt ba mô hình và những phần cần mở rộng được ghi ở [tài liệu ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md). Trước đợt mới, cần sửa bộ tạo báo cáo còn ghi cứng kết luận T0 cũ và có thể ghi đè báo cáo gốc.
 
 ### Cấu hình
 

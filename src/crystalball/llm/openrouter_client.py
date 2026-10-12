@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from copy import deepcopy
 from typing import Any
 
 from ..config import get_settings
@@ -18,6 +19,7 @@ class OpenRouterLLMClient(LLMClient):
         *,
         max_output_tokens: int | None = None,
         reasoning_level: str | None = None,
+        provider_config: dict[str, Any] | None = None,
     ) -> None:
         if not model.strip():
             raise ValueError("OPENROUTER_MODEL must be an exact, non-empty model slug.")
@@ -38,6 +40,7 @@ class OpenRouterLLMClient(LLMClient):
         self.reasoning_level = (
             settings.llm_reasoning_level if reasoning_level is None else reasoning_level
         )
+        self.provider_config = deepcopy(provider_config)
         self.last_usage: dict[str, Any] | None = None
         self.last_response_metadata: dict[str, Any] | None = None
 
@@ -62,12 +65,20 @@ class OpenRouterLLMClient(LLMClient):
                 "reasoning_effort": effort,
             },
         }
-        response = self._client.chat.completions.create(
-            model=self.model,
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=output_limit,
-            reasoning_effort=effort,
-        )
+        request = {
+            "model": self.model,
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": output_limit,
+        }
+        if self.provider_config is None:
+            request["reasoning_effort"] = effort
+        else:
+            request["extra_body"] = {
+                "provider": deepcopy(self.provider_config),
+                "reasoning": {"effort": effort},
+            }
+            self.last_response_metadata["generation_config"]["provider"] = deepcopy(self.provider_config)
+        response = self._client.chat.completions.create(**request)
         usage = getattr(response, "usage", None)
         if usage is not None:
             serialized_usage = to_metadata_value(usage)
@@ -90,4 +101,8 @@ class OpenRouterLLMClient(LLMClient):
             "finish_reasons": finish_reasons,
             "usage": self.last_usage,
         }
+        if self.provider_config is not None:
+            self.last_response_metadata["actual_provider"] = to_metadata_value(
+                getattr(response, "provider", None)
+            )
         return response.choices[0].message.content or ""

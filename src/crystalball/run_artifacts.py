@@ -43,6 +43,7 @@ def experiment_metadata(
     configured_models = {
         "openai": settings.openai_model,
         "openrouter": settings.openrouter_model.strip() or None,
+        "openrouter_v2": settings.openrouter_model_v2.strip() or None,
         "gemini": settings.gemini_model,
     }
     return {

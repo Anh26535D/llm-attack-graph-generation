@@ -32,7 +32,7 @@ def main() -> None:
     parser.add_argument("--response", type=Path, required=True, help="File containing the pasted LLM answer.")
     parser.add_argument("--query", default=None, help="Optional label to store alongside the saved graph.")
     parser.add_argument("--prompt-file", type=Path, default=None, help="Optional matching prompt file, for the DB record.")
-    parser.add_argument("--backend", choices=("manual", "openai", "openrouter", "gemini"), default=None,
+    parser.add_argument("--backend", choices=("manual", "openai", "openrouter", "openrouter_v2", "gemini"), default=None,
                         help="Actual LLM backend used for the pasted response (recorded as metadata).")
     parser.add_argument("--model", default=None, help="Actual model name/slug used for the pasted response.")
     args = parser.parse_args()

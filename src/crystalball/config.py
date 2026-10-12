@@ -25,6 +25,9 @@ OUTPUTS_DIR = Path(os.getenv("CRYSTALBALL_OUTPUTS_DIR", PROJECT_ROOT / "outputs"
 PROMPTS_DIR = OUTPUTS_DIR / "prompts"
 GRAPHS_DIR = OUTPUTS_DIR / "graphs"
 
+# The third model (DeepSeek) uses high reasoning without another env setting.
+OPENROUTER_V2_REASONING_LEVEL = "high"
+
 
 @dataclass
 class Settings:
@@ -61,12 +64,20 @@ class Settings:
     #             paste into ChatGPT/Gemini/etc, and read the pasted answer back in.
     # "openai" -> calls the OpenAI Chat Completions API (needs OPENAI_API_KEY)
     # "openrouter" -> calls a selected OpenRouter model (needs OPENROUTER_API_KEY)
+    # "openrouter_v2" -> DeepSeek, using the second OpenRouter profile
     # "gemini" -> calls the Google Gemini API (needs GEMINI_API_KEY)
     llm_backend: str = field(default_factory=lambda: os.getenv("LLM_BACKEND", "manual"))
     openai_model: str = field(default_factory=lambda: os.getenv("OPENAI_MODEL", "gpt-4o-mini"))
     openai_api_key: str | None = field(default_factory=lambda: os.getenv("OPENAI_API_KEY"))
     openrouter_model: str = field(default_factory=lambda: os.getenv("OPENROUTER_MODEL", ""))
     openrouter_api_key: str | None = field(default_factory=lambda: os.getenv("OPENROUTER_API_KEY"))
+    openrouter_model_v2: str = field(default_factory=lambda: os.getenv("OPENROUTER_MODEL_V2", ""))
+    openrouter_api_key_v2: str | None = field(
+        default_factory=lambda: os.getenv("OPENROUTER_API_KEY_V2"), repr=False
+    )
+    openrouter_provider_config_v2: str = field(
+        default_factory=lambda: os.getenv("OPENROUTER_PROVIDER_CONFIG_V2", "{}")
+    )
     gemini_model: str = field(default_factory=lambda: os.getenv("GEMINI_MODEL", "gemini-3.8-flash"))
     gemini_api_key: str | None = field(default_factory=lambda: os.getenv("GEMINI_API_KEY"))
 

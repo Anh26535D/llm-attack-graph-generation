@@ -2,6 +2,8 @@
 
 Ngày tổng hợp: 27/09/2026. Run: `20260927_full_reproduction`.
 
+**Cập nhật phạm vi ngày 13/10/2026:** dự án đã bổ sung DeepSeek làm mô hình thứ ba bên cạnh Gemini và GPT-5.6 Luna. Client/demo đã hỗ trợ chọn ba mô hình; runner thí nghiệm và gallery cần mở rộng. **Báo cáo này chỉ tổng hợp 130 response của hai mô hình trong run lịch sử, không chứa kết quả DeepSeek.** Thiết kế đợt ba mô hình và quy trình demo được ghi riêng tại [Thí nghiệm ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md); số liệu dưới đây được giữ nguyên để truy vết.
+
 **Phạm vi chia sẻ:** repo cung cấp code, dữ liệu nguồn và báo cáo tổng hợp này. Raw response, journal, worksheet và báo cáo chi tiết của run được giữ cục bộ tại `outputs/experiments/20260927_full_reproduction/`, không có trong bản clone. Những đường dẫn bằng chứng dưới đây tính từ thư mục run đó, trừ khi ghi rõ `docs/archive/`; muốn kiểm toán số liệu lịch sử cần xin bộ artifact từ người phụ trách.
 
 **Đã hoàn tất các request theo thiết kế đã chốt và đánh giá lại offline.** Kết quả hỗ trợ việc tái hiện quy trình sinh graph với hai mô hình thay thế, nhưng chưa chứng minh graph hoàn chỉnh hoặc mô hình nào tốt hơn. Báo cáo này thay phần tổng hợp cũ tại thư mục gốc, dùng số liệu sau sửa parser và các worksheet đã đọc lại. Raw response, prompt, journal và Review 3 gốc được giữ nguyên.
