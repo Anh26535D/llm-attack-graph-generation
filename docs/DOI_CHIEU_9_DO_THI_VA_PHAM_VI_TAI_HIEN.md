@@ -1,5 +1,7 @@
 # Đối chiếu chín attack graph và phạm vi tái hiện
 
+**Cập nhật runner chín hình:** `scripts/run_paper_experiment.py` đã chạy được đúng ánh xạ chín hình bằng Gemini/Luna/DeepSeek, mặc định 9 request. Đã có `demo_online.bat --figure N` cho từng hình và `--nine` cho toàn bộ, cùng ảnh nút tròn, tên node/edge và trang so sánh riêng. Xem [hướng dẫn hiện tại](THI_NGHIEM_BA_MO_HINH.md). Số liệu/gallery hai mô hình ở các mục dưới là bằng chứng lịch sử, không phản ánh số liệu mới.
+
 Ngày đối chiếu: 12/10/2026. Đã đọc PDF gốc 14 trang, PDF báo cáo của nhóm 10 trang, code hiện tại và artifact local của run `20260927_full_reproduction`.
 
 Cập nhật phạm vi ngày 13/10/2026: nhóm chọn **Gemini, GPT-5.6 Luna và DeepSeek** làm ba mô hình độc lập cho phần tái hiện. Xem [thiết kế thí nghiệm ba mô hình](THI_NGHIEM_BA_MO_HINH.md). Số liệu và gallery dưới đây vẫn thuộc run hai mô hình đã lưu.
@@ -10,7 +12,7 @@ Cập nhật phạm vi ngày 13/10/2026: nhóm chọn **Gemini, GPT-5.6 Luna và
 
 Tuy nhiên, đây là tái hiện phương pháp và kịch bản. Chưa phải tái tạo nguyên trạng chín hình bằng đúng GPT-4, GPT-3.5, Bard của bài gốc; cũng không bảo đảm giống từng node, cạnh hay vị trí. Muốn lặp đúng model lịch sử phải kiểm tra quyền truy cập đúng phiên bản, cùng cấu hình và dữ liệu gốc. PDF cung cấp prompt và hình minh họa, nhưng không đủ để đảm bảo khôi phục chính xác một lần sinh ngẫu nhiên của tác giả.
 
-Mục tiêu hiện tại là dùng ba mô hình thay thế để có phần so sánh giống cách tổ chức của bài gốc. DeepSeek đã được bổ sung vào client và demo; cần mở rộng runner và tổng hợp kết quả để thực hiện bộ thí nghiệm ba mô hình. Không cần viết lại thuật toán sinh graph hoặc thêm prompt nguồn cho năm kịch bản đã có.
+Mục tiêu hiện tại là dùng ba mô hình thay thế để có phần so sánh giống cách tổ chức của bài gốc. Runner chín hình đã thực hiện đủ chín response mới trong paper9_20261013_original; bộ paper9_20261013_reviewed có từng ảnh và trang so sánh. Một repeat minh họa chưa đủ kết luận thống kê. Không cần viết lại thuật toán sinh graph hoặc thêm prompt nguồn cho năm kịch bản đã có.
 
 ## 2. Chín graph không phải chín thuật toán hay chín prompt độc lập
 
@@ -23,10 +25,10 @@ Bài gốc có 13 hình. Trong đó chín attack graph là **Figure 2, 6, 7, 8, 
 | 7 | GPT-4 | Đủ tám mô tả CVE, Appendix A | C2 | Có prompt và 5 response/model |
 | 8 | GPT-4 | SolarWinds evasion, Appendix C.2 | T2 | Có prompt và 5 response/model |
 | 9 | GPT-3.5 | Cùng Appendix A như Figure 7 | C2 | Có kết quả so sánh hai model thay thế |
-| 10 | Bard | Cùng Appendix A như Figure 7 | C2 | Đã chọn DeepSeek làm model thứ ba; chưa có response C2 |
+| 10 | Bard | Cùng Appendix A như Figure 7 | C2 | Có response DeepSeek mới C2: 8 node/4 edge |
 | 11 | GPT-4 | Hai nhánh PostgreSQL/container, Appendix B | T0 | Có prompt và 5 response/model; dùng parser đã sửa |
 | 12 | GPT-3.5 | Cùng Appendix B như Figure 11 | T0 | Có kết quả so sánh hai model thay thế |
-| 13 | Bard | Cùng Appendix B như Figure 11 | T0 | DeepSeek đã có demo `--report`; chưa có response T0 |
+| 13 | Bard | Cùng Appendix B như Figure 11 | T0 | Có response DeepSeek mới T0: 15 node/18 edge; overview gom nhóm 4/2 ghi riêng |
 
 Các row so sánh model không tự tương đương một model lịch sử cụ thể. Ví dụ, output Gemini của nhóm không được ghi là output GPT-4. Bảng trên chỉ ánh xạ **kịch bản/prompt**.
 
@@ -46,7 +48,7 @@ Như vậy, chín graph được tạo từ **năm kịch bản**: C0, C2, T0, T
 - `outputs/experiments/20260927_full_reproduction/`: 130 raw response; 70 request điều kiện chính và 60 request mở rộng §5.4.
 - Năm kịch bản tương ứng các hình × hai model × năm repeat = **50 response chính liên quan trực tiếp tới chín graph**. C1 và X0 bổ sung 20 request; §5.4 bổ sung 60.
 - Hai model trong metadata: Gemini `gemini-3.8-flash`, OpenRouter `openai/gpt-5.6-luna`.
-- Mô hình thứ ba đã cấu hình: DeepSeek `deepseek/deepseek-v4.1-flash`, backend `openrouter_v2`, provider chọn bằng `OPENROUTER_PROVIDER_CONFIG_V2`. Hậu tố `_V2` chỉ phân biệt cấu hình OpenRouter thứ hai; chưa có dữ liệu thí nghiệm DeepSeek.
+- Mô hình thứ ba đã cấu hình: DeepSeek `deepseek/deepseek-v4.1-flash`, backend `openrouter_v2`, provider chọn bằng `OPENROUTER_PROVIDER_CONFIG_V2`. Hậu tố `_V2` chỉ phân biệt cấu hình OpenRouter thứ hai. Đã có response DeepSeek C2/T0 mới trong outputs/paper_nine; run lịch sử vẫn dùng hai model.
 - Các thao tác chunk/merge, cutoff/continuation, edge detail và edge context đã được triển khai và chạy. Chúng không có thêm hình đánh số riêng trong bài gốc.
 
 Đã kiểm tra SHA-256 của PDF gốc và bốn file Appendix khớp manifest hiện có. Việc khớp hash xác nhận tính nhất quán với bộ nguồn local, không phải một lần xác thực nguồn trực tuyến mới.
@@ -65,13 +67,13 @@ Lệnh mặc định xuất năm kịch bản × hai model = 10 graph. `--includ
 Bộ đã xuất trong lần đối chiếu này:
 
 ```text
-outputs/paper_demo/20261012T160411254414Z/index.html
+outputs/archive/20261013_cleanup/paper_demo/20261012T160411254414Z/index.html
 ```
 
 Mỗi thư mục con chứa `graph.png`, `graph.svg`, `graph.html`, `graph.json`, `prompt.txt`, `response.txt`, `metadata.json`. Gallery ghi model thật, số node/edge, repeat và cảnh báo. Mở bằng:
 
 ```powershell
-Invoke-Item "outputs/paper_demo/20261012T160411254414Z/index.html"
+Invoke-Item "outputs/archive/20261013_cleanup/paper_demo/20261012T160411254414Z/index.html"
 ```
 
 ### Số lượng trong bộ minh họa repeat 1
@@ -115,7 +117,7 @@ Thêm `--backend gemini`, `--backend openrouter` hoặc `--backend openrouter_v2
 
 `write_reproduction_artifacts()` trong `scripts/run_paired_experiment.py` còn chuỗi kết luận cũ rằng T0 Gemini rỗng và còn ghi ra `REPRODUCTION_REPORT.md` ở gốc repo. Đường sinh báo cáo có thể đưa kết luận đã rút lại quay lại. Exporter mới không gọi hàm này.
 
-Trước khi chạy lại full runner, cần lấy kết luận từ metrics hiện hành, bỏ nhận xét cũ ghi cứng và bảo vệ báo cáo đã biên tập khỏi ghi đè. Lần này chưa sửa runner hoặc thực hiện đợt API mới.
+Trước khi chạy lại full runner, cần lấy kết luận từ metrics hiện hành, bỏ nhận xét cũ ghi cứng và bảo vệ báo cáo đã biên tập khỏi ghi đè. Runner chín hình mới lưu kết quả API riêng trong outputs/paper_nine, không gọi đường ghi báo cáo này.
 
 ## 6. Cần thêm code hay prompt?
 
@@ -123,16 +125,16 @@ Trước khi chạy lại full runner, cần lấy kết luận từ metrics hi�
 |---|---|
 | Đọc và trình bày run lịch sử hai model | Không cần thêm prompt hoặc gọi lại API; dùng bộ exporter/gallery hiện có |
 | Demo RAG vận hành | Chạy C1 `--cve --check` để show retrieval; dùng gallery C1 hoặc gọi một request mới khi cần |
-| Một nút/lệnh chạy mới cho từng C0/C2/T0/T1/T2 | Thêm lựa chọn scenario hoặc script runner nhỏ; dùng lại prompt hiện có |
+| Một nút/lệnh chạy mới cho từng C0/C2/T0/T1/T2 | Đã có `demo_online.bat --figure N` và `--nine` |
 | Demo cùng T0 trên ba model | Client đã hỗ trợ; chạy `--report` lần lượt với `gemini`, `openrouter`, `openrouter_v2`; mỗi lần một request |
-| Thí nghiệm ba model như nhóm hình gốc | Đã chọn DeepSeek; cần mở rộng runner và exporter, giữ prompt C2/T0 giống nhau, năm repeat và lưu kết quả riêng |
+| Thí nghiệm ba model như nhóm hình gốc | Đã có runner/gallery chín hình, C2/T0 cùng prompt trong mỗi nhóm; một repeat là 9 request, năm repeat là 45 |
 | Tái hiện đúng GPT-4/GPT-3.5/Bard lịch sử | Cần model/version gốc có quyền truy cập và cấu hình gốc; không thể đảm bảo chỉ bằng thay prompt |
 | Thêm một case study khác | Cần dữ liệu/context và prompt mới; không phải yêu cầu để bao phủ chín hình hiện có |
 | Chứng minh tác dụng riêng của RAG hoặc đúng mọi path | Thiết kế đối chứng/ground truth và đánh giá mới, ngoài yêu cầu minh họa năm kịch bản |
 
 Full runner hiện khóa hai model trong `MODEL_SPECS` và kiểm tra đúng hai model ID. Vì vậy, chỉ sửa `.env` không đủ để mở rộng full runner thành ba model. Cần bổ sung DeepSeek vào danh sách client, kế hoạch request, ID kết quả và báo cáo; dùng lại các prompt đã có. Chi tiết trạng thái và phần cần sửa nằm trong [tài liệu ba mô hình](THI_NGHIEM_BA_MO_HINH.md).
 
-Mục tiêu đợt mới là **năm kịch bản × ba model × năm repeat = 75 response generation**. Nếu chỉ bổ sung DeepSeek vào dữ liệu cũ, năm kịch bản cần 25 response, hoặc riêng C2/T0 cần 10; không cần xây lại index vì prompt/context đã có. Tuy nhiên run cũ dùng reasoning low, DeepSeek hiện high: phải ghi rõ khác biệt cấu hình nếu dùng lại dữ liệu, không coi đó là phép so sánh chỉ thay model. Chỉ minh họa một repeat C2/T0 cần hai request, chưa đủ cho thống kê năm repeat. Thêm model là thí nghiệm mới, phải ghi run và phạm vi đánh giá riêng.
+Thiết kế cũ chạy mọi kịch bản trên mọi model là **75 response generation**. Phạm vi ưu tiên hiện tại dùng ánh xạ chín hình: một repeat là **9 request**, năm repeat là **45 request**; C2/T0 so ba model, C0/T1/T2 dùng Gemini. Bộ mới dùng reasoning high cho cả ba; không chạy full. Nếu chỉ bổ sung DeepSeek vào dữ liệu cũ, năm kịch bản cần 25 response, hoặc riêng C2/T0 cần 10; không cần xây lại index vì prompt/context đã có. Tuy nhiên run cũ dùng reasoning low, DeepSeek hiện high: phải ghi rõ khác biệt cấu hình nếu dùng lại dữ liệu, không coi đó là phép so sánh chỉ thay model. Chỉ minh họa một repeat C2/T0 cần hai request, chưa đủ cho thống kê năm repeat. Thêm model là thí nghiệm mới, phải ghi run và phạm vi đánh giá riêng.
 
 ## 7. Bổ sung gì cho PDF của nhóm?
 
@@ -141,7 +143,7 @@ PDF của nhóm đã có Mục VII về tái hiện: dữ liệu, thiết kế, 
 Nên giữ vai trò của các hình gốc trong phần khảo sát, rồi bổ sung hình của nhóm vào Mục VII hoặc phụ lục:
 
 1. C0 và C2 của cùng một model, để thấy khác biệt đầu ra của hai prompt. Ghi rõ hai prompt không chỉ khác context, nên đây chưa phải đối chứng nhân quả sạch.
-2. C2 và T0 của Gemini, Luna và DeepSeek ở cùng repeat sau khi chạy bộ mới, để minh họa so sánh model. Hiện chỉ có kết quả Gemini/Luna; ghi DeepSeek chưa chạy, không tự điền số liệu. Không xếp hạng chỉ từ số node/edge.
+2. C2 và T0 của Gemini, Luna và DeepSeek ở cùng repeat sau khi chạy bộ mới, để minh họa so sánh model. Đã có cả ba model ở C2/T0 repeat 1; lấy số liệu trong metadata.json. Figure 13 phân biệt graph đầy đủ với ảnh gom nhóm. Không xếp hạng chỉ từ số node/edge.
 3. T1 và T2 của cùng một model, để minh họa full report và excerpt. Không suy ra excerpt luôn tốt hơn từ một cặp hình.
 4. Một ví dụ kiểm tra cạnh bằng nguồn và điều kiện khai thác, cho thấy nhóm hiểu giới hạn của graph.
 
@@ -149,7 +151,7 @@ Chú thích gợi ý:
 
 > Hình X. Đồ thị T0 do nhóm tái hiện từ prompt Appendix B bằng Gemini `gemini-3.8-flash`, run `20260927_full_reproduction`, repeat 1. Graph có 10 nút và 10 cạnh; hình được vẽ lại từ raw response bằng parser hiện tại. Kết quả minh họa quy trình, không xác nhận mọi quan hệ khai thác trên hệ thống thực.
 
-Ở thời điểm hiện tại, ghi: **“Dự án đã hỗ trợ demo bằng ba mô hình thay thế Gemini, GPT-5.6 Luna và DeepSeek; kết quả định lượng hiện có thuộc run hai mô hình. Bộ thí nghiệm ba mô hình đang được chuẩn bị.”** Sau khi chạy và đánh giá đủ, cập nhật kết luận theo số liệu thực tế. Không ghi đã khôi phục chính xác chín hình hoặc dùng đúng ba model lịch sử của bài gốc.
+Ở thời điểm hiện tại, ghi: **“Dự án đã sinh chín trường hợp minh họa bằng Gemini, GPT-5.6 Luna và DeepSeek; C2/T0 dùng cùng prompt và reasoning high trong từng nhóm. Bộ ảnh trình bày ghi rõ prompt variant và ảnh gom nhóm; thống kê nhiều repeat lịch sử vẫn thuộc hai mô hình.”** Sau khi chạy và đánh giá đủ, cập nhật kết luận theo số liệu thực tế. Không ghi đã khôi phục chính xác chín hình hoặc dùng đúng ba model lịch sử của bài gốc.
 
 Nếu giới thiệu T0, gọi rõ đây là hai nhánh PostgreSQL/container trong Appendix B, được bài gốc đặt trong case study Kubernetes. Dữ liệu này chưa chứng minh đã demo một cụm Kubernetes thực hoặc cơ chế Kubernetes đặc thù.
 
@@ -157,8 +159,8 @@ Nếu giới thiệu T0, gọi rõ đây là hai nhánh PostgreSQL/container tro
 
 1. Show hai sơ đồ pipeline và mapping Figure → scenario.
 2. Chạy `--cve --check` để show query, 7 CVE được truy hồi và prompt.
-3. Mở gallery offline của run cũ để so C0/C2 và T0; sau khi có output mới, trình bày T0 ba cột Gemini/Luna/DeepSeek, ghi rõ các run và cấu hình.
+3. Mở outputs/paper_nine/paper9_20261013_reviewed/index.html để so từng hình và hai nhóm C2/T0 trên ba model, ghi rõ các run và cấu hình.
 4. Chọn một cạnh, đọc JSON và nguồn; nêu prerequisite còn cần xác nhận.
 5. Nếu muốn show generation trực tiếp, gọi một demo SolarWinds/Appendix B với backend đã chọn rồi dùng các output chuẩn bị trước làm phương án dự phòng.
 
-Phạm vi này dùng tài nguyên hiện có để trình bày pipeline. Muốn hoàn tất mục tiêu thí nghiệm ba mô hình, cần bổ sung runner, chạy và đánh giá bộ đã chốt; không cần thêm corpus hoặc prompt chỉ để bao phủ chín hình.
+Phạm vi này dùng tài nguyên hiện có để trình bày pipeline. Đã có runner và chín kết quả mới; nếu cần thống kê, chạy thêm repeat và đánh giá ngữ nghĩa riêng; không cần thêm corpus hoặc prompt chỉ để bao phủ chín hình.

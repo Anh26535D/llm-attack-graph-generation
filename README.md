@@ -10,16 +10,20 @@ Repo tái hiện phương pháp và các nhóm thí nghiệm §5.1–5.4 của P
 | GPT-5.6 Luna | `openai/gpt-5.6-luna` | `openrouter` |
 | DeepSeek | `deepseek/deepseek-v4.1-flash` | `openrouter_v2` |
 
-DeepSeek là mô hình thứ ba. Tên backend `openrouter_v2` và các biến `_V2` chỉ phân biệt cấu hình OpenRouter thứ hai đã có, không phải phiên bản của dự án. Client/demo đã hỗ trợ chọn cả ba; **batch runner và exporter hiện vẫn chỉ xử lý hai mô hình cũ**. Xem [quy trình và thiết kế ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md) để chạy demo cùng đầu vào và biết phần code còn cần bổ sung.
+DeepSeek là mô hình thứ ba. Tên backend `openrouter_v2` và các biến `_V2` chỉ phân biệt cấu hình OpenRouter thứ hai đã có, không phải phiên bản của dự án. **Runner chín hình đã hỗ trợ ba mô hình**, mỗi hình một request mặc định; runner đầy đủ §5.1–5.4 vẫn là bộ lịch sử hai mô hình. Xem [runner chín hình và demo online](docs/THI_NGHIEM_BA_MO_HINH.md).
 
-**Kết quả hiện có — hai mô hình:** run `20260927_full_reproduction` đã lưu 130 response của Gemini và Luna, mỗi tổ hợp chính lặp 5 lần; chưa có kết quả thí nghiệm DeepSeek. Đây là mô hình thay thế mô hình trong bài báo. Kết quả đã được đánh giá lại offline để sửa lỗi parser và cách diễn giải; nhãn thủ công vẫn là **Codex sơ bộ, chưa được chuyên gia xác nhận**. Đọc [báo cáo số liệu lịch sử](REPRODUCTION_REPORT.md) trước khi trích số liệu.
+**Bộ chín hình mới:** `outputs/paper_nine/paper9_20261013_original/` có đủ chín response của ba mô hình; `paper9_20261013_reviewed/index.html` là bộ ảnh đã chọn, kèm trang đối chiếu từng hình. Figure 13 có ảnh rút gọn gom nhóm và graph DeepSeek đầy đủ riêng; metadata ghi rõ nguồn/variant của mỗi ảnh.
+
+**Tổ chức output:** xem [outputs/README.md](outputs/README.md) để biết bộ nào dùng cho demo, file nào là bằng chứng và vị trí các bản trung gian trong archive. Các bản thử cũ đã chuyển sang `outputs/archive/20261013_cleanup/`; bộ reviewed, original, run mới hoàn thành và dữ liệu báo cáo lịch sử được giữ ở phần đang dùng.
+
+**Run lịch sử — hai mô hình:** `20260927_full_reproduction` lưu 130 response của Gemini và Luna, mỗi tổ hợp chính lặp 5 lần. Số liệu đã được đánh giá lại offline để sửa lỗi parser và cách diễn giải; nhãn thủ công vẫn là **Codex sơ bộ, chưa được chuyên gia xác nhận**. Đọc [báo cáo số liệu lịch sử](REPRODUCTION_REPORT.md) trước khi trích số liệu.
 
 ## 1. Đọc gì, ở đâu?
 
 | Tài liệu / thư mục                                                                                               | Mục đích                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | [README này](README.md)                                                                                              | Cài đặt, vận hành, phân biệt lệnh offline/API, cách đọc và đánh giá output    |
-| [Thí nghiệm ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md) | Cấu hình Gemini/Luna/DeepSeek, demo cùng prompt, thiết kế và phần batch còn thiếu |
+| [Thí nghiệm ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md) | Cấu hình Gemini/Luna/DeepSeek, runner chín hình, demo và cách chạy trên máy mới |
 | [Demo và trình bày](docs/HUONG_DAN_DEMO_VA_TRINH_BAY.md) | Lệnh chạy, luồng tạo ảnh, file đưa vào báo cáo và dàn ý slide |
 | [Đối chiếu chín graph](docs/DOI_CHIEU_9_DO_THI_VA_PHAM_VI_TAI_HIEN.md) | Mapping hình gốc → năm kịch bản, nguồn prompt và hình tái hiện |
 | [REPRODUCTION_REPORT.md](REPRODUCTION_REPORT.md)                                                                      | Báo cáo run hai mô hình: thiết kế, số liệu đã sửa, kết luận và giới hạn |
@@ -28,7 +32,7 @@ DeepSeek là mô hình thứ ba. Tên backend `openrouter_v2` và các biến `_
 | [data/cve_official/manifest.json](data/cve_official/manifest.json)                                                    | Tám CVE chính thức: ID, URL, commit nguồn và SHA-256                                    |
 | [data/reproduction/manifest.json](data/reproduction/manifest.json)                                                    | Nguồn Appendix A/B/C, trang PDF, chuẩn hóa văn bản và hash                             |
 
-**Phạm vi chia sẻ:** code vận hành, tests, dependency lock, tám CVE chính thức, prompt nguồn Appendix và tài liệu hướng dẫn. Raw response, output từng đợt, DB/vector/cache và `docs/archive/` giữ cục bộ, không nằm trong bản clone. Muốn kiểm toán lại run lịch sử cần xin bộ bằng chứng từ người phụ trách; không cần bộ đó để chạy pipeline hoặc tạo run mới.
+**Phạm vi chia sẻ:** code vận hành, các file `.bat`, tests, dependency lock, tám CVE chính thức, prompt nguồn Appendix và tài liệu hướng dẫn. Ba bộ `outputs/paper_nine/` đã chọn và hai sơ đồ `outputs/demo_presentation/` cũng có trong Git, gồm prompt/response/metadata và ảnh tham chiếu. DB/vector/cache, archive và bộ 130 response lịch sử giữ cục bộ. Không cần các artifact lịch sử để chạy runner chín hình hoặc tạo run mới; API key nằm trong `.env` riêng của từng người.
 
 ## 2. Luồng xử lý và code
 
@@ -76,12 +80,41 @@ uv run --no-sync pytest -q
 Để chạy Contriever và ba mô hình qua hai dịch vụ API Gemini/OpenRouter, cài thêm:
 
 ```powershell
-uv sync --locked --extra dev --extra embeddings --extra gemini --extra openrouter
+uv sync --locked --extra dev --extra embeddings --extra gemini --extra openrouter --extra paper
 ```
 
 Dùng `uv run --no-sync` sau khi sync để giữ các extras đã cài. Không cần `tokens` extra cho cấu hình lịch sử: run dùng bộ ước lượng token theo từ. Cài `tiktoken` có thể đổi cách đếm và cắt context; bộ đếm đó cũng không phải tokenizer của cả hai nhà cung cấp.
 
 ### Demo online bằng một file BAT trên Windows
+
+**Ưu tiên tái hiện chín hình của bài báo:**
+
+```powershell
+.\paper_demo.bat --check --no-open       # Chuẩn bị 9 prompt, không gọi LLM
+.\paper_demo.bat                         # Đúng 9 request, 3 mô hình, 1 repeat
+.\demo_online.bat --figure 10            # Demo riêng Figure 10 bằng DeepSeek
+.\demo_online.bat --nine                 # Demo online cả 9 hình
+```
+
+**Chạy trên máy mới:** clone repo, cài `uv`, mở PowerShell tại thư mục repo rồi tạo cấu hình:
+
+```powershell
+if (-not (Test-Path .env)) { Copy-Item .env.example .env }
+.\paper_demo.bat --resume outputs/paper_nine/paper9_20261013_reviewed --render-only
+.\presentation_demo.bat
+```
+
+Hai lệnh trên tạo lại ảnh từ response đã lưu và hai sơ đồ quy trình, không gọi API, không cần điền key. Để **sinh chín response mới**, điền `GEMINI_API_KEY`, `OPENROUTER_API_KEY`, `OPENROUTER_API_KEY_V2` trong `.env`, giữ model/provider theo mẫu rồi chạy `paper_demo.bat --check --no-open` trước `paper_demo.bat`. Runner chín hình tự chọn backend theo Figure, không cần đổi `LLM_BACKEND` giữa các hình. Khi máy clone không có PDF gốc, runner dùng chín ảnh tham chiếu đã commit và kiểm tra hash trước khi sao chép; không cần DB/vector/index Contriever cho phạm vi này.
+
+Output nằm trong `outputs/paper_nine/<run>/`: ảnh nguồn PDF tách riêng ở `references/`; mỗi hình có `graph.png`, `graph.svg`, `graph.html`, `comparison.html`, prompt/response và metadata trong `figures/figure_NN_r01/`. `index.html` tập hợp chín trường hợp. Nút tròn, tên nút đặt bên ngoài, toàn bộ tên cạnh hiện trên ảnh; không xóa hoặc thêm quan hệ để làm giống hình gốc.
+
+Để chỉnh bố cục từ response đã có mà không gọi API:
+
+```powershell
+uv run --no-sync python scripts/run_paper_experiment.py --resume outputs/paper_nine/RUN_ID --render-only --layout-seed 17
+```
+
+Chế độ dưới đây vẫn có cho demo SolarWinds chi tiết, RAG hoặc Appendix B riêng lẻ:
 
 Nhấp đúp `demo_online.bat`, hoặc chạy `./demo_online.bat` trong PowerShell.
 Script cài/kiểm tra dependency bằng `uv`, đọc cấu hình `.env`, dùng **báo cáo
@@ -142,7 +175,7 @@ uv run --no-sync python scripts/demo_online.py --backend openrouter_v2 --report 
 
 Thêm `--check --no-open` để chỉ chuẩn bị, không gọi LLM API. Mỗi lần lưu output riêng;
 đây là một repeat minh họa, chưa phải bộ thí nghiệm năm repeat. Xem [thiết kế ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md)
-cho phạm vi năm kịch bản × ba mô hình × năm repeat = **75 response dự kiến**.
+cho ánh xạ chín hình → năm kịch bản; runner mới mặc định **9 response**, `--repeat 5` là 45 response. C1/X0/§5.4 không nằm trong runner này.
 
 Chế độ report dùng nguyên prompt Appendix B, không bọc thêm instruction.
 Để chạy không chờ phím trong terminal tự động, đặt `$env:CRYSTALBALL_DEMO_NO_PAUSE="1"`.
@@ -190,7 +223,7 @@ uv run --no-sync python scripts/ingest_cves.py --input path/to/cve_folder
 
 ## 6. Runner lịch sử §5.1–5.4 — hai mô hình
 
-Mục này mô tả runner đã dùng cho run 130 response, **không tự chạy DeepSeek** dù `.env` có cấu hình mô hình thứ ba. Thiết kế đợt ba mô hình và những phần cần mở rộng được ghi ở [tài liệu ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md). Trước đợt mới, cần sửa bộ tạo báo cáo còn ghi cứng kết luận T0 cũ và có thể ghi đè báo cáo gốc.
+Mục này mô tả runner đã dùng cho run 130 response, **không tự chạy DeepSeek** dù `.env` có cấu hình mô hình thứ ba. Để chạy phần tái hiện chín hình bằng ba mô hình, dùng `run_paper_experiment.py` ở mục demo và [hướng dẫn chín hình](docs/THI_NGHIEM_BA_MO_HINH.md). Runner mới lưu báo cáo riêng, không gọi bộ tạo báo cáo lịch sử còn ghi cứng kết luận T0 cũ.
 
 ### Cấu hình
 

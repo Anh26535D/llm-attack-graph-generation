@@ -1,5 +1,6 @@
 """Create two standalone process diagrams for a Vietnamese report or slide deck."""
 
+import argparse
 from pathlib import Path
 
 import matplotlib
@@ -8,7 +9,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
-OUT = Path(__file__).resolve().parent
+parser = argparse.ArgumentParser(description="Generate two process diagrams without API calls")
+parser.add_argument("--output-dir", type=Path, default=Path(__file__).resolve().parents[1] / "outputs/demo_presentation")
+OUT = parser.parse_args().output_dir.resolve()
+OUT.mkdir(parents=True, exist_ok=True)
 plt.rcParams.update({"font.family": "Arial", "svg.fonttype": "none"})
 INK = "#173554"
 MUTED = "#526980"

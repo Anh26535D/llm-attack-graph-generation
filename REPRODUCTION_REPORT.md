@@ -1,5 +1,7 @@
 # Báo cáo tái hiện CrystalBall §5.1–5.4
 
+**Runner chín hình hiện tại:** đã có runner riêng `scripts/run_paper_experiment.py` với ba mô hình, ảnh nút tròn/tên cạnh và demo online từng Figure. Đọc [hướng dẫn chín hình](docs/THI_NGHIEM_BA_MO_HINH.md). Báo cáo này vẫn giữ nguyên số liệu 130 response của run lịch sử; kết quả mới nằm trong thư mục `outputs/paper_nine/` riêng.
+
 Ngày tổng hợp: 27/09/2026. Run: `20260927_full_reproduction`.
 
 **Cập nhật phạm vi ngày 13/10/2026:** dự án đã bổ sung DeepSeek làm mô hình thứ ba bên cạnh Gemini và GPT-5.6 Luna. Client/demo đã hỗ trợ chọn ba mô hình; runner thí nghiệm và gallery cần mở rộng. **Báo cáo này chỉ tổng hợp 130 response của hai mô hình trong run lịch sử, không chứa kết quả DeepSeek.** Thiết kế đợt ba mô hình và quy trình demo được ghi riêng tại [Thí nghiệm ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md); số liệu dưới đây được giữ nguyên để truy vết.

@@ -1,5 +1,7 @@
 # Học và đọc code CrystalBall theo phạm vi vừa sức
 
+**Runner ưu tiên hiện tại:** đọc thêm `paper_cases.py` (ánh xạ chín hình), `paper_runner.py` (ba model, freeze prompt, lưu response, resume), `paper_graph.py` (nút tròn và tên node/edge). Lệnh demo/thí nghiệm nằm trong [hướng dẫn chín hình](THI_NGHIEM_BA_MO_HINH.md); ví dụ runner full trong tài liệu này vẫn thuộc bộ lịch sử hai mô hình.
+
 Tài liệu local, ngày 28/09/2026. Đi kèm [đánh giá phạm vi](DANH_GIA_REVIEW_VA_PHAM_VI.md). Mục tiêu là tự giải thích được pipeline, chạy từng phần và nhận ra giới hạn của graph sinh ra. Không cần thuộc toàn bộ repository.
 
 **Cập nhật ngày 13/10/2026:** phạm vi hiện tại dùng ba mô hình độc lập: Gemini, GPT-5.6 Luna và DeepSeek. Các ví dụ/số liệu run `20260927_full_reproduction` bên dưới vẫn là kết quả hai mô hình. Đọc [hướng dẫn ba mô hình](THI_NGHIEM_BA_MO_HINH.md) để xem lệnh demo cùng đầu vào, thiết kế năm kịch bản/năm repeat và phần runner còn thiếu. Tên `openrouter_v2` chỉ là backend cho cấu hình OpenRouter thứ hai.

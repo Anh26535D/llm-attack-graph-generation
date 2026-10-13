@@ -4,3 +4,5 @@
 - [luong_tao_anh.png](luong_tao_anh.png): luồng tạo ảnh; [bản SVG](luong_tao_anh.svg).
 
 PNG dùng trực tiếp trong báo cáo/slide; SVG giữ chất lượng khi phóng to. Đây là sơ đồ giải thích pipeline, không phải graph do LLM sinh. Graph và kết quả ba model nằm trong [paper_nine](../paper_nine/README.md).
+
+Tạo lại bằng `presentation_demo.bat` ở gốc repo, không cần API key. Script nằm tại `scripts/generate_presentation_diagrams.py`; dùng `--output-dir PATH` để xuất sang thư mục khác.

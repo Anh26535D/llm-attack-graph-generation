@@ -7,7 +7,7 @@ set "PYTHONUTF8=1"
 set "PYTHONUNBUFFERED=1"
 echo === CrystalBall - SolarWinds Detailed API Demo ===
 echo Mac dinh: bao cao SolarWinds day du, graph chi tiet, nhan nut va canh.
-echo Tuy chon: --cve / --report / --evasion / --paper-prompt / --check
+echo Tuy chon: --figure N / --nine / --cve / --report / --evasion / --check
 echo.
 where uv >nul 2>nul
 if errorlevel 1 (
@@ -22,7 +22,12 @@ if not exist ".env" (
     goto finish
 )
 echo [1/2] Kiem tra thu vien...
-uv sync --locked --inexact --extra dev --extra embeddings --extra gemini --extra openrouter
+set "demo_embedding_extra=--extra embeddings"
+for %%A in (%*) do (
+    if /I "%%~A"=="--figure" set "demo_embedding_extra="
+    if /I "%%~A"=="--nine" set "demo_embedding_extra="
+)
+uv sync --locked --inexact --extra dev %demo_embedding_extra% --extra gemini --extra openrouter --extra paper
 if errorlevel 1 (
     echo [ERROR] Khong cai duoc thu vien. Kiem tra ket noi mang va thong bao phia tren.
     set "demo_exit=1"

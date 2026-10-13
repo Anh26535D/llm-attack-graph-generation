@@ -1,8 +1,10 @@
 # Quy trình chạy, demo và trình bày CrystalBall
 
+**Cập nhật runner chín hình:** dùng `paper_demo.bat` để chạy đúng chín trường hợp với ba mô hình; `demo_online.bat --figure N` demo riêng Figure 2/6/7/8/9/10/11/12/13; `--nine` demo toàn bộ. Output có PNG/SVG/HTML và từng trang so sánh ảnh gốc. Xem [hướng dẫn runner chín hình](THI_NGHIEM_BA_MO_HINH.md) cho lệnh chuẩn bị, sinh ảnh và vẽ lại không gọi API. Các hướng dẫn về runner/gallery hai mô hình bên dưới thuộc bộ lịch sử.
+
 Đối chiếu với code và kiểm tra offline ngày 12/10/2026; cập nhật phạm vi ba mô hình ngày 13/10/2026. Các lệnh dưới đây dùng PowerShell.
 
-Phạm vi hiện tại dùng **Gemini, GPT-5.6 Luna và DeepSeek** làm ba mô hình thay thế cho phần tái hiện. Demo đã hỗ trợ chọn cả ba; batch runner/gallery còn dùng hai mô hình của run lịch sử. Xem [thí nghiệm ba mô hình](THI_NGHIEM_BA_MO_HINH.md) để biết cấu hình, kế hoạch và phần code còn thiếu. DeepSeek là mô hình bổ sung; tên kỹ thuật `openrouter_v2` không phải phiên bản của dự án.
+Phạm vi hiện tại dùng **Gemini, GPT-5.6 Luna và DeepSeek** làm ba mô hình thay thế. Runner chín hình và gallery mới hỗ trợ cả ba; runner full/gallery lịch sử vẫn dùng hai mô hình. Xem [runner chín hình](THI_NGHIEM_BA_MO_HINH.md). DeepSeek là mô hình bổ sung; tên kỹ thuật `openrouter_v2` không phải phiên bản của dự án.
 
 ## 1. Lệnh chạy dự án hiện tại
 
@@ -80,7 +82,7 @@ uv run --no-sync python scripts/demo_online.py --backend openrouter --report --r
 uv run --no-sync python scripts/demo_online.py --backend openrouter_v2 --report --reasoning high
 ```
 
-Mỗi lệnh gọi một request mới và mở graph của mô hình tương ứng. Thêm `--check --no-open` để kiểm tra cả ba trước buổi trình bày mà không gửi request. Ba output này là **một repeat demo**; bộ thí nghiệm dự kiến dùng cùng năm kịch bản và năm repeat, cần mở rộng runner trước khi chạy batch. `--cve` minh họa C1, không thay cho prompt C2 Appendix A của nhóm Figure 7/9/10.
+Mỗi lệnh gọi một request mới và mở graph của mô hình tương ứng. Thêm `--check --no-open` để kiểm tra cả ba trước buổi trình bày mà không gửi request. Ba output này là **một repeat demo**; runner chín hình hiện đã chạy được batch 9 request hoặc 45 request với năm repeat. `--cve` minh họa C1, không thay cho prompt C2 Appendix A của nhóm Figure 7/9/10.
 
 ## 3. Quy trình demo 5–7 phút
 
@@ -119,7 +121,7 @@ Khi demo SolarWinds, có thể tìm `Trojanized`, `CNAME`, `TEARDROP`, `credenti
 ### Demo phát lại đã kiểm tra trên máy này
 
 ```powershell
-uv run --no-sync python scripts/demo_online.py --replay "outputs/demo_online/20261002T121844267747Z/response.txt"
+uv run --no-sync python scripts/demo_online.py --replay "outputs/archive/20261013_cleanup/demo_online/20261002T121844267747Z/response.txt"
 ```
 
 Lệnh đọc response đã lưu, parse và vẽ lại, không gọi API. Phải thông báo rõ đây là phát lại một kết quả trước đó. Với response CVE phải thêm `--cve`; với Appendix B thêm `--report`; chọn đúng mode và prompt variant của run nguồn. Nếu nguồn hoặc code prompt đã đổi, đối chiếu prompt/hash gốc trước khi coi replay là tái hiện cùng đầu vào.
@@ -197,7 +199,7 @@ Mỗi lần chạy tạo thư mục `outputs/demo_online/<timestamp>/` riêng. T
 | `metadata.json` | Mode, model khi gọi mới, status, số node/edge, schema, cảnh báo |
 | `sources.json` | Đối chiếu ID đoạn với nội dung nguồn ở chế độ SolarWinds |
 
-Hai hình quy trình mới nằm tại `outputs/demo_presentation/luong_he_thong.png` và `luong_tao_anh.png`, có bản SVG cùng tên để chèn vào slide. File `generate_figures.py` trong thư mục đó cho phép tạo lại hình.
+Hai hình quy trình nằm tại `outputs/demo_presentation/luong_he_thong.png` và `luong_tao_anh.png`, có bản SVG cùng tên để chèn vào slide. Chạy `presentation_demo.bat` để tạo lại bằng `scripts/generate_presentation_diagrams.py`, không gọi API.
 
 Để mở output hoàn tất gần nhất:
 
@@ -215,12 +217,12 @@ Get-Content (Join-Path $demoRun.FullName 'metadata.json')
 - SolarWinds `--check`: đọc 56 đoạn nguồn và tạo prompt thành công.
 - CVE `--cve --check`: dùng index chính thức đã có, tạo prompt với 7 CVE. Không gọi API extraction hoặc generation.
 - Replay SolarWinds: **39 nodes, 39 edges**, schema hợp lệ, không repair, không thiếu/không có ID tham chiếu lạ; tạo đủ PNG/SVG/HTML.
-- Output replay: `outputs/demo_online/20261012T143848618415Z/`.
-- Response nguồn: `outputs/demo_online/20261002T121844267747Z/response.txt`. Metadata run nguồn ghi Gemini `gemini-3.8-flash`; metadata replay ghi `offline_replay` và không có usage/provider mới.
+- Output replay: `outputs/archive/20261013_cleanup/demo_online/20261012T143848618415Z/`.
+- Response nguồn: `outputs/archive/20261013_cleanup/demo_online/20261002T121844267747Z/response.txt`. Metadata run nguồn ghi Gemini `gemini-3.8-flash`; metadata replay ghi `offline_replay` và không có usage/provider mới.
 
-DeepSeek đã qua preflight cấu hình/prompt với reasoning `high` và provider `baidu/fp8`; lần kiểm tra đó không gọi API và chưa có response/graph DeepSeek để đưa vào bảng so sánh.
+Preflight ban đầu không gọi API. Sau đó đã có response/graph DeepSeek cho Figure 10/13 trong paper9_20261013_original, cùng prompt C2/T0 và reasoning high với hai model còn lại.
 
-Ngày 13/10/2026 đã kiểm tra thêm `--report --reasoning high --check --no-open` cho cả ba backend: cùng prompt SHA-256, cùng cap 16.384 token, đều `CHECK OK`. Đây là kiểm tra chuẩn bị đầu vào T0, chưa phải kết quả generation ba mô hình.
+Ngày 13/10/2026 đã kiểm tra thêm `--report --reasoning high --check --no-open` cho cả ba backend: cùng prompt SHA-256, cùng cap 16.384 token, đều `CHECK OK`. Đây là kiểm tra chuẩn bị đầu vào T0. Kết quả generation mới của cả ba model được lưu riêng trong outputs/paper_nine.
 
 Số 39/39 mô tả đúng response này, không phải kết quả cố định của mọi lần chạy. Schema và tham chiếu hợp lệ chưa xác nhận đúng ngữ nghĩa từng cạnh. Replay không giữ provider finish reason/usage mới; cần xem metadata gốc nếu đánh giá việc chạm cap của response nguồn.
 
@@ -236,7 +238,7 @@ Nếu viết số liệu thí nghiệm, lấy từ `REPRODUCTION_REPORT.md`, ghi
 
 Đoạn mô tả phạm vi ba mô hình ở thời điểm hiện tại:
 
-> Dự án chọn Gemini, GPT-5.6 Luna và DeepSeek làm ba mô hình thay thế để tái hiện các kịch bản của bài báo. Chương trình đã hỗ trợ demo riêng từng mô hình. Kết quả định lượng hiện có thuộc run hai mô hình; bộ thí nghiệm ba mô hình dự kiến sử dụng cùng năm kịch bản, mỗi tổ hợp lặp năm lần, và cần hoàn thiện điều phối batch trước khi thực hiện.
+> Dự án chọn Gemini, GPT-5.6 Luna và DeepSeek làm ba mô hình thay thế để tái hiện các kịch bản của bài báo. Chương trình đã hỗ trợ demo riêng từng mô hình. Thống kê nhiều repeat lịch sử thuộc hai mô hình; bộ mới đã sinh chín trường hợp minh họa, với C2/T0 so ba model ở cùng prompt, reasoning high và một repeat. Runner hỗ trợ năm repeat nếu cần chạy tiếp.
 
 ## 8. Dàn ý 7 slide và lời thuyết trình
 
@@ -247,7 +249,7 @@ Nếu viết số liệu thí nghiệm, lấy từ `REPRODUCTION_REPORT.md`, ghi
 | 3. RAG | Extraction → embedding → cosine → context; tham số 0,68 và 3.750 token | Prompt/meta của CVE `--check` |
 | 4. Luồng tạo ảnh | Prompt → LLM JSON → parse → layout → hình | `luong_tao_anh.svg` |
 | 5. Demo | Một lần generation T0 hoặc SolarWinds, mở graph tương tác | `graph.html`; dự phòng replay |
-| 6. So sánh mô hình | C2/T0 cùng repeat của ba mô hình sau khi có kết quả; hiện ghi DeepSeek chưa chạy | Ba cột Gemini/Luna/DeepSeek; SVG, prompt, metadata; giữ số liệu lịch sử riêng |
+| 6. So sánh mô hình | C2/T0 repeat 1 của ba mô hình trong bộ mới; phân biệt graph đầy đủ và overview Figure 13 | Ba cột Gemini/Luna/DeepSeek; SVG, prompt, metadata; giữ số liệu lịch sử riêng |
 | 7. Đánh giá và giới hạn | Schema khác đúng ngữ nghĩa; thiếu điều kiện, truncation, cần review | Cảnh báo metadata và kết luận báo cáo hiện hành |
 
 Lời dẫn khoảng 45 giây:

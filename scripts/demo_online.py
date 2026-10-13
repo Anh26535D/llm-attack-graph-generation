@@ -94,6 +94,8 @@ def main() -> int:
     modes.add_argument("--report", action="store_true", help="Use the exact Appendix B prompt.")
     modes.add_argument("--cve", action="store_true", help="Use CVE RAG (previous default).")
     modes.add_argument("--evasion", action="store_true", help="Use the SolarWinds evasion excerpt.")
+    modes.add_argument("--figure", type=int, choices=(2, 6, 7, 8, 9, 10, 11, 12, 13), help="Online demo for one of the nine paper figures.")
+    modes.add_argument("--nine", action="store_true", help="Generate exactly the nine paper figures with three models.")
     parser.add_argument("--paper-prompt", action="store_true", help="Use the exact original SolarWinds prompt.")
     parser.add_argument("--max-output-tokens", type=int, default=16384)
     parser.add_argument("--reasoning", choices=("low", "medium", "high"),
@@ -104,6 +106,21 @@ def main() -> int:
     args = parser.parse_args()
     if args.max_output_tokens <= 0:
         parser.error("--max-output-tokens must be positive")
+    if args.figure is not None or args.nine:
+        if args.reasoning not in (None, "high"):
+            parser.error("Paper figure demos use high reasoning for all three models.")
+        from crystalball.paper_runner import main as paper_main
+        forwarded = ["--max-output-tokens", str(args.max_output_tokens)]
+        if args.figure is not None:
+            forwarded += ["--figures", str(args.figure)]
+        if args.backend:
+            forwarded += ["--backend", args.backend]
+        if args.replay:
+            forwarded += ["--replay", str(args.replay)]
+        for enabled, flag in ((args.check, "--check"), (args.no_open, "--no-open")):
+            if enabled:
+                forwarded.append(flag)
+        return paper_main(forwarded, root=ROOT)
     if args.replay:
         args.replay = args.replay.resolve()
 
