@@ -1,0 +1,275 @@
+{
+  "figure": 13,
+  "condition": "T0",
+  "backend": "openrouter_v2",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "original_model": "Bard",
+  "repeat": 1,
+  "status": "completed_with_warnings",
+  "origin": "online",
+  "prompt_style": "paper",
+  "prompt_sha256": "66107bb7d63024ae56c603ebc289af393487e1d45df05d31f35267b28d1355f3",
+  "reasoning": "high",
+  "max_output_tokens": 16384,
+  "usage": {
+    "completion_tokens": 5185,
+    "prompt_tokens": 243,
+    "total_tokens": 5428,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "reasoning_tokens": 3779,
+      "image_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost": 0.0062949,
+    "is_byok": false,
+    "cost_details": {
+      "upstream_inference_cost": 0.0062949,
+      "upstream_inference_prompt_cost": 7.29e-05,
+      "upstream_inference_completions_cost": 0.006222
+    }
+  },
+  "provider": {
+    "requested_model": "deepseek/deepseek-v4.1-flash",
+    "actual_model": "deepseek/deepseek-v4.1-flash",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 5185,
+      "prompt_tokens": 243,
+      "total_tokens": 5428,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3779,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0062949,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0062949,
+        "upstream_inference_prompt_cost": 7.29e-05,
+        "upstream_inference_completions_cost": 0.006222
+      }
+    },
+    "generation_config": {
+      "max_output_tokens": 16384,
+      "reasoning_effort": "high",
+      "provider": {
+        "only": [
+          "baidu/fp8"
+        ],
+        "allow_fallbacks": false
+      }
+    },
+    "finish_reasons": [
+      "stop"
+    ],
+    "actual_provider": "Baidu"
+  },
+  "nodes": 15,
+  "edges": 18,
+  "components": 1,
+  "schema": {
+    "schema_valid": false,
+    "non_empty_graph": true,
+    "missing_node_required_fields_count": 0,
+    "invalid_node_ids_count": 0,
+    "duplicate_node_ids_count": 0,
+    "invalid_node_labels_count": 0,
+    "missing_node_condition_fields_count": 0,
+    "missing_edge_required_fields_count": 18,
+    "invalid_edge_labels_count": 0,
+    "edge_schema_compliance": 0.0,
+    "alternate_source_target_edges_count": 18,
+    "valid_edges": 0,
+    "invalid_edges": 18,
+    "edge_endpoint_integrity": 0.0
+  },
+  "warnings": [
+    "Khác schema đầy đủ của repo; xem metadata"
+  ],
+  "render": {
+    "style": "paper_circles",
+    "seed": 42,
+    "scale": 2.2,
+    "node_labels": [
+      "Attacker",
+      "PostgreSQL Servers",
+      "PostgreSQL Configuration Issues",
+      "Trust Authentication Misconfiguration",
+      "Broad IP Address Range Allowed",
+      "Unauthorized PostgreSQL Database Access",
+      "PostgreSQL Server Compromise",
+      "Container Images",
+      "Remote Code Execution Vulnerability",
+      "WordPress",
+      "Liferay",
+      "PHPUnit",
+      "Oracle WebLogic",
+      "Payload Delivery",
+      "Server Access"
+    ],
+    "original_node_labels": [
+      "Attacker",
+      "PostgreSQL Servers",
+      "PostgreSQL Configuration Issues",
+      "Trust Authentication Misconfiguration",
+      "Broad IP Address Range Allowed",
+      "Unauthorized PostgreSQL Database Access",
+      "PostgreSQL Server Compromise",
+      "Container Images",
+      "Remote Code Execution Vulnerability",
+      "WordPress",
+      "Liferay",
+      "PHPUnit",
+      "Oracle WebLogic",
+      "Payload Delivery",
+      "Server Access"
+    ],
+    "edge_labels": [
+      "Establishes and enumerates PostgreSQL servers",
+      "Identifies configuration issues",
+      "Exploits trust authentication setting",
+      "Exploits broad IP address allowance",
+      "Assumes any connection is authorized",
+      "Allows any attacker IP address to connect",
+      "Gains access to the server",
+      "Searches for security flaws in container images",
+      "Contains vulnerable application",
+      "Contains vulnerable application",
+      "Contains vulnerable application",
+      "Contains vulnerable application",
+      "May expose RCE vulnerability",
+      "May expose RCE vulnerability",
+      "May expose RCE vulnerability",
+      "May expose RCE vulnerability",
+      "Exploits RCE to push payload",
+      "Gains server access"
+    ],
+    "original_edge_labels": [
+      "Establishes and enumerates PostgreSQL servers",
+      "Identifies configuration issues",
+      "Exploits trust authentication setting",
+      "Exploits broad IP address allowance",
+      "Assumes any connection is authorized",
+      "Allows any attacker IP address to connect",
+      "Gains access to the server",
+      "Searches for security flaws in container images",
+      "Contains vulnerable application",
+      "Contains vulnerable application",
+      "Contains vulnerable application",
+      "Contains vulnerable application",
+      "May expose RCE vulnerability",
+      "May expose RCE vulnerability",
+      "May expose RCE vulnerability",
+      "May expose RCE vulnerability",
+      "Exploits RCE to push payload",
+      "Gains server access"
+    ],
+    "display_aliases": "report_techniques_and_headings",
+    "label_collisions": 0,
+    "width": 2209,
+    "height": 1119,
+    "target_aspect": 2.443502824858757,
+    "nodes": 15,
+    "edges": 18,
+    "graph_changed": false
+  },
+  "response_sha256": "f72aa58888b1978c9fdb263d2b9593c26a3d002f07ca5f42f047007fa2a357ec",
+  "selected_from": "D:\\AHUST\\An ninh mạng\\llm-attack-graph-generation\\outputs\\paper_nine\\paper9_20261013_original\\figures\\figure_13_r01",
+  "preferred_view": "overview",
+  "overview": {
+    "mapping": {
+      "kind": "editorial_abstraction",
+      "model_graph_nodes": 15,
+      "model_graph_edges": 18,
+      "groups": {
+        "pg_conditions": [
+          "postgresql_servers",
+          "postgresql_config_issues",
+          "trust_auth",
+          "broad_ip_range"
+        ],
+        "pg_access": [
+          "unauthorized_db_access",
+          "postgresql_server_compromise"
+        ],
+        "applications": [
+          "container_images",
+          "wordpress",
+          "liferay",
+          "phpunit",
+          "oracle_weblogic"
+        ],
+        "execution": [
+          "rce_vulnerability",
+          "payload_delivery",
+          "server_access"
+        ]
+      },
+      "omitted_context_nodes": [
+        "attacker"
+      ],
+      "internal_edge_indexes": [
+        1,
+        2,
+        3,
+        6,
+        8,
+        9,
+        10,
+        11,
+        16,
+        17
+      ],
+      "context_edge_indexes": [
+        0,
+        7
+      ],
+      "new_relations_inferred": false
+    },
+    "render": {
+      "style": "paper_circles",
+      "seed": 42,
+      "scale": 1.0,
+      "node_labels": [
+        "Misconfigured PostgreSQL server (trust authentication / broad IP access)",
+        "Unauthorized PostgreSQL server access",
+        "Container applications (WordPress / Liferay / PHPUnit / Oracle WebLogic)",
+        "Remote code execution / payload delivery / server access"
+      ],
+      "original_node_labels": [
+        "Misconfigured PostgreSQL server (trust authentication / broad IP access)",
+        "Unauthorized PostgreSQL server access",
+        "Container applications (WordPress / Liferay / PHPUnit / Oracle WebLogic)",
+        "Remote code execution / payload delivery / server access"
+      ],
+      "edge_labels": [
+        "Assumes any connection is authorized",
+        "May expose RCE vulnerability"
+      ],
+      "original_edge_labels": [
+        "Assumes any connection is authorized",
+        "May expose RCE vulnerability"
+      ],
+      "display_aliases": "report_techniques_and_headings",
+      "label_collisions": 0,
+      "width": 1288,
+      "height": 670,
+      "target_aspect": 2.443502824858757,
+      "nodes": 4,
+      "edges": 2,
+      "graph_changed": false
+    }
+  }
+}

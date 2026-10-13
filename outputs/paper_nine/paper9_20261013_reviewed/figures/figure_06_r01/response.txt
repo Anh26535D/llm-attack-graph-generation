@@ -1,0 +1,118 @@
+```json
+{
+  "nodes": [
+    {
+      "id": "external_attacker",
+      "label": "External Attacker",
+      "description": "Adversary attempting to breach the edge and VR processing network from the outside."
+    },
+    {
+      "id": "raspberry_pi",
+      "label": "Raspberry Pi",
+      "description": "Compact Linux-based single-board computer acting as an IoT gateway, sensor hub, or controller."
+    },
+    {
+      "id": "ssh_rpi_exploit",
+      "label": "Exposed SSH / Default Credentials",
+      "description": "Misconfigured remote administration interfaces or weak authentication on the Raspberry Pi."
+    },
+    {
+      "id": "lan_pivoting",
+      "label": "LAN Reconnaissance and Pivoting",
+      "description": "Scanning local subnet traffic, ARP poisoning, and discovering co-located edge hardware."
+    },
+    {
+      "id": "jetson_nano",
+      "label": "NVIDIA Jetson Nano",
+      "description": "Embedded GPU-accelerated computing board performing real-time AI and vision inference."
+    },
+    {
+      "id": "jetson_service_exploit",
+      "label": "Insecure AI / REST Endpoint Exploitation",
+      "description": "Remote code execution or command injection targeting unauthenticated inference endpoints or Docker daemon on the Jetson Nano."
+    },
+    {
+      "id": "model_tampering",
+      "label": "AI Model and Sensor Manipulation",
+      "description": "Modification of local inference weights, pipeline data poisoning, or camera feed spoofing."
+    },
+    {
+      "id": "oculus_desktop",
+      "label": "Oculus Desktop Workstation",
+      "description": "Host PC running the Oculus runtime, driver stack, and VR rendering applications."
+    },
+    {
+      "id": "airlink_protocol_exploit",
+      "label": "Oculus AirLink / LAN Protocol Abuse",
+      "description": "Exploiting local network VR streaming services, client-server handshake weaknesses, or remote desktop services."
+    },
+    {
+      "id": "vr_data_exfiltration",
+      "label": "VR Telemetry and Audio/Video Capture",
+      "description": "Interception and exfiltration of head-tracking telemetry, spatial mapping data, and headset camera streams."
+    },
+    {
+      "id": "firmware_persistence",
+      "label": "Rootkit and Firmware Persistence",
+      "description": "Flash memory modifications, persistent systemd services, or malicious crontabs across compromised nodes."
+    }
+  ],
+  "edges": [
+    {
+      "from": "external_attacker",
+      "to": "ssh_rpi_exploit",
+      "label": "probes exposed ports"
+    },
+    {
+      "from": "ssh_rpi_exploit",
+      "to": "raspberry_pi",
+      "label": "establishes initial foothold"
+    },
+    {
+      "from": "raspberry_pi",
+      "to": "lan_pivoting",
+      "label": "initiates local scans"
+    },
+    {
+      "from": "lan_pivoting",
+      "to": "jetson_service_exploit",
+      "label": "discovers open inference API"
+    },
+    {
+      "from": "jetson_service_exploit",
+      "to": "jetson_nano",
+      "label": "executes unauthorized commands"
+    },
+    {
+      "from": "jetson_nano",
+      "to": "model_tampering",
+      "label": "alters neural networks"
+    },
+    {
+      "from": "lan_pivoting",
+      "to": "airlink_protocol_exploit",
+      "label": "targets active streaming sessions"
+    },
+    {
+      "from": "airlink_protocol_exploit",
+      "to": "oculus_desktop",
+      "label": "compromises host machine"
+    },
+    {
+      "from": "oculus_desktop",
+      "to": "vr_data_exfiltration",
+      "label": "extracts spatial telemetry"
+    },
+    {
+      "from": "raspberry_pi",
+      "to": "firmware_persistence",
+      "label": "installs persistent backdoor"
+    },
+    {
+      "from": "jetson_nano",
+      "to": "firmware_persistence",
+      "label": "deploys privileged rootkit"
+    }
+  ]
+}
+```

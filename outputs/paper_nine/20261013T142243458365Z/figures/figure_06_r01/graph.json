@@ -1,0 +1,149 @@
+{
+  "nodes": [
+    {
+      "id": "node_0",
+      "label": "Attacker on Local Subnet",
+      "device": "External / Network",
+      "type": "Attacker State"
+    },
+    {
+      "id": "node_1",
+      "label": "Default/Weak SSH Credentials on Raspberry Pi",
+      "device": "Raspberry Pi",
+      "type": "Vulnerability"
+    },
+    {
+      "id": "node_2",
+      "label": "User Shell Access on Raspberry Pi",
+      "device": "Raspberry Pi",
+      "type": "Compromised State"
+    },
+    {
+      "id": "node_3",
+      "label": "Exploit Sudo/Kernel Misconfiguration on Raspberry Pi",
+      "device": "Raspberry Pi",
+      "type": "Exploit"
+    },
+    {
+      "id": "node_4",
+      "label": "Root Control & Network Sniffer on Raspberry Pi",
+      "device": "Raspberry Pi",
+      "type": "Compromised State"
+    },
+    {
+      "id": "node_5",
+      "label": "Unauthenticated Inference API on Jetson Nano",
+      "device": "NVIDIA Jetson Nano",
+      "type": "Vulnerability"
+    },
+    {
+      "id": "node_6",
+      "label": "Remote Code Execution via Model Poisoning / Insecure Deserialization",
+      "device": "NVIDIA Jetson Nano",
+      "type": "Exploit"
+    },
+    {
+      "id": "node_7",
+      "label": "Root Access & Sensor/Camera Feed Control on Jetson Nano",
+      "device": "NVIDIA Jetson Nano",
+      "type": "Goal State"
+    },
+    {
+      "id": "node_8",
+      "label": "ARP Spoofing against Oculus Desktop via Raspberry Pi",
+      "device": "Raspberry Pi",
+      "type": "Attack Action"
+    },
+    {
+      "id": "node_9",
+      "label": "Oculus AirLink / LAN Traffic Intercepted",
+      "device": "Oculus Desktop",
+      "type": "Compromised State"
+    },
+    {
+      "id": "node_10",
+      "label": "Vulnerable Third-Party Service / Open SMB on Oculus Desktop",
+      "device": "Oculus Desktop",
+      "type": "Vulnerability"
+    },
+    {
+      "id": "node_11",
+      "label": "NTLM Hash Capture / Relay to Oculus Desktop",
+      "device": "Oculus Desktop",
+      "type": "Exploit"
+    },
+    {
+      "id": "node_12",
+      "label": "Full System Administrator Access on Oculus Desktop",
+      "device": "Oculus Desktop",
+      "type": "Goal State"
+    }
+  ],
+  "edges": [
+    {
+      "source": "node_0",
+      "target": "node_1",
+      "action": "Network scanning and credential brute force"
+    },
+    {
+      "source": "node_1",
+      "target": "node_2",
+      "action": "Authenticate via SSH"
+    },
+    {
+      "source": "node_2",
+      "target": "node_3",
+      "action": "Local privilege escalation attempt"
+    },
+    {
+      "source": "node_3",
+      "target": "node_4",
+      "action": "Gain root shell and deploy pivot tooling"
+    },
+    {
+      "source": "node_4",
+      "target": "node_5",
+      "action": "Scan internal network and detect Jetson Nano edge AI port"
+    },
+    {
+      "source": "node_5",
+      "target": "node_6",
+      "action": "Inject malicious pickled model or API exploit payload"
+    },
+    {
+      "source": "node_6",
+      "target": "node_7",
+      "action": "Privilege escalation via Tegra kernel driver vulnerability"
+    },
+    {
+      "source": "node_4",
+      "target": "node_8",
+      "action": "Launch MITM attack on internal subnet"
+    },
+    {
+      "source": "node_8",
+      "target": "node_9",
+      "action": "Route Oculus Link network packets through Raspberry Pi"
+    },
+    {
+      "source": "node_4",
+      "target": "node_10",
+      "action": "Enumerate exposed Windows network services"
+    },
+    {
+      "source": "node_9",
+      "target": "node_11",
+      "action": "Harvest authentication tokens and broadcast credentials"
+    },
+    {
+      "source": "node_10",
+      "target": "node_11",
+      "action": "Target vulnerable Windows share authentication"
+    },
+    {
+      "source": "node_11",
+      "target": "node_12",
+      "action": "Execute pass-the-hash / remote service creation"
+    }
+  ]
+}

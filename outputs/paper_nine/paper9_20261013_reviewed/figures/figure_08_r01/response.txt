@@ -1,0 +1,260 @@
+{
+  "nodes": [
+    {
+      "id": "actor_unc2452",
+      "label": "Threat Actor: UNC2452"
+    },
+    {
+      "id": "supply_chain_compromise",
+      "label": "Initial Compromise: Software Supply Chain Compromise delivering SUNBURST"
+    },
+    {
+      "id": "sunburst_payloads",
+      "label": "Execution: SUNBURST Samples Deploying Secondary Payloads"
+    },
+    {
+      "id": "teardrop_dropper",
+      "label": "Deployment: TEARDROP Memory-Only Dropper (Zero Code Overlap with Known Malware)"
+    },
+    {
+      "id": "teardrop_service",
+      "label": "Execution: TEARDROP Runs as a Windows Service"
+    },
+    {
+      "id": "teardrop_thread",
+      "label": "Execution: TEARDROP Spawns Worker Thread"
+    },
+    {
+      "id": "read_gracious_truth",
+      "label": "File Access: TEARDROP Reads 'gracious_truth.jpg' (Payload Disguised with Fake JPG Header)"
+    },
+    {
+      "id": "registry_check_ctf",
+      "label": "Environment Verification: TEARDROP Checks Existence of Registry Key HKU\\SOFTWARE\\Microsoft\\CTF"
+    },
+    {
+      "id": "decode_rolling_xor",
+      "label": "Payload Decoding: Decodes Embedded Payload via Custom Rolling XOR Algorithm"
+    },
+    {
+      "id": "load_custom_pe",
+      "label": "Memory Loading: Manually Loads Payload into Memory Using Custom PE-like File Format"
+    },
+    {
+      "id": "cobalt_strike_beacon",
+      "label": "Payload Execution: Customized Cobalt Strike BEACON In-Memory Execution"
+    },
+    {
+      "id": "c2_infrastructure",
+      "label": "Infrastructure: Attacker Command and Control (C2) Infrastructure on Virtual Private Servers (VPS)"
+    },
+    {
+      "id": "c2_hostname_masquerading",
+      "label": "Defense Evasion: C2 Hostnames Configured to Match Legitimate Internal Victim Hostnames"
+    },
+    {
+      "id": "c2_geolocation_matching",
+      "label": "Defense Evasion: C2 VPS IP Addresses Geographically Located in Victim's Country"
+    },
+    {
+      "id": "compromised_remote_creds",
+      "label": "Credential Access: Compromised Legitimate Credentials for Remote Access"
+    },
+    {
+      "id": "legitimate_remote_access",
+      "label": "Initial/Persistent Access: Legitimate Remote Access Sessions into Victim Environment"
+    },
+    {
+      "id": "backdoor_removal",
+      "label": "Defense Evasion: Routine Removal of Backdoors Once Legitimate Remote Access Is Achieved"
+    },
+    {
+      "id": "lateral_movement_creds",
+      "label": "Credential Access: Distinct Set of Compromised Credentials Exclusively for Lateral Movement"
+    },
+    {
+      "id": "lateral_movement_activity",
+      "label": "Lateral Movement: Movement Across Victim Environment Using Dedicated Non-Remote Credentials"
+    },
+    {
+      "id": "temp_file_replacement",
+      "label": "Defense Evasion / Execution: Temporary File Replacement (Replaces Legitimate Utility with Attacker Utility)"
+    },
+    {
+      "id": "temp_file_exec",
+      "label": "Execution: Attacker Utility Executes Malicious Payload"
+    },
+    {
+      "id": "restore_legit_file",
+      "label": "Defense Evasion: Reversion and Restoration of Original Legitimate Utility"
+    },
+    {
+      "id": "temp_task_modification",
+      "label": "Execution / Defense Evasion: Temporary Scheduled Task Modification (Hijacks Legitimate Task to Point to Attacker Tool)"
+    },
+    {
+      "id": "task_exec_payload",
+      "label": "Execution: Modified Scheduled Task Executes Attacker Tool"
+    },
+    {
+      "id": "restore_original_task",
+      "label": "Defense Evasion: Scheduled Task Restored to Original Configuration"
+    },
+    {
+      "id": "light_footprint_objective",
+      "label": "Strategic Objective: Maintain Light Malware Footprint and Evade Detection"
+    }
+  ],
+  "edges": [
+    {
+      "from": "actor_unc2452",
+      "to": "supply_chain_compromise",
+      "label": "initiates"
+    },
+    {
+      "from": "supply_chain_compromise",
+      "to": "sunburst_payloads",
+      "label": "executes"
+    },
+    {
+      "from": "sunburst_payloads",
+      "to": "teardrop_dropper",
+      "label": "delivers payload"
+    },
+    {
+      "from": "teardrop_dropper",
+      "to": "teardrop_service",
+      "label": "executes as"
+    },
+    {
+      "from": "teardrop_service",
+      "to": "teardrop_thread",
+      "label": "spawns"
+    },
+    {
+      "from": "teardrop_thread",
+      "to": "read_gracious_truth",
+      "label": "reads fake image file"
+    },
+    {
+      "from": "read_gracious_truth",
+      "to": "registry_check_ctf",
+      "label": "verifies host environment before execution"
+    },
+    {
+      "from": "registry_check_ctf",
+      "to": "decode_rolling_xor",
+      "label": "triggers payload decryption"
+    },
+    {
+      "from": "decode_rolling_xor",
+      "to": "load_custom_pe",
+      "label": "provides decrypted bytes for manual loading"
+    },
+    {
+      "from": "load_custom_pe",
+      "to": "cobalt_strike_beacon",
+      "label": "loads and executes in memory"
+    },
+    {
+      "from": "cobalt_strike_beacon",
+      "to": "c2_infrastructure",
+      "label": "establishes outbound communication with"
+    },
+    {
+      "from": "actor_unc2452",
+      "to": "c2_infrastructure",
+      "label": "operates"
+    },
+    {
+      "from": "c2_infrastructure",
+      "to": "c2_hostname_masquerading",
+      "label": "implements hostname spoofing"
+    },
+    {
+      "from": "c2_infrastructure",
+      "to": "c2_geolocation_matching",
+      "label": "utilizes local VPS infrastructure"
+    },
+    {
+      "from": "c2_hostname_masquerading",
+      "to": "light_footprint_objective",
+      "label": "blends into victim network environment"
+    },
+    {
+      "from": "c2_geolocation_matching",
+      "to": "light_footprint_objective",
+      "label": "avoids anomalous geo-location network alerts"
+    },
+    {
+      "from": "actor_unc2452",
+      "to": "compromised_remote_creds",
+      "label": "utilizes"
+    },
+    {
+      "from": "compromised_remote_creds",
+      "to": "legitimate_remote_access",
+      "label": "authenticates external access sessions"
+    },
+    {
+      "from": "legitimate_remote_access",
+      "to": "backdoor_removal",
+      "label": "prompts cleanup of redundant implants"
+    },
+    {
+      "from": "backdoor_removal",
+      "to": "light_footprint_objective",
+      "label": "reduces forensic visibility and artifacts"
+    },
+    {
+      "from": "legitimate_remote_access",
+      "to": "lateral_movement_creds",
+      "label": "segregates access tokens (never reuses remote access credentials)"
+    },
+    {
+      "from": "lateral_movement_creds",
+      "to": "lateral_movement_activity",
+      "label": "enables internal pivoting"
+    },
+    {
+      "from": "lateral_movement_activity",
+      "to": "temp_file_replacement",
+      "label": "deploys payload via utility replacement"
+    },
+    {
+      "from": "temp_file_replacement",
+      "to": "temp_file_exec",
+      "label": "invokes replaced utility"
+    },
+    {
+      "from": "temp_file_exec",
+      "to": "restore_legit_file",
+      "label": "triggers immediate restoration"
+    },
+    {
+      "from": "restore_legit_file",
+      "to": "light_footprint_objective",
+      "label": "removes executable traces from disk"
+    },
+    {
+      "from": "lateral_movement_activity",
+      "to": "temp_task_modification",
+      "label": "modifies existing scheduled tasks"
+    },
+    {
+      "from": "temp_task_modification",
+      "to": "task_exec_payload",
+      "label": "launches attacker tools via task scheduler"
+    },
+    {
+      "from": "task_exec_payload",
+      "to": "restore_original_task",
+      "label": "triggers rollback to original scheduled task configuration"
+    },
+    {
+      "from": "restore_original_task",
+      "to": "light_footprint_objective",
+      "label": "eliminates persistence artifacts"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "style": "paper_circles",
+  "seed": 42,
+  "scale": 1.3,
+  "node_labels": [
+    "piSignage player API log download path traversal (before 2.6.4)",
+    "Oculus Browser UI HTML injection (5.2.7 through before 5.7.11)",
+    "Oculus Desktop OVRRedir.exe privileged arbitrary file write via hard link to log file (before 1.44.0.32849 on Windows)",
+    "RaspAP 2.5 includes/webconsole.php unrestricted web console command execution",
+    "Oculus Desktop OVRServiceLauncher.exe privileged handle exposure local privilege escalation (after 1.39 and before 31.1.0.67.507)",
+    "Raspberry Pi 3 B+/4 B Glowworm LED power side-channel speech recovery (through 2021-08-09)",
+    "Raspberry Pi OS through 5.10 default pi account password unchanged",
+    "NVIDIA Jetson Linux IOMMU misconfiguration PCI bus direct memory access"
+  ],
+  "original_node_labels": [
+    "piSignage player API log download path traversal (before 2.6.4)",
+    "Oculus Browser UI HTML injection (5.2.7 through before 5.7.11)",
+    "Oculus Desktop OVRRedir.exe privileged arbitrary file write via hard link to log file (before 1.44.0.32849 on Windows)",
+    "RaspAP 2.5 includes/webconsole.php unrestricted web console command execution",
+    "Oculus Desktop OVRServiceLauncher.exe privileged handle exposure local privilege escalation (after 1.39 and before 31.1.0.67.507)",
+    "Raspberry Pi 3 B+/4 B Glowworm LED power side-channel speech recovery (through 2021-08-09)",
+    "Raspberry Pi OS through 5.10 default pi account password unchanged",
+    "NVIDIA Jetson Linux IOMMU misconfiguration PCI bus direct memory access"
+  ],
+  "edge_labels": [
+    "Default pi account administrator privileges on Raspberry Pi OS can provide or bypass authenticated access to RaspAP 2.5 web console, satisfying RaspAP's authenticated access precondition.",
+    "Administrator privileges on Raspberry Pi OS can disclose or modify piSignage credentials/configuration, satisfying authenticated low-privilege user access to piSignage before 2.6.4.",
+    "Command execution on underlying Raspberry Pi OS via RaspAP 2.5 web console can create, modify, or recover piSignage low-privilege user credentials, satisfying authenticated access to piSignage player API.",
+    "Arbitrary file download from Raspberry Pi filesystem via piSignage path traversal may disclose RaspAP configuration or credentials, satisfying authenticated access to RaspAP 2.5."
+  ],
+  "label_collisions": 0,
+  "width": 4969,
+  "height": 1060,
+  "nodes": 8,
+  "edges": 4,
+  "graph_changed": false
+}

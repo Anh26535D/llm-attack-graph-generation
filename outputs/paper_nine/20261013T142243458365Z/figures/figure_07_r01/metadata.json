@@ -1,0 +1,134 @@
+{
+  "figure": 7,
+  "condition": "C2",
+  "backend": "gemini",
+  "model": "gemini-3.8-flash",
+  "original_model": "GPT-4",
+  "repeat": 1,
+  "status": "completed",
+  "origin": "online",
+  "prompt_style": "paper",
+  "prompt_sha256": "fa3bf955bfe73ca6f691b2bc24eea7d1213a1698f94c034c59c3570386fe717e",
+  "reasoning": "high",
+  "max_output_tokens": 16384,
+  "attempted_at": "2026-10-13T14:24:42.739399+00:00",
+  "usage": {
+    "candidates_token_count": 1969,
+    "prompt_token_count": 751,
+    "prompt_tokens_details": [
+      {
+        "modality": "TEXT",
+        "token_count": 751
+      }
+    ],
+    "thoughts_token_count": 5239,
+    "total_token_count": 7959
+  },
+  "provider": {
+    "requested_model": "gemini-3.8-flash",
+    "actual_model": "gemini-3.8-flash",
+    "finish_reason": "STOP",
+    "usage": {
+      "candidates_token_count": 1969,
+      "prompt_token_count": 751,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 751
+        }
+      ],
+      "thoughts_token_count": 5239,
+      "total_token_count": 7959
+    },
+    "generation_config": {
+      "max_output_tokens": 16384,
+      "thinking_level": "high"
+    },
+    "finish_reasons": [
+      "STOP"
+    ]
+  },
+  "finished_at": "2026-10-13T14:25:38.963700+00:00",
+  "nodes": 11,
+  "edges": 9,
+  "components": 3,
+  "schema": {
+    "schema_valid": true,
+    "non_empty_graph": true,
+    "missing_node_required_fields_count": 0,
+    "invalid_node_ids_count": 0,
+    "duplicate_node_ids_count": 0,
+    "invalid_node_labels_count": 0,
+    "missing_node_condition_fields_count": 0,
+    "missing_edge_required_fields_count": 0,
+    "invalid_edge_labels_count": 0,
+    "edge_schema_compliance": 1.0,
+    "alternate_source_target_edges_count": 0,
+    "valid_edges": 9,
+    "invalid_edges": 0,
+    "edge_endpoint_integrity": 1.0
+  },
+  "warnings": [],
+  "render": {
+    "style": "paper_circles",
+    "seed": 42,
+    "scale": 2.2,
+    "node_labels": [
+      "piSignage Log Download Path Traversal (Arbitrary File Read)",
+      "Raspberry Pi Credential and Configuration Extraction",
+      "RaspAP Misconfigured Web Console Command Execution",
+      "Raspberry Pi OS Default Account Privilege Escalation",
+      "Malicious Acoustic Signal Generation on Raspberry Pi",
+      "Glowworm Optical Side-Channel Acoustic Recovery",
+      "Oculus Browser UI Injection and Code Execution",
+      "Oculus Desktop OVRRedir.exe Hardlink Privileged File Write LPE",
+      "Oculus Desktop OVRServiceLauncher Handle Leak LPE",
+      "Physical PCI Interface Access on NVIDIA Jetson",
+      "NVIDIA Jetson Linux IOMMU Misconfiguration Memory Compromise"
+    ],
+    "original_node_labels": [
+      "piSignage Log Download Path Traversal (Arbitrary File Read)",
+      "Raspberry Pi Credential and Configuration Extraction",
+      "RaspAP Misconfigured Web Console Command Execution",
+      "Raspberry Pi OS Default Account Privilege Escalation",
+      "Malicious Acoustic Signal Generation on Raspberry Pi",
+      "Glowworm Optical Side-Channel Acoustic Recovery",
+      "Oculus Browser UI Injection and Code Execution",
+      "Oculus Desktop OVRRedir.exe Hardlink Privileged File Write LPE",
+      "Oculus Desktop OVRServiceLauncher Handle Leak LPE",
+      "Physical PCI Interface Access on NVIDIA Jetson",
+      "NVIDIA Jetson Linux IOMMU Misconfiguration Memory Compromise"
+    ],
+    "edge_labels": [
+      "Exploiting path traversal in api/settings/log yields arbitrary file access, allowing attacker to harvest web console and OS credentials",
+      "Harvested credentials provide authenticated access to RaspAP 2.5 web interface",
+      "Harvested OS configuration confirms unchanged default account 'pi' with password 'raspberry'",
+      "OS command execution via includes/webconsole.php enables interactive shell access to invoke sudo using default credentials",
+      "Full root permissions allow attacker to manipulate hardware sound output and execute audio routines on the Raspberry Pi",
+      "Sound played through Raspberry Pi-powered speakers modulates power line draw and LED luminescence, exposing speech signals to remote optical sensors",
+      "Local unprivileged code execution from browser exploitation provides the local access required to create log hard links for OVRRedir.exe",
+      "Local unprivileged process execution spawned from browser exploitation interacts with OVRServiceLauncher.exe to capture leaked privileged handles",
+      "Physical PCI bus connection enables hardware-level direct memory operations that exploit the IOMMU misconfiguration in Jetson Linux"
+    ],
+    "original_edge_labels": [
+      "Exploiting path traversal in api/settings/log yields arbitrary file access, allowing attacker to harvest web console and OS credentials",
+      "Harvested credentials provide authenticated access to RaspAP 2.5 web interface",
+      "Harvested OS configuration confirms unchanged default account 'pi' with password 'raspberry'",
+      "OS command execution via includes/webconsole.php enables interactive shell access to invoke sudo using default credentials",
+      "Full root permissions allow attacker to manipulate hardware sound output and execute audio routines on the Raspberry Pi",
+      "Sound played through Raspberry Pi-powered speakers modulates power line draw and LED luminescence, exposing speech signals to remote optical sensors",
+      "Local unprivileged code execution from browser exploitation provides the local access required to create log hard links for OVRRedir.exe",
+      "Local unprivileged process execution spawned from browser exploitation interacts with OVRServiceLauncher.exe to capture leaked privileged handles",
+      "Physical PCI bus connection enables hardware-level direct memory operations that exploit the IOMMU misconfiguration in Jetson Linux"
+    ],
+    "display_aliases": "report_techniques_and_headings",
+    "label_collisions": 0,
+    "width": 3005,
+    "height": 1928,
+    "target_aspect": 2.0618336886993602,
+    "nodes": 11,
+    "edges": 9,
+    "graph_changed": false
+  },
+  "response_sha256": "dfd8bbbfb3d2362753dcb17d01a84b4637efa3e68d09d6abfec5a63e10638502"
+}

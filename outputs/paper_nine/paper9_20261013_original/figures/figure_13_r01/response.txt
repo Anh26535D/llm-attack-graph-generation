@@ -1,0 +1,211 @@
+```json
+{
+  "attack_graph": {
+    "nodes": [
+      {
+        "id": "attacker",
+        "label": "Attacker",
+        "type": "actor"
+      },
+      {
+        "id": "postgresql_servers",
+        "label": "PostgreSQL Servers",
+        "type": "asset"
+      },
+      {
+        "id": "postgresql_config_issues",
+        "label": "PostgreSQL Configuration Issues",
+        "type": "vulnerability"
+      },
+      {
+        "id": "trust_auth",
+        "label": "Trust Authentication Misconfiguration",
+        "type": "vulnerability"
+      },
+      {
+        "id": "broad_ip_range",
+        "label": "Broad IP Address Range Allowed",
+        "type": "misconfiguration"
+      },
+      {
+        "id": "unauthorized_db_access",
+        "label": "Unauthorized PostgreSQL Database Access",
+        "type": "impact"
+      },
+      {
+        "id": "postgresql_server_compromise",
+        "label": "PostgreSQL Server Compromise",
+        "type": "impact"
+      },
+      {
+        "id": "container_images",
+        "label": "Container Images",
+        "type": "asset"
+      },
+      {
+        "id": "rce_vulnerability",
+        "label": "Remote Code Execution Vulnerability",
+        "type": "vulnerability"
+      },
+      {
+        "id": "wordpress",
+        "label": "WordPress",
+        "type": "application"
+      },
+      {
+        "id": "liferay",
+        "label": "Liferay",
+        "type": "application"
+      },
+      {
+        "id": "phpunit",
+        "label": "PHPUnit",
+        "type": "application"
+      },
+      {
+        "id": "oracle_weblogic",
+        "label": "Oracle WebLogic",
+        "type": "application"
+      },
+      {
+        "id": "payload_delivery",
+        "label": "Payload Delivery",
+        "type": "technique"
+      },
+      {
+        "id": "server_access",
+        "label": "Server Access",
+        "type": "impact"
+      }
+    ],
+    "edges": [
+      {
+        "id": "e1",
+        "source": "attacker",
+        "target": "postgresql_servers",
+        "label": "Establishes and enumerates PostgreSQL servers",
+        "path": "path1"
+      },
+      {
+        "id": "e2",
+        "source": "postgresql_servers",
+        "target": "postgresql_config_issues",
+        "label": "Identifies configuration issues",
+        "path": "path1"
+      },
+      {
+        "id": "e3",
+        "source": "postgresql_config_issues",
+        "target": "trust_auth",
+        "label": "Exploits trust authentication setting",
+        "path": "path1"
+      },
+      {
+        "id": "e4",
+        "source": "postgresql_config_issues",
+        "target": "broad_ip_range",
+        "label": "Exploits broad IP address allowance",
+        "path": "path1"
+      },
+      {
+        "id": "e5",
+        "source": "trust_auth",
+        "target": "unauthorized_db_access",
+        "label": "Assumes any connection is authorized",
+        "path": "path1"
+      },
+      {
+        "id": "e6",
+        "source": "broad_ip_range",
+        "target": "unauthorized_db_access",
+        "label": "Allows any attacker IP address to connect",
+        "path": "path1"
+      },
+      {
+        "id": "e7",
+        "source": "unauthorized_db_access",
+        "target": "postgresql_server_compromise",
+        "label": "Gains access to the server",
+        "path": "path1"
+      },
+      {
+        "id": "e8",
+        "source": "attacker",
+        "target": "container_images",
+        "label": "Searches for security flaws in container images",
+        "path": "path2"
+      },
+      {
+        "id": "e9",
+        "source": "container_images",
+        "target": "wordpress",
+        "label": "Contains vulnerable application",
+        "path": "path2"
+      },
+      {
+        "id": "e10",
+        "source": "container_images",
+        "target": "liferay",
+        "label": "Contains vulnerable application",
+        "path": "path2"
+      },
+      {
+        "id": "e11",
+        "source": "container_images",
+        "target": "phpunit",
+        "label": "Contains vulnerable application",
+        "path": "path2"
+      },
+      {
+        "id": "e12",
+        "source": "container_images",
+        "target": "oracle_weblogic",
+        "label": "Contains vulnerable application",
+        "path": "path2"
+      },
+      {
+        "id": "e13",
+        "source": "wordpress",
+        "target": "rce_vulnerability",
+        "label": "May expose RCE vulnerability",
+        "path": "path2"
+      },
+      {
+        "id": "e14",
+        "source": "liferay",
+        "target": "rce_vulnerability",
+        "label": "May expose RCE vulnerability",
+        "path": "path2"
+      },
+      {
+        "id": "e15",
+        "source": "phpunit",
+        "target": "rce_vulnerability",
+        "label": "May expose RCE vulnerability",
+        "path": "path2"
+      },
+      {
+        "id": "e16",
+        "source": "oracle_weblogic",
+        "target": "rce_vulnerability",
+        "label": "May expose RCE vulnerability",
+        "path": "path2"
+      },
+      {
+        "id": "e17",
+        "source": "rce_vulnerability",
+        "target": "payload_delivery",
+        "label": "Exploits RCE to push payload",
+        "path": "path2"
+      },
+      {
+        "id": "e18",
+        "source": "payload_delivery",
+        "target": "server_access",
+        "label": "Gains server access",
+        "path": "path2"
+      }
+    ]
+  }
+}
+```

@@ -1,0 +1,137 @@
+{
+  "figure": 9,
+  "condition": "C2",
+  "backend": "openrouter",
+  "model": "openai/gpt-5.6-luna",
+  "original_model": "GPT-3.5",
+  "repeat": 1,
+  "status": "completed",
+  "origin": "online",
+  "prompt_style": "paper",
+  "prompt_sha256": "fa3bf955bfe73ca6f691b2bc24eea7d1213a1698f94c034c59c3570386fe717e",
+  "reasoning": "high",
+  "max_output_tokens": 16384,
+  "usage": {
+    "completion_tokens": 5373,
+    "prompt_tokens": 727,
+    "total_tokens": 6100,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "reasoning_tokens": 3624,
+      "image_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost": 0.006593,
+    "is_byok": false,
+    "cost_details": {
+      "upstream_inference_cost": 0.006593,
+      "upstream_inference_prompt_cost": 0.0001454,
+      "upstream_inference_completions_cost": 0.0064476
+    }
+  },
+  "provider": {
+    "requested_model": "openai/gpt-5.6-luna",
+    "actual_model": "openai/gpt-5.6-luna",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 5373,
+      "prompt_tokens": 727,
+      "total_tokens": 6100,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3624,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.006593,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.006593,
+        "upstream_inference_prompt_cost": 0.0001454,
+        "upstream_inference_completions_cost": 0.0064476
+      }
+    },
+    "generation_config": {
+      "max_output_tokens": 16384,
+      "reasoning_effort": "high"
+    },
+    "finish_reasons": [
+      "stop"
+    ]
+  },
+  "nodes": 8,
+  "edges": 3,
+  "components": 6,
+  "schema": {
+    "schema_valid": true,
+    "non_empty_graph": true,
+    "missing_node_required_fields_count": 0,
+    "invalid_node_ids_count": 0,
+    "duplicate_node_ids_count": 0,
+    "invalid_node_labels_count": 0,
+    "missing_node_condition_fields_count": 0,
+    "missing_edge_required_fields_count": 0,
+    "invalid_edge_labels_count": 0,
+    "edge_schema_compliance": 1.0,
+    "alternate_source_target_edges_count": 0,
+    "valid_edges": 3,
+    "invalid_edges": 0,
+    "edge_endpoint_integrity": 1.0
+  },
+  "warnings": [],
+  "render": {
+    "style": "paper_circles",
+    "seed": 42,
+    "scale": 1.0,
+    "node_labels": [
+      "piSignage path traversal",
+      "Oculus Browser HTML injection",
+      "OVRRedir.exe privileged file write",
+      "RaspAP web console command execution",
+      "OVRServiceLauncher.exe handle exposure",
+      "Raspberry Pi Glowworm optical side channel",
+      "Raspberry Pi default account credentials",
+      "Jetson Linux IOMMU misconfiguration"
+    ],
+    "original_node_labels": [
+      "piSignage web application player API path traversal in versions before 2.6.4. A remote attacker authenticated as a low-privilege user can request api/settings/log?file=../ and download arbitrary files from the underlying Raspberry Pi.",
+      "Oculus Browser arbitrary HTML injection affecting the browser user interface from version 5.2.7 through 5.7.11. A remote web page can inject attacker-controlled HTML into the Oculus Browser UI.",
+      "Oculus Desktop OVRRedir.exe privileged arbitrary-file-write vulnerability before version 1.44.0.32849 on Windows. A privileged OVRRedir.exe process can be induced to write to an attacker-selected file through a hard link to a log file.",
+      "RaspAP 2.5 authenticated web-console command execution through includes/webconsole.php. The web console is misconfigured and virtually unrestricted, allowing commands against the underlying Raspberry Pi operating system.",
+      "Oculus Desktop OVRServiceLauncher.exe handle-management vulnerability affecting versions after 1.39 and before 31.1.0.67.507. A privileged process handle can be exposed to an unprivileged process.",
+      "Raspberry Pi Glowworm side-channel attack affecting Raspberry Pi 3 B+ and Raspberry Pi 4 B devices through 2021-08-09 in specific audio-output use cases. The power indicator LED leaks information about sound played through connected speakers.",
+      "Raspberry Pi OS default credential exposure through version 5.10. The pi account retains the default password when the administrator has not changed it.",
+      "NVIDIA Jetson Linux IOMMU misconfiguration. An unprivileged attacker with physical access can use the PCI bus to obtain direct read/write access to the entire system address space."
+    ],
+    "edge_labels": [
+      "Administrator access may provide RaspAP authentication",
+      "Administrator access may provide piSignage authentication",
+      "File disclosure may reveal RaspAP credentials"
+    ],
+    "original_edge_labels": [
+      "Credential and privilege transition: successfully using the unchanged pi password provides administrator-level authenticated access on the Raspberry Pi. If RaspAP is deployed on that host and accepts the pi account or the same credentials, this satisfies the authenticated-access precondition for the virtually unrestricted includes/webconsole.php web console, after which the attacker can execute operating-system commands, upload files, and execute code.",
+      "Conditional credential-reuse transition: administrator-level access obtained with the unchanged pi password can satisfy the piSignage low-privilege authenticated-user precondition if the piSignage web application uses the pi account or reused credentials. The attacker can then invoke api/settings/log?file=../ to download arbitrary Raspberry Pi files.",
+      "Conditional file-disclosure transition: arbitrary files retrieved through the piSignage log-download path traversal may contain RaspAP configuration, authentication material, session data, or reused credentials. If such material provides authenticated access to RaspAP 2.5, the disclosed credentials satisfy the web-console precondition and enable command execution, file uploads, and code execution on the Raspberry Pi."
+    ],
+    "display_aliases": "case_study_CVE_names",
+    "label_collisions": 0,
+    "width": 1663,
+    "height": 918,
+    "target_aspect": 1.91875,
+    "nodes": 8,
+    "edges": 3,
+    "graph_changed": false
+  },
+  "response_sha256": "4d67add551e3682dff4b368b0b1e652bafdf121a4361b241a08a2086b72dd8cb",
+  "selected_from": "D:\\AHUST\\An ninh mạng\\llm-attack-graph-generation\\outputs\\paper_nine\\paper9_20261013_original\\figures\\figure_09_r01"
+}

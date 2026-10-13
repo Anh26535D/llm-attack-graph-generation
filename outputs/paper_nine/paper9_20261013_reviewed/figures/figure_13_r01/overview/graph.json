@@ -1,0 +1,74 @@
+{
+  "nodes": [
+    {
+      "id": "pg_conditions",
+      "label": "Misconfigured PostgreSQL server (trust authentication / broad IP access)",
+      "source_nodes": [
+        "postgresql_servers",
+        "postgresql_config_issues",
+        "trust_auth",
+        "broad_ip_range"
+      ]
+    },
+    {
+      "id": "pg_access",
+      "label": "Unauthorized PostgreSQL server access",
+      "source_nodes": [
+        "unauthorized_db_access",
+        "postgresql_server_compromise"
+      ]
+    },
+    {
+      "id": "applications",
+      "label": "Container applications (WordPress / Liferay / PHPUnit / Oracle WebLogic)",
+      "source_nodes": [
+        "container_images",
+        "wordpress",
+        "liferay",
+        "phpunit",
+        "oracle_weblogic"
+      ]
+    },
+    {
+      "id": "execution",
+      "label": "Remote code execution / payload delivery / server access",
+      "source_nodes": [
+        "rce_vulnerability",
+        "payload_delivery",
+        "server_access"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "pg_conditions",
+      "to": "pg_access",
+      "label": "Assumes any connection is authorized",
+      "source_edges": [
+        4,
+        5
+      ],
+      "source_labels": [
+        "Assumes any connection is authorized",
+        "Allows any attacker IP address to connect"
+      ]
+    },
+    {
+      "from": "applications",
+      "to": "execution",
+      "label": "May expose RCE vulnerability",
+      "source_edges": [
+        12,
+        13,
+        14,
+        15
+      ],
+      "source_labels": [
+        "May expose RCE vulnerability",
+        "May expose RCE vulnerability",
+        "May expose RCE vulnerability",
+        "May expose RCE vulnerability"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+{
+  "figure": 7,
+  "condition": "C2",
+  "backend": "gemini",
+  "model": "gemini-3.8-flash",
+  "original_model": "GPT-4",
+  "repeat": 1,
+  "status": "completed",
+  "origin": "online",
+  "prompt_style": "paper",
+  "prompt_sha256": "fa3bf955bfe73ca6f691b2bc24eea7d1213a1698f94c034c59c3570386fe717e",
+  "reasoning": "high",
+  "max_output_tokens": 16384,
+  "usage": {
+    "candidates_token_count": 1802,
+    "prompt_token_count": 751,
+    "prompt_tokens_details": [
+      {
+        "modality": "TEXT",
+        "token_count": 751
+      }
+    ],
+    "thoughts_token_count": 7204,
+    "total_token_count": 9757
+  },
+  "provider": {
+    "requested_model": "gemini-3.8-flash",
+    "actual_model": "gemini-3.8-flash",
+    "finish_reason": "STOP",
+    "usage": {
+      "candidates_token_count": 1802,
+      "prompt_token_count": 751,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 751
+        }
+      ],
+      "thoughts_token_count": 7204,
+      "total_token_count": 9757
+    },
+    "generation_config": {
+      "max_output_tokens": 16384,
+      "thinking_level": "high"
+    },
+    "finish_reasons": [
+      "STOP"
+    ]
+  },
+  "nodes": 8,
+  "edges": 7,
+  "components": 3,
+  "schema": {
+    "schema_valid": true,
+    "non_empty_graph": true,
+    "missing_node_required_fields_count": 0,
+    "invalid_node_ids_count": 0,
+    "duplicate_node_ids_count": 0,
+    "invalid_node_labels_count": 0,
+    "missing_node_condition_fields_count": 0,
+    "missing_edge_required_fields_count": 0,
+    "invalid_edge_labels_count": 0,
+    "edge_schema_compliance": 1.0,
+    "alternate_source_target_edges_count": 0,
+    "valid_edges": 7,
+    "invalid_edges": 0,
+    "edge_endpoint_integrity": 1.0
+  },
+  "warnings": [],
+  "render": {
+    "style": "paper_circles",
+    "seed": 42,
+    "scale": 1.3,
+    "node_labels": [
+      "piSignage Arbitrary File Download via Path Traversal in Player API (Versions < 2.6.4)",
+      "RaspAP 2.5 Remote Command Execution via includes/webconsole.php",
+      "Raspberry Pi OS Default Credentials Administrator Access (Versions <= 5.10)",
+      "Glowworm Optical Side-Channel Acoustic Recovery on Raspberry Pi 3 B+ and 4 B",
+      "Oculus Browser Remote HTML Injection, UI Spoofing, and Code Execution (Versions 5.2.7 to 5.7.11)",
+      "Oculus Desktop OVRRedir.exe Arbitrary File Write Local Privilege Escalation (Versions < 1.44.0.32849)",
+      "Oculus Desktop OVRServiceLauncher.exe Handle Management Local Privilege Escalation (Versions 1.39 to 31.1.0.67.507)",
+      "NVIDIA Jetson Linux IOMMU Misconfiguration System Address Space Access via PCI Bus"
+    ],
+    "original_node_labels": [
+      "piSignage Arbitrary File Download via Path Traversal in Player API (Versions < 2.6.4)",
+      "RaspAP 2.5 Remote Command Execution via includes/webconsole.php",
+      "Raspberry Pi OS Default Credentials Administrator Access (Versions <= 5.10)",
+      "Glowworm Optical Side-Channel Acoustic Recovery on Raspberry Pi 3 B+ and 4 B",
+      "Oculus Browser Remote HTML Injection, UI Spoofing, and Code Execution (Versions 5.2.7 to 5.7.11)",
+      "Oculus Desktop OVRRedir.exe Arbitrary File Write Local Privilege Escalation (Versions < 1.44.0.32849)",
+      "Oculus Desktop OVRServiceLauncher.exe Handle Management Local Privilege Escalation (Versions 1.39 to 31.1.0.67.507)",
+      "NVIDIA Jetson Linux IOMMU Misconfiguration System Address Space Access via PCI Bus"
+    ],
+    "edge_labels": [
+      "Arbitrary file download enables reading local application secrets, web configurations, and credential stores, satisfying the authenticated access requirement of the RaspAP web interface.",
+      "Path traversal file download enables reading system files (e.g., /etc/passwd or /etc/shadow) to verify the existence of the default 'pi' account and validate unhashed/unmodified credentials.",
+      "Administrator privileges obtained via default OS credentials allow reading RaspAP database configurations or modifying web authentication tables, providing valid authentication for the RaspAP web console.",
+      "Administrative shell access allows the attacker to execute programs that play audio through connected speakers powered by the Raspberry Pi, creating the fluctuating acoustic load necessary for optical signal recovery.",
+      "OS command execution achieved via the web console allows triggering audio playback to connected equipment, generating power consumption variations recoverable via the electro-optical sensor.",
+      "Local unprivileged code execution achieved via Oculus Browser UI exploitation allows an attacker to create hard links targeting the log file used by OVRRedir.exe, triggering privileged arbitrary file writes.",
+      "Local unprivileged process execution resulting from Oculus Browser exploitation allows interacting with OVRServiceLauncher.exe to capture leaked privileged process handles, achieving SYSTEM privileges."
+    ],
+    "label_collisions": 0,
+    "width": 2878,
+    "height": 1145,
+    "nodes": 8,
+    "edges": 7,
+    "graph_changed": false
+  },
+  "response_sha256": "19dcbe4dc36fed14943b501ceeb009ef3fd7a6e2b334e482d5ac287e0e71c7f5"
+}

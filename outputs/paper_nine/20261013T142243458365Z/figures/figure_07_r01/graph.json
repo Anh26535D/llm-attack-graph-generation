@@ -1,0 +1,117 @@
+{
+  "nodes": [
+    {
+      "id": "node_pisignage_path_traversal",
+      "label": "piSignage Log Download Path Traversal (Arbitrary File Read)",
+      "precondition": "Attacker possesses network connectivity to the piSignage player API (versions prior to 2.6.4) and low-privilege authenticated user credentials.",
+      "postcondition": "Attacker downloads arbitrary system files via 'api/settings/log?file=../' directory traversal, exfiltrating sensitive configurations, password hashes, and system credentials from the Raspberry Pi."
+    },
+    {
+      "id": "node_credential_harvesting",
+      "label": "Raspberry Pi Credential and Configuration Extraction",
+      "precondition": "Attacker downloads arbitrary system files via 'api/settings/log?file=../' directory traversal, exfiltrating sensitive configurations, password hashes, and system credentials from the Raspberry Pi.",
+      "postcondition": "Attacker recovers authentication credentials for web administrative components (e.g., RaspAP) and identifies unhardened default OS account settings."
+    },
+    {
+      "id": "node_raspap_webconsole_rce",
+      "label": "RaspAP Misconfigured Web Console Command Execution",
+      "precondition": "Attacker possesses authenticated access to RaspAP 2.5 web interface containing misconfigured 'includes/webconsole.php'.",
+      "postcondition": "Attacker executes arbitrary OS commands and uploads files onto the underlying Raspberry Pi operating system as the web server user."
+    },
+    {
+      "id": "node_rpi_default_credentials_lpe",
+      "label": "Raspberry Pi OS Default Account Privilege Escalation",
+      "precondition": "Attacker has local shell access or interactive service access on Raspberry Pi OS through version 5.10 where the default password 'raspberry' for account 'pi' has not been changed.",
+      "postcondition": "Attacker escalates privileges to root/administrator on the Raspberry Pi host via sudo with default credentials."
+    },
+    {
+      "id": "node_rpi_audio_playback_setup",
+      "label": "Malicious Acoustic Signal Generation on Raspberry Pi",
+      "precondition": "Attacker escalates privileges to root/administrator on the Raspberry Pi host via sudo with default credentials, gaining control over audio output to speakers powered by the Raspberry Pi 3 B+ or 4 B.",
+      "postcondition": "Attacker triggers playback of targeted audio/speech through speakers, causing the sound-induced load to modulate the Raspberry Pi power line and power indicator LED intensity."
+    },
+    {
+      "id": "node_glowworm_optical_eavesdropping",
+      "label": "Glowworm Optical Side-Channel Acoustic Recovery",
+      "precondition": "Raspberry Pi 3 B+ or 4 B device (through 2021-08-09) supplies power directly to audio-output equipment (speakers) whose playback modulates power consumption and power LED intensity; attacker has optical line-of-sight equipped with a telescope and an electro-optical sensor.",
+      "postcondition": "Attacker analyzes measurements from the electro-optical sensor directed at the power indicator LED, successfully reconstructing and recovering the speech signals played through the speakers."
+    },
+    {
+      "id": "node_oculus_browser_ui_injection",
+      "label": "Oculus Browser UI Injection and Code Execution",
+      "precondition": "Victim navigates to an attacker-controlled remote web page using Oculus Browser (versions 5.2.7 through 5.7.11).",
+      "postcondition": "Attacker injects arbitrary HTML code into the Oculus Browser UI, successfully spoofing user interface elements and executing arbitrary code in an unprivileged local user context."
+    },
+    {
+      "id": "node_oculus_ovrredir_file_write_lpe",
+      "label": "Oculus Desktop OVRRedir.exe Hardlink Privileged File Write LPE",
+      "precondition": "Attacker has local unprivileged access on a Windows system running Oculus Desktop prior to version 1.44.0.32849 where privileged process OVRRedir.exe writes to an unprivileged log file.",
+      "postcondition": "Attacker establishes a hard link to the target log file, causing OVRRedir.exe to write to arbitrary files and elevating privileges to SYSTEM."
+    },
+    {
+      "id": "node_oculus_ovrservice_handle_lpe",
+      "label": "Oculus Desktop OVRServiceLauncher Handle Leak LPE",
+      "precondition": "Attacker has local unprivileged process execution on a Windows host running Oculus Desktop (versions after 1.39 and prior to 31.1.0.67.507) affected by OVRServiceLauncher.exe handle mismanagement.",
+      "postcondition": "Attacker acquires an exposed privileged process handle via the unprivileged process, escalating privileges to SYSTEM."
+    },
+    {
+      "id": "node_jetson_physical_access",
+      "label": "Physical PCI Interface Access on NVIDIA Jetson",
+      "precondition": "Unprivileged attacker obtains physical access to an NVIDIA Jetson board running a vulnerable Jetson Linux distribution.",
+      "postcondition": "Attacker interfaces a physical device directly to the PCI bus of the NVIDIA Jetson board."
+    },
+    {
+      "id": "node_jetson_iommu_dma_compromise",
+      "label": "NVIDIA Jetson Linux IOMMU Misconfiguration Memory Compromise",
+      "precondition": "Attacker interfaces a physical device directly to the PCI bus of the NVIDIA Jetson board where an IOMMU configuration error exists in NVIDIA Jetson Linux.",
+      "postcondition": "Attacker achieves direct read/write DMA access to the entire system address space through the PCI bus, causing code execution, local privilege escalation, Denial of Service, and compromise of system-wide data integrity and confidentiality extending to other components."
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_pisignage_path_traversal",
+      "to": "node_credential_harvesting",
+      "label": "Exploiting path traversal in api/settings/log yields arbitrary file access, allowing attacker to harvest web console and OS credentials"
+    },
+    {
+      "from": "node_credential_harvesting",
+      "to": "node_raspap_webconsole_rce",
+      "label": "Harvested credentials provide authenticated access to RaspAP 2.5 web interface"
+    },
+    {
+      "from": "node_credential_harvesting",
+      "to": "node_rpi_default_credentials_lpe",
+      "label": "Harvested OS configuration confirms unchanged default account 'pi' with password 'raspberry'"
+    },
+    {
+      "from": "node_raspap_webconsole_rce",
+      "to": "node_rpi_default_credentials_lpe",
+      "label": "OS command execution via includes/webconsole.php enables interactive shell access to invoke sudo using default credentials"
+    },
+    {
+      "from": "node_rpi_default_credentials_lpe",
+      "to": "node_rpi_audio_playback_setup",
+      "label": "Full root permissions allow attacker to manipulate hardware sound output and execute audio routines on the Raspberry Pi"
+    },
+    {
+      "from": "node_rpi_audio_playback_setup",
+      "to": "node_glowworm_optical_eavesdropping",
+      "label": "Sound played through Raspberry Pi-powered speakers modulates power line draw and LED luminescence, exposing speech signals to remote optical sensors"
+    },
+    {
+      "from": "node_oculus_browser_ui_injection",
+      "to": "node_oculus_ovrredir_file_write_lpe",
+      "label": "Local unprivileged code execution from browser exploitation provides the local access required to create log hard links for OVRRedir.exe"
+    },
+    {
+      "from": "node_oculus_browser_ui_injection",
+      "to": "node_oculus_ovrservice_handle_lpe",
+      "label": "Local unprivileged process execution spawned from browser exploitation interacts with OVRServiceLauncher.exe to capture leaked privileged handles"
+    },
+    {
+      "from": "node_jetson_physical_access",
+      "to": "node_jetson_iommu_dma_compromise",
+      "label": "Physical PCI bus connection enables hardware-level direct memory operations that exploit the IOMMU misconfiguration in Jetson Linux"
+    }
+  ]
+}

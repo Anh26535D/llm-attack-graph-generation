@@ -1,0 +1,245 @@
+{
+  "nodes": [
+    {
+      "id": "node_actor",
+      "label": "Threat Actor: UNC2452"
+    },
+    {
+      "id": "node_initial_access",
+      "label": "Initial Access: Software Supply Chain Compromise"
+    },
+    {
+      "id": "node_legit_creds",
+      "label": "Credential Access: Compromised Legitimate Remote Access Credentials"
+    },
+    {
+      "id": "node_light_footprint",
+      "label": "Operational Strategy: Maintain Light Malware Footprint via Legitimate Access"
+    },
+    {
+      "id": "node_sunburst",
+      "label": "Malware: SUNBURST Supply Chain Payload Delivery"
+    },
+    {
+      "id": "node_teardrop_service",
+      "label": "Execution: TEARDROP Memory-Only Dropper Service"
+    },
+    {
+      "id": "node_teardrop_thread",
+      "label": "Execution: TEARDROP Worker Thread Spawned"
+    },
+    {
+      "id": "node_file_jpg",
+      "label": "File Read: 'gracious_truth.jpg' (with Fake JPG Header)"
+    },
+    {
+      "id": "node_reg_check",
+      "label": "Defense Evasion / Condition Check: Verify HKU\\SOFTWARE\\Microsoft\\CTF Exists"
+    },
+    {
+      "id": "node_rolling_xor",
+      "label": "Defense Evasion: Decrypt Embedded Payload via Custom Rolling XOR Algorithm"
+    },
+    {
+      "id": "node_pe_loader",
+      "label": "In-Memory Execution: Manual In-Memory Loading of Custom PE-like File Format"
+    },
+    {
+      "id": "node_beacon",
+      "label": "Command and Control / Execution: Customized Cobalt Strike BEACON Payload"
+    },
+    {
+      "id": "node_c2_infra",
+      "label": "C2 Infrastructure: Virtual Private Servers (VPS)"
+    },
+    {
+      "id": "node_c2_ip",
+      "label": "Defense Evasion: C2 VPS IP Addresses Located in Victim's Country"
+    },
+    {
+      "id": "node_c2_hostname",
+      "label": "Defense Evasion: C2 Hostnames Matched to Legitimate Victim Environment Hostnames"
+    },
+    {
+      "id": "node_lateral_creds",
+      "label": "Credential Access: Separate Distinct Credentials Acquired for Lateral Movement"
+    },
+    {
+      "id": "node_lateral_movement",
+      "label": "Lateral Movement: Pivot to Internal Victim Systems using Secondary Credentials"
+    },
+    {
+      "id": "node_file_replace_tech",
+      "label": "Execution / Evasion: Temporary File Replacement Technique"
+    },
+    {
+      "id": "node_legit_utility",
+      "label": "Target: Legitimate System Utility File Overwritten with Malicious Tool"
+    },
+    {
+      "id": "node_payload_exec_file",
+      "label": "Execution: Remote Execution of Malicious Payload via Replaced Utility"
+    },
+    {
+      "id": "node_file_restore",
+      "label": "Defense Evasion: Restoration of Original Legitimate Utility File"
+    },
+    {
+      "id": "node_task_mod_tech",
+      "label": "Persistence / Execution: Temporary Scheduled Task Modification Technique"
+    },
+    {
+      "id": "node_legit_task",
+      "label": "Target: Existing Legitimate Scheduled Task Modified"
+    },
+    {
+      "id": "node_payload_exec_task",
+      "label": "Execution: Malicious Tools Executed via Altered Scheduled Task"
+    },
+    {
+      "id": "node_task_restore",
+      "label": "Defense Evasion: Restoration of Scheduled Task to Original Configuration"
+    },
+    {
+      "id": "node_tool_cleanup",
+      "label": "Defense Evasion: Routine Removal of Tools and Backdoors Once Access Achieved"
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_actor",
+      "to": "node_initial_access",
+      "label": "executes"
+    },
+    {
+      "from": "node_initial_access",
+      "to": "node_sunburst",
+      "label": "delivers"
+    },
+    {
+      "from": "node_actor",
+      "to": "node_legit_creds",
+      "label": "acquires and uses for initial remote entry"
+    },
+    {
+      "from": "node_legit_creds",
+      "to": "node_light_footprint",
+      "label": "enables maintaining"
+    },
+    {
+      "from": "node_sunburst",
+      "to": "node_teardrop_service",
+      "label": "deploys memory-only dropper running as service"
+    },
+    {
+      "from": "node_teardrop_service",
+      "to": "node_teardrop_thread",
+      "label": "spawns"
+    },
+    {
+      "from": "node_teardrop_thread",
+      "to": "node_file_jpg",
+      "label": "reads payload from"
+    },
+    {
+      "from": "node_teardrop_thread",
+      "to": "node_reg_check",
+      "label": "checks existence of"
+    },
+    {
+      "from": "node_file_jpg",
+      "to": "node_rolling_xor",
+      "label": "provides encrypted payload to"
+    },
+    {
+      "from": "node_reg_check",
+      "to": "node_rolling_xor",
+      "label": "triggers decryption upon verification"
+    },
+    {
+      "from": "node_rolling_xor",
+      "to": "node_pe_loader",
+      "label": "decodes into custom PE-like payload"
+    },
+    {
+      "from": "node_pe_loader",
+      "to": "node_beacon",
+      "label": "manually loads into memory"
+    },
+    {
+      "from": "node_beacon",
+      "to": "node_c2_infra",
+      "label": "communicates with"
+    },
+    {
+      "from": "node_c2_infra",
+      "to": "node_c2_ip",
+      "label": "routes egress through victim country VPS"
+    },
+    {
+      "from": "node_c2_infra",
+      "to": "node_c2_hostname",
+      "label": "configures hostnames to spoof"
+    },
+    {
+      "from": "node_actor",
+      "to": "node_lateral_creds",
+      "label": "acquires distinct credentials (different from remote access creds)"
+    },
+    {
+      "from": "node_lateral_creds",
+      "to": "node_lateral_movement",
+      "label": "authenticates and moves through network"
+    },
+    {
+      "from": "node_lateral_movement",
+      "to": "node_file_replace_tech",
+      "label": "employs for remote execution"
+    },
+    {
+      "from": "node_file_replace_tech",
+      "to": "node_legit_utility",
+      "label": "temporarily replaces"
+    },
+    {
+      "from": "node_legit_utility",
+      "to": "node_payload_exec_file",
+      "label": "executes attacker payload"
+    },
+    {
+      "from": "node_payload_exec_file",
+      "to": "node_file_restore",
+      "label": "prompts restoration of original file"
+    },
+    {
+      "from": "node_lateral_movement",
+      "to": "node_task_mod_tech",
+      "label": "employs for execution and evasion"
+    },
+    {
+      "from": "node_task_mod_tech",
+      "to": "node_legit_task",
+      "label": "temporarily updates task definition"
+    },
+    {
+      "from": "node_legit_task",
+      "to": "node_payload_exec_task",
+      "label": "executes malicious tools"
+    },
+    {
+      "from": "node_payload_exec_task",
+      "to": "node_task_restore",
+      "label": "reverts task to original configuration"
+    },
+    {
+      "from": "node_light_footprint",
+      "to": "node_tool_cleanup",
+      "label": "enforces policy of removing backdoors once legitimate access is gained"
+    },
+    {
+      "from": "node_tool_cleanup",
+      "to": "node_beacon",
+      "label": "deletes/removes backdoor implants to evade detection"
+    }
+  ]
+}

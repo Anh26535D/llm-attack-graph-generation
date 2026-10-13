@@ -1,0 +1,61 @@
+{
+  "style": "paper_circles",
+  "seed": 42,
+  "scale": 2.2,
+  "node_labels": [
+    "piSignage Log Download Path Traversal (Arbitrary File Read)",
+    "Raspberry Pi Credential and Configuration Extraction",
+    "RaspAP Misconfigured Web Console Command Execution",
+    "Raspberry Pi OS Default Account Privilege Escalation",
+    "Malicious Acoustic Signal Generation on Raspberry Pi",
+    "Glowworm Optical Side-Channel Acoustic Recovery",
+    "Oculus Browser UI Injection and Code Execution",
+    "Oculus Desktop OVRRedir.exe Hardlink Privileged File Write LPE",
+    "Oculus Desktop OVRServiceLauncher Handle Leak LPE",
+    "Physical PCI Interface Access on NVIDIA Jetson",
+    "NVIDIA Jetson Linux IOMMU Misconfiguration Memory Compromise"
+  ],
+  "original_node_labels": [
+    "piSignage Log Download Path Traversal (Arbitrary File Read)",
+    "Raspberry Pi Credential and Configuration Extraction",
+    "RaspAP Misconfigured Web Console Command Execution",
+    "Raspberry Pi OS Default Account Privilege Escalation",
+    "Malicious Acoustic Signal Generation on Raspberry Pi",
+    "Glowworm Optical Side-Channel Acoustic Recovery",
+    "Oculus Browser UI Injection and Code Execution",
+    "Oculus Desktop OVRRedir.exe Hardlink Privileged File Write LPE",
+    "Oculus Desktop OVRServiceLauncher Handle Leak LPE",
+    "Physical PCI Interface Access on NVIDIA Jetson",
+    "NVIDIA Jetson Linux IOMMU Misconfiguration Memory Compromise"
+  ],
+  "edge_labels": [
+    "Exploiting path traversal in api/settings/log yields arbitrary file access, allowing attacker to harvest web console and OS credentials",
+    "Harvested credentials provide authenticated access to RaspAP 2.5 web interface",
+    "Harvested OS configuration confirms unchanged default account 'pi' with password 'raspberry'",
+    "OS command execution via includes/webconsole.php enables interactive shell access to invoke sudo using default credentials",
+    "Full root permissions allow attacker to manipulate hardware sound output and execute audio routines on the Raspberry Pi",
+    "Sound played through Raspberry Pi-powered speakers modulates power line draw and LED luminescence, exposing speech signals to remote optical sensors",
+    "Local unprivileged code execution from browser exploitation provides the local access required to create log hard links for OVRRedir.exe",
+    "Local unprivileged process execution spawned from browser exploitation interacts with OVRServiceLauncher.exe to capture leaked privileged handles",
+    "Physical PCI bus connection enables hardware-level direct memory operations that exploit the IOMMU misconfiguration in Jetson Linux"
+  ],
+  "original_edge_labels": [
+    "Exploiting path traversal in api/settings/log yields arbitrary file access, allowing attacker to harvest web console and OS credentials",
+    "Harvested credentials provide authenticated access to RaspAP 2.5 web interface",
+    "Harvested OS configuration confirms unchanged default account 'pi' with password 'raspberry'",
+    "OS command execution via includes/webconsole.php enables interactive shell access to invoke sudo using default credentials",
+    "Full root permissions allow attacker to manipulate hardware sound output and execute audio routines on the Raspberry Pi",
+    "Sound played through Raspberry Pi-powered speakers modulates power line draw and LED luminescence, exposing speech signals to remote optical sensors",
+    "Local unprivileged code execution from browser exploitation provides the local access required to create log hard links for OVRRedir.exe",
+    "Local unprivileged process execution spawned from browser exploitation interacts with OVRServiceLauncher.exe to capture leaked privileged handles",
+    "Physical PCI bus connection enables hardware-level direct memory operations that exploit the IOMMU misconfiguration in Jetson Linux"
+  ],
+  "display_aliases": "report_techniques_and_headings",
+  "label_collisions": 0,
+  "width": 3005,
+  "height": 1928,
+  "target_aspect": 2.0618336886993602,
+  "nodes": 11,
+  "edges": 9,
+  "graph_changed": false
+}

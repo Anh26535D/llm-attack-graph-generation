@@ -1,0 +1,181 @@
+{
+  "nodes": [
+    {
+      "id": "attacker",
+      "label": "Attacker",
+      "type": "actor"
+    },
+    {
+      "id": "postgresql_enumeration",
+      "label": "Establish and enumerate PostgreSQL servers",
+      "type": "action"
+    },
+    {
+      "id": "postgresql_config_issues",
+      "label": "PostgreSQL servers with configuration issues",
+      "type": "vulnerability"
+    },
+    {
+      "id": "trust_auth",
+      "label": "Trust authentication setting misconfiguration",
+      "type": "misconfiguration"
+    },
+    {
+      "id": "broad_ip_range",
+      "label": "Broad range of IP addresses assigned",
+      "type": "misconfiguration"
+    },
+    {
+      "id": "unauthorized_db_access",
+      "label": "Unauthorized PostgreSQL database access via any attacker IP",
+      "type": "impact"
+    },
+    {
+      "id": "container_images",
+      "label": "Container images",
+      "type": "asset"
+    },
+    {
+      "id": "container_image_flaw",
+      "label": "Security flaw in container images",
+      "type": "vulnerability"
+    },
+    {
+      "id": "rce_vulnerability",
+      "label": "Remote code execution vulnerability",
+      "type": "vulnerability"
+    },
+    {
+      "id": "payload_push",
+      "label": "Push attacker payload",
+      "type": "action"
+    },
+    {
+      "id": "server_access",
+      "label": "Gain access to server",
+      "type": "impact"
+    },
+    {
+      "id": "wordpress",
+      "label": "WordPress",
+      "type": "application"
+    },
+    {
+      "id": "liferay",
+      "label": "Liferay",
+      "type": "application"
+    },
+    {
+      "id": "phpunit",
+      "label": "PHPUnit",
+      "type": "application"
+    },
+    {
+      "id": "oracle_weblogic",
+      "label": "Oracle WebLogic",
+      "type": "application"
+    }
+  ],
+  "edges": [
+    {
+      "source": "attacker",
+      "target": "postgresql_enumeration",
+      "label": "establishes and enumerates"
+    },
+    {
+      "source": "postgresql_enumeration",
+      "target": "postgresql_config_issues",
+      "label": "finds servers with"
+    },
+    {
+      "source": "postgresql_config_issues",
+      "target": "trust_auth",
+      "label": "exploits"
+    },
+    {
+      "source": "postgresql_config_issues",
+      "target": "broad_ip_range",
+      "label": "exploits"
+    },
+    {
+      "source": "trust_auth",
+      "target": "unauthorized_db_access",
+      "label": "assumes any connection is authorized for database access"
+    },
+    {
+      "source": "broad_ip_range",
+      "target": "unauthorized_db_access",
+      "label": "allows any attacker IP to access the server"
+    },
+    {
+      "source": "unauthorized_db_access",
+      "target": "server_access",
+      "label": "leads to"
+    },
+    {
+      "source": "attacker",
+      "target": "container_images",
+      "label": "searches for exploitable"
+    },
+    {
+      "source": "container_images",
+      "target": "container_image_flaw",
+      "label": "contains"
+    },
+    {
+      "source": "container_image_flaw",
+      "target": "rce_vulnerability",
+      "label": "exposes"
+    },
+    {
+      "source": "rce_vulnerability",
+      "target": "payload_push",
+      "label": "allows"
+    },
+    {
+      "source": "payload_push",
+      "target": "server_access",
+      "label": "gains"
+    },
+    {
+      "source": "container_images",
+      "target": "wordpress",
+      "label": "may include"
+    },
+    {
+      "source": "container_images",
+      "target": "liferay",
+      "label": "may include"
+    },
+    {
+      "source": "container_images",
+      "target": "phpunit",
+      "label": "may include"
+    },
+    {
+      "source": "container_images",
+      "target": "oracle_weblogic",
+      "label": "may include"
+    },
+    {
+      "source": "wordpress",
+      "target": "rce_vulnerability",
+      "label": "may contain"
+    },
+    {
+      "source": "liferay",
+      "target": "rce_vulnerability",
+      "label": "may contain"
+    },
+    {
+      "source": "phpunit",
+      "target": "rce_vulnerability",
+      "label": "may contain"
+    },
+    {
+      "source": "oracle_weblogic",
+      "target": "rce_vulnerability",
+      "label": "may contain"
+    }
+  ]
+}

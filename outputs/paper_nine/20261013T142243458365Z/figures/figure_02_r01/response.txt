@@ -1,0 +1,484 @@
+{
+  "nodes": [
+    {
+      "id": "threat_actor_unc2452",
+      "label": "Threat Actor: UNC2452 (Highly skilled advanced actor operating with high operational security)"
+    },
+    {
+      "id": "supply_chain_compromise",
+      "label": "Supply Chain Compromise (T1195.002): Trojanizing SolarWinds Orion IT Monitoring & Management updates (Spring 2020)"
+    },
+    {
+      "id": "malicious_dll_sunburst",
+      "label": "SUNBURST Backdoor DLL: SolarWinds.Orion.Core.BusinessLayer.dll (MD5: b91ce2fa41029f6955bff20079468448, contains OrionImprovementBusinessLayer)"
+    },
+    {
+      "id": "digital_code_signing",
+      "label": "Code Signing (T1553.002): Valid SolarWinds Digital Certificate (Serial: 0f:e9:73:75:20:22:a6:06:ad:f2:a3:6e:34:5d:c0:ed, signed March 24, 2020)"
+    },
+    {
+      "id": "update_patch_msp",
+      "label": "Trojanized Installer Patch: SolarWinds-Core-v2019.4.5220-Hotfix5.msp / CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp (MD5: 02af7cec58b9a5da1c542b5a32151ba1)"
+    },
+    {
+      "id": "solarwinds_download_portal",
+      "label": "Legitimate Distribution Point: downloads.solarwinds[.]com CatalogResources (March - May 2020)"
+    },
+    {
+      "id": "admin_deployment",
+      "label": "Authorized System Administrator Execution: Administrator fetches and installs legitimate-looking update patch"
+    },
+    {
+      "id": "victim_orion_server",
+      "label": "Victim Host / Environment: SolarWinds Orion Monitoring Server across public/private sectors worldwide"
+    },
+    {
+      "id": "business_layer_host",
+      "label": "Host Process Execution: SolarWinds.BusinessLayerHost.exe or SolarWinds.BusinessLayerHostx64.exe loads Orion plugins"
+    },
+    {
+      "id": "inventory_manager_trigger",
+      "label": "Plugin Invocation: SolarWinds.Orion.Core.BusinessLayer.BackgroundInventory.InventoryManager.RefreshInternal invokes backdoor"
+    },
+    {
+      "id": "sunburst_initialize",
+      "label": "SUNBURST Initialization: SolarWinds.Orion.Core.BusinessLayer.OrionImprovementBusinessLayer.Initialize"
+    },
+    {
+      "id": "process_hash_verification",
+      "label": "Execution Guardrail: FNV-1A 64-bit + XOR 6605813339339102567 hash verification against 'solarwinds.businesslayerhost' (17291806236368054941)"
+    },
+    {
+      "id": "dormancy_delay",
+      "label": "Dormancy Delay: Enforces 12 to 14 days dormant period based on assembly filesystem write time"
+    },
+    {
+      "id": "named_pipe_mutex",
+      "label": "Single-Instance Mutex: Creates named pipe 583da945-62af-10e8-4902-a8f205c72b2e"
+    },
+    {
+      "id": "config_file_check",
+      "label": "Configuration Check: Parses SolarWinds.Orion.Core.BusinessLayer.dll.config appSettings key ReportWatcherRetry (!= 3)"
+    },
+    {
+      "id": "domain_membership_check",
+      "label": "Domain Join Verification: Verifies host is domain-joined and retrieves machine domain name"
+    },
+    {
+      "id": "victim_id_generation",
+      "label": "Victim Identification: Custom XOR-encoded MD5 of active non-loopback MAC address, Domain Name, and HKLM\\SOFTWARE\\Microsoft\\Cryptography\\MachineGuid"
+    },
+    {
+      "id": "security_tool_discovery",
+      "label": "Security Software Discovery (T1518.001): Checks running processes, services, and driver paths against FNV-1a + XOR blocklists"
+    },
+    {
+      "id": "disable_security_services",
+      "label": "Defense Evasion: Disables AV/security services via HKLM\\SYSTEM\\CurrentControlSet\\services\\<service>\\Start = 4; bit-packs state into ReportWatcherPostpone"
+    },
+    {
+      "id": "wmi_driver_discovery",
+      "label": "Driver Inspection: WMI query 'Select * From Win32_SystemDriver' against blocklisted analysis/AV drivers"
+    },
+    {
+      "id": "network_connectivity_test",
+      "label": "Connectivity Verification: Attempts DNS resolution of api.solarwinds.com"
+    },
+    {
+      "id": "dga_domain_generation",
+      "label": "Domain Generation Algorithm (T1568.002): Combines UserID, encoded domain name, and appsync-api.[eu-west-1|us-west-2|us-east-1|us-east-2].avsvmcloud[.]com"
+    },
+    {
+      "id": "dns_query_avsvmcloud",
+      "label": "Application Layer Protocol DNS (T1071.004): Resolves generated subdomain of avsvmcloud[.]com"
+    },
+    {
+      "id": "dns_ip_blacklist_filter",
+      "label": "DNS A-Record IP Filtering: Evaluates resolved IP against termination blocks (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 224.0.0.0/3, 20.140.0.0/15, etc.)"
+    },
+    {
+      "id": "dns_cname_resolution",
+      "label": "C2 Routing: CNAME DNS response resolves and points to specific Command and Control domain"
+    },
+    {
+      "id": "c2_infrastructure",
+      "label": "Adversary C2 Infrastructure (T1584): Third-party C2 domains matching victim hostnames"
+    },
+    {
+      "id": "http_c2_channel",
+      "label": "Web Protocol C2 (T1071.001): Spawns HttpHelper.Initialize thread for HTTP GET/POST with minimum 1-minute intervals"
+    },
+    {
+      "id": "oip_traffic_masquerading",
+      "label": "Traffic Masquerading (T1027 / T1036): Masquerades as Orion Improvement Program (OIP) JSON ('EventType':'Orion', 'EventName':'EventManager')"
+    },
+    {
+      "id": "steganographic_c2_parsing",
+      "label": "Steganographic Command Extraction: Regex extraction of HEX/GUID strings ({[0-9a-f-]36}|[0-9a-f]32|[0-9a-f]16), XOR decoded, DEFLATE decompressed"
+    },
+    {
+      "id": "job_engine_dispatch",
+      "label": "JobEngine Command Dispatch: Dispatches parsed command integers (0 to 17) to JobExecutionEngine"
+    },
+    {
+      "id": "job_system_profiling",
+      "label": "Host Discovery (T1082 / T1016): Job 3 (CollectSystemDescription) & Job 4 (UploadSystemDescription) profiles host, OS, network, IP, domain"
+    },
+    {
+      "id": "job_process_execution",
+      "label": "Process Execution & Discovery (T1057 / T1059): Job 5 (RunTask) spawns processes; Job 6 (GetProcessByDescription) lists processes"
+    },
+    {
+      "id": "job_file_operations",
+      "label": "File Operations (T1083 / T1105 / T1070.004): Job 8 (List), Job 9 (Write Base64), Job 10 (Exists), Job 11 (Delete), Job 12 (MD5 Hash)"
+    },
+    {
+      "id": "job_registry_manipulation",
+      "label": "Registry Modification (T1012 / T1112): Job 13 (Read), Job 14 (Write), Job 15 (Delete), Job 16 (Enumerate keys/values)"
+    },
+    {
+      "id": "job_kill_process_services",
+      "label": "System Manipulation: Job 0 (Idle), Job 1 (Exit), Job 2 (SetTime delay), Job 7 (KillTask), Job 17 (Reboot)"
+    },
+    {
+      "id": "teardrop_dropper_deployment",
+      "label": "Payload Delivery (T1105): Memory-only dropper TEARDROP deployed via SUNBURST execution"
+    },
+    {
+      "id": "teardrop_service",
+      "label": "Service Execution (T1543.003 / T1569.002): TEARDROP runs as a Windows Service, spawning execution threads"
+    },
+    {
+      "id": "fake_image_file",
+      "label": "Payload Staging: Reads gracious_truth.jpg containing encrypted payload disguised with fake JPG header"
+    },
+    {
+      "id": "registry_check_ctf",
+      "label": "Environmental Key Check: Verifies existence of registry key HKU\\SOFTWARE\\Microsoft\\CTF"
+    },
+    {
+      "id": "rolling_xor_decryption",
+      "label": "Deobfuscation (T1027): Decodes payload using custom rolling XOR algorithm and custom PE-like memory loader"
+    },
+    {
+      "id": "cobalt_strike_beacon",
+      "label": "Post-Exploitation Tool: Customized Cobalt Strike BEACON in-memory execution"
+    },
+    {
+      "id": "process_injection_svchost",
+      "label": "Execution Anomaly: svchost.exe attempts to load unsigned NetSetupSvc.dll (c:\\windows\\syswow64\\netsetupsvc.dll)"
+    },
+    {
+      "id": "c2_hostname_impersonation",
+      "label": "Defense Evasion: Configures C2 hostnames matching legitimate victim internal hostnames"
+    },
+    {
+      "id": "rdp_ssl_certificate_leakage",
+      "label": "Infrastructure Signature: C2 infrastructure exposes victim hostnames within RDP SSL certificates on scan data"
+    },
+    {
+      "id": "vps_geolocated_infrastructure",
+      "label": "Geolocated Ingress: VPS infrastructure located in victim's country and ASN to bypass impossible travel detections"
+    },
+    {
+      "id": "compromised_remote_access_credentials",
+      "label": "Valid Accounts (T1078): Remote access via legitimate compromised credentials (one account per IP)"
+    },
+    {
+      "id": "lateral_movement_credentials",
+      "label": "Disparate Credentials: Uses entirely separate credentials for internal lateral movement versus remote access"
+    },
+    {
+      "id": "target_lateral_hosts",
+      "label": "Lateral Movement Targets: Multiple internal victim systems accessed in one-to-many logon relationships"
+    },
+    {
+      "id": "temporary_file_replacement",
+      "label": "Execution & Evasion: Temporarily replaces legitimate utility binary, executes payload, restores original via SMB delete-create-execute pattern"
+    },
+    {
+      "id": "temporary_task_modification",
+      "label": "Scheduled Task Manipulation (T1053.005): Modifies legitimate existing scheduled task to execute tool, then reverts configuration"
+    },
+    {
+      "id": "tool_and_backdoor_removal",
+      "label": "Indicator Removal on Host (T1070): Routinely removes backdoors and staging tools once legitimate remote access is achieved"
+    },
+    {
+      "id": "data_theft_exfiltration",
+      "label": "Collection & Exfiltration: Data theft from government, tech, consulting, telecom, and extractive entities worldwide"
+    }
+  ],
+  "edges": [
+    {
+      "from": "threat_actor_unc2452",
+      "to": "supply_chain_compromise",
+      "label": "Orchestrates supply chain intrusion campaign targeting SolarWinds"
+    },
+    {
+      "from": "supply_chain_compromise",
+      "to": "malicious_dll_sunburst",
+      "label": "Injects SUNBURST backdoor into SolarWinds.Orion.Core.BusinessLayer.dll source/build pipeline"
+    },
+    {
+      "from": "supply_chain_compromise",
+      "to": "digital_code_signing",
+      "label": "Signs malicious component with genuine SolarWinds certificate"
+    },
+    {
+      "from": "digital_code_signing",
+      "to": "malicious_dll_sunburst",
+      "label": "Digitally authenticates malicious backdoor binary"
+    },
+    {
+      "from": "malicious_dll_sunburst",
+      "to": "update_patch_msp",
+      "label": "Compressed inside Hotfix5 installer patch MSP"
+    },
+    {
+      "from": "update_patch_msp",
+      "to": "solarwinds_download_portal",
+      "label": "Posted to legitimate downloads.solarwinds.com update portal"
+    },
+    {
+      "from": "solarwinds_download_portal",
+      "to": "admin_deployment",
+      "label": "Downloaded over HTTPS by authorized network administrators"
+    },
+    {
+      "from": "admin_deployment",
+      "to": "victim_orion_server",
+      "label": "Installs trojanized update patch onto Orion management server"
+    },
+    {
+      "from": "victim_orion_server",
+      "to": "business_layer_host",
+      "label": "Launches legitimate SolarWinds.BusinessLayerHost.exe on startup"
+    },
+    {
+      "from": "business_layer_host",
+      "to": "malicious_dll_sunburst",
+      "label": "Loads trojanized plugin assembly SolarWinds.Orion.Core.BusinessLayer.dll"
+    },
+    {
+      "from": "malicious_dll_sunburst",
+      "to": "inventory_manager_trigger",
+      "label": "Loads Inventory Manager plugin during routine framework operation"
+    },
+    {
+      "from": "inventory_manager_trigger",
+      "to": "sunburst_initialize",
+      "label": "Calls InventoryManager.RefreshInternal which invokes OrionImprovementBusinessLayer.Initialize"
+    },
+    {
+      "from": "sunburst_initialize",
+      "to": "process_hash_verification",
+      "label": "Computes FNV-1a + XOR hash of process name to match solarwinds.businesslayerhost"
+    },
+    {
+      "from": "process_hash_verification",
+      "to": "dormancy_delay",
+      "label": "Evaluates DLL assembly file write timestamp"
+    },
+    {
+      "from": "dormancy_delay",
+      "to": "named_pipe_mutex",
+      "label": "Sleeps for 12-14 days before continuing execution"
+    },
+    {
+      "from": "named_pipe_mutex",
+      "to": "config_file_check",
+      "label": "Acquires pipe guard 583da945-62af-10e8-4902-a8f205c72b2e and reads appSettings from .config"
+    },
+    {
+      "from": "config_file_check",
+      "to": "domain_membership_check",
+      "label": "Validates ReportWatcherRetry != 3 and checks AD domain status"
+    },
+    {
+      "from": "domain_membership_check",
+      "to": "victim_id_generation",
+      "label": "Extracts domain name, active MAC address, and MachineGuid registry value"
+    },
+    {
+      "from": "victim_id_generation",
+      "to": "security_tool_discovery",
+      "label": "Computes encoded MD5 UserID and hashes running processes/services via FNV-1a + XOR"
+    },
+    {
+      "from": "security_tool_discovery",
+      "to": "disable_security_services",
+      "label": "Identifies blocklisted security services and modifies registry Start parameter to 4 (Disabled)"
+    },
+    {
+      "from": "security_tool_discovery",
+      "to": "wmi_driver_discovery",
+      "label": "Queries Win32_SystemDriver via WMI for security/forensic drivers"
+    },
+    {
+      "from": "wmi_driver_discovery",
+      "to": "network_connectivity_test",
+      "label": "Passes all blocklist checks and resolves api.solarwinds.com"
+    },
+    {
+      "from": "network_connectivity_test",
+      "to": "dga_domain_generation",
+      "label": "Confirms internet access and executes DGA with UserID and encoded victim domain"
+    },
+    {
+      "from": "dga_domain_generation",
+      "to": "dns_query_avsvmcloud",
+      "label": "Appends appsync-api domain suffix and sends DNS resolution requests"
+    },
+    {
+      "from": "dns_query_avsvmcloud",
+      "to": "dns_ip_blacklist_filter",
+      "label": "Inspects resolved DNS A record against hardcoded IP exclusion ranges"
+    },
+    {
+      "from": "dns_query_avsvmcloud",
+      "to": "dns_cname_resolution",
+      "label": "Receives CNAME DNS record pointing to malicious C2 subdomain"
+    },
+    {
+      "from": "dns_cname_resolution",
+      "to": "c2_infrastructure",
+      "label": "Directs communication to designated external C2 infrastructure"
+    },
+    {
+      "from": "c2_infrastructure",
+      "to": "http_c2_channel",
+      "label": "Initializes HttpHelper.Initialize background thread for bidirectional HTTP communication"
+    },
+    {
+      "from": "http_c2_channel",
+      "to": "oip_traffic_masquerading",
+      "label": "Structures JSON payloads mimicking Orion Improvement Program telemetry"
+    },
+    {
+      "from": "http_c2_channel",
+      "to": "steganographic_c2_parsing",
+      "label": "Receives benign-looking XML responses containing embedded GUID/HEX command strings"
+    },
+    {
+      "from": "steganographic_c2_parsing",
+      "to": "job_engine_dispatch",
+      "label": "Decodes and decompresses payload to extract JobEngine enum integers and arguments"
+    },
+    {
+      "from": "job_engine_dispatch",
+      "to": "job_system_profiling",
+      "label": "Executes Job 3 / Job 4 to collect system metadata, IP, DHCP, and OS configuration"
+    },
+    {
+      "from": "job_engine_dispatch",
+      "to": "job_process_execution",
+      "label": "Executes Job 5 (RunTask) to spawn new processes or Job 6 to list running processes"
+    },
+    {
+      "from": "job_engine_dispatch",
+      "to": "job_file_operations",
+      "label": "Executes Job 8, 9, 10, 11, 12 to manipulate filesystem, write Base64 data, and check hashes"
+    },
+    {
+      "from": "job_engine_dispatch",
+      "to": "job_registry_manipulation",
+      "label": "Executes Job 13, 14, 15, 16 to read, write, and delete arbitrary registry entries"
+    },
+    {
+      "from": "job_engine_dispatch",
+      "to": "job_kill_process_services",
+      "label": "Executes Job 7 (KillTask), Job 17 (Reboot), Job 1 (Exit), or Job 2 (SetTime delay)"
+    },
+    {
+      "from": "job_engine_dispatch",
+      "to": "teardrop_dropper_deployment",
+      "label": "Transfers and drops TEARDROP memory-only dropper payload"
+    },
+    {
+      "from": "teardrop_dropper_deployment",
+      "to": "teardrop_service",
+      "label": "Spawns TEARDROP as a Windows service"
+    },
+    {
+      "from": "teardrop_service",
+      "to": "fake_image_file",
+      "label": "Reads gracious_truth.jpg to extract encrypted shellcode from fake image"
+    },
+    {
+      "from": "teardrop_service",
+      "to": "registry_check_ctf",
+      "label": "Verifies presence of HKU\\SOFTWARE\\Microsoft\\CTF before proceeding"
+    },
+    {
+      "from": "fake_image_file",
+      "to": "rolling_xor_decryption",
+      "label": "Decodes embedded PE payload using custom rolling XOR algorithm"
+    },
+    {
+      "from": "rolling_xor_decryption",
+      "to": "cobalt_strike_beacon",
+      "label": "Manually loads and executes customized Cobalt Strike BEACON directly into memory"
+    },
+    {
+      "from": "cobalt_strike_beacon",
+      "to": "process_injection_svchost",
+      "label": "Injects payload masquerading as SysWOW64 NetSetupSvc.dll under svchost.exe"
+    },
+    {
+      "from": "threat_actor_unc2452",
+      "to": "c2_hostname_impersonation",
+      "label": "Profiles victim environment and names C2 hostnames after legitimate victim assets"
+    },
+    {
+      "from": "c2_hostname_impersonation",
+      "to": "rdp_ssl_certificate_leakage",
+      "label": "Exposes victim-impersonating hostnames across internet-facing RDP SSL certificates"
+    },
+    {
+      "from": "threat_actor_unc2452",
+      "to": "vps_geolocated_infrastructure",
+      "label": "Provisions commercial VPS IP addresses located in victim's local country and ASN"
+    },
+    {
+      "from": "vps_geolocated_infrastructure",
+      "to": "compromised_remote_access_credentials",
+      "label": "Establishes remote access connections using stolen legitimate user credentials"
+    },
+    {
+      "from": "compromised_remote_access_credentials",
+      "to": "lateral_movement_credentials",
+      "label": "Switches to completely distinct credentials specifically designated for internal lateral movement"
+    },
+    {
+      "from": "lateral_movement_credentials",
+      "to": "target_lateral_hosts",
+      "label": "Authenticates in one-to-many relationships from compromised hosts to internal network systems"
+    },
+    {
+      "from": "target_lateral_hosts",
+      "to": "temporary_file_replacement",
+      "label": "Replaces legitimate Windows utilities via SMB, executes payload, and restores original files"
+    },
+    {
+      "from": "target_lateral_hosts",
+      "to": "temporary_task_modification",
+      "label": "Temporarily updates existing scheduled tasks to execute binaries, then reverts task definitions"
+    },
+    {
+      "from": "temporary_file_replacement",
+      "to": "tool_and_backdoor_removal",
+      "label": "Deletes execution artifacts and removes backdoor components once legitimate remote access is confirmed"
+    },
+    {
+      "from": "temporary_task_modification",
+      "to": "tool_and_backdoor_removal",
+      "label": "Purges temporary binaries and restores original task state to obscure forensic trails"
+    },
+    {
+      "from": "target_lateral_hosts",
+      "to": "data_theft_exfiltration",
+      "label": "Harvests sensitive files and exfiltrates proprietary victim data"
+    }
+  ]
+}

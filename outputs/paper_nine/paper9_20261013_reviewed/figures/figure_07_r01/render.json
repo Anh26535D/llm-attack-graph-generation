@@ -1,0 +1,51 @@
+{
+  "style": "paper_circles",
+  "seed": 42,
+  "scale": 1.7,
+  "node_labels": [
+    "piSignage path traversal",
+    "RaspAP web console command execution",
+    "Raspberry Pi default account credentials",
+    "Raspberry Pi Glowworm optical side channel",
+    "Oculus Browser HTML injection",
+    "OVRRedir.exe privileged file write",
+    "OVRServiceLauncher.exe handle exposure",
+    "Jetson Linux IOMMU misconfiguration"
+  ],
+  "original_node_labels": [
+    "piSignage Arbitrary File Download via Path Traversal in Player API (Versions < 2.6.4)",
+    "RaspAP 2.5 Remote Command Execution via includes/webconsole.php",
+    "Raspberry Pi OS Default Credentials Administrator Access (Versions <= 5.10)",
+    "Glowworm Optical Side-Channel Acoustic Recovery on Raspberry Pi 3 B+ and 4 B",
+    "Oculus Browser Remote HTML Injection, UI Spoofing, and Code Execution (Versions 5.2.7 to 5.7.11)",
+    "Oculus Desktop OVRRedir.exe Arbitrary File Write Local Privilege Escalation (Versions < 1.44.0.32849)",
+    "Oculus Desktop OVRServiceLauncher.exe Handle Management Local Privilege Escalation (Versions 1.39 to 31.1.0.67.507)",
+    "NVIDIA Jetson Linux IOMMU Misconfiguration System Address Space Access via PCI Bus"
+  ],
+  "edge_labels": [
+    "File disclosure may reveal RaspAP credentials",
+    "File disclosure may expose default account credentials",
+    "Administrator access may provide RaspAP authentication",
+    "Audio playback may enable optical signal recovery",
+    "Audio playback may enable optical signal recovery",
+    "Unprivileged execution enables privileged file writes",
+    "Unprivileged execution enables process handle access"
+  ],
+  "original_edge_labels": [
+    "Arbitrary file download enables reading local application secrets, web configurations, and credential stores, satisfying the authenticated access requirement of the RaspAP web interface.",
+    "Path traversal file download enables reading system files (e.g., /etc/passwd or /etc/shadow) to verify the existence of the default 'pi' account and validate unhashed/unmodified credentials.",
+    "Administrator privileges obtained via default OS credentials allow reading RaspAP database configurations or modifying web authentication tables, providing valid authentication for the RaspAP web console.",
+    "Administrative shell access allows the attacker to execute programs that play audio through connected speakers powered by the Raspberry Pi, creating the fluctuating acoustic load necessary for optical signal recovery.",
+    "OS command execution achieved via the web console allows triggering audio playback to connected equipment, generating power consumption variations recoverable via the electro-optical sensor.",
+    "Local unprivileged code execution achieved via Oculus Browser UI exploitation allows an attacker to create hard links targeting the log file used by OVRRedir.exe, triggering privileged arbitrary file writes.",
+    "Local unprivileged process execution resulting from Oculus Browser exploitation allows interacting with OVRServiceLauncher.exe to capture leaked privileged process handles, achieving SYSTEM privileges."
+  ],
+  "display_aliases": "case_study_CVE_names",
+  "label_collisions": 0,
+  "width": 2209,
+  "height": 1296,
+  "target_aspect": 2.0618336886993602,
+  "nodes": 8,
+  "edges": 7,
+  "graph_changed": false
+}

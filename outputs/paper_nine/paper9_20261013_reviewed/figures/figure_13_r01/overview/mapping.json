@@ -1,0 +1,49 @@
+{
+  "kind": "editorial_abstraction",
+  "model_graph_nodes": 15,
+  "model_graph_edges": 18,
+  "groups": {
+    "pg_conditions": [
+      "postgresql_servers",
+      "postgresql_config_issues",
+      "trust_auth",
+      "broad_ip_range"
+    ],
+    "pg_access": [
+      "unauthorized_db_access",
+      "postgresql_server_compromise"
+    ],
+    "applications": [
+      "container_images",
+      "wordpress",
+      "liferay",
+      "phpunit",
+      "oracle_weblogic"
+    ],
+    "execution": [
+      "rce_vulnerability",
+      "payload_delivery",
+      "server_access"
+    ]
+  },
+  "omitted_context_nodes": [
+    "attacker"
+  ],
+  "internal_edge_indexes": [
+    1,
+    2,
+    3,
+    6,
+    8,
+    9,
+    10,
+    11,
+    16,
+    17
+  ],
+  "context_edge_indexes": [
+    0,
+    7
+  ],
+  "new_relations_inferred": false
+}

@@ -1,0 +1,48 @@
+{
+  "style": "paper_circles",
+  "seed": 42,
+  "scale": 1.0,
+  "node_labels": [
+    "Threat Actor",
+    "Enumerate PostgreSQL Servers",
+    "Trust Authentication Misconfiguration",
+    "Overly Permissive IP Range Allowed",
+    "Bypass Authentication via Trust Auth",
+    "Scan Container Images for Flaws",
+    "Vulnerable Applications in Containers",
+    "Exploit Remote Code Execution (RCE)",
+    "Payload Delivery & Execution",
+    "Server & Database Access Compromise"
+  ],
+  "original_node_labels": [
+    "Threat Actor",
+    "Enumerate PostgreSQL Servers",
+    "Trust Authentication Misconfiguration",
+    "Overly Permissive IP Range Allowed",
+    "Bypass Authentication via Trust Auth",
+    "Scan Container Images for Flaws",
+    "Vulnerable Applications in Containers",
+    "Exploit Remote Code Execution (RCE)",
+    "Payload Delivery & Execution",
+    "Server & Database Access Compromise"
+  ],
+  "edge_labels": [
+    "Initiates Path 1: PostgreSQL Reconnaissance",
+    "Discovers",
+    "Discovers",
+    "Enables",
+    "Allows connection from attacker IP",
+    "Leads to unauthorized database and server access",
+    "Initiates Path 2: Container Vulnerability Search",
+    "Identifies target software (WordPress, Liferay, PHPUnit, WebLogic)",
+    "Exposes RCE flaws",
+    "Allows payload push",
+    "Executes payload to gain server access"
+  ],
+  "label_collisions": 0,
+  "width": 1563,
+  "height": 1260,
+  "nodes": 10,
+  "edges": 11,
+  "graph_changed": false
+}

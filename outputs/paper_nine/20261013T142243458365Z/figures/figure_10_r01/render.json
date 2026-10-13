@@ -1,0 +1,47 @@
+{
+  "style": "paper_circles",
+  "seed": 42,
+  "scale": 1.0,
+  "node_labels": [
+    "piSignage path traversal",
+    "Oculus Browser HTML injection",
+    "OVRRedir.exe privileged file write",
+    "RaspAP web console command execution",
+    "OVRServiceLauncher.exe handle exposure",
+    "Raspberry Pi Glowworm optical side channel",
+    "Raspberry Pi default account credentials",
+    "Jetson Linux IOMMU misconfiguration"
+  ],
+  "original_node_labels": [
+    "piSignage player API log download path traversal (before 2.6.4)",
+    "Oculus Browser UI HTML injection (5.2.7 to 5.7.11)",
+    "Oculus Desktop OVRRedir.exe privileged file write via hard link to log file (before 1.44.0.32849)",
+    "RaspAP 2.5 includes/webconsole.php unrestricted web console command execution",
+    "Oculus Desktop OVRServiceLauncher.exe privileged handle exposure LPE (after 1.39, before 31.1.0.67.507)",
+    "Raspberry Pi Glowworm attack: speech recovery via power indicator LED",
+    "Raspberry Pi OS default pi account password (through 5.10)",
+    "NVIDIA Jetson Linux IOMMU misconfiguration PCI bus read/write"
+  ],
+  "edge_labels": [
+    "File disclosure may reveal RaspAP credentials",
+    "Command execution may reveal piSignage credentials",
+    "Command execution on underlying Raspberry Pi OS provides a local shell to use the unchanged default pi password and gain administrator privileges.",
+    "Administrator access may provide piSignage authentication",
+    "Administrator access may provide RaspAP authentication"
+  ],
+  "original_edge_labels": [
+    "Arbitrary file download can disclose RaspAP configuration or credentials, enabling authenticated access to RaspAP web console.",
+    "Command execution on Raspberry Pi OS can create or read piSignage credentials, enabling low-privilege authenticated access to the piSignage player API.",
+    "Command execution on underlying Raspberry Pi OS provides a local shell to use the unchanged default pi password and gain administrator privileges.",
+    "Administrator privileges on Raspberry Pi OS can read or modify piSignage configuration to obtain low-privilege authenticated access.",
+    "Administrator privileges on Raspberry Pi OS can modify RaspAP authentication data or configuration to gain authenticated access to the web console."
+  ],
+  "display_aliases": "case_study_CVE_names",
+  "label_collisions": 0,
+  "width": 1179,
+  "height": 1579,
+  "target_aspect": 1.3482280431432974,
+  "nodes": 8,
+  "edges": 5,
+  "graph_changed": false
+}

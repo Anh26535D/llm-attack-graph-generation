@@ -1,0 +1,195 @@
+{
+  "figure": 13,
+  "condition": "T0",
+  "backend": "openrouter_v2",
+  "model": "deepseek/deepseek-v4.1-flash",
+  "original_model": "Bard",
+  "repeat": 1,
+  "status": "completed_with_warnings",
+  "origin": "online",
+  "prompt_style": "paper",
+  "prompt_sha256": "66107bb7d63024ae56c603ebc289af393487e1d45df05d31f35267b28d1355f3",
+  "reasoning": "high",
+  "max_output_tokens": 16384,
+  "attempted_at": "2026-10-13T14:29:25.284571+00:00",
+  "usage": {
+    "completion_tokens": 6696,
+    "prompt_tokens": 243,
+    "total_tokens": 6939,
+    "completion_tokens_details": {
+      "audio_tokens": 0,
+      "reasoning_tokens": 5536,
+      "image_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "audio_tokens": 0,
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "video_tokens": 0
+    },
+    "cost": 0.002756754,
+    "is_byok": false,
+    "cost_details": {
+      "upstream_inference_cost": 0.002756754,
+      "upstream_inference_prompt_cost": 2.4786e-05,
+      "upstream_inference_completions_cost": 0.002731968
+    }
+  },
+  "provider": {
+    "requested_model": "deepseek/deepseek-v4.1-flash",
+    "actual_model": "deepseek/deepseek-v4.1-flash",
+    "finish_reason": "stop",
+    "usage": {
+      "completion_tokens": 6696,
+      "prompt_tokens": 243,
+      "total_tokens": 6939,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 5536,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.002756754,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.002756754,
+        "upstream_inference_prompt_cost": 2.4786e-05,
+        "upstream_inference_completions_cost": 0.002731968
+      }
+    },
+    "generation_config": {
+      "max_output_tokens": 16384,
+      "reasoning_effort": "high",
+      "provider": {
+        "only": [
+          "baidu/fp8"
+        ],
+        "allow_fallbacks": false
+      }
+    },
+    "finish_reasons": [
+      "stop"
+    ],
+    "actual_provider": "Baidu"
+  },
+  "finished_at": "2026-10-13T14:29:49.349741+00:00",
+  "nodes": 15,
+  "edges": 20,
+  "components": 1,
+  "schema": {
+    "schema_valid": false,
+    "non_empty_graph": true,
+    "missing_node_required_fields_count": 0,
+    "invalid_node_ids_count": 0,
+    "duplicate_node_ids_count": 0,
+    "invalid_node_labels_count": 0,
+    "missing_node_condition_fields_count": 0,
+    "missing_edge_required_fields_count": 20,
+    "invalid_edge_labels_count": 0,
+    "edge_schema_compliance": 0.0,
+    "alternate_source_target_edges_count": 20,
+    "valid_edges": 0,
+    "invalid_edges": 20,
+    "edge_endpoint_integrity": 0.0
+  },
+  "warnings": [
+    "Khác schema đầy đủ của repo; xem metadata"
+  ],
+  "render": {
+    "style": "paper_circles",
+    "seed": 17,
+    "scale": 1.7,
+    "node_labels": [
+      "Attacker",
+      "Establish and enumerate PostgreSQL servers",
+      "PostgreSQL servers with configuration issues",
+      "Trust authentication setting misconfiguration",
+      "Broad range of IP addresses assigned",
+      "Unauthorized PostgreSQL database access via any attacker IP",
+      "Container images",
+      "Security flaw in container images",
+      "Remote code execution vulnerability",
+      "Push attacker payload",
+      "Gain access to server",
+      "WordPress",
+      "Liferay",
+      "PHPUnit",
+      "Oracle WebLogic"
+    ],
+    "original_node_labels": [
+      "Attacker",
+      "Establish and enumerate PostgreSQL servers",
+      "PostgreSQL servers with configuration issues",
+      "Trust authentication setting misconfiguration",
+      "Broad range of IP addresses assigned",
+      "Unauthorized PostgreSQL database access via any attacker IP",
+      "Container images",
+      "Security flaw in container images",
+      "Remote code execution vulnerability",
+      "Push attacker payload",
+      "Gain access to server",
+      "WordPress",
+      "Liferay",
+      "PHPUnit",
+      "Oracle WebLogic"
+    ],
+    "edge_labels": [
+      "establishes and enumerates",
+      "finds servers with",
+      "exploits",
+      "exploits",
+      "assumes any connection is authorized for database access",
+      "allows any attacker IP to access the server",
+      "leads to",
+      "searches for exploitable",
+      "contains",
+      "exposes",
+      "allows",
+      "gains",
+      "may include",
+      "may include",
+      "may include",
+      "may include",
+      "may contain",
+      "may contain",
+      "may contain",
+      "may contain"
+    ],
+    "original_edge_labels": [
+      "establishes and enumerates",
+      "finds servers with",
+      "exploits",
+      "exploits",
+      "assumes any connection is authorized for database access",
+      "allows any attacker IP to access the server",
+      "leads to",
+      "searches for exploitable",
+      "contains",
+      "exposes",
+      "allows",
+      "gains",
+      "may include",
+      "may include",
+      "may include",
+      "may include",
+      "may contain",
+      "may contain",
+      "may contain",
+      "may contain"
+    ],
+    "display_aliases": "report_techniques_and_headings",
+    "label_collisions": 0,
+    "width": 1847,
+    "height": 972,
+    "target_aspect": 2.443502824858757,
+    "nodes": 15,
+    "edges": 20,
+    "graph_changed": false
+  },
+  "response_sha256": "26254c8acd0ac0c5bf328eb84449a51546c412129867f0d2786eaa7d34e60b1a"
+}

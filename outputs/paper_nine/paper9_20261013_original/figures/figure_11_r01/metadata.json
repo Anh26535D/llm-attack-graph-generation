@@ -1,0 +1,121 @@
+{
+  "figure": 11,
+  "condition": "T0",
+  "backend": "gemini",
+  "model": "gemini-3.8-flash",
+  "original_model": "GPT-4",
+  "repeat": 1,
+  "status": "completed_with_warnings",
+  "origin": "online",
+  "prompt_style": "paper",
+  "prompt_sha256": "66107bb7d63024ae56c603ebc289af393487e1d45df05d31f35267b28d1355f3",
+  "reasoning": "high",
+  "max_output_tokens": 16384,
+  "usage": {
+    "candidates_token_count": 1476,
+    "prompt_token_count": 214,
+    "prompt_tokens_details": [
+      {
+        "modality": "TEXT",
+        "token_count": 214
+      }
+    ],
+    "thoughts_token_count": 1324,
+    "total_token_count": 3014
+  },
+  "provider": {
+    "requested_model": "gemini-3.8-flash",
+    "actual_model": "gemini-3.8-flash",
+    "finish_reason": "STOP",
+    "usage": {
+      "candidates_token_count": 1476,
+      "prompt_token_count": 214,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 214
+        }
+      ],
+      "thoughts_token_count": 1324,
+      "total_token_count": 3014
+    },
+    "generation_config": {
+      "max_output_tokens": 16384,
+      "thinking_level": "high"
+    },
+    "finish_reasons": [
+      "STOP"
+    ]
+  },
+  "nodes": 10,
+  "edges": 11,
+  "components": 1,
+  "schema": {
+    "schema_valid": false,
+    "non_empty_graph": true,
+    "missing_node_required_fields_count": 0,
+    "invalid_node_ids_count": 0,
+    "duplicate_node_ids_count": 0,
+    "invalid_node_labels_count": 0,
+    "missing_node_condition_fields_count": 0,
+    "missing_edge_required_fields_count": 11,
+    "invalid_edge_labels_count": 0,
+    "edge_schema_compliance": 0.0,
+    "alternate_source_target_edges_count": 11,
+    "valid_edges": 0,
+    "invalid_edges": 11,
+    "edge_endpoint_integrity": 0.0
+  },
+  "warnings": [
+    "Khác schema đầy đủ của repo; xem metadata"
+  ],
+  "render": {
+    "style": "paper_circles",
+    "seed": 42,
+    "scale": 1.0,
+    "node_labels": [
+      "Threat Actor",
+      "Enumerate PostgreSQL Servers",
+      "Trust Authentication Misconfiguration",
+      "Overly Permissive IP Range Allowed",
+      "Bypass Authentication via Trust Auth",
+      "Scan Container Images for Flaws",
+      "Vulnerable Applications in Containers",
+      "Exploit Remote Code Execution (RCE)",
+      "Payload Delivery & Execution",
+      "Server & Database Access Compromise"
+    ],
+    "original_node_labels": [
+      "Threat Actor",
+      "Enumerate PostgreSQL Servers",
+      "Trust Authentication Misconfiguration",
+      "Overly Permissive IP Range Allowed",
+      "Bypass Authentication via Trust Auth",
+      "Scan Container Images for Flaws",
+      "Vulnerable Applications in Containers",
+      "Exploit Remote Code Execution (RCE)",
+      "Payload Delivery & Execution",
+      "Server & Database Access Compromise"
+    ],
+    "edge_labels": [
+      "Initiates Path 1: PostgreSQL Reconnaissance",
+      "Discovers",
+      "Discovers",
+      "Enables",
+      "Allows connection from attacker IP",
+      "Leads to unauthorized database and server access",
+      "Initiates Path 2: Container Vulnerability Search",
+      "Identifies target software (WordPress, Liferay, PHPUnit, WebLogic)",
+      "Exposes RCE flaws",
+      "Allows payload push",
+      "Executes payload to gain server access"
+    ],
+    "label_collisions": 0,
+    "width": 1563,
+    "height": 1260,
+    "nodes": 10,
+    "edges": 11,
+    "graph_changed": false
+  },
+  "response_sha256": "772e3508609dfc52d8ea8ed96d725f041efd394e92077b2018a00dd0e04e6c33"
+}

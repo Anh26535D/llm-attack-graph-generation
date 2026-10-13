@@ -1,0 +1,298 @@
+{
+  "graph_id": "microsoft_postgresql_and_container_attack_graph",
+  "description": "Attack graph representing two observed attack paths: exploitation of misconfigured PostgreSQL servers and exploitation of vulnerable containerized applications.",
+  "nodes": [
+    {
+      "id": "n0",
+      "type": "threat_actor",
+      "label": "Attacker",
+      "description": "Threat actor seeking unauthorized access to databases, containers, or servers."
+    },
+    {
+      "id": "n1",
+      "type": "reconnaissance",
+      "label": "Establish PostgreSQL Servers",
+      "description": "Identify PostgreSQL servers that are reachable from the attacker's network position."
+    },
+    {
+      "id": "n2",
+      "type": "enumeration",
+      "label": "Enumerate PostgreSQL Configuration",
+      "description": "Inspect or infer PostgreSQL access-control and network-allowlist configuration issues."
+    },
+    {
+      "id": "n3",
+      "type": "misconfiguration",
+      "label": "Trust Authentication Enabled",
+      "description": "PostgreSQL is configured with trust authentication, causing connections to be treated as authorized without normal credential validation."
+    },
+    {
+      "id": "n4",
+      "type": "misconfiguration",
+      "label": "Overly Broad Source IP Range",
+      "description": "A broad range of IP addresses is allowed to connect to the PostgreSQL server, potentially including the attacker's IP address."
+    },
+    {
+      "id": "n5",
+      "type": "initial_access",
+      "label": "Unauthorized PostgreSQL Connection",
+      "description": "The attacker connects to the PostgreSQL server without valid database credentials.",
+      "prerequisites": [
+        "n3",
+        "n4"
+      ]
+    },
+    {
+      "id": "n6",
+      "type": "impact",
+      "label": "Unauthorized Database Access",
+      "description": "The attacker gains access to PostgreSQL databases and the data or database operations available to the connected account."
+    },
+    {
+      "id": "n7",
+      "type": "reconnaissance",
+      "label": "Identify Container Images",
+      "description": "Locate deployed container images and the applications or components they contain."
+    },
+    {
+      "id": "n8",
+      "type": "vulnerability_discovery",
+      "label": "Search for Container Image Vulnerabilities",
+      "description": "Search container images and their application components for exploitable security flaws, particularly remote code execution vulnerabilities."
+    },
+    {
+      "id": "n9",
+      "type": "application",
+      "label": "WordPress",
+      "description": "Candidate application in a container image examined for an exploitable remote code execution vulnerability."
+    },
+    {
+      "id": "n10",
+      "type": "application",
+      "label": "Liferay",
+      "description": "Candidate application in a container image examined for an exploitable remote code execution vulnerability."
+    },
+    {
+      "id": "n11",
+      "type": "application",
+      "label": "PHPUnit",
+      "description": "Candidate application or component in a container image examined for an exploitable remote code execution vulnerability."
+    },
+    {
+      "id": "n12",
+      "type": "application",
+      "label": "Oracle WebLogic",
+      "description": "Candidate application in a container image examined for an exploitable remote code execution vulnerability."
+    },
+    {
+      "id": "n13",
+      "type": "exploitation",
+      "label": "Exploit WordPress RCE",
+      "description": "Exploit an identified and reachable remote code execution vulnerability in WordPress.",
+      "condition": "An exploitable WordPress RCE vulnerability is present and reachable."
+    },
+    {
+      "id": "n14",
+      "type": "exploitation",
+      "label": "Exploit Liferay RCE",
+      "description": "Exploit an identified and reachable remote code execution vulnerability in Liferay.",
+      "condition": "An exploitable Liferay RCE vulnerability is present and reachable."
+    },
+    {
+      "id": "n15",
+      "type": "exploitation",
+      "label": "Exploit PHPUnit RCE",
+      "description": "Exploit an identified and reachable remote code execution vulnerability in PHPUnit.",
+      "condition": "An exploitable PHPUnit RCE vulnerability is present and reachable."
+    },
+    {
+      "id": "n16",
+      "type": "exploitation",
+      "label": "Exploit Oracle WebLogic RCE",
+      "description": "Exploit an identified and reachable remote code execution vulnerability in Oracle WebLogic.",
+      "condition": "An exploitable Oracle WebLogic RCE vulnerability is present and reachable."
+    },
+    {
+      "id": "n17",
+      "type": "execution",
+      "label": "Push Malicious Payload",
+      "description": "Use successful remote code execution to deliver or execute an attacker-controlled payload in the container environment."
+    },
+    {
+      "id": "n18",
+      "type": "impact",
+      "label": "Container or Server Access",
+      "description": "The attacker gains access to the affected container or underlying server through the executed payload."
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "n0",
+      "target": "n1",
+      "relation": "performs"
+    },
+    {
+      "id": "e2",
+      "source": "n1",
+      "target": "n2",
+      "relation": "enables"
+    },
+    {
+      "id": "e3",
+      "source": "n2",
+      "target": "n3",
+      "relation": "discovers"
+    },
+    {
+      "id": "e4",
+      "source": "n2",
+      "target": "n4",
+      "relation": "discovers"
+    },
+    {
+      "id": "e5",
+      "source": "n3",
+      "target": "n5",
+      "relation": "enables",
+      "logic": "AND"
+    },
+    {
+      "id": "e6",
+      "source": "n4",
+      "target": "n5",
+      "relation": "enables",
+      "logic": "AND"
+    },
+    {
+      "id": "e7",
+      "source": "n5",
+      "target": "n6",
+      "relation": "results_in"
+    },
+    {
+      "id": "e8",
+      "source": "n0",
+      "target": "n7",
+      "relation": "performs"
+    },
+    {
+      "id": "e9",
+      "source": "n7",
+      "target": "n8",
+      "relation": "enables"
+    },
+    {
+      "id": "e10",
+      "source": "n8",
+      "target": "n9",
+      "relation": "identifies"
+    },
+    {
+      "id": "e11",
+      "source": "n8",
+      "target": "n10",
+      "relation": "identifies"
+    },
+    {
+      "id": "e12",
+      "source": "n8",
+      "target": "n11",
+      "relation": "identifies"
+    },
+    {
+      "id": "e13",
+      "source": "n8",
+      "target": "n12",
+      "relation": "identifies"
+    },
+    {
+      "id": "e14",
+      "source": "n9",
+      "target": "n13",
+      "relation": "provides_target_for"
+    },
+    {
+      "id": "e15",
+      "source": "n10",
+      "target": "n14",
+      "relation": "provides_target_for"
+    },
+    {
+      "id": "e16",
+      "source": "n11",
+      "target": "n15",
+      "relation": "provides_target_for"
+    },
+    {
+      "id": "e17",
+      "source": "n12",
+      "target": "n16",
+      "relation": "provides_target_for"
+    },
+    {
+      "id": "e18",
+      "source": "n13",
+      "target": "n17",
+      "relation": "enables",
+      "logic": "OR"
+    },
+    {
+      "id": "e19",
+      "source": "n14",
+      "target": "n17",
+      "relation": "enables",
+      "logic": "OR"
+    },
+    {
+      "id": "e20",
+      "source": "n15",
+      "target": "n17",
+      "relation": "enables",
+      "logic": "OR"
+    },
+    {
+      "id": "e21",
+      "source": "n16",
+      "target": "n17",
+      "relation": "enables",
+      "logic": "OR"
+    },
+    {
+      "id": "e22",
+      "source": "n17",
+      "target": "n18",
+      "relation": "results_in"
+    }
+  ],
+  "attack_paths": [
+    {
+      "id": "path_1",
+      "name": "PostgreSQL Misconfiguration Path",
+      "logic": "n3 AND n4",
+      "sequence": [
+        "n0",
+        "n1",
+        "n2",
+        "n3",
+        "n4",
+        "n5",
+        "n6"
+      ]
+    },
+    {
+      "id": "path_2",
+      "name": "Container Image RCE Path",
+      "logic": "Any one of n13, n14, n15, or n16",
+      "sequence": [
+        "n0",
+        "n7",
+        "n8",
+        "n9|n10|n11|n12",
+        "n13|n14|n15|n16",
+        "n17",
+        "n18"
+      ]
+    }
+  ]
+}

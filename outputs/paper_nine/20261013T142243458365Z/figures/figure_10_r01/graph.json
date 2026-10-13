@@ -1,0 +1,147 @@
+{
+  "nodes": [
+    {
+      "id": "vuln_piSignage_path_traversal",
+      "label": "piSignage player API log download path traversal (before 2.6.4)",
+      "precondition": [
+        "Web application component of piSignage before 2.6.4",
+        "Remote attacker authenticated as a low-privilege user",
+        "Access to api/settings/log?file=../ endpoint",
+        "Player API for log download is reachable"
+      ],
+      "postcondition": [
+        "Download arbitrary files from the Raspberry Pi via path traversal",
+        "Information disclosure of arbitrary files on the Raspberry Pi"
+      ]
+    },
+    {
+      "id": "vuln_oculus_browser_html_injection",
+      "label": "Oculus Browser UI HTML injection (5.2.7 to 5.7.11)",
+      "precondition": [
+        "Oculus Browser version 5.2.7 through 5.7.11",
+        "Remote web page is loaded in Oculus Browser",
+        "Attacker can inject content into Oculus Browser UI"
+      ],
+      "postcondition": [
+        "Inject arbitrary HTML into Oculus Browser UI",
+        "Spoof UI",
+        "Potentially execute code"
+      ]
+    },
+    {
+      "id": "vuln_oculus_desktop_ovrredir_hardlink",
+      "label": "Oculus Desktop OVRRedir.exe privileged file write via hard link to log file (before 1.44.0.32849)",
+      "precondition": [
+        "Oculus Desktop on Windows before 1.44.0.32849",
+        "Local user access",
+        "Privileged OVRRedir.exe process writes to a log file",
+        "Attacker can create a hard link to the log file"
+      ],
+      "postcondition": [
+        "Write to arbitrary files from a privileged OVRRedir.exe process",
+        "Gain privileges"
+      ]
+    },
+    {
+      "id": "vuln_raspap_webconsole_command_execution",
+      "label": "RaspAP 2.5 includes/webconsole.php unrestricted web console command execution",
+      "precondition": [
+        "RaspAP 2.5",
+        "Authenticated access to RaspAP web interface",
+        "Access to includes/webconsole.php",
+        "Misconfigured virtually unrestricted web console"
+      ],
+      "postcondition": [
+        "Attack underlying OS (Raspberry Pi) running RaspAP",
+        "Execute commands on the system",
+        "Upload files",
+        "Execute code"
+      ]
+    },
+    {
+      "id": "vuln_oculus_desktop_ovrservicelauncher_handle",
+      "label": "Oculus Desktop OVRServiceLauncher.exe privileged handle exposure LPE (after 1.39, before 31.1.0.67.507)",
+      "precondition": [
+        "Oculus Desktop on Windows versions after 1.39 and prior to 31.1.0.67.507",
+        "Unprivileged local process",
+        "Bug in handle management of OVRServiceLauncher.exe"
+      ],
+      "postcondition": [
+        "Expose privileged process handle to an unprivileged process",
+        "Local privilege escalation"
+      ]
+    },
+    {
+      "id": "vuln_raspberry_pi_glowworm",
+      "label": "Raspberry Pi Glowworm attack: speech recovery via power indicator LED",
+      "precondition": [
+        "Raspberry Pi 3 B+ or 4 B device through 2021-08-09",
+        "Specific use case where the Raspberry Pi supplies power to audio-output equipment",
+        "Speakers connected and playing sound",
+        "Attacker has physical line-of-sight to the power indicator LED",
+        "Telescope and electro-optical sensor directed at the power indicator LED"
+      ],
+      "postcondition": [
+        "Recover speech signals from the power indicator LED",
+        "Information disclosure of audio played by speakers"
+      ]
+    },
+    {
+      "id": "vuln_raspberry_pi_os_default_password",
+      "label": "Raspberry Pi OS default pi account password (through 5.10)",
+      "precondition": [
+        "Raspberry Pi OS through 5.10",
+        "Default password for the pi account is unchanged",
+        "Attacker can reach an authentication service or local shell (e.g., SSH, console, su)"
+      ],
+      "postcondition": [
+        "Gain administrator privileges"
+      ]
+    },
+    {
+      "id": "vuln_nvidia_jetson_iommu",
+      "label": "NVIDIA Jetson Linux IOMMU misconfiguration PCI bus read/write",
+      "precondition": [
+        "NVIDIA Jetson Linux distribution",
+        "Unprivileged attacker with physical access to the board",
+        "PCI bus access",
+        "Error in IOMMU configuration"
+      ],
+      "postcondition": [
+        "Direct read/write access to the entire system address space through the PCI bus",
+        "Denial of service",
+        "Code execution",
+        "Privilege escalation",
+        "Impact to data integrity and confidentiality",
+        "Scope impact may extend to other components"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "vuln_piSignage_path_traversal",
+      "to": "vuln_raspap_webconsole_command_execution",
+      "label": "Arbitrary file download can disclose RaspAP configuration or credentials, enabling authenticated access to RaspAP web console."
+    },
+    {
+      "from": "vuln_raspap_webconsole_command_execution",
+      "to": "vuln_piSignage_path_traversal",
+      "label": "Command execution on Raspberry Pi OS can create or read piSignage credentials, enabling low-privilege authenticated access to the piSignage player API."
+    },
+    {
+      "from": "vuln_raspap_webconsole_command_execution",
+      "to": "vuln_raspberry_pi_os_default_password",
+      "label": "Command execution on underlying Raspberry Pi OS provides a local shell to use the unchanged default pi password and gain administrator privileges."
+    },
+    {
+      "from": "vuln_raspberry_pi_os_default_password",
+      "to": "vuln_piSignage_path_traversal",
+      "label": "Administrator privileges on Raspberry Pi OS can read or modify piSignage configuration to obtain low-privilege authenticated access."
+    },
+    {
+      "from": "vuln_raspberry_pi_os_default_password",
+      "to": "vuln_raspap_webconsole_command_execution",
+      "label": "Administrator privileges on Raspberry Pi OS can modify RaspAP authentication data or configuration to gain authenticated access to the web console."
+    }
+  ]
+}

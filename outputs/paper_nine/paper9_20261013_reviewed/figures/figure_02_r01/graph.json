@@ -1,0 +1,206 @@
+{
+  "nodes": [
+    {
+      "id": "unc2452",
+      "label": "UNC2452 Threat Actor",
+      "description": "Highly skilled actor conducting a global intrusion campaign with advanced operational security."
+    },
+    {
+      "id": "solarwinds_supply_chain",
+      "label": "SolarWinds Supply Chain Compromise",
+      "description": "Trojanization of legitimate SolarWinds Orion IT monitoring software updates beginning as early as Spring 2020."
+    },
+    {
+      "id": "trojanized_update_package",
+      "label": "Trojanized Orion Update Package",
+      "description": "Digitally signed Windows Installer Patch containing compressed resources including the trojanized plugin."
+    },
+    {
+      "id": "sunburst_backdoor",
+      "label": "SUNBURST Backdoor DLL",
+      "description": "Digitally signed SolarWinds.Orion.Core.BusinessLayer.dll implementing an obfuscated backdoor disguised as inventory management."
+    },
+    {
+      "id": "businesslayer_host",
+      "label": "SolarWinds BusinessLayerHost Process",
+      "description": "Legitimate framework process that loads the trojanized BusinessLayer plugin upon Orion installation."
+    },
+    {
+      "id": "anti_analysis_defense",
+      "label": "Security Tool Blocklist Evasion",
+      "description": "Hashes process, service, and driver names using FNV-1a and XOR against hardcoded blocklists, disabling security services via registry."
+    },
+    {
+      "id": "dga_resolution",
+      "label": "DGA Subdomain Resolution",
+      "description": "Generates avsvmcloud[.]com subdomains encoding machine domain and victim ID, varying responses to control victim targeting."
+    },
+    {
+      "id": "c2_infrastructure",
+      "label": "Command and Control Infrastructure",
+      "description": "C2 domains delivered via DNS CNAME records, with behavior controlled by A record IP address blocks."
+    },
+    {
+      "id": "oip_traffic_masquerading",
+      "label": "Orion Improvement Program Masquerading",
+      "description": "C2 network traffic designed to mimic legitimate SolarWinds OIP API communication with steganographic HTTP payloads."
+    },
+    {
+      "id": "sunburst_jobs",
+      "label": "SUNBURST Job Execution Engine",
+      "description": "Executes backdoor commands to profile systems, transfer and execute files, modify registry values, and reboot machines."
+    },
+    {
+      "id": "teardrop_dropper",
+      "label": "TEARDROP Memory-Only Dropper",
+      "description": "Service-based dropper that reads gracious_truth.jpg and decodes an embedded payload via rolling XOR."
+    },
+    {
+      "id": "cobalt_strike_beacon",
+      "label": "Cobalt Strike BEACON Payload",
+      "description": "Customized Cobalt Strike BEACON loaded directly into memory by TEARDROP for interactive post-compromise activity."
+    },
+    {
+      "id": "victim_matched_vps",
+      "label": "Victim-Country VPS Infrastructure",
+      "description": "Virtual Private Servers originating from the same country as the victim to avoid geographical anomaly detection."
+    },
+    {
+      "id": "hostname_impersonation",
+      "label": "Victim Hostname Masquerading",
+      "description": "C2 hostnames configured to match legitimate victim internal hostnames, observable in RDP SSL certificates."
+    },
+    {
+      "id": "credential_lateral_movement",
+      "label": "Segregated Credential Lateral Movement",
+      "description": "Lateral movement across internal systems using multiple compromised credentials distinct from remote access accounts."
+    },
+    {
+      "id": "temporary_tampering",
+      "label": "Temporary File and Task Manipulation",
+      "description": "Temporarily replacing legitimate binaries and modifying scheduled tasks to execute tools before reverting them to avoid detection."
+    },
+    {
+      "id": "victim_organizations",
+      "label": "Global Victim Organizations",
+      "description": "Public and private entities across government, consulting, technology, telecom, and extractive sectors worldwide."
+    },
+    {
+      "id": "detection_signatures",
+      "label": "Detection Signatures and Threat Hunting",
+      "description": "YARA rules for TEARDROP, network IOCs, Snort signatures, and anomaly detection across RDP certificates and LogonTracker."
+    },
+    {
+      "id": "remediation_mitigations",
+      "label": "SolarWinds Server Isolation and Hardening",
+      "description": "Network egress blocking, server containment, rebuilding systems from clean images, and credential resets."
+    }
+  ],
+  "edges": [
+    {
+      "from": "unc2452",
+      "to": "solarwinds_supply_chain",
+      "label": "Conducts supply chain attack"
+    },
+    {
+      "from": "solarwinds_supply_chain",
+      "to": "trojanized_update_package",
+      "label": "Distributes via update website"
+    },
+    {
+      "from": "trojanized_update_package",
+      "to": "sunburst_backdoor",
+      "label": "Installs trojanized DLL"
+    },
+    {
+      "from": "businesslayer_host",
+      "to": "sunburst_backdoor",
+      "label": "Loads malicious plugin component"
+    },
+    {
+      "from": "sunburst_backdoor",
+      "to": "anti_analysis_defense",
+      "label": "Scans and terminates security tools"
+    },
+    {
+      "from": "sunburst_backdoor",
+      "to": "dga_resolution",
+      "label": "Generates dynamic subdomains"
+    },
+    {
+      "from": "dga_resolution",
+      "to": "c2_infrastructure",
+      "label": "Resolves to C2 servers via CNAME"
+    },
+    {
+      "from": "sunburst_backdoor",
+      "to": "oip_traffic_masquerading",
+      "label": "Disguises HTTP communications"
+    },
+    {
+      "from": "c2_infrastructure",
+      "to": "sunburst_jobs",
+      "label": "Dispatches backdoor job commands"
+    },
+    {
+      "from": "sunburst_backdoor",
+      "to": "teardrop_dropper",
+      "label": "Deploys secondary dropper"
+    },
+    {
+      "from": "teardrop_dropper",
+      "to": "cobalt_strike_beacon",
+      "label": "Loads payload into memory"
+    },
+    {
+      "from": "unc2452",
+      "to": "victim_matched_vps",
+      "label": "Operates geographically matched VPS"
+    },
+    {
+      "from": "unc2452",
+      "to": "hostname_impersonation",
+      "label": "Configures matching C2 hostnames"
+    },
+    {
+      "from": "unc2452",
+      "to": "temporary_tampering",
+      "label": "Executes utilities via file replacement"
+    },
+    {
+      "from": "unc2452",
+      "to": "credential_lateral_movement",
+      "label": "Moves laterally with separate credentials"
+    },
+    {
+      "from": "credential_lateral_movement",
+      "to": "victim_organizations",
+      "label": "Compromises internal environments"
+    },
+    {
+      "from": "sunburst_backdoor",
+      "to": "victim_organizations",
+      "label": "Infects worldwide targets"
+    },
+    {
+      "from": "detection_signatures",
+      "to": "teardrop_dropper",
+      "label": "Detects via YARA rules"
+    },
+    {
+      "from": "detection_signatures",
+      "to": "hostname_impersonation",
+      "label": "Identifies hostnames in SSL certificates"
+    },
+    {
+      "from": "detection_signatures",
+      "to": "credential_lateral_movement",
+      "label": "Identifies one-to-many authentication anomalies"
+    },
+    {
+      "from": "remediation_mitigations",
+      "to": "sunburst_backdoor",
+      "label": "Blocks C2 and isolates servers"
+    }
+  ]
+}

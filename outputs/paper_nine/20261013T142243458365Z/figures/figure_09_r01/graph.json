@@ -1,0 +1,59 @@
+{
+  "nodes": [
+    {
+      "id": "vuln_pisignage_path_traversal",
+      "label": "piSignage web application player API log-download path traversal before version 2.6.4. A remote attacker authenticated as a low-privilege user can call api/settings/log?file=../ and manipulate the file parameter to traverse outside the intended log directory.",
+      "precondition": "The piSignage web application is deployed in a version earlier than 2.6.4; the player API and its log-download functionality are reachable; and the attacker possesses valid low-privilege authenticated web-application access.",
+      "postcondition": "The attacker can download arbitrary files from the Raspberry Pi through the player API, causing unauthorized file disclosure and confidentiality loss. Downloadable files may include logs, configuration data, application data, or other sensitive content reachable through path traversal; the vulnerability description directly establishes arbitrary file download but does not independently establish code execution or privilege escalation."
+    },
+    {
+      "id": "vuln_oculus_browser_html_injection",
+      "label": "Oculus Browser arbitrary HTML injection affecting the browser user interface from version 5.2.7 through 5.7.11. A remote web page can inject arbitrary HTML into the Oculus Browser UI.",
+      "precondition": "The target uses an affected Oculus Browser version starting at 5.2.7 and no later than 5.7.11, and the target loads or visits a remote web page controlled or influenced by the attacker.",
+      "postcondition": "Arbitrary HTML is injected into the Oculus Browser UI, enabling UI spoofing and deceptive interface presentation. Depending on the execution context and the affected browser behavior, the injected content may potentially execute code; the described impact does not by itself establish operating-system-level execution or local privilege escalation."
+    },
+    {
+      "id": "vuln_oculus_ovrredir_arbitrary_file_write",
+      "label": "Oculus Desktop OVRRedir.exe privileged-process arbitrary file write before version 1.44.0.32849 on Windows. A local user can exploit the privileged process writing to an unprivileged file, including a vector involving a hard link to a log file.",
+      "precondition": "The target is a Windows system running Oculus Desktop before version 1.44.0.32849; OVRRedir.exe runs with elevated or privileged rights; and the attacker has local-user access sufficient to create or manipulate the relevant hard link and influence the log-file write target.",
+      "postcondition": "A privileged OVRRedir.exe process can be induced to write attacker-controlled data to an arbitrary file selected through the hard-link/log-file vector. The resulting arbitrary file write can modify security-sensitive files and consequently enable local privilege escalation."
+    },
+    {
+      "id": "vuln_raspap_webconsole_command_execution",
+      "label": "RaspAP 2.5 includes/webconsole.php authenticated web-console command execution. The web console is misconfigured and virtually unrestricted, allowing an authenticated attacker to attack the underlying Raspberry Pi operating system.",
+      "precondition": "RaspAP version 2.5 is deployed; includes/webconsole.php is accessible; and the attacker has authenticated access to the RaspAP web interface or web console.",
+      "postcondition": "The attacker can execute commands on the underlying Raspberry Pi operating system. The command-execution capability includes uploading files and executing code, providing an operating-system foothold and the ability to perform further host-level actions subject to the privileges of the web-console process."
+    },
+    {
+      "id": "vuln_oculus_ovrservicelauncher_handle_exposure",
+      "label": "Oculus Desktop OVRServiceLauncher.exe privileged process-handle exposure. A bug in handle management affects Oculus Desktop versions after 1.39 and before 31.1.0.67.507.",
+      "precondition": "The target runs an Oculus Desktop version later than 1.39 and earlier than 31.1.0.67.507; and the attacker has local access as an unprivileged user or can run an unprivileged process on the Windows system.",
+      "postcondition": "A privileged process handle can be exposed to the unprivileged process. The attacker can abuse the exposed privileged handle to interact with the privileged process beyond intended access controls, leading to local privilege escalation."
+    },
+    {
+      "id": "vuln_raspberrypi_glowworm_side_channel",
+      "label": "Raspberry Pi Glowworm optical side-channel attack affecting Raspberry Pi 3 B+ and Raspberry Pi 4 B devices through 2021-08-09 in specific audio-power use cases. When the device supplies power to speakers or other audio-output equipment, a telescope and electro-optical sensor can recover speech signals from the power indicator LED.",
+      "precondition": "The target is a Raspberry Pi 3 B+ or Raspberry Pi 4 B within the affected period; the Raspberry Pi supplies power to audio-output equipment such as speakers; sound is being played; and the remote attacker has a suitable optical observation path using a telescope and electro-optical sensor aimed at the device power LED.",
+      "postcondition": "The attacker can measure fluctuations in the power indicator LED and analyze them to recover speech or other sound played through the connected speakers. The attack produces an audio confidentiality breach through an optical side channel and does not inherently provide code execution, file access, or privilege escalation."
+    },
+    {
+      "id": "vuln_raspberrypi_default_pi_password",
+      "label": "Raspberry Pi OS default pi-account password exposure through version 5.10. The pi account retains the default password 'raspberry' when the administrator has not changed it.",
+      "precondition": "The target runs Raspberry Pi OS through version 5.10; the pi account is enabled; its password remains the default 'raspberry'; and the attacker can reach an authentication interface or service that accepts the pi account credentials.",
+      "postcondition": "The attacker can authenticate as the pi account and gain administrator-level privileges on the Raspberry Pi, enabling host administration and access to services and files available to that account."
+    },
+    {
+      "id": "vuln_jetson_iommu_pci_memory_access",
+      "label": "NVIDIA Jetson Linux IOMMU misconfiguration allowing PCI-bus system-memory access. An error in the IOMMU configuration permits an unprivileged attacker with physical access to the board to obtain direct read/write access to the entire system address space through the PCI bus.",
+      "precondition": "The target uses an affected NVIDIA distribution of Jetson Linux; the IOMMU is incorrectly configured; and the attacker is an unprivileged user with physical access to the Jetson board and a usable PCI-bus attack path.",
+      "postcondition": "The attacker obtains direct read and write access to the entire system address space through PCI. This can enable denial of service, arbitrary code execution, privilege escalation, compromise of data integrity, compromise of data confidentiality, and impacts extending to other components connected to or relying on the affected system."
+    }
+  ],
+  "edges": [
+    {
+      "from": "vuln_raspberrypi_default_pi_password",
+      "to": "vuln_raspap_webconsole_command_execution",
+      "label": "Conditional same-host chain: if RaspAP 2.5 is installed on the same Raspberry Pi and its authenticated web console accepts the pi account credentials or the administrator-level pi access can be used to establish authenticated web-console access, the default-password compromise satisfies the authentication precondition for the virtually unrestricted RaspAP console. The attacker can then execute operating-system commands, upload files, and execute code through includes/webconsole.php."
+    }
+  ]
+}

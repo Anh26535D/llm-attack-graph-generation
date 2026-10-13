@@ -1,0 +1,152 @@
+Here is the attack graph represented in JSON format, structured with **nodes** (representing actions, misconfigurations, vulnerabilities, and outcomes) and **edges** (representing the attack paths and dependencies).
+
+```json
+{
+  "attack_graph": {
+    "metadata": {
+      "title": "Multi-Path Server Compromise Attack Graph",
+      "source": "Microsoft Security Research Analysis",
+      "description": "Attack graph detailing two attack vectors: PostgreSQL misconfiguration exploitation and container image RCE exploitation targeting specific web applications."
+    },
+    "nodes": [
+      {
+        "id": "node_0",
+        "label": "Threat Actor",
+        "type": "ThreatActor",
+        "description": "External attacker initiating network scans and exploit campaigns."
+      },
+      {
+        "id": "node_1",
+        "label": "Enumerate PostgreSQL Servers",
+        "type": "Tactic/Reconnaissance",
+        "technique": "Network Service Discovery",
+        "description": "Attacker establishes connections and enumerates PostgreSQL servers looking for configuration issues."
+      },
+      {
+        "id": "node_2",
+        "label": "Trust Authentication Misconfiguration",
+        "type": "Vulnerability/Misconfiguration",
+        "description": "PostgreSQL is configured to assume any connection is authorized without requiring credentials."
+      },
+      {
+        "id": "node_3",
+        "label": "Overly Permissive IP Range Allowed",
+        "type": "Vulnerability/Misconfiguration",
+        "description": "Configuration accepts connections from a broad range of IP addresses, enabling the attacker's IP to connect."
+      },
+      {
+        "id": "node_4",
+        "label": "Bypass Authentication via Trust Auth",
+        "type": "Tactic/InitialAccess",
+        "technique": "Exploitation of Misconfiguration",
+        "description": "Attacker connects directly to the database instance without credentials due to trust auth + permissive IP whitelist."
+      },
+      {
+        "id": "node_5",
+        "label": "Scan Container Images for Flaws",
+        "type": "Tactic/Reconnaissance",
+        "technique": "Vulnerability Scanning",
+        "description": "Attacker searches for vulnerable container images running unpatched web applications."
+      },
+      {
+        "id": "node_6",
+        "label": "Vulnerable Applications in Containers",
+        "type": "Asset/Vulnerability",
+        "description": "Container images containing exploitable components: WordPress, Liferay, PHPUnit, or Oracle WebLogic."
+      },
+      {
+        "id": "node_7",
+        "label": "Exploit Remote Code Execution (RCE)",
+        "type": "Tactic/Execution",
+        "technique": "Exploit Public-Facing Application",
+        "description": "Attacker triggers an RCE vulnerability within the vulnerable application containers."
+      },
+      {
+        "id": "node_8",
+        "label": "Payload Delivery & Execution",
+        "type": "Tactic/Execution",
+        "technique": "Deploy Container Payload",
+        "description": "Attacker pushes malicious payload into the container environment through the RCE vector."
+      },
+      {
+        "id": "node_9",
+        "label": "Server & Database Access Compromise",
+        "type": "Impact/Goal",
+        "description": "Attacker successfully gains unauthorized access to the host server/database system."
+      }
+    ],
+    "edges": [
+      {
+        "id": "edge_0_1",
+        "source": "node_0",
+        "target": "node_1",
+        "label": "Initiates Path 1: PostgreSQL Reconnaissance"
+      },
+      {
+        "id": "edge_1_2",
+        "source": "node_1",
+        "target": "node_2",
+        "label": "Discovers"
+      },
+      {
+        "id": "edge_1_3",
+        "source": "node_1",
+        "target": "node_3",
+        "label": "Discovers"
+      },
+      {
+        "id": "edge_2_4",
+        "source": "node_2",
+        "target": "node_4",
+        "label": "Enables"
+      },
+      {
+        "id": "edge_3_4",
+        "source": "node_3",
+        "target": "node_4",
+        "label": "Allows connection from attacker IP"
+      },
+      {
+        "id": "edge_4_9",
+        "source": "node_4",
+        "target": "node_9",
+        "label": "Leads to unauthorized database and server access"
+      },
+      {
+        "id": "edge_0_5",
+        "source": "node_0",
+        "target": "node_5",
+        "label": "Initiates Path 2: Container Vulnerability Search"
+      },
+      {
+        "id": "edge_5_6",
+        "source": "node_5",
+        "target": "node_6",
+        "label": "Identifies target software (WordPress, Liferay, PHPUnit, WebLogic)"
+      },
+      {
+        "id": "edge_6_7",
+        "source": "node_6",
+        "target": "node_7",
+        "label": "Exposes RCE flaws"
+      },
+      {
+        "id": "edge_7_8",
+        "source": "node_7",
+        "target": "node_8",
+        "label": "Allows payload push"
+      },
+      {
+        "id": "edge_8_9",
+        "source": "node_8",
+        "target": "node_9",
+        "label": "Executes payload to gain server access"
+      }
+    ]
+  }
+}
+```
+
+### Path Summary:
+1. **Path 1 (PostgreSQL Misconfiguration):** `node_0` → `node_1` → (`node_2` & `node_3`) → `node_4` → `node_9`
+2. **Path 2 (Container Image RCE):** `node_0` → `node_5` → `node_6` → `node_7` → `node_8` → `node_9`

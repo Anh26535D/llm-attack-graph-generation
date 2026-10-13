@@ -1,0 +1,208 @@
+{
+  "nodes": [
+    {
+      "id": "n01",
+      "type": "attacker",
+      "name": "Attacker",
+      "description": "Threat actor conducting reconnaissance and exploitation."
+    },
+    {
+      "id": "n02",
+      "type": "reconnaissance",
+      "name": "Establish and enumerate PostgreSQL servers",
+      "description": "Identify PostgreSQL servers that may be exposed or improperly configured."
+    },
+    {
+      "id": "n03",
+      "type": "configuration_issue",
+      "name": "PostgreSQL configuration issues",
+      "description": "Identify PostgreSQL instances with exploitable access-control or network-allowlist settings."
+    },
+    {
+      "id": "n04",
+      "type": "misconfiguration",
+      "name": "Trust authentication enabled",
+      "description": "PostgreSQL assumes that an established connection is authorized without requiring authentication."
+    },
+    {
+      "id": "n05",
+      "type": "misconfiguration",
+      "name": "Overly broad permitted IP range",
+      "description": "A broad client IP range permits the attacker's source IP address to connect."
+    },
+    {
+      "id": "n06",
+      "type": "access",
+      "name": "Unauthorized PostgreSQL connection",
+      "description": "The attacker connects to PostgreSQL without valid credentials because the trust and network-access conditions are satisfied."
+    },
+    {
+      "id": "n07",
+      "type": "impact",
+      "name": "Database access",
+      "description": "The attacker obtains access to the PostgreSQL database."
+    },
+    {
+      "id": "n08",
+      "type": "reconnaissance",
+      "name": "Identify container images",
+      "description": "Locate container images and applications deployed within them."
+    },
+    {
+      "id": "n09",
+      "type": "vulnerability_discovery",
+      "name": "Search for application security flaws",
+      "description": "Search containerized applications for vulnerabilities that could provide remote code execution."
+    },
+    {
+      "id": "n10",
+      "type": "target_application",
+      "name": "WordPress",
+      "description": "Application searched for an exploitable security flaw."
+    },
+    {
+      "id": "n11",
+      "type": "target_application",
+      "name": "Liferay",
+      "description": "Application searched for an exploitable security flaw."
+    },
+    {
+      "id": "n12",
+      "type": "target_application",
+      "name": "PHPUnit",
+      "description": "Application or component searched for an exploitable security flaw."
+    },
+    {
+      "id": "n13",
+      "type": "target_application",
+      "name": "Oracle WebLogic",
+      "description": "Application server searched for an exploitable security flaw."
+    },
+    {
+      "id": "n14",
+      "type": "vulnerability",
+      "name": "Remote code execution vulnerability",
+      "description": "An exploitable vulnerability in one of the targeted applications allows remote code execution."
+    },
+    {
+      "id": "n15",
+      "type": "exploitation",
+      "name": "Exploit remote code execution vulnerability",
+      "description": "The attacker exploits the identified vulnerability to execute code in the container or on the associated server."
+    },
+    {
+      "id": "n16",
+      "type": "payload_delivery",
+      "name": "Push attacker payload",
+      "description": "The attacker delivers or executes a payload after obtaining code execution."
+    },
+    {
+      "id": "n17",
+      "type": "impact",
+      "name": "Server access through containerized application",
+      "description": "The attacker gains access to the server through the compromised containerized application."
+    }
+  ],
+  "edges": [
+    {
+      "from": "n01",
+      "to": "n02",
+      "relationship": "performs"
+    },
+    {
+      "from": "n02",
+      "to": "n03",
+      "relationship": "identifies"
+    },
+    {
+      "from": "n03",
+      "to": "n04",
+      "relationship": "discovers"
+    },
+    {
+      "from": "n03",
+      "to": "n05",
+      "relationship": "discovers"
+    },
+    {
+      "from": "n04",
+      "to": "n06",
+      "relationship": "enables"
+    },
+    {
+      "from": "n05",
+      "to": "n06",
+      "relationship": "permits"
+    },
+    {
+      "from": "n06",
+      "to": "n07",
+      "relationship": "provides"
+    },
+    {
+      "from": "n01",
+      "to": "n08",
+      "relationship": "performs"
+    },
+    {
+      "from": "n08",
+      "to": "n09",
+      "relationship": "enables"
+    },
+    {
+      "from": "n09",
+      "to": "n10",
+      "relationship": "searches"
+    },
+    {
+      "from": "n09",
+      "to": "n11",
+      "relationship": "searches"
+    },
+    {
+      "from": "n09",
+      "to": "n12",
+      "relationship": "searches"
+    },
+    {
+      "from": "n09",
+      "to": "n13",
+      "relationship": "searches"
+    },
+    {
+      "from": "n10",
+      "to": "n14",
+      "relationship": "may_contain"
+    },
+    {
+      "from": "n11",
+      "to": "n14",
+      "relationship": "may_contain"
+    },
+    {
+      "from": "n12",
+      "to": "n14",
+      "relationship": "may_contain"
+    },
+    {
+      "from": "n13",
+      "to": "n14",
+      "relationship": "may_contain"
+    },
+    {
+      "from": "n14",
+      "to": "n15",
+      "relationship": "exploited_by"
+    },
+    {
+      "from": "n15",
+      "to": "n16",
+      "relationship": "enables"
+    },
+    {
+      "from": "n16",
+      "to": "n17",
+      "relationship": "provides"
+    }
+  ]
+}

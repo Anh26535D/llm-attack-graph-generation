@@ -1,0 +1,188 @@
+{
+  "nodes": [
+    {
+      "id": "node_01",
+      "label": "External Attacker",
+      "type": "threat_actor",
+      "host": "Internet",
+      "description": "Remote attacker scanning for internet-facing vulnerabilities."
+    },
+    {
+      "id": "node_02",
+      "label": "Default Credentials / Weak SSH",
+      "type": "vulnerability",
+      "host": "Raspberry Pi",
+      "description": "Default or weak SSH credentials exposed on port 22."
+    },
+    {
+      "id": "node_03",
+      "label": "Raspberry Pi User Access",
+      "type": "privilege_state",
+      "host": "Raspberry Pi",
+      "description": "Low-privilege shell access obtained on the Raspberry Pi."
+    },
+    {
+      "id": "node_04",
+      "label": "Raspberry Pi Sudo Misconfiguration",
+      "type": "vulnerability",
+      "host": "Raspberry Pi",
+      "description": "NOPASSWD configuration in /etc/sudoers allows arbitrary command execution as root."
+    },
+    {
+      "id": "node_05",
+      "label": "Raspberry Pi Root Compromise",
+      "type": "privilege_state",
+      "host": "Raspberry Pi",
+      "description": "Full root control over the Raspberry Pi; used as an internal pivoting bridge."
+    },
+    {
+      "id": "node_06",
+      "label": "Internal Network Reconnaissance",
+      "type": "action_state",
+      "host": "Raspberry Pi",
+      "description": "Network discovery identifying Oculus Desktop and Jetson Nano on the LAN."
+    },
+    {
+      "id": "node_07",
+      "label": "Oculus Remote Debug / Insecure RPC",
+      "type": "vulnerability",
+      "host": "Oculus Desktop",
+      "description": "Exposed debugging port or unauthenticated local RPC interface used by VR runtime."
+    },
+    {
+      "id": "node_08",
+      "label": "Oculus Desktop User Access",
+      "type": "privilege_state",
+      "host": "Oculus Desktop",
+      "description": "Attacker executes arbitrary code under the active Windows user account."
+    },
+    {
+      "id": "node_09",
+      "label": "Credential Harvesting",
+      "type": "action_state",
+      "host": "Oculus Desktop",
+      "description": "Extraction of stored SSH private keys, API tokens, and scripts pointing to Jetson Nano."
+    },
+    {
+      "id": "node_10",
+      "label": "Oculus Sensor / Video Stream Compromise",
+      "type": "impact_state",
+      "host": "Oculus Desktop",
+      "description": "Attacker taps into VR camera passthrough and headset sensor feeds."
+    },
+    {
+      "id": "node_11",
+      "label": "Jetson Nano Unauthenticated Model API",
+      "type": "vulnerability",
+      "host": "NVIDIA Jetson Nano",
+      "description": "Unauthenticated REST/FastAPI service hosting TensorRT models exposed to local subnet."
+    },
+    {
+      "id": "node_12",
+      "label": "Insecure Docker Daemon / Root Container",
+      "type": "vulnerability",
+      "host": "NVIDIA Jetson Nano",
+      "description": "Docker daemon socket exposed or container runs in privileged mode."
+    },
+    {
+      "id": "node_13",
+      "label": "Jetson Nano Root Access",
+      "type": "privilege_state",
+      "host": "NVIDIA Jetson Nano",
+      "description": "Attacker achieves root access on the Jetson Nano via container breakout."
+    },
+    {
+      "id": "node_14",
+      "label": "AI Model & Edge Data Exfiltration",
+      "type": "goal_impact",
+      "host": "NVIDIA Jetson Nano",
+      "description": "Theft of edge AI models, weights, live camera telemetry, and persistent backdoor established."
+    }
+  ],
+  "edges": [
+    {
+      "id": "edge_01",
+      "source": "node_01",
+      "target": "node_02",
+      "technique": "T1110: Brute Force / Default Credential Stuffing"
+    },
+    {
+      "id": "edge_02",
+      "source": "node_02",
+      "target": "node_03",
+      "technique": "T1078: Valid Accounts (Initial Access)"
+    },
+    {
+      "id": "edge_03",
+      "source": "node_03",
+      "target": "node_04",
+      "technique": "T1082: System Information Discovery"
+    },
+    {
+      "id": "edge_04",
+      "source": "node_04",
+      "target": "node_05",
+      "technique": "T1548.003: Sudo and Sudoers Privilege Escalation"
+    },
+    {
+      "id": "edge_05",
+      "source": "node_05",
+      "target": "node_06",
+      "technique": "T1046: Network Service Scanning (LAN Pivoting)"
+    },
+    {
+      "id": "edge_06",
+      "source": "node_06",
+      "target": "node_07",
+      "technique": "T1210: Exploitation of Remote Services"
+    },
+    {
+      "id": "edge_07",
+      "source": "node_07",
+      "target": "node_08",
+      "technique": "T1059: Command and Scripting Interpreter Execution"
+    },
+    {
+      "id": "edge_08",
+      "source": "node_08",
+      "target": "node_09",
+      "technique": "T1552: Unsecured Credentials & Private Key Harvesting"
+    },
+    {
+      "id": "edge_09",
+      "source": "node_08",
+      "target": "node_10",
+      "technique": "T1125: Video Capture & Sensor Eavesdropping"
+    },
+    {
+      "id": "edge_10",
+      "source": "node_06",
+      "target": "node_11",
+      "technique": "T1190: Exploit Public-Facing Application"
+    },
+    {
+      "id": "edge_11",
+      "source": "node_09",
+      "target": "node_11",
+      "technique": "T1078: Use harvested credentials to query edge endpoints"
+    },
+    {
+      "id": "edge_12",
+      "source": "node_11",
+      "target": "node_12",
+      "technique": "T1059.004: Remote Code Execution via Inference API endpoint"
+    },
+    {
+      "id": "edge_13",
+      "source": "node_12",
+      "target": "node_13",
+      "technique": "T1611: Escape to Host (Privileged Container Breakout)"
+    },
+    {
+      "id": "edge_14",
+      "source": "node_13",
+      "target": "node_14",
+      "technique": "T1041: Exfiltration Over C2 Channel"
+    }
+  ]
+}
