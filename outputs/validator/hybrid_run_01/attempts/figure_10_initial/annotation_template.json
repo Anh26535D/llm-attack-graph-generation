@@ -1,0 +1,530 @@
+{
+  "independent": true,
+  "label_source": "human",
+  "provenance": "",
+  "graph_sha256": "4926bca2035c88392a100e3d398618e4b4302dcf32716185e249366420aaa42f",
+  "labels": {
+    "edge-0001": null,
+    "edge-0002": null,
+    "edge-0003": null,
+    "edge-0004": null
+  },
+  "candidates": [
+    {
+      "edge_id": "edge-0001",
+      "original_edge_id": null,
+      "edge": {
+        "from": "V7",
+        "to": "V4",
+        "label": "Default pi account administrator privileges on Raspberry Pi OS can provide or bypass authenticated access to RaspAP 2.5 web console, satisfying RaspAP's authenticated access precondition."
+      },
+      "source_node": {
+        "id": "V7",
+        "label": "Raspberry Pi OS through 5.10 default pi account password unchanged",
+        "precondition": "Raspberry Pi OS through 5.10; default password for the pi account has not been changed; attacker can reach an authentication surface for the pi account (SSH, console, or other exposed service).",
+        "postcondition": "Attacker authenticates as the pi account; gains administrator privileges (sudo/root-level control) on Raspberry Pi OS."
+      },
+      "target_node": {
+        "id": "V4",
+        "label": "RaspAP 2.5 includes/webconsole.php unrestricted web console command execution",
+        "precondition": "Authenticated access to RaspAP 2.5; includes/webconsole.php is exposed; web console is misconfigured and virtually unrestricted; underlying Raspberry Pi OS is reachable through the web console.",
+        "postcondition": "Command execution on underlying Raspberry Pi OS; ability to upload files; execution of code on the Raspberry Pi host."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2021-38759",
+          "description": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2021-38759",
+            "path": "CVE-2021-38759.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38759.json",
+            "sha256": "eaca8d8cb870dfccf552ba3019b6cfb98f615103ada4af3578f86358bb496a19",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "admin": {
+                "quote": "gain administrator privileges",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "default_password_unchanged": {
+                "quote": "If not changed",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "Raspberry Pi OS",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspberry_pi_os",
+            "access": "network",
+            "note": "The record does not name a remote service (e.g. SSH); network reachability of the host is assumed.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2020-24572",
+          "description": "An issue was discovered in includes/webconsole.php in RaspAP 2.5. With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "code_execution": {
+                "quote": "execute commands on the system",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "With authenticated access",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "underlying OS (Raspberry Pi)",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspap",
+            "access": "network",
+            "note": "Privilege of the executed commands is not stated in the record, so only a user-level foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0002",
+      "original_edge_id": null,
+      "edge": {
+        "from": "V7",
+        "to": "V1",
+        "label": "Administrator privileges on Raspberry Pi OS can disclose or modify piSignage credentials/configuration, satisfying authenticated low-privilege user access to piSignage before 2.6.4."
+      },
+      "source_node": {
+        "id": "V7",
+        "label": "Raspberry Pi OS through 5.10 default pi account password unchanged",
+        "precondition": "Raspberry Pi OS through 5.10; default password for the pi account has not been changed; attacker can reach an authentication surface for the pi account (SSH, console, or other exposed service).",
+        "postcondition": "Attacker authenticates as the pi account; gains administrator privileges (sudo/root-level control) on Raspberry Pi OS."
+      },
+      "target_node": {
+        "id": "V1",
+        "label": "piSignage player API log download path traversal (before 2.6.4)",
+        "precondition": "Remote access to piSignage web application component before 2.6.4; attacker authenticated as a low-privilege user; api/settings/log?file= endpoint reachable; file parameter accepts path traversal sequences such as ../; target Raspberry Pi filesystem readable by the web application process.",
+        "postcondition": "Arbitrary file download from Raspberry Pi filesystem via api/settings/log?file=../ path traversal; disclosure of sensitive files and logs; potential exposure of credentials or configuration on the Raspberry Pi host."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2021-38759",
+          "description": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2021-38759",
+            "path": "CVE-2021-38759.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38759.json",
+            "sha256": "eaca8d8cb870dfccf552ba3019b6cfb98f615103ada4af3578f86358bb496a19",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "admin": {
+                "quote": "gain administrator privileges",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "default_password_unchanged": {
+                "quote": "If not changed",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "Raspberry Pi OS",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspberry_pi_os",
+            "access": "network",
+            "note": "The record does not name a remote service (e.g. SSH); network reachability of the host is assumed.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2019-20354",
+          "description": "The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal. In other words, this issue is in the player API for log download.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2019-20354",
+            "path": "CVE-2019-20354.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/20xxx/CVE-2019-20354.json",
+            "sha256": "788efb357a4566d9181068aad5a01347ad249307300d9618cdf72aba7dd966dc",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "file_read": {
+                "quote": "download arbitrary files",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "authenticated as a low-privilege user",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "from the Raspberry Pi",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "pisignage",
+            "access": "network",
+            "note": "Arbitrary file read only; the record does not say what the files contain, so no foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0003",
+      "original_edge_id": null,
+      "edge": {
+        "from": "V4",
+        "to": "V1",
+        "label": "Command execution on underlying Raspberry Pi OS via RaspAP 2.5 web console can create, modify, or recover piSignage low-privilege user credentials, satisfying authenticated access to piSignage player API."
+      },
+      "source_node": {
+        "id": "V4",
+        "label": "RaspAP 2.5 includes/webconsole.php unrestricted web console command execution",
+        "precondition": "Authenticated access to RaspAP 2.5; includes/webconsole.php is exposed; web console is misconfigured and virtually unrestricted; underlying Raspberry Pi OS is reachable through the web console.",
+        "postcondition": "Command execution on underlying Raspberry Pi OS; ability to upload files; execution of code on the Raspberry Pi host."
+      },
+      "target_node": {
+        "id": "V1",
+        "label": "piSignage player API log download path traversal (before 2.6.4)",
+        "precondition": "Remote access to piSignage web application component before 2.6.4; attacker authenticated as a low-privilege user; api/settings/log?file= endpoint reachable; file parameter accepts path traversal sequences such as ../; target Raspberry Pi filesystem readable by the web application process.",
+        "postcondition": "Arbitrary file download from Raspberry Pi filesystem via api/settings/log?file=../ path traversal; disclosure of sensitive files and logs; potential exposure of credentials or configuration on the Raspberry Pi host."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2020-24572",
+          "description": "An issue was discovered in includes/webconsole.php in RaspAP 2.5. With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "code_execution": {
+                "quote": "execute commands on the system",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "With authenticated access",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "underlying OS (Raspberry Pi)",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspap",
+            "access": "network",
+            "note": "Privilege of the executed commands is not stated in the record, so only a user-level foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2019-20354",
+          "description": "The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal. In other words, this issue is in the player API for log download.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2019-20354",
+            "path": "CVE-2019-20354.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/20xxx/CVE-2019-20354.json",
+            "sha256": "788efb357a4566d9181068aad5a01347ad249307300d9618cdf72aba7dd966dc",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "file_read": {
+                "quote": "download arbitrary files",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "authenticated as a low-privilege user",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "from the Raspberry Pi",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "pisignage",
+            "access": "network",
+            "note": "Arbitrary file read only; the record does not say what the files contain, so no foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0004",
+      "original_edge_id": null,
+      "edge": {
+        "from": "V1",
+        "to": "V4",
+        "label": "Arbitrary file download from Raspberry Pi filesystem via piSignage path traversal may disclose RaspAP configuration or credentials, satisfying authenticated access to RaspAP 2.5."
+      },
+      "source_node": {
+        "id": "V1",
+        "label": "piSignage player API log download path traversal (before 2.6.4)",
+        "precondition": "Remote access to piSignage web application component before 2.6.4; attacker authenticated as a low-privilege user; api/settings/log?file= endpoint reachable; file parameter accepts path traversal sequences such as ../; target Raspberry Pi filesystem readable by the web application process.",
+        "postcondition": "Arbitrary file download from Raspberry Pi filesystem via api/settings/log?file=../ path traversal; disclosure of sensitive files and logs; potential exposure of credentials or configuration on the Raspberry Pi host."
+      },
+      "target_node": {
+        "id": "V4",
+        "label": "RaspAP 2.5 includes/webconsole.php unrestricted web console command execution",
+        "precondition": "Authenticated access to RaspAP 2.5; includes/webconsole.php is exposed; web console is misconfigured and virtually unrestricted; underlying Raspberry Pi OS is reachable through the web console.",
+        "postcondition": "Command execution on underlying Raspberry Pi OS; ability to upload files; execution of code on the Raspberry Pi host."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2019-20354",
+          "description": "The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal. In other words, this issue is in the player API for log download.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2019-20354",
+            "path": "CVE-2019-20354.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/20xxx/CVE-2019-20354.json",
+            "sha256": "788efb357a4566d9181068aad5a01347ad249307300d9618cdf72aba7dd966dc",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "file_read": {
+                "quote": "download arbitrary files",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "authenticated as a low-privilege user",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "from the Raspberry Pi",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "pisignage",
+            "access": "network",
+            "note": "Arbitrary file read only; the record does not say what the files contain, so no foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2020-24572",
+          "description": "An issue was discovered in includes/webconsole.php in RaspAP 2.5. With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "code_execution": {
+                "quote": "execute commands on the system",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "With authenticated access",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "underlying OS (Raspberry Pi)",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspap",
+            "access": "network",
+            "note": "Privilege of the executed commands is not stated in the record, so only a user-level foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    }
+  ]
+}

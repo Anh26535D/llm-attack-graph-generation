@@ -1,0 +1,143 @@
+{
+  "nodes": [
+    {
+      "id": "vuln_pisignage_path_traversal",
+      "label": "piSignage Arbitrary File Download via Path Traversal in Player API (Versions < 2.6.4)",
+      "precondition": "Attacker possesses network connectivity to the piSignage web application player API endpoint and authenticated low-privilege user credentials.",
+      "postcondition": "Attacker achieves arbitrary file download from the underlying Raspberry Pi file system via path traversal using 'api/settings/log?file=../', enabling exfiltration of sensitive configuration files, system user data, and application credentials."
+    },
+    {
+      "id": "vuln_raspap_webconsole_rce",
+      "label": "RaspAP 2.5 Remote Command Execution via includes/webconsole.php",
+      "precondition": "Attacker has authenticated access to the RaspAP web interface (e.g., via default credentials, session hijacking, or credentials exfiltrated from the underlying file system).",
+      "postcondition": "Attacker achieves unrestricted remote command execution and file upload capabilities on the underlying Raspberry Pi operating system through the misconfigured web console in 'includes/webconsole.php'."
+    },
+    {
+      "id": "vuln_rpi_os_default_credentials",
+      "label": "Raspberry Pi OS Default Credentials Administrator Access (Versions <= 5.10)",
+      "precondition": "Attacker has local or network access (e.g., SSH, physical terminal, or local services) to a Raspberry Pi OS (<= 5.10) deployment where default account settings have not been reconfigured.",
+      "postcondition": "Attacker successfully authenticates as the 'pi' user using the default password 'raspberry', gaining interactive shell access and full administrator (sudo) privileges on the Raspberry Pi."
+    },
+    {
+      "id": "vuln_rpi_glowworm_side_channel",
+      "label": "Glowworm Optical Side-Channel Acoustic Recovery on Raspberry Pi 3 B+ and 4 B",
+      "precondition": "Target Raspberry Pi 3 B+ or 4 B (firmware/hardware through 2021-08-09) is actively powering audio-output equipment (speakers) playing sound, and the attacker has a direct line-of-sight to the device's power indicator LED using an electro-optical sensor paired with a telescope.",
+      "postcondition": "Attacker recovers and reconstructs speech and acoustic signals output by the speakers by measuring and analyzing light intensity fluctuations of the power indicator LED caused by power-line consumption variations."
+    },
+    {
+      "id": "vuln_oculus_browser_ui_injection",
+      "label": "Oculus Browser Remote HTML Injection, UI Spoofing, and Code Execution (Versions 5.2.7 to 5.7.11)",
+      "precondition": "Victim using Oculus Browser (versions 5.2.7 through 5.7.11) is induced to navigate to an attacker-controlled remote web page.",
+      "postcondition": "Attacker injects arbitrary HTML code into the Oculus Browser user interface, enabling UI spoofing, credential phishing, and potential unprivileged code execution within the local user context on the host system."
+    },
+    {
+      "id": "vuln_oculus_desktop_ovrredir_file_write",
+      "label": "Oculus Desktop OVRRedir.exe Arbitrary File Write Local Privilege Escalation (Versions < 1.44.0.32849)",
+      "precondition": "Attacker has local unprivileged code execution or interactive user access on a Windows host running Oculus Desktop (< 1.44.0.32849) where the privileged OVRRedir.exe process is active.",
+      "postcondition": "Attacker leverages hard links to log files targeted by the privileged OVRRedir.exe process to overwrite arbitrary system files, achieving local privilege escalation to SYSTEM level."
+    },
+    {
+      "id": "vuln_oculus_desktop_ovrservicelauncher_handle_leak",
+      "label": "Oculus Desktop OVRServiceLauncher.exe Handle Management Local Privilege Escalation (Versions 1.39 to 31.1.0.67.507)",
+      "precondition": "Attacker maintains an unprivileged local process running on a Windows system with Oculus Desktop (versions after 1.39 and prior to 31.1.0.67.507) where OVRServiceLauncher.exe executes.",
+      "postcondition": "Attacker obtains an exposed privileged process handle leaked by OVRServiceLauncher.exe, allowing the unprivileged process to manipulate privileged execution contexts and achieve local privilege escalation to SYSTEM."
+    },
+    {
+      "id": "vuln_nvidia_jetson_iommu_pci",
+      "label": "NVIDIA Jetson Linux IOMMU Misconfiguration System Address Space Access via PCI Bus",
+      "precondition": "Attacker has unprivileged physical access to the NVIDIA Jetson board to attach hardware to or interface directly with the PCI bus on vulnerable Jetson Linux distributions.",
+      "postcondition": "Attacker gains direct read and write access to the entire physical system address space bypassing memory isolation, resulting in denial of service, privilege escalation, compromise of data integrity and confidentiality, and arbitrary code execution spanning into external platform components."
+    }
+  ],
+  "edges": [
+    {
+      "from": "vuln_pisignage_path_traversal",
+      "to": "vuln_raspap_webconsole_rce",
+      "label": "Arbitrary file download enables reading local application secrets, web configurations, and credential stores, satisfying the authenticated access requirement of the RaspAP web interface.",
+      "validation": {
+        "edge_id": "edge-0001",
+        "original_edge_id": null,
+        "status": "conditional",
+        "offline_status": "conditional",
+        "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+      }
+    },
+    {
+      "from": "vuln_pisignage_path_traversal",
+      "to": "vuln_rpi_os_default_credentials",
+      "label": "Path traversal file download enables reading system files (e.g., /etc/passwd or /etc/shadow) to verify the existence of the default 'pi' account and validate unhashed/unmodified credentials.",
+      "validation": {
+        "edge_id": "edge-0002",
+        "original_edge_id": null,
+        "status": "unknown",
+        "offline_status": "unknown",
+        "reason": "The descriptions do not establish the claimed causal bridge; absence of evidence is not contradiction."
+      }
+    },
+    {
+      "from": "vuln_rpi_os_default_credentials",
+      "to": "vuln_raspap_webconsole_rce",
+      "label": "Administrator privileges obtained via default OS credentials allow reading RaspAP database configurations or modifying web authentication tables, providing valid authentication for the RaspAP web console.",
+      "validation": {
+        "edge_id": "edge-0003",
+        "original_edge_id": null,
+        "status": "conditional",
+        "offline_status": "conditional",
+        "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+      }
+    },
+    {
+      "from": "vuln_rpi_os_default_credentials",
+      "to": "vuln_rpi_glowworm_side_channel",
+      "label": "Administrative shell access allows the attacker to execute programs that play audio through connected speakers powered by the Raspberry Pi, creating the fluctuating acoustic load necessary for optical signal recovery.",
+      "validation": {
+        "edge_id": "edge-0004",
+        "original_edge_id": null,
+        "status": "conditional",
+        "offline_status": "conditional",
+        "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+      }
+    },
+    {
+      "from": "vuln_raspap_webconsole_rce",
+      "to": "vuln_rpi_glowworm_side_channel",
+      "label": "OS command execution achieved via the web console allows triggering audio playback to connected equipment, generating power consumption variations recoverable via the electro-optical sensor.",
+      "validation": {
+        "edge_id": "edge-0005",
+        "original_edge_id": null,
+        "status": "conditional",
+        "offline_status": "conditional",
+        "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+      }
+    },
+    {
+      "from": "vuln_oculus_browser_ui_injection",
+      "to": "vuln_oculus_desktop_ovrredir_file_write",
+      "label": "Local unprivileged code execution achieved via Oculus Browser UI exploitation allows an attacker to create hard links targeting the log file used by OVRRedir.exe, triggering privileged arbitrary file writes.",
+      "validation": {
+        "edge_id": "edge-0006",
+        "original_edge_id": null,
+        "status": "conditional",
+        "offline_status": "conditional",
+        "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+      }
+    },
+    {
+      "from": "vuln_oculus_browser_ui_injection",
+      "to": "vuln_oculus_desktop_ovrservicelauncher_handle_leak",
+      "label": "Local unprivileged process execution resulting from Oculus Browser exploitation allows interacting with OVRServiceLauncher.exe to capture leaked privileged process handles, achieving SYSTEM privileges.",
+      "validation": {
+        "edge_id": "edge-0007",
+        "original_edge_id": null,
+        "status": "conditional",
+        "offline_status": "conditional",
+        "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+      }
+    }
+  ],
+  "validation": {
+    "source_graph_sha256": "36d6efde5f6f93728fb7f21b77b30f22bf4e6c7d8cda40729d522a51be1fc657",
+    "strict": false,
+    "excluded_edges": []
+  }
+}

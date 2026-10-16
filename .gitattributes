@@ -4,3 +4,8 @@ data/reproduction/* -text whitespace=cr-at-eol
 outputs/paper_nine/** -text whitespace=cr-at-eol
 # Frozen prompts/responses may intentionally end with blank lines.
 outputs/paper_nine/**/*.txt -text whitespace=cr-at-eol,-blank-at-eof
+
+# Keep validator evidence copies and generated artifacts byte-exact across OSes.
+outputs/validator/** -text whitespace=cr-at-eol
+# Matplotlib SVG path data intentionally contains spaces before line breaks.
+outputs/validator/**/*.svg -text whitespace=cr-at-eol,-blank-at-eol

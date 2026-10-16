@@ -1,0 +1,197 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "piSignage and RaspAP are deployed on the same Raspberry Pi host",
+          "Arbitrary file download enables reading valid credentials or session secrets for RaspAP"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          }
+        ],
+        "missing_conditions": [
+          "Verification of same-host deployment of piSignage and RaspAP",
+          "Existence and accessibility of plaintext or recoverable RaspAP credentials via piSignage file download",
+          "Sufficient file permissions for the piSignage process to read RaspAP secret or configuration files"
+        ],
+        "reason": "The source effect in CVE-2019-20354 allows an attacker to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', whereas the target CVE-2020-24572 strictly requires 'With authenticated access'. The edge claim overreaches by inferring that arbitrary file download inherently yields RaspAP credentials and assuming same-host deployment. Because credentials and co-location cannot be inferred from absence of data, this capability bridge is only potentially plausible and cannot enter a strict graph without external verification, rendering the edge conditional.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 375,
+        "prompt_token_count": 2319,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2319
+          }
+        ],
+        "thoughts_token_count": 2735,
+        "total_token_count": 5429
+      },
+      "latency_seconds": 42.63177420001011,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "853b7074d03c80b173de8f77ca10f19387bbcc903fa694e19952fb0528a0b2bb",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 375,
+          "prompt_token_count": 2319,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2319
+            }
+          ],
+          "thoughts_token_count": 2735,
+          "total_token_count": 5429
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"piSignage and RaspAP are deployed on the same Raspberry Pi host\", \"Arbitrary file download enables reading valid credentials or session secrets for RaspAP\"], \"confidence\": 0.85, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-20354\", \"quote\": \"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}], \"missing_conditions\": [\"Verification of same-host deployment of piSignage and RaspAP\", \"Existence and accessibility of plaintext or recoverable RaspAP credentials via piSignage file download\", \"Sufficient file permissions for the piSignage process to read RaspAP secret or configuration files\"], \"reason\": \"The source effect in CVE-2019-20354 allows an attacker to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', whereas the target CVE-2020-24572 strictly requires 'With authenticated access'. The edge claim overreaches by inferring that arbitrary file download inherently yields RaspAP credentials and assuming same-host deployment. Because credentials and co-location cannot be inferred from absence of data, this capability bridge is only potentially plausible and cannot enter a strict graph without external verification, rendering the edge conditional.\", \"source_cve_id\": \"CVE-2019-20354\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "budget_exhausted",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "85aafc689ed680a763327c2e9f929861ce9fc0b098656a8f3db2c22f10116424",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "budget_exhausted",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "1870ddc3267e042b29764dac28922febdf4fa4057c7de1d1e6d858d04eb123b1",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "budget_exhausted",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "9563da7a2fdd8f9ad4705f3830666bf8408aefa2383eb2a1b54f67e37104805b",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "review": {
+      "state": "budget_exhausted",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "63c019228cecc81ec630fcfa7e0415618fa6c2042b127c27638cd8bb4fafce27",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0006",
+    "review": {
+      "state": "budget_exhausted",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "071176fd7a052a0c0ec7318deed9861a88e6318cc8020b9cda908621a2171d8b",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0007",
+    "review": {
+      "state": "budget_exhausted",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "4da0c4c7d6ebf14f109af1ac0ceb6ee00671b4c36c49bd2a1e46f1783b26c7bc",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      }
+    }
+  }
+]

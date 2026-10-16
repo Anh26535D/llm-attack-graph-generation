@@ -16,21 +16,12 @@ from collections import defaultdict
 from pathlib import Path
 
 from crystalball.postprocess import GraphParseError, parse_llm_json
+from crystalball.cve_mapping import LABEL_KEYWORDS
 from experiments.env_consistency.scoring import node_cves
 
 # Fallback when a node carries no CVE ID: distinctive product/vulnerability tokens, matched
 # against the node LABEL only, and accepted only if exactly one CVE matches. Added after the
 # first pilot showed one run whose nodes dropped the IDs (see README).
-LABEL_KEYWORDS = {
-    "CVE-2019-20354": ("pisignage",),
-    "CVE-2019-3562": ("oculus browser",),
-    "CVE-2020-1885": ("ovrredir",),
-    "CVE-2020-24572": ("raspap",),
-    "CVE-2021-24038": ("ovrservicelauncher",),
-    "CVE-2021-38545": ("glowworm",),
-    "CVE-2021-38759": ("default password",),
-    "CVE-2022-21819": ("jetson", "iommu"),
-}
 
 
 def map_node(node: dict) -> set[str]:

@@ -1,0 +1,694 @@
+{
+  "independent": true,
+  "label_source": "human",
+  "provenance": "",
+  "graph_sha256": "bfe298d11f0db32101d724a4aeda5584c6793533bbaab3d831820d20be07eb60",
+  "labels": {
+    "edge-0001": null,
+    "edge-0002": null,
+    "edge-0003": null,
+    "edge-0004": null,
+    "edge-0005": null,
+    "edge-0006": null,
+    "edge-0007": null,
+    "edge-0008": null,
+    "edge-0009": null,
+    "edge-0010": null,
+    "edge-0011": null,
+    "edge-0012": null,
+    "edge-0013": null,
+    "edge-0014": null,
+    "edge-0015": null,
+    "edge-0016": null,
+    "edge-0017": null,
+    "edge-0018": null,
+    "edge-0019": null,
+    "edge-0020": null,
+    "edge-0021": null,
+    "edge-0022": null,
+    "edge-0023": null,
+    "edge-0024": null,
+    "edge-0025": null,
+    "edge-0026": null,
+    "edge-0027": null,
+    "edge-0028": null,
+    "edge-0029": null,
+    "edge-0030": null,
+    "edge-0031": null,
+    "edge-0032": null,
+    "edge-0033": null,
+    "edge-0034": null,
+    "edge-0035": null,
+    "edge-0036": null
+  },
+  "candidates": [
+    {
+      "edge_id": "edge-0001",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_actor",
+        "to": "node_supply_chain_injection",
+        "label": "Trojanizes Orion plugin source code"
+      },
+      "source_node": {
+        "id": "node_actor",
+        "label": "Threat Actor UNC2452: Highly skilled threat actor operating with disciplined operational security"
+      },
+      "target_node": {
+        "id": "node_supply_chain_injection",
+        "label": "Supply Chain Compromise: Trojanizing SolarWinds Orion business software updates with SUNBURST backdoor (SolarWinds.Orion.Core.BusinessLayer.dll)"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0002",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_supply_chain_injection",
+        "to": "node_code_signing",
+        "label": "Submits trojanized assembly into legitimate signing pipeline"
+      },
+      "source_node": {
+        "id": "node_supply_chain_injection",
+        "label": "Supply Chain Compromise: Trojanizing SolarWinds Orion business software updates with SUNBURST backdoor (SolarWinds.Orion.Core.BusinessLayer.dll)"
+      },
+      "target_node": {
+        "id": "node_code_signing",
+        "label": "Legitimate Digital Code Signing: Malicious SolarWinds.Orion.Core.BusinessLayer.dll signed with SolarWinds certificate (Serial: 0f:e9:73:75:20:22:a6:06:ad:f2:a3:6e:34:5d:c0:ed) on March 24, 2020"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0003",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_code_signing",
+        "to": "node_trojan_update_pkg",
+        "label": "Bundles signed DLL into Windows Installer Patch (.msp)"
+      },
+      "source_node": {
+        "id": "node_code_signing",
+        "label": "Legitimate Digital Code Signing: Malicious SolarWinds.Orion.Core.BusinessLayer.dll signed with SolarWinds certificate (Serial: 0f:e9:73:75:20:22:a6:06:ad:f2:a3:6e:34:5d:c0:ed) on March 24, 2020"
+      },
+      "target_node": {
+        "id": "node_trojan_update_pkg",
+        "label": "Trojanized Update Package: SolarWinds-Core-v2019.4.5220-Hotfix5.msp / CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp (MD5: 02af7cec58b9a5da1c542b5a32151ba1) hosted on downloads.solarwinds.com"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0004",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_trojan_update_pkg",
+        "to": "node_victim_install",
+        "label": "Delivered via legitimate SolarWinds download portal"
+      },
+      "source_node": {
+        "id": "node_trojan_update_pkg",
+        "label": "Trojanized Update Package: SolarWinds-Core-v2019.4.5220-Hotfix5.msp / CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp (MD5: 02af7cec58b9a5da1c542b5a32151ba1) hosted on downloads.solarwinds.com"
+      },
+      "target_node": {
+        "id": "node_victim_install",
+        "label": "Victim Installation: Authorized administrators deploy trojanized update across worldwide victim organizations"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0005",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_victim_install",
+        "to": "node_host_process",
+        "label": "Starts Orion services loading trojanized DLL"
+      },
+      "source_node": {
+        "id": "node_victim_install",
+        "label": "Victim Installation: Authorized administrators deploy trojanized update across worldwide victim organizations"
+      },
+      "target_node": {
+        "id": "node_host_process",
+        "label": "Host Execution: SolarWinds.BusinessLayerHost.exe or SolarWinds.BusinessLayerHostx64.exe loads trojanized SolarWinds.Orion.Core.BusinessLayer.dll (MD5: b91ce2fa41029f6955bff20079468448)"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0006",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_host_process",
+        "to": "node_backdoor_trigger",
+        "label": "Loads Inventory Manager plugin, calling RefreshInternal"
+      },
+      "source_node": {
+        "id": "node_host_process",
+        "label": "Host Execution: SolarWinds.BusinessLayerHost.exe or SolarWinds.BusinessLayerHostx64.exe loads trojanized SolarWinds.Orion.Core.BusinessLayer.dll (MD5: b91ce2fa41029f6955bff20079468448)"
+      },
+      "target_node": {
+        "id": "node_backdoor_trigger",
+        "label": "Execution Trigger: BackgroundInventory.InventoryManager.RefreshInternal invokes OrionImprovementBusinessLayer.Initialize"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0007",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_backdoor_trigger",
+        "to": "node_process_hash_check",
+        "label": "Invokes OrionImprovementBusinessLayer.Initialize"
+      },
+      "source_node": {
+        "id": "node_backdoor_trigger",
+        "label": "Execution Trigger: BackgroundInventory.InventoryManager.RefreshInternal invokes OrionImprovementBusinessLayer.Initialize"
+      },
+      "target_node": {
+        "id": "node_process_hash_check",
+        "label": "Process Verification: Computes FNV-1a 64-bit + XOR hash (value 17291806236368054941) to confirm host process is 'solarwinds.businesslayerhost'"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0008",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_process_hash_check",
+        "to": "node_dormancy_check",
+        "label": "Verifies host process hash matches 17291806236368054941"
+      },
+      "source_node": {
+        "id": "node_process_hash_check",
+        "label": "Process Verification: Computes FNV-1a 64-bit + XOR hash (value 17291806236368054941) to confirm host process is 'solarwinds.businesslayerhost'"
+      },
+      "target_node": {
+        "id": "node_dormancy_check",
+        "label": "Dormant Period Check: Evaluates assembly write time to enforce a randomized sleep delay between 12 and 14 days"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0009",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_dormancy_check",
+        "to": "node_named_pipe_mutex",
+        "label": "Ensures assembly age meets 12-14 days dormancy threshold"
+      },
+      "source_node": {
+        "id": "node_dormancy_check",
+        "label": "Dormant Period Check: Evaluates assembly write time to enforce a randomized sleep delay between 12 and 14 days"
+      },
+      "target_node": {
+        "id": "node_named_pipe_mutex",
+        "label": "Mutex Enforcement: Creates Named Pipe '583da945-62af-10e8-4902-a8f205c72b2e' to ensure a single instance runs"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0010",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_named_pipe_mutex",
+        "to": "node_config_check",
+        "label": "Creates named pipe to confirm single active instance"
+      },
+      "source_node": {
+        "id": "node_named_pipe_mutex",
+        "label": "Mutex Enforcement: Creates Named Pipe '583da945-62af-10e8-4902-a8f205c72b2e' to ensure a single instance runs"
+      },
+      "target_node": {
+        "id": "node_config_check",
+        "label": "Configuration Check: Reads SolarWinds.Orion.Core.BusinessLayer.dll.config appSettings to ensure ReportWatcherRetry != 3"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0011",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_config_check",
+        "to": "node_domain_check",
+        "label": "Validates ReportWatcherRetry != 3 in appSettings"
+      },
+      "source_node": {
+        "id": "node_config_check",
+        "label": "Configuration Check: Reads SolarWinds.Orion.Core.BusinessLayer.dll.config appSettings to ensure ReportWatcherRetry != 3"
+      },
+      "target_node": {
+        "id": "node_domain_check",
+        "label": "Domain Join Verification: Verifies machine is domain-joined and extracts victim local domain name"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0012",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_domain_check",
+        "to": "node_userid_generation",
+        "label": "Queries domain membership and domain name"
+      },
+      "source_node": {
+        "id": "node_domain_check",
+        "label": "Domain Join Verification: Verifies machine is domain-joined and extracts victim local domain name"
+      },
+      "target_node": {
+        "id": "node_userid_generation",
+        "label": "Victim UserID Generation: Computes custom XOR-encoded MD5 hash of active MAC address, domain name, and HKLM\\SOFTWARE\\Microsoft\\Cryptography\\MachineGuid"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0013",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_userid_generation",
+        "to": "node_blocklist_enumeration",
+        "label": "Initializes Update method with unique victim identifier"
+      },
+      "source_node": {
+        "id": "node_userid_generation",
+        "label": "Victim UserID Generation: Computes custom XOR-encoded MD5 hash of active MAC address, domain name, and HKLM\\SOFTWARE\\Microsoft\\Cryptography\\MachineGuid"
+      },
+      "target_node": {
+        "id": "node_blocklist_enumeration",
+        "label": "Security Software Discovery: Enumerates processes, drivers via WMI ('Select * From Win32_SystemDriver'), and services, comparing FNV-1a+XOR hashes against hardcoded blocklists"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0014",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_blocklist_enumeration",
+        "to": "node_disable_services",
+        "label": "Detects forensic/AV services via hash matching"
+      },
+      "source_node": {
+        "id": "node_blocklist_enumeration",
+        "label": "Security Software Discovery: Enumerates processes, drivers via WMI ('Select * From Win32_SystemDriver'), and services, comparing FNV-1a+XOR hashes against hardcoded blocklists"
+      },
+      "target_node": {
+        "id": "node_disable_services",
+        "label": "Defense Evasion (Service Disabling): Disables detected security services via HKLM\\SYSTEM\\CurrentControlSet\\services\\<service>\\Start = 4 and bit-packs status into ReportWatcherPostpone"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0015",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_disable_services",
+        "to": "node_connectivity_check",
+        "label": "Disables services in registry and records to ReportWatcherPostpone"
+      },
+      "source_node": {
+        "id": "node_disable_services",
+        "label": "Defense Evasion (Service Disabling): Disables detected security services via HKLM\\SYSTEM\\CurrentControlSet\\services\\<service>\\Start = 4 and bit-packs status into ReportWatcherPostpone"
+      },
+      "target_node": {
+        "id": "node_connectivity_check",
+        "label": "Network Connectivity Verification: Attempts DNS resolution of api.solarwinds.com"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0016",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_connectivity_check",
+        "to": "node_dga_dns_query",
+        "label": "Resolves api.solarwinds.com to confirm internet egress"
+      },
+      "source_node": {
+        "id": "node_connectivity_check",
+        "label": "Network Connectivity Verification: Attempts DNS resolution of api.solarwinds.com"
+      },
+      "target_node": {
+        "id": "node_dga_dns_query",
+        "label": "DGA DNS Request: Generates dynamic subdomains encoding victim UserID and domain name prepended to appsync-api regional domains under avsvmcloud[.]com"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0017",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_dga_dns_query",
+        "to": "node_dns_ip_filter",
+        "label": "Queries DGA subdomains under avsvmcloud[.]com"
+      },
+      "source_node": {
+        "id": "node_dga_dns_query",
+        "label": "DGA DNS Request: Generates dynamic subdomains encoding victim UserID and domain name prepended to appsync-api regional domains under avsvmcloud[.]com"
+      },
+      "target_node": {
+        "id": "node_dns_ip_filter",
+        "label": "DNS A-Record Filtering: Compares resolved IP against hardcoded blacklisted ranges (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 20.140.0.0/15, 96.31.172.0/24); halts if matched"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0018",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_dns_ip_filter",
+        "to": "node_cname_resolution",
+        "label": "Validates resolved A-record IP is not in blacklisted IP blocks"
+      },
+      "source_node": {
+        "id": "node_dns_ip_filter",
+        "label": "DNS A-Record Filtering: Compares resolved IP against hardcoded blacklisted ranges (e.g. 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16, 20.140.0.0/15, 96.31.172.0/24); halts if matched"
+      },
+      "target_node": {
+        "id": "node_cname_resolution",
+        "label": "C2 Domain Resolution: Receives CNAME DNS response routing malware to genuine Command and Control (C2) server"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0019",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_cname_resolution",
+        "to": "node_httphelper_thread",
+        "label": "Resolves CNAME pointing to attacker C2 domain"
+      },
+      "source_node": {
+        "id": "node_cname_resolution",
+        "label": "C2 Domain Resolution: Receives CNAME DNS response routing malware to genuine Command and Control (C2) server"
+      },
+      "target_node": {
+        "id": "node_httphelper_thread",
+        "label": "HttpHelper.Initialize Worker Thread: Spawns dedicated C2 communication thread applying SetTime intervals (minimum 1 minute between callouts)"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0020",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_httphelper_thread",
+        "to": "node_c2_protocol_masquerade",
+        "label": "Initiates HTTP GET/POST requests with SetTime delay intervals"
+      },
+      "source_node": {
+        "id": "node_httphelper_thread",
+        "label": "HttpHelper.Initialize Worker Thread: Spawns dedicated C2 communication thread applying SetTime intervals (minimum 1 minute between callouts)"
+      },
+      "target_node": {
+        "id": "node_c2_protocol_masquerade",
+        "label": "OIP Traffic Masquerading: Disguises HTTP GET/POST/PUT C2 communications as Orion Improvement Program (OIP) EventManager JSON telemetry"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0021",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_c2_protocol_masquerade",
+        "to": "node_c2_steganography",
+        "label": "Receives benign-looking XML responses containing command data"
+      },
+      "source_node": {
+        "id": "node_c2_protocol_masquerade",
+        "label": "OIP Traffic Masquerading: Disguises HTTP GET/POST/PUT C2 communications as Orion Improvement Program (OIP) EventManager JSON telemetry"
+      },
+      "target_node": {
+        "id": "node_c2_steganography",
+        "label": "C2 Steganography: Extracts commands embedded within benign XML GUID/HEX strings via regex, performs HEX decoding, single-byte XOR decryption, and DEFLATE decompression"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0022",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_c2_steganography",
+        "to": "node_job_execution_engine",
+        "label": "Extracts, decrypts, and decompresses JobEngine command values"
+      },
+      "source_node": {
+        "id": "node_c2_steganography",
+        "label": "C2 Steganography: Extracts commands embedded within benign XML GUID/HEX strings via regex, performs HEX decoding, single-byte XOR decryption, and DEFLATE decompression"
+      },
+      "target_node": {
+        "id": "node_job_execution_engine",
+        "label": "JobExecutionEngine: Executes backdoor commands (Jobs 0-17) including CollectSystemDescription, RunTask, KillTask, WriteFile, DeleteFile, Read/Set/DeleteRegistryValue, and Reboot"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0023",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_job_execution_engine",
+        "to": "node_deploy_teardrop",
+        "label": "Executes commands to drop and execute second-stage malware"
+      },
+      "source_node": {
+        "id": "node_job_execution_engine",
+        "label": "JobExecutionEngine: Executes backdoor commands (Jobs 0-17) including CollectSystemDescription, RunTask, KillTask, WriteFile, DeleteFile, Read/Set/DeleteRegistryValue, and Reboot"
+      },
+      "target_node": {
+        "id": "node_deploy_teardrop",
+        "label": "Payload Delivery: SUNBURST deploys memory-only dropper TEARDROP"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0024",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_deploy_teardrop",
+        "to": "node_teardrop_service",
+        "label": "Installs TEARDROP as service executing NetSetupSvc.dll via svchost.exe"
+      },
+      "source_node": {
+        "id": "node_deploy_teardrop",
+        "label": "Payload Delivery: SUNBURST deploys memory-only dropper TEARDROP"
+      },
+      "target_node": {
+        "id": "node_teardrop_service",
+        "label": "TEARDROP Execution: Runs as a Windows service via svchost.exe loading non-Microsoft-signed binary NetSetupSvc.dll (c:\\windows\\syswow64\\netsetupsvc.dll)"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0025",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_teardrop_service",
+        "to": "node_teardrop_decode",
+        "label": "Reads fake gracious_truth.jpg and checks HKU\\SOFTWARE\\Microsoft\\CTF"
+      },
+      "source_node": {
+        "id": "node_teardrop_service",
+        "label": "TEARDROP Execution: Runs as a Windows service via svchost.exe loading non-Microsoft-signed binary NetSetupSvc.dll (c:\\windows\\syswow64\\netsetupsvc.dll)"
+      },
+      "target_node": {
+        "id": "node_teardrop_decode",
+        "label": "Payload Decoding: Reads payload disguised with fake JPG header from gracious_truth.jpg, verifies HKU\\SOFTWARE\\Microsoft\\CTF, and decodes via custom rolling XOR"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0026",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_teardrop_decode",
+        "to": "node_teardrop_loader",
+        "label": "Applies rolling XOR algorithm to decrypt payload"
+      },
+      "source_node": {
+        "id": "node_teardrop_decode",
+        "label": "Payload Decoding: Reads payload disguised with fake JPG header from gracious_truth.jpg, verifies HKU\\SOFTWARE\\Microsoft\\CTF, and decodes via custom rolling XOR"
+      },
+      "target_node": {
+        "id": "node_teardrop_loader",
+        "label": "In-Memory PE Loading: Manually loads custom PE-like payload directly into memory without writing to disk"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0027",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_teardrop_loader",
+        "to": "node_cobalt_strike",
+        "label": "Manually maps and loads custom Cobalt Strike BEACON into memory"
+      },
+      "source_node": {
+        "id": "node_teardrop_loader",
+        "label": "In-Memory PE Loading: Manually loads custom PE-like payload directly into memory without writing to disk"
+      },
+      "target_node": {
+        "id": "node_cobalt_strike",
+        "label": "Command & Control Payload: Customized Cobalt Strike BEACON active in memory"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0028",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_cobalt_strike",
+        "to": "node_attacker_infra",
+        "label": "Establishes C2 session to country-matched VPS infrastructure"
+      },
+      "source_node": {
+        "id": "node_cobalt_strike",
+        "label": "Command & Control Payload: Customized Cobalt Strike BEACON active in memory"
+      },
+      "target_node": {
+        "id": "node_attacker_infra",
+        "label": "Operational Security / C2 Infrastructure: VPS located in victim's country with hostnames masquerading as victim environment (identifiable in RDP SSL certificates)"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0029",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_cobalt_strike",
+        "to": "node_credential_access",
+        "label": "Extracts legitimate user and administrative credentials"
+      },
+      "source_node": {
+        "id": "node_cobalt_strike",
+        "label": "Command & Control Payload: Customized Cobalt Strike BEACON active in memory"
+      },
+      "target_node": {
+        "id": "node_credential_access",
+        "label": "Compromised Credentials Access: Threat actor uses valid user credentials to achieve remote access"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0030",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_credential_access",
+        "to": "node_lateral_movement",
+        "label": "Authenticates to internal systems using dedicated lateral movement credentials"
+      },
+      "source_node": {
+        "id": "node_credential_access",
+        "label": "Compromised Credentials Access: Threat actor uses valid user credentials to achieve remote access"
+      },
+      "target_node": {
+        "id": "node_lateral_movement",
+        "label": "Internal Lateral Movement: Advances across internal systems using accounts distinct from those used for initial remote access (one-to-many source authentication)"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0031",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_lateral_movement",
+        "to": "node_temp_file_exec",
+        "label": "Executes utilities via temporary replacement of legitimate binaries"
+      },
+      "source_node": {
+        "id": "node_lateral_movement",
+        "label": "Internal Lateral Movement: Advances across internal systems using accounts distinct from those used for initial remote access (one-to-many source authentication)"
+      },
+      "target_node": {
+        "id": "node_temp_file_exec",
+        "label": "Execution Defense Evasion: Temporary file replacement technique (delete-create-execute-delete-create pattern over SMB sessions)"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0032",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_lateral_movement",
+        "to": "node_scheduled_task_mod",
+        "label": "Modifies existing scheduled tasks to run payloads"
+      },
+      "source_node": {
+        "id": "node_lateral_movement",
+        "label": "Internal Lateral Movement: Advances across internal systems using accounts distinct from those used for initial remote access (one-to-many source authentication)"
+      },
+      "target_node": {
+        "id": "node_scheduled_task_mod",
+        "label": "Persistence & Execution: Temporarily modifies existing legitimate scheduled tasks to run malicious tools, then restores original definitions"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0033",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_temp_file_exec",
+        "to": "node_tool_removal",
+        "label": "Restores original legitimate utilities to disk"
+      },
+      "source_node": {
+        "id": "node_temp_file_exec",
+        "label": "Execution Defense Evasion: Temporary file replacement technique (delete-create-execute-delete-create pattern over SMB sessions)"
+      },
+      "target_node": {
+        "id": "node_tool_removal",
+        "label": "Anti-Forensics: Routine cleanup of dropped utilities, temporary files, and backdoor components once remote access is established"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0034",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_scheduled_task_mod",
+        "to": "node_tool_removal",
+        "label": "Reverts scheduled task configurations and removes artifacts"
+      },
+      "source_node": {
+        "id": "node_scheduled_task_mod",
+        "label": "Persistence & Execution: Temporarily modifies existing legitimate scheduled tasks to run malicious tools, then restores original definitions"
+      },
+      "target_node": {
+        "id": "node_tool_removal",
+        "label": "Anti-Forensics: Routine cleanup of dropped utilities, temporary files, and backdoor components once remote access is established"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0035",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_lateral_movement",
+        "to": "node_data_theft",
+        "label": "Identifies, stages, and exfiltrates target proprietary data"
+      },
+      "source_node": {
+        "id": "node_lateral_movement",
+        "label": "Internal Lateral Movement: Advances across internal systems using accounts distinct from those used for initial remote access (one-to-many source authentication)"
+      },
+      "target_node": {
+        "id": "node_data_theft",
+        "label": "Target Objective: Data theft and unauthorized intelligence gathering across global public and private victim organizations"
+      },
+      "evidence": {}
+    },
+    {
+      "edge_id": "edge-0036",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_tool_removal",
+        "to": "node_data_theft",
+        "label": "Maintains persistent stealth while exfiltrating information"
+      },
+      "source_node": {
+        "id": "node_tool_removal",
+        "label": "Anti-Forensics: Routine cleanup of dropped utilities, temporary files, and backdoor components once remote access is established"
+      },
+      "target_node": {
+        "id": "node_data_theft",
+        "label": "Target Objective: Data theft and unauthorized intelligence gathering across global public and private victim organizations"
+      },
+      "evidence": {}
+    }
+  ]
+}

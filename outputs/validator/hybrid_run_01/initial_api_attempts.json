@@ -1,0 +1,1130 @@
+[
+  {
+    "figure": 7,
+    "phase": "warmup",
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "piSignage and RaspAP are deployed on the same Raspberry Pi host",
+          "Arbitrary file download enables reading valid credentials or session secrets for RaspAP"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          }
+        ],
+        "missing_conditions": [
+          "Verification of same-host deployment of piSignage and RaspAP",
+          "Existence and accessibility of plaintext or recoverable RaspAP credentials via piSignage file download",
+          "Sufficient file permissions for the piSignage process to read RaspAP secret or configuration files"
+        ],
+        "reason": "The source effect in CVE-2019-20354 allows an attacker to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', whereas the target CVE-2020-24572 strictly requires 'With authenticated access'. The edge claim overreaches by inferring that arbitrary file download inherently yields RaspAP credentials and assuming same-host deployment. Because credentials and co-location cannot be inferred from absence of data, this capability bridge is only potentially plausible and cannot enter a strict graph without external verification, rendering the edge conditional.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 375,
+        "prompt_token_count": 2319,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2319
+          }
+        ],
+        "thoughts_token_count": 2735,
+        "total_token_count": 5429
+      },
+      "latency_seconds": 42.63177420001011,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "853b7074d03c80b173de8f77ca10f19387bbcc903fa694e19952fb0528a0b2bb",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 375,
+          "prompt_token_count": 2319,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2319
+            }
+          ],
+          "thoughts_token_count": 2735,
+          "total_token_count": 5429
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"piSignage and RaspAP are deployed on the same Raspberry Pi host\", \"Arbitrary file download enables reading valid credentials or session secrets for RaspAP\"], \"confidence\": 0.85, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-20354\", \"quote\": \"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}], \"missing_conditions\": [\"Verification of same-host deployment of piSignage and RaspAP\", \"Existence and accessibility of plaintext or recoverable RaspAP credentials via piSignage file download\", \"Sufficient file permissions for the piSignage process to read RaspAP secret or configuration files\"], \"reason\": \"The source effect in CVE-2019-20354 allows an attacker to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', whereas the target CVE-2020-24572 strictly requires 'With authenticated access'. The edge claim overreaches by inferring that arbitrary file download inherently yields RaspAP credentials and assuming same-host deployment. Because credentials and co-location cannot be inferred from absence of data, this capability bridge is only potentially plausible and cannot enter a strict graph without external verification, rendering the edge conditional.\", \"source_cve_id\": \"CVE-2019-20354\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}"
+    }
+  },
+  {
+    "figure": 7,
+    "phase": "initial",
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "invalid_response",
+      "response": null,
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 161,
+        "prompt_token_count": 2302,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2302
+          }
+        ],
+        "thoughts_token_count": 3931,
+        "total_token_count": 6394
+      },
+      "latency_seconds": 38.042910699994536,
+      "error_type": "ReviewSchemaError",
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "85aafc689ed680a763327c2e9f929861ce9fc0b098656a8f3db2c22f10116424",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "MAX_TOKENS",
+        "usage": {
+          "candidates_token_count": 161,
+          "prompt_token_count": 2302,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2302
+            }
+          ],
+          "thoughts_token_count": 3931,
+          "total_token_count": 6394
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "MAX_TOKENS"
+        ]
+      },
+      "raw_response": "```json\n{\n  \"assumptions\": [\n    \"Assumes piSignage is deployed on the same Raspberry Pi OS host as the target default account vulnerability.\",\n    \"Assumes the web application process running piSignage possesses elevated privileges sufficient to read sensitive system files such as /etc/shadow.\",\n    \"Assumes verifying account existence or hashes constitutes a necessary enabling prerequisite for exploiting known default credentials.\"\n  ],\n  \"confidence\": 0.9,\n  \"edge_id\": \"edge-0002\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"download arbitrary files from the Raspberry Pi via api"
+    }
+  },
+  {
+    "figure": 7,
+    "phase": "initial",
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "RaspAP 2.5 is deployed on the same host running Raspberry Pi OS.",
+          "RaspAP stores web authentication data locally in a manner that can potentially be read or modified with OS administrator privileges.",
+          "The default 'raspberry' password for the 'pi' user remains unchanged and is accessible to the attacker."
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0003",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "gain administrator privileges"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          }
+        ],
+        "missing_conditions": [
+          "Verification that RaspAP 2.5 and Raspberry Pi OS share the same host environment.",
+          "Verification of a concrete mechanism for OS administrator access to read or alter RaspAP web console credentials.",
+          "Verification that the default password on the target Raspberry Pi OS instance has not been changed."
+        ],
+        "reason": "The source vulnerability CVE-2021-38759 allows attackers to 'gain administrator privileges' if default OS credentials are unchanged, whereas the target CVE-2020-24572 requires 'With authenticated access' to the RaspAP web interface. The claimed bridge asserts that OS administrator privileges allow obtaining web authentication; while potentially plausible, same-host deployment and credential extraction cannot be inferred from the vulnerability descriptions. Therefore, the edge cannot enter a strict attack graph without verified host co-location and credential storage prerequisites.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 381,
+        "prompt_token_count": 2289,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2289
+          }
+        ],
+        "thoughts_token_count": 3697,
+        "total_token_count": 6367
+      },
+      "latency_seconds": 33.81714609998744,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "1870ddc3267e042b29764dac28922febdf4fa4057c7de1d1e6d858d04eb123b1",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 381,
+          "prompt_token_count": 2289,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2289
+            }
+          ],
+          "thoughts_token_count": 3697,
+          "total_token_count": 6367
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"RaspAP 2.5 is deployed on the same host running Raspberry Pi OS.\", \"RaspAP stores web authentication data locally in a manner that can potentially be read or modified with OS administrator privileges.\", \"The default 'raspberry' password for the 'pi' user remains unchanged and is accessible to the attacker.\"], \"confidence\": 0.85, \"edge_id\": \"edge-0003\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"gain administrator privileges\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}], \"missing_conditions\": [\"Verification that RaspAP 2.5 and Raspberry Pi OS share the same host environment.\", \"Verification of a concrete mechanism for OS administrator access to read or alter RaspAP web console credentials.\", \"Verification that the default password on the target Raspberry Pi OS instance has not been changed.\"], \"reason\": \"The source vulnerability CVE-2021-38759 allows attackers to 'gain administrator privileges' if default OS credentials are unchanged, whereas the target CVE-2020-24572 requires 'With authenticated access' to the RaspAP web interface. The claimed bridge asserts that OS administrator privileges allow obtaining web authentication; while potentially plausible, same-host deployment and credential extraction cannot be inferred from the vulnerability descriptions. Therefore, the edge cannot enter a strict attack graph without verified host co-location and credential storage prerequisites.\", \"source_cve_id\": \"CVE-2021-38759\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}"
+    }
+  },
+  {
+    "figure": 7,
+    "phase": "initial",
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Assuming the vulnerable Raspberry Pi OS instance is hosted on the specific hardware models Raspberry Pi 3 B+ or 4 B.",
+          "Assuming the Raspberry Pi supplies power to connected audio-output equipment (speakers).",
+          "Assuming an attacker with administrative access would use an optical side channel to exfiltrate or recover audio played by themselves.",
+          "Assuming physical line-of-sight and sensor equipment (telescope and electro-optical sensor) are available to the attacker."
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0004",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "gain administrator privileges"
+          },
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "in certain specific use cases in which the device supplies power to audio-output equipment"
+          },
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "via a telescope and an electro-optical sensor"
+          },
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "recover speech signals from an LED on the device"
+          }
+        ],
+        "missing_conditions": [
+          "Confirmation that the source and target share the same physical host.",
+          "Presence of audio-output equipment powered by the Raspberry Pi.",
+          "Attacker line of sight and deployment of a telescope and electro-optical sensor directed at the device LED.",
+          "Verification that the underlying hardware is a Raspberry Pi 3 B+ or 4 B."
+        ],
+        "reason": "CVE-2021-38759 allows an attacker to 'gain administrator privileges' via unchanged default credentials on Raspberry Pi OS. While administrator access could potentially allow playing audio files, CVE-2021-38545 requires specific hardware ('Raspberry Pi 3 B+ and 4 B devices'), a specific physical configuration where the device 'supplies power to audio-output equipment', and physical reception capability 'via a telescope and an electro-optical sensor' to 'recover speech signals from an LED on the device'. These physical and environmental conditions are unverified, making the transition conditional.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2021-38545"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 518,
+        "prompt_token_count": 2528,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2528
+          }
+        ],
+        "thoughts_token_count": 2364,
+        "total_token_count": 5410
+      },
+      "latency_seconds": 21.233310700015863,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "9563da7a2fdd8f9ad4705f3830666bf8408aefa2383eb2a1b54f67e37104805b",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 518,
+          "prompt_token_count": 2528,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2528
+            }
+          ],
+          "thoughts_token_count": 2364,
+          "total_token_count": 5410
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"Assuming the vulnerable Raspberry Pi OS instance is hosted on the specific hardware models Raspberry Pi 3 B+ or 4 B.\", \"Assuming the Raspberry Pi supplies power to connected audio-output equipment (speakers).\", \"Assuming an attacker with administrative access would use an optical side channel to exfiltrate or recover audio played by themselves.\", \"Assuming physical line-of-sight and sensor equipment (telescope and electro-optical sensor) are available to the attacker.\"], \"confidence\": 0.85, \"edge_id\": \"edge-0004\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"gain administrator privileges\"}, {\"cve_id\": \"CVE-2021-38545\", \"quote\": \"in certain specific use cases in which the device supplies power to audio-output equipment\"}, {\"cve_id\": \"CVE-2021-38545\", \"quote\": \"via a telescope and an electro-optical sensor\"}, {\"cve_id\": \"CVE-2021-38545\", \"quote\": \"recover speech signals from an LED on the device\"}], \"missing_conditions\": [\"Confirmation that the source and target share the same physical host.\", \"Presence of audio-output equipment powered by the Raspberry Pi.\", \"Attacker line of sight and deployment of a telescope and electro-optical sensor directed at the device LED.\", \"Verification that the underlying hardware is a Raspberry Pi 3 B+ or 4 B.\"], \"reason\": \"CVE-2021-38759 allows an attacker to 'gain administrator privileges' via unchanged default credentials on Raspberry Pi OS. While administrator access could potentially allow playing audio files, CVE-2021-38545 requires specific hardware ('Raspberry Pi 3 B+ and 4 B devices'), a specific physical configuration where the device 'supplies power to audio-output equipment', and physical reception capability 'via a telescope and an electro-optical sensor' to 'recover speech signals from an LED on the device'. These physical and environmental conditions are unverified, making the transition conditional.\", \"source_cve_id\": \"CVE-2021-38759\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2021-38545\"}"
+    }
+  },
+  {
+    "figure": 7,
+    "phase": "initial",
+    "edge_id": "edge-0005",
+    "review": {
+      "state": "invalid_response",
+      "response": null,
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 162,
+        "prompt_token_count": 2550,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2550
+          }
+        ],
+        "thoughts_token_count": 3930,
+        "total_token_count": 6642
+      },
+      "latency_seconds": 30.154925799986813,
+      "error_type": "ReviewSchemaError",
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "63c019228cecc81ec630fcfa7e0415618fa6c2042b127c27638cd8bb4fafce27",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "MAX_TOKENS",
+        "usage": {
+          "candidates_token_count": 162,
+          "prompt_token_count": 2550,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2550
+            }
+          ],
+          "thoughts_token_count": 3930,
+          "total_token_count": 6642
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "MAX_TOKENS"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"Inferred that the host running RaspAP 2.5 is specifically a Raspberry Pi 3 B+ or 4 B.\", \"Inferred that the target system supplies power to external audio-output equipment and that audio tools are installed to play sound via command line.\", \"Inferred that the attacker possesses the physical optical setup (telescope and electro-optical sensor) with direct line-of-sight to the power LED.\"], \"confidence\": 0.8, \"edge_id\": \"edge-0005\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system\"}, {\"cve_id\": \"CVE-2021-3"
+    }
+  },
+  {
+    "figure": 7,
+    "phase": "initial",
+    "edge_id": "edge-0006",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Assuming the potential code execution in Oculus Browser can be realized as arbitrary local execution",
+          "Assuming Oculus Browser and Oculus Desktop are co-located on the same Windows host"
+        ],
+        "confidence": 0.8,
+        "edge_id": "edge-0006",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file."
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "on Windows"
+          }
+        ],
+        "missing_conditions": [
+          "Realization of actual code execution, as CVE-2019-3562 only notes it can 'potentially execute code'",
+          "Verification that Oculus Browser and Oculus Desktop run on the same Windows host",
+          "Verification that execution context obtained from Oculus Browser grants sufficient local user filesystem privileges to create hard links"
+        ],
+        "reason": "CVE-2019-3562 describes HTML injection into the Oculus Browser UI allowing an attacker to 'potentially execute code'. CVE-2020-1885 requires a 'local users' context 'on Windows' to exploit a hard link vector. The causal bridge is conditional on code execution actually being achieved from the browser vulnerability, on the browser operating on Windows co-located with Oculus Desktop, and on that execution granting local user filesystem privileges.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-1885"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 384,
+        "prompt_token_count": 2525,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2525
+          }
+        ],
+        "thoughts_token_count": 1947,
+        "total_token_count": 4856
+      },
+      "latency_seconds": 18.57398029998876,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "071176fd7a052a0c0ec7318deed9861a88e6318cc8020b9cda908621a2171d8b",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 384,
+          "prompt_token_count": 2525,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2525
+            }
+          ],
+          "thoughts_token_count": 1947,
+          "total_token_count": 4856
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"Assuming the potential code execution in Oculus Browser can be realized as arbitrary local execution\", \"Assuming Oculus Browser and Oculus Desktop are co-located on the same Windows host\"], \"confidence\": 0.8, \"edge_id\": \"edge-0006\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-3562\", \"quote\": \"potentially execute code\"}, {\"cve_id\": \"CVE-2020-1885\", \"quote\": \"allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.\"}, {\"cve_id\": \"CVE-2020-1885\", \"quote\": \"on Windows\"}], \"missing_conditions\": [\"Realization of actual code execution, as CVE-2019-3562 only notes it can 'potentially execute code'\", \"Verification that Oculus Browser and Oculus Desktop run on the same Windows host\", \"Verification that execution context obtained from Oculus Browser grants sufficient local user filesystem privileges to create hard links\"], \"reason\": \"CVE-2019-3562 describes HTML injection into the Oculus Browser UI allowing an attacker to 'potentially execute code'. CVE-2020-1885 requires a 'local users' context 'on Windows' to exploit a hard link vector. The causal bridge is conditional on code execution actually being achieved from the browser vulnerability, on the browser operating on Windows co-located with Oculus Desktop, and on that execution granting local user filesystem privileges.\", \"source_cve_id\": \"CVE-2019-3562\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-1885\"}"
+    }
+  },
+  {
+    "figure": 7,
+    "phase": "initial",
+    "edge_id": "edge-0007",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Oculus Browser and Oculus Desktop are deployed on the same host",
+          "Potential code execution from the browser UI injection can be realized and yields a local unprivileged process context",
+          "The local privilege escalation results in SYSTEM privileges, which exceeds the generic 'local privilege escalation' stated in the description"
+        ],
+        "confidence": 0.75,
+        "edge_id": "edge-0007",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "inject arbitrary HTML code into the Oculus Browser UI"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "expose a privileged process handle to an unprivileged process"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "local privilege escalation"
+          }
+        ],
+        "missing_conditions": [
+          "Verification of same-host co-location for Oculus Browser and Oculus Desktop",
+          "Verification that the browser injection achieves local process execution rather than solely UI spoofing",
+          "Confirmation of a shared operating system environment supporting both applications"
+        ],
+        "reason": "CVE-2019-3562 allows an attacker to 'inject arbitrary HTML code into the Oculus Browser UI' and 'potentially execute code'. CVE-2021-24038 requires 'an unprivileged process' to capture an exposed handle from OVRServiceLauncher.exe for 'local privilege escalation'. Bridging these vulnerabilities is conditional upon the browser vulnerability actually achieving local code execution and both software packages operating on the same host.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2021-24038"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 414,
+        "prompt_token_count": 2476,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2476
+          }
+        ],
+        "thoughts_token_count": 2192,
+        "total_token_count": 5082
+      },
+      "latency_seconds": 19.409348699991824,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "4da0c4c7d6ebf14f109af1ac0ceb6ee00671b4c36c49bd2a1e46f1783b26c7bc",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 414,
+          "prompt_token_count": 2476,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2476
+            }
+          ],
+          "thoughts_token_count": 2192,
+          "total_token_count": 5082
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"Oculus Browser and Oculus Desktop are deployed on the same host\", \"Potential code execution from the browser UI injection can be realized and yields a local unprivileged process context\", \"The local privilege escalation results in SYSTEM privileges, which exceeds the generic 'local privilege escalation' stated in the description\"], \"confidence\": 0.75, \"edge_id\": \"edge-0007\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-3562\", \"quote\": \"inject arbitrary HTML code into the Oculus Browser UI\"}, {\"cve_id\": \"CVE-2019-3562\", \"quote\": \"potentially execute code\"}, {\"cve_id\": \"CVE-2021-24038\", \"quote\": \"expose a privileged process handle to an unprivileged process\"}, {\"cve_id\": \"CVE-2021-24038\", \"quote\": \"local privilege escalation\"}], \"missing_conditions\": [\"Verification of same-host co-location for Oculus Browser and Oculus Desktop\", \"Verification that the browser injection achieves local process execution rather than solely UI spoofing\", \"Confirmation of a shared operating system environment supporting both applications\"], \"reason\": \"CVE-2019-3562 allows an attacker to 'inject arbitrary HTML code into the Oculus Browser UI' and 'potentially execute code'. CVE-2021-24038 requires 'an unprivileged process' to capture an exposed handle from OVRServiceLauncher.exe for 'local privilege escalation'. Bridging these vulnerabilities is conditional upon the browser vulnerability actually achieving local code execution and both software packages operating on the same host.\", \"source_cve_id\": \"CVE-2019-3562\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2021-24038\"}"
+    }
+  },
+  {
+    "figure": 9,
+    "phase": "initial",
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Inference that RaspAP 2.5 is deployed on the same Raspberry Pi host running Raspberry Pi OS",
+          "Inference that RaspAP 2.5 accepts the OS 'pi' user credentials or shares the default password"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "raspberry default password for the pi account"
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "gain administrator privileges"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "execute commands on the system (including ones for uploading of files and execution of code)"
+          }
+        ],
+        "missing_conditions": [
+          "Verification that RaspAP 2.5 is co-located on the same host as the vulnerable Raspberry Pi OS",
+          "Verification that RaspAP 2.5 authentication delegates to OS credentials or shares the 'pi' credentials",
+          "Verification that the default password for the 'pi' account remains unchanged"
+        ],
+        "reason": "CVE-2021-38759 describes that if the default password is not changed, attackers can 'gain administrator privileges' via the 'raspberry default password for the pi account'. CVE-2020-24572 requires '[w]ith authenticated access' to execute commands via the web console. The bridge claims this satisfies target access, but neither CVE states that RaspAP 2.5 uses OS PAM authentication or shares the 'pi' account password, nor can same-host deployment be inferred without environment evidence. Therefore, the edge cannot enter a strict graph without verifying co-location and credential reuse.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 461,
+        "prompt_token_count": 2444,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2444
+          }
+        ],
+        "thoughts_token_count": 2824,
+        "total_token_count": 5729
+      },
+      "latency_seconds": 24.173979000013787,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "74e06f245ca4fa2b614e9aa034bfbc2d55e10875bd4818f93c0ea94e0e295f07",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 461,
+          "prompt_token_count": 2444,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2444
+            }
+          ],
+          "thoughts_token_count": 2824,
+          "total_token_count": 5729
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"Inference that RaspAP 2.5 is deployed on the same Raspberry Pi host running Raspberry Pi OS\", \"Inference that RaspAP 2.5 accepts the OS 'pi' user credentials or shares the default password\"], \"confidence\": 0.85, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"raspberry default password for the pi account\"}, {\"cve_id\": \"CVE-2021-38759\", \"quote\": \"gain administrator privileges\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system (including ones for uploading of files and execution of code)\"}], \"missing_conditions\": [\"Verification that RaspAP 2.5 is co-located on the same host as the vulnerable Raspberry Pi OS\", \"Verification that RaspAP 2.5 authentication delegates to OS credentials or shares the 'pi' credentials\", \"Verification that the default password for the 'pi' account remains unchanged\"], \"reason\": \"CVE-2021-38759 describes that if the default password is not changed, attackers can 'gain administrator privileges' via the 'raspberry default password for the pi account'. CVE-2020-24572 requires '[w]ith authenticated access' to execute commands via the web console. The bridge claims this satisfies target access, but neither CVE states that RaspAP 2.5 uses OS PAM authentication or shares the 'pi' account password, nor can same-host deployment be inferred without environment evidence. Therefore, the edge cannot enter a strict graph without verifying co-location and credential reuse.\", \"source_cve_id\": \"CVE-2021-38759\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}"
+    }
+  },
+  {
+    "figure": 9,
+    "phase": "initial",
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "The piSignage web application potentially shares authentication mechanisms or credentials with the underlying Raspberry Pi OS pi account",
+          "piSignage and Raspberry Pi OS are co-located on the same host and accessible to the attacker"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0002",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "gain administrator privileges"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          }
+        ],
+        "missing_conditions": [
+          "Verification that the piSignage web application integrates with OS authentication or reuses default pi account credentials",
+          "Verification of same-host co-location and network reachability of the piSignage web application",
+          "Verification of target running piSignage before 2.6.4"
+        ],
+        "reason": "The source CVE-2021-38759 enables an attacker to 'gain administrator privileges' on Raspberry Pi OS via unchanged default credentials, whereas the target CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user' on the piSignage web application component. The claimed causal bridge relies on an unverified credential-reuse assumption between the OS account and the application. Because neither description confirms credential sharing or co-location, the edge exhibits claim overreach and cannot enter a strict attack graph without verified conditions.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2019-20354"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 377,
+        "prompt_token_count": 2446,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2446
+          }
+        ],
+        "thoughts_token_count": 3472,
+        "total_token_count": 6295
+      },
+      "latency_seconds": 24.58681309997337,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "8a7fa339b593732e1b6aaa1b4e2675895915cdfafc7ad126bb73e2c797ad4500",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 377,
+          "prompt_token_count": 2446,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2446
+            }
+          ],
+          "thoughts_token_count": 3472,
+          "total_token_count": 6295
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"The piSignage web application potentially shares authentication mechanisms or credentials with the underlying Raspberry Pi OS pi account\", \"piSignage and Raspberry Pi OS are co-located on the same host and accessible to the attacker\"], \"confidence\": 0.85, \"edge_id\": \"edge-0002\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"gain administrator privileges\"}, {\"cve_id\": \"CVE-2019-20354\", \"quote\": \"authenticated as a low-privilege user\"}], \"missing_conditions\": [\"Verification that the piSignage web application integrates with OS authentication or reuses default pi account credentials\", \"Verification of same-host co-location and network reachability of the piSignage web application\", \"Verification of target running piSignage before 2.6.4\"], \"reason\": \"The source CVE-2021-38759 enables an attacker to 'gain administrator privileges' on Raspberry Pi OS via unchanged default credentials, whereas the target CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user' on the piSignage web application component. The claimed causal bridge relies on an unverified credential-reuse assumption between the OS account and the application. Because neither description confirms credential sharing or co-location, the edge exhibits claim overreach and cannot enter a strict attack graph without verified conditions.\", \"source_cve_id\": \"CVE-2021-38759\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2019-20354\"}"
+    }
+  },
+  {
+    "figure": 9,
+    "phase": "initial",
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "piSignage and RaspAP are deployed on the same Raspberry Pi host or share an environment",
+          "Arbitrary file download via piSignage can potentially access RaspAP configuration or authentication material",
+          "Disclosed files contain valid credentials or session data that grant authenticated access to RaspAP 2.5"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0003",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          }
+        ],
+        "missing_conditions": [
+          "Verification that piSignage and RaspAP 2.5 are co-located on the same host or share credentials",
+          "Existence and accessibility of RaspAP credentials, tokens, or sessions within files readable via the piSignage path traversal vulnerability",
+          "Active deployment and network reachability of RaspAP 2.5 webconsole interface"
+        ],
+        "reason": "The source vulnerability (CVE-2019-20354) allows an attacker to 'download arbitrary files from the Raspberry Pi', while the target vulnerability (CVE-2020-24572) requires 'With authenticated access' to execute commands via the RaspAP web console. The causal bridge assumes that arbitrary file disclosure may expose valid credentials or session data facilitating access to RaspAP. This represents claim overreach because co-location and credential exposure cannot be inferred without evidence. Consequently, this edge cannot enter a strict attack graph without external verification and must remain conditional.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 404,
+        "prompt_token_count": 2522,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2522
+          }
+        ],
+        "thoughts_token_count": 2818,
+        "total_token_count": 5744
+      },
+      "latency_seconds": 26.480132099997718,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "2cd141269ec675e951cc845ffa4c884cae9d9fb17b8c7fd88e3fc6c76453dc96",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 404,
+          "prompt_token_count": 2522,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2522
+            }
+          ],
+          "thoughts_token_count": 2818,
+          "total_token_count": 5744
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"piSignage and RaspAP are deployed on the same Raspberry Pi host or share an environment\", \"Arbitrary file download via piSignage can potentially access RaspAP configuration or authentication material\", \"Disclosed files contain valid credentials or session data that grant authenticated access to RaspAP 2.5\"], \"confidence\": 0.85, \"edge_id\": \"edge-0003\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-20354\", \"quote\": \"download arbitrary files from the Raspberry Pi\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}], \"missing_conditions\": [\"Verification that piSignage and RaspAP 2.5 are co-located on the same host or share credentials\", \"Existence and accessibility of RaspAP credentials, tokens, or sessions within files readable via the piSignage path traversal vulnerability\", \"Active deployment and network reachability of RaspAP 2.5 webconsole interface\"], \"reason\": \"The source vulnerability (CVE-2019-20354) allows an attacker to 'download arbitrary files from the Raspberry Pi', while the target vulnerability (CVE-2020-24572) requires 'With authenticated access' to execute commands via the RaspAP web console. The causal bridge assumes that arbitrary file disclosure may expose valid credentials or session data facilitating access to RaspAP. This represents claim overreach because co-location and credential exposure cannot be inferred without evidence. Consequently, this edge cannot enter a strict attack graph without external verification and must remain conditional.\", \"source_cve_id\": \"CVE-2019-20354\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}"
+    }
+  },
+  {
+    "figure": 10,
+    "phase": "initial",
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "invalid_response",
+      "response": null,
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 414,
+        "prompt_token_count": 2245,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2245
+          }
+        ],
+        "thoughts_token_count": 3678,
+        "total_token_count": 6337
+      },
+      "latency_seconds": 31.241284000017913,
+      "error_type": "ReviewSchemaError",
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "0add9973ba9e7d305db0ab838aec1c81cb9cf39d6907a3baf710f6a95e6960e3",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "MAX_TOKENS",
+        "usage": {
+          "candidates_token_count": 414,
+          "prompt_token_count": 2245,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2245
+            }
+          ],
+          "thoughts_token_count": 3678,
+          "total_token_count": 6337
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "MAX_TOKENS"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"RaspAP 2.5 is assumed to be deployed on the same host running Raspberry Pi OS.\", \"Administrator privileges on the operating system are assumed to potentially enable reading, modifying, or bypassing RaspAP 2.5 web application authentication.\"], \"confidence\": 0.85, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"gain administrator privileges\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system (including ones for uploading of files and execution of code)\"}], \"missing_conditions\": [\"Verification that RaspAP 2.5 is co-located on the same Raspberry Pi OS host.\", \"Evidence that default pi credentials or OS administrator privileges provide or can be used to derive authenticated access to RaspAP 2.5.\"], \"reason\": \"The source CVE-2021-38759 allows an attacker to 'gain administrator privileges' on Raspberry Pi OS. The target CVE-2020-24572 requires 'With authenticated access' to execute commands on the underlying system. The claim overreaches by asserting that OS administrator privileges provide or bypass web console authentication; no credential linkage or shared authentication mechanism is documented between the pi account and RaspAP 2.5. Additionally, utilizing OS admin privileges to exploit an application on the same host to gain command execution on the underlying OS represents causal redundancy. Because same-host deployment and credential access cannot be inferred from absence of data, this edge cannot enter a strict graph without external verification.\", \"source_cve_id\": \"CVE-2021-38759\", \"suggested_status\": \"conditional\","
+    }
+  },
+  {
+    "figure": 10,
+    "phase": "initial",
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "piSignage is deployed on the same Raspberry Pi OS instance where administrator privileges were gained",
+          "Administrator privileges on the host operating system provide access to readable or modifiable piSignage user credentials or authentication state"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0002",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "gain administrator privileges"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          }
+        ],
+        "missing_conditions": [
+          "Verification that piSignage is deployed on the same host as the compromised Raspberry Pi OS instance",
+          "Verification of accessible piSignage credential stores or configuration files on the host filesystem",
+          "Verification that the default password on the pi account remains unchanged on Raspberry Pi OS through 5.10",
+          "Verification that piSignage is before version 2.6.4"
+        ],
+        "reason": "The source CVE-2021-38759 allows attackers to 'gain administrator privileges' if the default password is unchanged, while the target CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user'. Host administrator privileges could potentially enable credential extraction or manipulation to satisfy the target's authentication prerequisite, but this causal bridge overreaches by inferring same-host deployment and local credential availability, which are not stated in the evidence. Consequently, the edge cannot enter a strict attack graph without verified co-location and credential accessibility.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2019-20354"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 398,
+        "prompt_token_count": 2283,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2283
+          }
+        ],
+        "thoughts_token_count": 3398,
+        "total_token_count": 6079
+      },
+      "latency_seconds": 30.58921169998939,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "05fa374a3d98df5ea85665b7cfee4047837c5c7f414e45d578ef89418a7f5c2f",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 398,
+          "prompt_token_count": 2283,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2283
+            }
+          ],
+          "thoughts_token_count": 3398,
+          "total_token_count": 6079
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"piSignage is deployed on the same Raspberry Pi OS instance where administrator privileges were gained\", \"Administrator privileges on the host operating system provide access to readable or modifiable piSignage user credentials or authentication state\"], \"confidence\": 0.85, \"edge_id\": \"edge-0002\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"gain administrator privileges\"}, {\"cve_id\": \"CVE-2019-20354\", \"quote\": \"authenticated as a low-privilege user\"}], \"missing_conditions\": [\"Verification that piSignage is deployed on the same host as the compromised Raspberry Pi OS instance\", \"Verification of accessible piSignage credential stores or configuration files on the host filesystem\", \"Verification that the default password on the pi account remains unchanged on Raspberry Pi OS through 5.10\", \"Verification that piSignage is before version 2.6.4\"], \"reason\": \"The source CVE-2021-38759 allows attackers to 'gain administrator privileges' if the default password is unchanged, while the target CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user'. Host administrator privileges could potentially enable credential extraction or manipulation to satisfy the target's authentication prerequisite, but this causal bridge overreaches by inferring same-host deployment and local credential availability, which are not stated in the evidence. Consequently, the edge cannot enter a strict attack graph without verified co-location and credential accessibility.\", \"source_cve_id\": \"CVE-2021-38759\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2019-20354\"}"
+    }
+  },
+  {
+    "figure": 10,
+    "phase": "initial",
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "RaspAP 2.5 and piSignage before 2.6.4 are deployed on the same underlying Raspberry Pi host",
+          "Command execution on the OS allows access to piSignage credential storage or user modification utilities"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0003",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "execute commands on the system (including ones for uploading of files and execution of code)"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "underlying OS (Raspberry Pi)"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "The web application component of piSignage before 2.6.4"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          }
+        ],
+        "missing_conditions": [
+          "Verification that RaspAP and piSignage share the same host environment",
+          "Verification that command execution privileges under RaspAP allow reading, modifying, or creating piSignage low-privilege credentials",
+          "Network or local reachability to the piSignage web application component"
+        ],
+        "reason": "CVE-2020-24572 provides the ability to 'execute commands on the system (including ones for uploading of files and execution of code)' on the 'underlying OS (Raspberry Pi)', while CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user'. Neither description confirms that both applications run on the same host or that OS command execution grants access to piSignage credentials. The causal bridge is plausible but relies on unverified co-location and credential access, so it cannot enter a strict graph unconditionally.",
+        "source_cve_id": "CVE-2020-24572",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2019-20354"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 467,
+        "prompt_token_count": 2349,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2349
+          }
+        ],
+        "thoughts_token_count": 2652,
+        "total_token_count": 5468
+      },
+      "latency_seconds": 22.456127999990713,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "262159642d8b097e67781c0b1ae5ed560e5dc21ab36fc6eec2a49d4ec8432a4f",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 467,
+          "prompt_token_count": 2349,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2349
+            }
+          ],
+          "thoughts_token_count": 2652,
+          "total_token_count": 5468
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"RaspAP 2.5 and piSignage before 2.6.4 are deployed on the same underlying Raspberry Pi host\", \"Command execution on the OS allows access to piSignage credential storage or user modification utilities\"], \"confidence\": 0.85, \"edge_id\": \"edge-0003\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system (including ones for uploading of files and execution of code)\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"underlying OS (Raspberry Pi)\"}, {\"cve_id\": \"CVE-2019-20354\", \"quote\": \"The web application component of piSignage before 2.6.4\"}, {\"cve_id\": \"CVE-2019-20354\", \"quote\": \"authenticated as a low-privilege user\"}], \"missing_conditions\": [\"Verification that RaspAP and piSignage share the same host environment\", \"Verification that command execution privileges under RaspAP allow reading, modifying, or creating piSignage low-privilege credentials\", \"Network or local reachability to the piSignage web application component\"], \"reason\": \"CVE-2020-24572 provides the ability to 'execute commands on the system (including ones for uploading of files and execution of code)' on the 'underlying OS (Raspberry Pi)', while CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user'. Neither description confirms that both applications run on the same host or that OS command execution grants access to piSignage credentials. The causal bridge is plausible but relies on unverified co-location and credential access, so it cannot enter a strict graph unconditionally.\", \"source_cve_id\": \"CVE-2020-24572\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2019-20354\"}"
+    }
+  },
+  {
+    "figure": 10,
+    "phase": "initial",
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "piSignage and RaspAP 2.5 are deployed on the same Raspberry Pi host",
+          "RaspAP configuration or credentials exist in files accessible via the piSignage path traversal vulnerability",
+          "Arbitrary file download will yield valid credentials for authenticated access to RaspAP 2.5"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0004",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          }
+        ],
+        "missing_conditions": [
+          "Verification of co-location of piSignage and RaspAP 2.5 on the same host",
+          "Presence and discovery of readable RaspAP credentials or session data via path traversal",
+          "Attacker authentication as a low-privilege user to piSignage"
+        ],
+        "reason": "The source CVE-2019-20354 provides the ability to 'download arbitrary files from the Raspberry Pi' via path traversal, while the target CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5. The proposed causal bridge assumes the file read potentially exposes RaspAP credentials. However, same-host deployment and credential exposure cannot be inferred without explicit evidence, representing claim overreach. Thus, the edge is conditional on unverified host co-location and accessible credentials and cannot enter a strict graph as-is.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 388,
+        "prompt_token_count": 2310,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2310
+          }
+        ],
+        "thoughts_token_count": 3414,
+        "total_token_count": 6112
+      },
+      "latency_seconds": 29.211115800018888,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "6e863a92a8edf3d08e38295542480a3ed2ebcb1636f0f0fad33419388f950979",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 388,
+          "prompt_token_count": 2310,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2310
+            }
+          ],
+          "thoughts_token_count": 3414,
+          "total_token_count": 6112
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"piSignage and RaspAP 2.5 are deployed on the same Raspberry Pi host\", \"RaspAP configuration or credentials exist in files accessible via the piSignage path traversal vulnerability\", \"Arbitrary file download will yield valid credentials for authenticated access to RaspAP 2.5\"], \"confidence\": 0.85, \"edge_id\": \"edge-0004\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-20354\", \"quote\": \"download arbitrary files from the Raspberry Pi\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}], \"missing_conditions\": [\"Verification of co-location of piSignage and RaspAP 2.5 on the same host\", \"Presence and discovery of readable RaspAP credentials or session data via path traversal\", \"Attacker authentication as a low-privilege user to piSignage\"], \"reason\": \"The source CVE-2019-20354 provides the ability to 'download arbitrary files from the Raspberry Pi' via path traversal, while the target CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5. The proposed causal bridge assumes the file read potentially exposes RaspAP credentials. However, same-host deployment and credential exposure cannot be inferred without explicit evidence, representing claim overreach. Thus, the edge is conditional on unverified host co-location and accessible credentials and cannot enter a strict graph as-is.\", \"source_cve_id\": \"CVE-2019-20354\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}"
+    }
+  }
+]

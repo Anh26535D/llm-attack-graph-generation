@@ -1,0 +1,38 @@
+{
+  "initial_api_calls_including_warmup": 14,
+  "remaining_call_budget": 6,
+  "retry_config": {
+    "mode": "hybrid",
+    "llm_enabled": true,
+    "llm_backend": "gemini",
+    "review_statuses": [
+      "conditional",
+      "unknown"
+    ],
+    "max_llm_calls": 6,
+    "max_output_tokens": 8192,
+    "reasoning_level": "high",
+    "cache_enabled": true,
+    "cache_dir": "outputs\\validator_cache",
+    "allow_control_review": false
+  },
+  "figures": [
+    {
+      "figure": 7,
+      "retried_edges": [
+        "edge-0002",
+        "edge-0005"
+      ],
+      "api_calls": 2,
+      "all_reviews_complete": true
+    },
+    {
+      "figure": 10,
+      "retried_edges": [
+        "edge-0001"
+      ],
+      "api_calls": 1,
+      "all_reviews_complete": true
+    }
+  ]
+}

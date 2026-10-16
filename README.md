@@ -2,6 +2,8 @@
 
 Repo tái hiện phương pháp và các nhóm thí nghiệm §5.1–5.4 của Prapty, Kundu, Iyengar, [Using Retriever Augmented Large Language Models for Attack Graph Generation](https://arxiv.org/abs/2408.05855). CVE hoặc threat report được đưa vào prompt, LLM sinh graph, sau đó code kiểm tra cấu trúc và nhóm đọc bằng chứng để đánh giá ngữ nghĩa.
 
+**Hybrid Evidence-grounded Validator:** đã có module hậu xử lý độc lập gồm rule checking, selective LLM edge review, deterministic evidence recheck, so sánh A/B/C và ảnh Before/After PNG/SVG. Chạy `python -m crystalball.validation --mode offline` để tạo [ảnh Figure 7](outputs/validator/figure_07_offline/comparison.png) hoàn toàn offline. Xem [hướng dẫn Validator, smoke test opt-in và giới hạn đánh giá](docs/HYBRID_VALIDATOR.md). Pipeline generation hiện tại được giữ nguyên.
+
 **Phạm vi hiện tại:** demo và chuẩn bị thí nghiệm bằng **ba mô hình độc lập**, để đối chiếu các nhóm so sánh ba mô hình của bài báo:
 
 | Mô hình | Model ID | Backend để chạy demo |
