@@ -1,0 +1,313 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "final": {
+      "status": "unknown",
+      "reason": "The descriptions do not establish the claimed causal bridge; absence of evidence is not contradiction.",
+      "issues": [
+        "offline_evidence_bound_preserved"
+      ],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2019-20354",
+            "path": "CVE-2019-20354.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/20xxx/CVE-2019-20354.json",
+            "sha256": "788efb357a4566d9181068aad5a01347ad249307300d9618cdf72aba7dd966dc",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2019-20354",
+            "path": "CVE-2019-20354.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/20xxx/CVE-2019-20354.json",
+            "sha256": "788efb357a4566d9181068aad5a01347ad249307300d9618cdf72aba7dd966dc",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "has the raspberry default password for the pi account",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2021-38759",
+            "path": "CVE-2021-38759.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38759.json",
+            "sha256": "eaca8d8cb870dfccf552ba3019b6cfb98f615103ada4af3578f86358bb496a19",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges.",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2021-38759",
+            "path": "CVE-2021-38759.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38759.json",
+            "sha256": "eaca8d8cb870dfccf552ba3019b6cfb98f615103ada4af3578f86358bb496a19",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "Verification of an accessible authentication service (e.g., SSH or console) to use the credentials",
+        "Verification of same-host co-location between piSignage and the target Raspberry Pi OS instance",
+        "Verification that the piSignage web process runs with permissions capable of reading sensitive files like /etc/shadow",
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "no_description_grounded_capability_bridge_for_this_claim",
+        "source:product_platform_version_and_prerequisites",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "LLM inference: Assumes /etc/shadow is readable by the web application process",
+        "LLM inference: Assumes both vulnerabilities exist on the exact same host instance",
+        "LLM inference: Assumes password hashes in exfiltrated files can be cracked or confirm default credentials"
+      ],
+      "disagreement": true,
+      "suggestion_accepted": false,
+      "review_complete": true
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2019-20354",
+            "path": "CVE-2019-20354.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/20xxx/CVE-2019-20354.json",
+            "sha256": "788efb357a4566d9181068aad5a01347ad249307300d9618cdf72aba7dd966dc",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "Verification that RaspAP credentials or session keys are stored in a path readable via piSignage file download",
+        "Verification that piSignage and RaspAP run on the same Raspberry Pi instance",
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "readable_valid_target_application_credentials",
+        "source:product_platform_version_and_prerequisites",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition.",
+        "LLM inference: piSignage and RaspAP co-exist on the same host or filesystem",
+        "LLM inference: Downloaded files contain valid RaspAP credentials or session tokens allowing authenticated access"
+      ],
+      "disagreement": false,
+      "suggestion_accepted": true,
+      "review_complete": true
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "final": {
+      "status": "unknown",
+      "reason": "The descriptions do not establish the claimed causal bridge; absence of evidence is not contradiction.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "no_description_grounded_capability_bridge_for_this_claim",
+        "source:product_platform_version_and_prerequisites",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence."
+      ],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "command_control_of_target_audio_playback",
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition."
+      ],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system (including ones for uploading of files and execution of code)",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "in certain specific use cases in which the device supplies power to audio-output equipment, allow remote attackers to recover speech signals from an LED on the device, via a telescope and an electro-optical sensor, aka a \"Glowworm\" attack",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2021-38545",
+            "path": "CVE-2021-38545.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38545.json",
+            "sha256": "c6021534cd7b89a6fad011ef0a3b24093d006c60b0a503bde7327a7686b325c6",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "Physical line-of-sight and possession of electro-optical sensor and telescope equipment",
+        "Proof that audio equipment powered by the device is connected",
+        "Proof that the target is a Raspberry Pi 3 B+ or 4 B device",
+        "Sound generation utility/playback audio setup on the compromised system",
+        "command_control_of_target_audio_playback",
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition.",
+        "LLM inference: Audio output equipment is connected to and powered by the same Raspberry Pi",
+        "LLM inference: The attacker has an optical sensor and telescope with line of sight to the power indicator LED"
+      ],
+      "disagreement": false,
+      "suggestion_accepted": true,
+      "review_complete": true
+    }
+  },
+  {
+    "edge_id": "edge-0006",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "source_code_execution_is_only_possible",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition."
+      ],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  },
+  {
+    "edge_id": "edge-0007",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2019-3562",
+            "path": "CVE-2019-3562.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/3xxx/CVE-2019-3562.json",
+            "sha256": "137bef4174fd3eb53c861e390718ce09e1aebb49aaae7f3efd4af426723b9bd3",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "an unprivileged process",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2021-24038",
+            "path": "CVE-2021-24038.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/24xxx/CVE-2021-24038.json",
+            "sha256": "acb0748685128bcd238f4b070ec7f0231c2f8104cc878cef0105dfe556281a2c",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "Same-host deployment of Oculus Browser and Oculus Desktop",
+        "Verification that CVE-2019-3562 reliably yields unprivileged local code execution rather than merely UI spoofing",
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "source_code_execution_is_only_possible",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition.",
+        "LLM inference: Assumes Oculus Browser runs on the same Windows host as Oculus Desktop OVRServiceLauncher.exe",
+        "LLM inference: Assumes code execution via CVE-2019-3562 is actually realized and yields an unprivileged process context compatible with CVE-2021-24038"
+      ],
+      "disagreement": false,
+      "suggestion_accepted": true,
+      "review_complete": true
+    }
+  }
+]

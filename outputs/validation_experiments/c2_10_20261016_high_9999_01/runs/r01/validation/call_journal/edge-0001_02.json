@@ -1,0 +1,81 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T13:53:26.021139+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The piSignage process runs with root or sufficient privileges to read protected system files such as /etc/shadow",
+        "Sensitive configuration files or shadow hashes exist, are accessible via the path traversal, and can be cracked or read as plaintext credentials"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        }
+      ],
+      "missing_conditions": [
+        "Verification that the web service executes with elevated permissions allowing access to /etc/shadow or sensitive credential files",
+        "Evidence that exfiltrated files actually contain valid or crackable default credentials for the 'pi' user"
+      ],
+      "reason": "The source vulnerability CVE-2019-20354 enables an attacker to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', which provides arbitrary file read but does not guarantee the file contents or execution privileges of the web process. The target requires knowledge of valid default credentials. The edge claim represents an overreach because file disclosure can only potentially lead to credential recovery if the process has read access to /etc/shadow or credential stores, and credentials cannot be inferred from the absence of data. Consequently, this edge cannot enter a strict graph without explicit verification of these missing environmental conditions.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": null
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "e67bbe4e6ac85d5951cddf9b1741ee67e964c8f4316d2b90529a52dcaf3e1215",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "candidates_token_count": 350,
+      "prompt_token_count": 1501,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1501
+        }
+      ],
+      "thoughts_token_count": 5445,
+      "total_token_count": 7296
+    },
+    "cached_response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 350,
+        "prompt_token_count": 1501,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1501
+          }
+        ],
+        "thoughts_token_count": 5445,
+        "total_token_count": 7296
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:53:26.040976+00:00"
+}

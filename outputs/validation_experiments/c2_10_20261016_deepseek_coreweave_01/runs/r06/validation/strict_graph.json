@@ -1,0 +1,119 @@
+{
+  "nodes": [
+    {
+      "id": "node_rpi_default_creds",
+      "label": "Raspberry Pi OS Default Credentials Exploitation (CVE-related)",
+      "precondition": "Network access (e.g., SSH, local console) to a Raspberry Pi device running Raspberry Pi OS up to version 5.10 with default 'pi' account credentials intact",
+      "postcondition": "Attacker gains authenticated local access and administrative (sudo/root) privileges using default password 'raspberry'"
+    },
+    {
+      "id": "node_pisignage_path_traversal",
+      "label": "piSignage Player API Path Traversal Arbitrary File Read (CVE-2021-38383)",
+      "precondition": "Remote network access to piSignage player API (versions prior to 2.6.4) and authenticated as a low-privilege user",
+      "postcondition": "Arbitrary file download and directory traversal via api/settings/log?file=../, exposing sensitive configurations, authentication tokens, and system files from the Raspberry Pi"
+    },
+    {
+      "id": "node_raspap_webconsole_rce",
+      "label": "RaspAP includes/webconsole.php Unrestricted Command Execution (CVE-2021-33357)",
+      "precondition": "Authenticated access to RaspAP 2.5 web interface (e.g., via credentials obtained from system files or default configurations)",
+      "postcondition": "Arbitrary operating system command execution, arbitrary file upload, and execution of arbitrary code on the underlying Raspberry Pi OS"
+    },
+    {
+      "id": "node_rpi_glowworm_attack",
+      "label": "Raspberry Pi Optical Power-LED Side-Channel Audio Recovery (Glowworm Attack)",
+      "precondition": "Raspberry Pi 3 B+ or 4 B device through 2021-08-09 powering audio-output equipment (speakers) playing sound, with optical line-of-sight to the power indicator LED",
+      "postcondition": "Remote interception and reconstruction of speech and acoustic signals played through speakers via optical analysis using a telescope and electro-optical sensor"
+    },
+    {
+      "id": "node_oculus_browser_ui_injection",
+      "label": "Oculus Browser Remote HTML Injection and UI Spoofing",
+      "precondition": "Victim navigates to an attacker-controlled remote web page using Oculus Browser (versions 5.2.7 through 5.7.11)",
+      "postcondition": "Injection of arbitrary HTML into the Oculus Browser UI, enabling UI spoofing and potential remote code execution in the context of the unprivileged local browser process"
+    },
+    {
+      "id": "node_oculus_desktop_ovrredir_privesc",
+      "label": "Oculus Desktop OVRRedir.exe Hard Link Arbitrary File Write Privilege Escalation",
+      "precondition": "Local unprivileged execution on Windows host running Oculus Desktop prior to version 1.44.0.32849",
+      "postcondition": "Arbitrary file write with elevated privileges via hard link to log files, resulting in local privilege escalation to SYSTEM"
+    },
+    {
+      "id": "node_oculus_desktop_ovrservice_privesc",
+      "label": "Oculus Desktop OVRServiceLauncher.exe Handle Leak Privilege Escalation",
+      "precondition": "Local unprivileged process execution on Windows host running Oculus Desktop versions between 1.39 and 31.1.0.67.507",
+      "postcondition": "Exposure of privileged process handle from OVRServiceLauncher.exe to unprivileged process, leading to local privilege escalation to elevated system context"
+    },
+    {
+      "id": "node_nvidia_jetson_iommu_dma",
+      "label": "NVIDIA Jetson Linux IOMMU Configuration Physical DMA Attack",
+      "precondition": "Unprivileged attacker with physical access to NVIDIA Jetson Linux board via the PCI bus",
+      "postcondition": "Direct read/write access to the entire physical address space via PCIe DMA, enabling complete kernel memory tampering, arbitrary code execution, privilege escalation, denial of service, and compromised cross-component security scope"
+    }
+  ],
+  "edges": [],
+  "validation": {
+    "source_graph_sha256": "abeedc46dde60786e00d51c0313a575376265913225e78f6e155476a6aac8127",
+    "strict": true,
+    "excluded_edges": [
+      {
+        "from": "node_pisignage_path_traversal",
+        "to": "node_raspap_webconsole_rce",
+        "label": "Use arbitrary file read to extract credentials/session data from web configs and authenticate to RaspAP",
+        "validation": {
+          "edge_id": "edge-0001",
+          "original_edge_id": null,
+          "status": "unknown",
+          "offline_status": "unknown",
+          "reason": "CVE identity is missing, outside the corpus, or ambiguous."
+        }
+      },
+      {
+        "from": "node_raspap_webconsole_rce",
+        "to": "node_rpi_default_creds",
+        "label": "Leverage shell access to authenticate against or escalate through unchanged default 'pi' account credentials",
+        "validation": {
+          "edge_id": "edge-0002",
+          "original_edge_id": null,
+          "status": "unknown",
+          "offline_status": "unknown",
+          "reason": "CVE identity is missing, outside the corpus, or ambiguous."
+        }
+      },
+      {
+        "from": "node_rpi_default_creds",
+        "to": "node_rpi_glowworm_attack",
+        "label": "Control device audio output and playback of sensitive speech data through connected speakers to facilitate side-channel eavesdropping",
+        "validation": {
+          "edge_id": "edge-0003",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      },
+      {
+        "from": "node_oculus_browser_ui_injection",
+        "to": "node_oculus_desktop_ovrredir_privesc",
+        "label": "Transition from initial browser code execution / local context to create hard links against OVRRedir.exe log paths for elevated file writing",
+        "validation": {
+          "edge_id": "edge-0004",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      },
+      {
+        "from": "node_oculus_browser_ui_injection",
+        "to": "node_oculus_desktop_ovrservice_privesc",
+        "label": "Transition from unprivileged browser payload execution to capture leaked privileged process handles from OVRServiceLauncher.exe",
+        "validation": {
+          "edge_id": "edge-0005",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      }
+    ]
+  }
+}

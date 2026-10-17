@@ -1,0 +1,404 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "offline": {
+      "edge_id": "edge-0001",
+      "original_edge_id": null,
+      "index": 0,
+      "edge": {
+        "from": "CVE-2019-3562",
+        "to": "CVE-2020-1885",
+        "label": "Potential code execution provides local access to exploit file write"
+      },
+      "source_node": {
+        "id": "CVE-2019-3562",
+        "label": "Oculus Browser HTML injection and potential code execution",
+        "precondition": "Victim visits a remote web page using vulnerable Oculus Browser",
+        "postcondition": "Attacker can spoof UI and potentially execute code"
+      },
+      "target_node": {
+        "id": "CVE-2020-1885",
+        "label": "Oculus Desktop local privilege escalation via hard link log file",
+        "precondition": "Local user access on Windows running vulnerable Oculus Desktop",
+        "postcondition": "Ability to write to arbitrary files and gain elevated privileges"
+      },
+      "claim": "Potential code execution provides local access to exploit file write",
+      "ruleset": "evidence-validator-v1",
+      "source_mapping": {
+        "candidates": [
+          "CVE-2019-3562"
+        ],
+        "method": "explicit_id",
+        "status": "mapped",
+        "cve_id": "CVE-2019-3562"
+      },
+      "target_mapping": {
+        "candidates": [
+          "CVE-2020-1885"
+        ],
+        "method": "explicit_id",
+        "status": "mapped",
+        "cve_id": "CVE-2020-1885"
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2019-3562",
+          "description": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code. This affects the Oculus Browser starting from version 5.2.7 until 5.7.11.",
+          "affected": [
+            {
+              "product": "Oculus Browser",
+              "vendor": "Oculus",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "5.7.11"
+                },
+                {
+                  "lessThan": "unspecified",
+                  "status": "affected",
+                  "version": "5.2.7",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThan": "5.2.7",
+                  "status": "unaffected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2019-3562",
+            "path": "CVE-2019-3562.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/3xxx/CVE-2019-3562.json",
+            "sha256": "137bef4174fd3eb53c861e390718ce09e1aebb49aaae7f3efd4af426723b9bd3",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "html_injection": {
+                "quote": "inject arbitrary HTML code",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              },
+              "possible_code_execution": {
+                "quote": "potentially execute code",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "victim_page_visit": {
+                "quote": "A remote web page",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {}
+          },
+          "applicability_rule": {
+            "service": "oculus_browser",
+            "access": "network",
+            "note": "'potentially execute code': user-level foothold is the generous reading. Requires the victim to open an attacker-controlled page (inferred from 'remote web page').",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2020-1885",
+          "description": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.",
+          "affected": [
+            {
+              "product": "Oculus Desktop",
+              "vendor": "Facebook",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "1.44.0.328549"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-1885",
+            "path": "CVE-2020-1885.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/1xxx/CVE-2020-1885.json",
+            "sha256": "d0a5ad39427223f0a713a0f159a9d257f0a6f8635e16cb7a680efb304b979bc0",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "file_write": {
+                "quote": "write to arbitrary files",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              },
+              "privilege_escalation": {
+                "quote": "gain privileges",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "local_user": {
+                "quote": "allows local users",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              },
+              "windows": {
+                "quote": "on Windows",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "windows": {
+                "quote": "on Windows",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "oculus_desktop",
+            "access": "local",
+            "note": "The CVE record's version field has a typo (1.44.0.328549); the description is used. 'gain privileges' is read as admin.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      },
+      "checks": [
+        {
+          "rule": "identity",
+          "outcome": "pass",
+          "ids": [
+            "CVE-2019-3562",
+            "CVE-2020-1885"
+          ]
+        },
+        {
+          "rule": "capability_bridge",
+          "outcome": "conditional",
+          "bridge": "possible_execution_to_local_user"
+        }
+      ],
+      "missing_conditions": [
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "source_code_execution_is_only_possible",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition."
+      ],
+      "hard_conflicts": [],
+      "candidate_bridge": "possible_execution_to_local_user",
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "offline": {
+      "edge_id": "edge-0002",
+      "original_edge_id": null,
+      "index": 1,
+      "edge": {
+        "from": "CVE-2019-3562",
+        "to": "CVE-2021-24038",
+        "label": "Potential code execution provides unprivileged process to obtain privileged handle"
+      },
+      "source_node": {
+        "id": "CVE-2019-3562",
+        "label": "Oculus Browser HTML injection and potential code execution",
+        "precondition": "Victim visits a remote web page using vulnerable Oculus Browser",
+        "postcondition": "Attacker can spoof UI and potentially execute code"
+      },
+      "target_node": {
+        "id": "CVE-2021-24038",
+        "label": "Oculus Desktop local privilege escalation via exposed process handle",
+        "precondition": "Unprivileged process on system running vulnerable Oculus Desktop",
+        "postcondition": "Local privilege escalation via exposed privileged process handle"
+      },
+      "claim": "Potential code execution provides unprivileged process to obtain privileged handle",
+      "ruleset": "evidence-validator-v1",
+      "source_mapping": {
+        "candidates": [
+          "CVE-2019-3562"
+        ],
+        "method": "explicit_id",
+        "status": "mapped",
+        "cve_id": "CVE-2019-3562"
+      },
+      "target_mapping": {
+        "candidates": [
+          "CVE-2021-24038"
+        ],
+        "method": "explicit_id",
+        "status": "mapped",
+        "cve_id": "CVE-2021-24038"
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2019-3562",
+          "description": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code. This affects the Oculus Browser starting from version 5.2.7 until 5.7.11.",
+          "affected": [
+            {
+              "product": "Oculus Browser",
+              "vendor": "Oculus",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "5.7.11"
+                },
+                {
+                  "lessThan": "unspecified",
+                  "status": "affected",
+                  "version": "5.2.7",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThan": "5.2.7",
+                  "status": "unaffected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2019-3562",
+            "path": "CVE-2019-3562.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/3xxx/CVE-2019-3562.json",
+            "sha256": "137bef4174fd3eb53c861e390718ce09e1aebb49aaae7f3efd4af426723b9bd3",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "html_injection": {
+                "quote": "inject arbitrary HTML code",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              },
+              "possible_code_execution": {
+                "quote": "potentially execute code",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "victim_page_visit": {
+                "quote": "A remote web page",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {}
+          },
+          "applicability_rule": {
+            "service": "oculus_browser",
+            "access": "network",
+            "note": "'potentially execute code': user-level foothold is the generous reading. Requires the victim to open an attacker-controlled page (inferred from 'remote web page').",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2021-24038",
+          "description": "Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation. This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.",
+          "affected": [
+            {
+              "product": "Oculus Desktop",
+              "vendor": "Facebook",
+              "versions": [
+                {
+                  "lessThan": "unspecified",
+                  "status": "unaffected",
+                  "version": "31.1.0.67.507",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThan": "31.1.0.67.507",
+                  "status": "affected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThanOrEqual": "1.39",
+                  "status": "unaffected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2021-24038",
+            "path": "CVE-2021-24038.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/24xxx/CVE-2021-24038.json",
+            "sha256": "acb0748685128bcd238f4b070ec7f0231c2f8104cc878cef0105dfe556281a2c",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "privilege_escalation": {
+                "quote": "local privilege escalation",
+                "cve_id": "CVE-2021-24038",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "local_user": {
+                "quote": "an unprivileged process",
+                "cve_id": "CVE-2021-24038",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {}
+          },
+          "applicability_rule": {
+            "service": "oculus_desktop",
+            "access": "local",
+            "note": "",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      },
+      "checks": [
+        {
+          "rule": "identity",
+          "outcome": "pass",
+          "ids": [
+            "CVE-2019-3562",
+            "CVE-2021-24038"
+          ]
+        },
+        {
+          "rule": "capability_bridge",
+          "outcome": "conditional",
+          "bridge": "possible_execution_to_local_user"
+        }
+      ],
+      "missing_conditions": [
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "source_code_execution_is_only_possible",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition."
+      ],
+      "hard_conflicts": [],
+      "candidate_bridge": "possible_execution_to_local_user",
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+    }
+  }
+]

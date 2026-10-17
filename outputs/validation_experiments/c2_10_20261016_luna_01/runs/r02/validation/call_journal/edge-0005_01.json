@@ -1,0 +1,117 @@
+{
+  "edge_id": "edge-0005",
+  "started_at": "2026-10-16T14:32:04.851641+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "A successful source-side code execution leading to a local unprivileged process is an inference, never a fact.",
+        "Co-deployment of Oculus Browser and Oculus Desktop on the same host is an inference, never a fact.",
+        "The generated node preconditions, postconditions, and edge wording are claims, not confirming evidence."
+      ],
+      "confidence": 0.91,
+      "edge_id": "edge-0005",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code."
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation."
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507."
+        }
+      ],
+      "missing_conditions": [
+        "victim interaction with the attacker-controlled remote page",
+        "successful source-side code execution rather than merely potential code execution",
+        "proof that the resulting execution is a local unprivileged process",
+        "Oculus Desktop being deployed on the same host as the source execution",
+        "target Oculus Desktop version being within the affected range",
+        "verification that the target handle-management flaw exposes the privileged handle to the source-created process",
+        "externally verified source-target host and platform relationship"
+      ],
+      "reason": "CVE-2019-3562 actually describes arbitrary HTML injection, UI spoofing, and only potentially code execution from a remote web page; it does not establish successful local process execution. CVE-2021-24038 describes exposure of a privileged process handle to an unprivileged process, leading to local privilege escalation. Thus, a bounded causal bridge is plausible only if the browser vulnerability successfully yields a local unprivileged process on the same host where an affected Oculus Desktop installation and its handle-management flaw are present. The edge overreaches by asserting remote browser execution, capture of the leaked handle, and a local transition without evidence for those conditions. It should not enter a strict graph as a supported edge; it is conditional pending verification of the missing prerequisites.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-24038"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2046,
+      "prompt_tokens": 2098,
+      "total_tokens": 4144,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1552,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 2095,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00297955,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00297955,
+        "upstream_inference_prompt_cost": 0.00052435,
+        "upstream_inference_completions_cost": 0.0024552
+      }
+    },
+    "latency_seconds": 17.394713699999556,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "26be20dd83053440a578e987d43c86733771d4843e3be435980477fdc4e8aeda",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2046,
+        "prompt_tokens": 2098,
+        "total_tokens": 4144,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1552,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2095,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00297955,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00297955,
+          "upstream_inference_prompt_cost": 0.00052435,
+          "upstream_inference_completions_cost": 0.0024552
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"A successful source-side code execution leading to a local unprivileged process is an inference, never a fact.\",\"Co-deployment of Oculus Browser and Oculus Desktop on the same host is an inference, never a fact.\",\"The generated node preconditions, postconditions, and edge wording are claims, not confirming evidence.\"],\"confidence\":0.91,\"edge_id\":\"edge-0005\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code.\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation.\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.\"}],\"missing_conditions\":[\"victim interaction with the attacker-controlled remote page\",\"successful source-side code execution rather than merely potential code execution\",\"proof that the resulting execution is a local unprivileged process\",\"Oculus Desktop being deployed on the same host as the source execution\",\"target Oculus Desktop version being within the affected range\",\"verification that the target handle-management flaw exposes the privileged handle to the source-created process\",\"externally verified source-target host and platform relationship\"],\"reason\":\"CVE-2019-3562 actually describes arbitrary HTML injection, UI spoofing, and only potentially code execution from a remote web page; it does not establish successful local process execution. CVE-2021-24038 describes exposure of a privileged process handle to an unprivileged process, leading to local privilege escalation. Thus, a bounded causal bridge is plausible only if the browser vulnerability successfully yields a local unprivileged process on the same host where an affected Oculus Desktop installation and its handle-management flaw are present. The edge overreaches by asserting remote browser execution, capture of the leaked handle, and a local transition without evidence for those conditions. It should not enter a strict graph as a supported edge; it is conditional pending verification of the missing prerequisites.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-24038\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:32:22.247867+00:00"
+}

@@ -1,0 +1,109 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T14:37:16.230737+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "It is an inference that the generic target node is intended to represent the direct consequence of the source CVE rather than a separately evidenced vulnerability."
+      ],
+      "confidence": 0.95,
+      "edge_id": "edge-0004",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation."
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507."
+        }
+      ],
+      "missing_conditions": [
+        "A local unprivileged process or attacker on an affected Oculus Desktop installation is unverified because the environment is absent.",
+        "Successful exploitation and manipulation of the exposed handle are unverified.",
+        "Evidence that the resulting local privilege escalation reaches SYSTEM or administrative level is missing.",
+        "Evidence that local privilege escalation provides complete control over the host is missing.",
+        "A unique target CVE mapping or an explicitly evidenced target state is missing for strict-graph admission."
+      ],
+      "reason": "CVE-2021-24038 describes a handle-management flaw that could expose a privileged process handle to an unprivileged process and lead to local privilege escalation. Its description does not establish SYSTEM access, full administrative control, or complete host compromise. The source could potentially satisfy the target prerequisite referring to local privilege escalation through OVRServiceLauncher, but that prerequisite is a generated claim rather than confirming evidence, and the supplied environment does not verify its conditions. The edge therefore overreaches from local privilege escalation to SYSTEM/full-host compromise and cannot enter a strict graph as a supported edge because the target is unmapped and its asserted postcondition is unevidenced.",
+      "source_cve_id": "CVE-2021-24038",
+      "suggested_status": "unsupported",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 3823,
+      "prompt_tokens": 1387,
+      "total_tokens": 5210,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3421,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1384,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0049342,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0049342,
+        "upstream_inference_prompt_cost": 0.0003466,
+        "upstream_inference_completions_cost": 0.0045876
+      }
+    },
+    "latency_seconds": 36.26376040000105,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "c878b9ad6a609d99716b30ee73c7bd674760f5d8c9f94c144e66dce1e0693a7b",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 3823,
+        "prompt_tokens": 1387,
+        "total_tokens": 5210,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3421,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1384,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0049342,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0049342,
+          "upstream_inference_prompt_cost": 0.0003466,
+          "upstream_inference_completions_cost": 0.0045876
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"It is an inference that the generic target node is intended to represent the direct consequence of the source CVE rather than a separately evidenced vulnerability.\"],\"confidence\":0.95,\"edge_id\":\"edge-0004\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation.\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.\"}],\"missing_conditions\":[\"A local unprivileged process or attacker on an affected Oculus Desktop installation is unverified because the environment is absent.\",\"Successful exploitation and manipulation of the exposed handle are unverified.\",\"Evidence that the resulting local privilege escalation reaches SYSTEM or administrative level is missing.\",\"Evidence that local privilege escalation provides complete control over the host is missing.\",\"A unique target CVE mapping or an explicitly evidenced target state is missing for strict-graph admission.\"],\"reason\":\"CVE-2021-24038 describes a handle-management flaw that could expose a privileged process handle to an unprivileged process and lead to local privilege escalation. Its description does not establish SYSTEM access, full administrative control, or complete host compromise. The source could potentially satisfy the target prerequisite referring to local privilege escalation through OVRServiceLauncher, but that prerequisite is a generated claim rather than confirming evidence, and the supplied environment does not verify its conditions. The edge therefore overreaches from local privilege escalation to SYSTEM/full-host compromise and cannot enter a strict graph as a supported edge because the target is unmapped and its asserted postcondition is unevidenced.\",\"source_cve_id\":\"CVE-2021-24038\",\"suggested_status\":\"unsupported\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:37:52.496288+00:00"
+}

@@ -1,0 +1,122 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:34:35.571564+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The edge assumes OS administrator privileges from default 'pi' credentials can be used to extract or modify RaspAP web administrative credentials.",
+        "The edge assumes RaspAP credentials are locally accessible or modifiable through that source effect.",
+        "The edge assumes RaspAP is present and configured on the affected Raspberry Pi OS host.",
+        "The edge assumes extraction or modification of RaspAP credentials is sufficient to satisfy the target's authenticated web-interface precondition.",
+        "The edge assumes a network path to the RaspAP web interface exists."
+      ],
+      "confidence": 0.88,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges"
+        }
+      ],
+      "missing_conditions": [
+        "Target CVE mapping is missing, and no supplied target CVE description supports the target prerequisites.",
+        "RaspAP is installed on the same host as Raspberry Pi OS.",
+        "The RaspAP web interface is network-reachable.",
+        "Default Raspberry Pi OS 'pi' password has not been changed.",
+        "RaspAP web administrative credentials are stored in a location readable or writable through the source effect.",
+        "Extracting or modifying those credentials yields authenticated access to the RaspAP 2.5 web interface.",
+        "Explicit environment observations confirm deployment, reachability and credential-handling paths."
+      ],
+      "reason": "CVE-2021-38759's supplied description states a default 'pi' password and says that, if not changed, attackers can gain administrator privileges. That is an OS-account default-credential effect; it does not mention RaspAP, web administrative credentials, extraction or modification of such credentials, or authenticated web access. The target node references CVE-2021-33357 and requires authenticated access to the RaspAP 2.5 web interface, but target mapping status is missing and no target CVE description is supplied. The edge bridges from 'pi'/OS admin privileges to RaspAP web admin credentials, yet no supplied evidence establishes that RaspAP is installed, that its credentials are readable or writable via the source effect, or that such credentials satisfy the target precondition. The generated pre/postconditions are claims, not evidence. Therefore the edge cannot enter a strict graph as stated; it is unsupported and at best conditional on multiple unverified assumptions.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "unsupported",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 5353,
+      "prompt_tokens": 1359,
+      "total_tokens": 6712,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4814,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.000803968284,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000803968284,
+        "upstream_inference_prompt_cost": 3.9559884e-05,
+        "upstream_inference_completions_cost": 0.0007644084
+      }
+    },
+    "latency_seconds": 25.50646030000098,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "c11a87a1e0c44071b30239e98cd2320efb4d8e8f6b7bab8b83f762bfa131dfae",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 5353,
+        "prompt_tokens": 1359,
+        "total_tokens": 6712,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4814,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.000803968284,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000803968284,
+          "upstream_inference_prompt_cost": 3.9559884e-05,
+          "upstream_inference_completions_cost": 0.0007644084
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "baidu/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "Baidu"
+    },
+    "raw_response": "{\"assumptions\":[\"The edge assumes OS administrator privileges from default 'pi' credentials can be used to extract or modify RaspAP web administrative credentials.\",\"The edge assumes RaspAP credentials are locally accessible or modifiable through that source effect.\",\"The edge assumes RaspAP is present and configured on the affected Raspberry Pi OS host.\",\"The edge assumes extraction or modification of RaspAP credentials is sufficient to satisfy the target's authenticated web-interface precondition.\",\"The edge assumes a network path to the RaspAP web interface exists.\"],\"confidence\":0.88,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges\"}],\"missing_conditions\":[\"Target CVE mapping is missing, and no supplied target CVE description supports the target prerequisites.\",\"RaspAP is installed on the same host as Raspberry Pi OS.\",\"The RaspAP web interface is network-reachable.\",\"Default Raspberry Pi OS 'pi' password has not been changed.\",\"RaspAP web administrative credentials are stored in a location readable or writable through the source effect.\",\"Extracting or modifying those credentials yields authenticated access to the RaspAP 2.5 web interface.\",\"Explicit environment observations confirm deployment, reachability and credential-handling paths.\"],\"reason\":\"CVE-2021-38759's supplied description states a default 'pi' password and says that, if not changed, attackers can gain administrator privileges. That is an OS-account default-credential effect; it does not mention RaspAP, web administrative credentials, extraction or modification of such credentials, or authenticated web access. The target node references CVE-2021-33357 and requires authenticated access to the RaspAP 2.5 web interface, but target mapping status is missing and no target CVE description is supplied. The edge bridges from 'pi'/OS admin privileges to RaspAP web admin credentials, yet no supplied evidence establishes that RaspAP is installed, that its credentials are readable or writable via the source effect, or that such credentials satisfy the target precondition. The generated pre/postconditions are claims, not evidence. Therefore the edge cannot enter a strict graph as stated; it is unsupported and at best conditional on multiple unverified assumptions.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"unsupported\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:35:01.080298+00:00"
+}

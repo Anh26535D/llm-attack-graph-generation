@@ -1,0 +1,130 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:48:42.850478+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "Administrative host access might permit reading or modifying RaspAP configuration or credential stores if those files are accessible to that account.",
+        "The RaspAP web console might be deployed on the same host as the default-credential Raspberry Pi access.",
+        "The source node's claimed pi/sudo administrative control might be sufficient to extract or reset web console credentials.",
+        "The edge label's credential extraction/reset bridge is a hypothesized mechanism not established by the supplied CVE description."
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software"
+        }
+      ],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping",
+        "evidence that RaspAP credentials are stored in or resettable from a host-accessible location",
+        "evidence that administrative host access includes permissions over the relevant RaspAP credential store",
+        "evidence that RaspAP web console is reachable from or shares a host with the source node",
+        "evidence that the source node's claimed pi/sudo access is actually achieved",
+        "a supplied source CVE or mechanism linking host administrative access to RaspAP authentication",
+        "target precondition: network access to RaspAP web interface",
+        "target precondition: knowledge of valid or default RaspAP credentials"
+      ],
+      "reason": "The source node claims authenticated Raspberry Pi access with pi user privileges and sudo/administrative control, but its CVE mapping is missing and the source effect is only a node-postcondition claim. The target CVE, CVE-2020-24572, requires 'With authenticated access' to the RaspAP web console and describes the inverse causal direction: authenticated RaspAP access enables attacking the 'underlying OS (Raspberry Pi)' and can 'execute commands on the system'. The edge instead asserts that administrative host access allows extracting or resetting RaspAP web console credentials, which is not stated or evidenced in the supplied CVE description. No evidence establishes same-host deployment, credential storage/extraction, credential reset capability, or the target's network/credential prerequisites. Therefore the bounded causal bridge is unsupported and the edge cannot enter a strict evidence graph as supported.",
+      "source_cve_id": null,
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "63d5d631746f61576a4b386e31cab29f5fcedf4ffccee962b083c0ed41c0d204",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 3909,
+      "prompt_tokens": 1373,
+      "total_tokens": 5282,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3311,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.000598264884,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000598264884,
+        "upstream_inference_prompt_cost": 4.0059684e-05,
+        "upstream_inference_completions_cost": 0.0005582052
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 3909,
+        "prompt_tokens": 1373,
+        "total_tokens": 5282,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3311,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.000598264884,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000598264884,
+          "upstream_inference_prompt_cost": 4.0059684e-05,
+          "upstream_inference_completions_cost": 0.0005582052
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "baidu/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "Baidu"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:48:42.853617+00:00"
+}

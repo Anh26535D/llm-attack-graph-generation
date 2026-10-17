@@ -1,0 +1,140 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:58:41.941359+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The source and target node mappings to CVE-2021-38759 and CVE-2020-24572 are treated as external graph metadata, not evidence of causality.",
+        "The candidate bridge 'possible_credential_access' is a hypothesis, not an observed transition.",
+        "Any same-host deployment of Raspberry Pi OS and RaspAP is unverified unless explicitly observed.",
+        "Strict-graph inclusion would require evidence that source-acquired credentials are accepted by RaspAP web-interface authentication."
+      ],
+      "confidence": 0.86,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "includes/webconsole.php in RaspAP 2.5"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "use a misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system (including ones for uploading of files and execution of code)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi) running this software"
+        }
+      ],
+      "missing_conditions": [
+        "Evidence that the RaspAP web interface accepts the source-acquired pi/default or administrative credentials, rather than requiring separate RaspAP authentication.",
+        "Explicit confirmation that RaspAP 2.5 is deployed on the same Raspberry Pi OS host affected by CVE-2021-38759.",
+        "Authenticated access to includes/webconsole.php on the target RaspAP interface.",
+        "The default pi password remains unchanged at attack time.",
+        "Network reachability to the RaspAP interface is explicitly observed.",
+        "Target application version and product prerequisites for CVE-2020-24572 are verified."
+      ],
+      "reason": "CVE-2021-38759's described effect is conditional Raspberry Pi OS account access: an unchanged 'raspberry default password for the pi account' can let attackers 'gain administrator privileges.' It does not state that these credentials are RaspAP web-interface credentials or that RaspAP authentication accepts them. CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5 and access to includes/webconsole.php before a misconfigured web console can be used to 'execute commands on the system.' The edge claim that the attacker 'uses default/administrative credentials to authenticate to RaspAP interface hosting webconsole.php' overreaches the supplied descriptions, because no same-host deployment or target-application credential validity is established. The bridge is therefore only a potential credential-access hypothesis and cannot enter a strict graph as supported; it would be conditional only if external evidence confirms the missing host and authentication relationships.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "2333d2039339460077b705f18338550c4c8a9b015ebd2ce1e00bc1ddbf15383c",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 6294,
+      "prompt_tokens": 2020,
+      "total_tokens": 8314,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 5619,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0043941,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0043941,
+        "upstream_inference_prompt_cost": 0.000303,
+        "upstream_inference_completions_cost": 0.0040911
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6294,
+        "prompt_tokens": 2020,
+        "total_tokens": 8314,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5619,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0043941,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0043941,
+          "upstream_inference_prompt_cost": 0.000303,
+          "upstream_inference_completions_cost": 0.0040911
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:58:41.946252+00:00"
+}

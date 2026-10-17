@@ -1,0 +1,384 @@
+{
+  "nodes": [
+    {
+      "id": "S01",
+      "kind": "state",
+      "host": "pi-lab",
+      "label": "piSignage API login",
+      "precondition": "Initial lab condition provides low-privilege piSignage API credentials",
+      "postcondition": "Attacker possesses valid low-privilege piSignage API login with reachable API"
+    },
+    {
+      "cve_id": "CVE-2019-20354",
+      "id": "A01",
+      "kind": "action",
+      "host": "pi-lab",
+      "label": "Exploit piSignage path traversal",
+      "prerequisite_logic": "AND",
+      "precondition": "Low-privilege piSignage API authentication and reachable API on pi-lab",
+      "postcondition": "Arbitrary file download capability on pi-lab readable by piSignage"
+    },
+    {
+      "id": "S02",
+      "kind": "state",
+      "host": "pi-lab",
+      "label": "piSignage arbitrary file read",
+      "precondition": "Successful exploitation of piSignage path traversal",
+      "postcondition": "Attacker can download arbitrary files readable by piSignage on pi-lab"
+    },
+    {
+      "id": "A02",
+      "kind": "action",
+      "host": "pi-lab",
+      "label": "Download RaspAP configuration file",
+      "prerequisite_logic": "AND",
+      "precondition": "Arbitrary file read capability via piSignage on pi-lab",
+      "postcondition": "Attacker recovers valid RaspAP low-privilege credentials for pi-lab"
+    },
+    {
+      "id": "S03",
+      "kind": "state",
+      "host": "pi-lab",
+      "label": "RaspAP login credentials",
+      "precondition": "Configuration file downloaded from pi-lab containing RaspAP credentials",
+      "postcondition": "Attacker possesses valid RaspAP login for reachable web console on pi-lab"
+    },
+    {
+      "cve_id": "CVE-2020-24572",
+      "id": "A03",
+      "kind": "action",
+      "host": "pi-lab",
+      "label": "Execute commands via RaspAP web console",
+      "prerequisite_logic": "AND",
+      "precondition": "Authenticated access with valid RaspAP credentials to pi-lab web console",
+      "postcondition": "Execution of commands on pi-lab yielding ordinary OS user shell"
+    },
+    {
+      "id": "S04",
+      "kind": "state",
+      "host": "pi-lab",
+      "label": "Ordinary OS user shell on pi-lab",
+      "precondition": "Command execution via RaspAP unrestricted web console",
+      "postcondition": "Attacker controls ordinary local OS process on pi-lab"
+    },
+    {
+      "id": "A04",
+      "kind": "action",
+      "host": "pi-lab",
+      "label": "Read connector file on pi-lab",
+      "prerequisite_logic": "AND",
+      "precondition": "Ordinary local OS process on pi-lab with read access to connector file",
+      "postcondition": "Attacker obtains valid ordinary-user remote-login credentials for win-a"
+    },
+    {
+      "id": "S05",
+      "kind": "state",
+      "host": "win-a",
+      "label": "Remote login credentials for win-a",
+      "precondition": "Connector file read on pi-lab",
+      "postcondition": "Attacker holds valid ordinary-user remote-login credential for win-a"
+    },
+    {
+      "id": "S06",
+      "kind": "state",
+      "host": "win-a",
+      "label": "Network reachability to win-a remote login",
+      "precondition": "Initial lab network setup",
+      "postcondition": "Remote-login service of win-a is reachable by attacker"
+    },
+    {
+      "id": "A05",
+      "kind": "action",
+      "host": "win-a",
+      "label": "Remote login to win-a",
+      "prerequisite_logic": "AND",
+      "precondition": "Valid win-a ordinary-user credential AND network reachability to win-a remote-login service",
+      "postcondition": "Ordinary local user session established on win-a"
+    },
+    {
+      "id": "S07",
+      "kind": "state",
+      "host": "win-a",
+      "label": "Ordinary user process on win-a",
+      "precondition": "Successful remote login to win-a",
+      "postcondition": "Attacker controls ordinary local user process on win-a running Oculus Desktop 1.40.0"
+    },
+    {
+      "cve_id": "CVE-2020-1885",
+      "id": "A06",
+      "kind": "action",
+      "host": "win-a",
+      "label": "Exploit Oculus Desktop hard-link flaw on win-a",
+      "prerequisite_logic": "AND",
+      "precondition": "Controlled local Windows user process on win-a running vulnerable Oculus Desktop",
+      "postcondition": "Privilege escalation yielding administrator session on win-a"
+    },
+    {
+      "cve_id": "CVE-2021-24038",
+      "id": "A07",
+      "kind": "action",
+      "host": "win-a",
+      "label": "Exploit Oculus Desktop handle exposure on win-a",
+      "prerequisite_logic": "AND",
+      "precondition": "Controlled local unprivileged process on win-a with exposed privileged handle",
+      "postcondition": "Privilege escalation yielding administrator session on win-a"
+    },
+    {
+      "id": "S08",
+      "kind": "state",
+      "host": "win-a",
+      "label": "Administrator session on win-a",
+      "precondition": "Local privilege escalation via hard link or handle exposure on win-a",
+      "postcondition": "Attacker controls administrator session on win-a"
+    },
+    {
+      "id": "A08",
+      "kind": "action",
+      "host": "win-a",
+      "label": "Read administrator connector secret on win-a",
+      "prerequisite_logic": "AND",
+      "precondition": "Administrator session on win-a to read protected secret",
+      "postcondition": "Attacker obtains valid ordinary-user remote-login credentials for win-b"
+    },
+    {
+      "id": "S09",
+      "kind": "state",
+      "host": "win-b",
+      "label": "Remote login credentials for win-b",
+      "precondition": "Administrator connector secret read on win-a",
+      "postcondition": "Attacker possesses valid ordinary-user remote-login credential for win-b"
+    },
+    {
+      "id": "S10",
+      "kind": "state",
+      "host": "win-b",
+      "label": "Network reachability from win-a to win-b",
+      "precondition": "Initial lab routing configuration",
+      "postcondition": "win-b remote login service is reachable exclusively from win-a"
+    },
+    {
+      "id": "A09",
+      "kind": "action",
+      "host": "win-b",
+      "label": "Remote login to win-b from win-a",
+      "prerequisite_logic": "AND",
+      "precondition": "Valid win-b credentials AND network reachability from win-a AND administrator session on win-a",
+      "postcondition": "Ordinary local process established on win-b"
+    },
+    {
+      "id": "S11",
+      "kind": "state",
+      "host": "win-b",
+      "label": "Ordinary user process on win-b",
+      "precondition": "Successful remote login from win-a to win-b",
+      "postcondition": "Attacker controls ordinary local process on win-b running Oculus Desktop 1.44.0.32849"
+    },
+    {
+      "cve_id": "CVE-2021-24038",
+      "id": "A10",
+      "kind": "action",
+      "host": "win-b",
+      "label": "Exploit Oculus Desktop handle exposure on win-b",
+      "prerequisite_logic": "AND",
+      "precondition": "Ordinary local process on win-b running vulnerable Oculus Desktop version",
+      "postcondition": "Privilege escalation yielding administrator control of win-b"
+    },
+    {
+      "id": "S12",
+      "kind": "state",
+      "host": "win-b",
+      "label": "Administrator control of win-b",
+      "precondition": "Successful privilege escalation via handle exposure on win-b",
+      "postcondition": "Attacker holds full administrator control of win-b"
+    },
+    {
+      "cve_id": "CVE-2020-1885",
+      "id": "A11",
+      "kind": "action",
+      "host": "win-b",
+      "label": "Attempt hard-link exploit on win-b (negative control)",
+      "prerequisite_logic": "AND",
+      "precondition": "Unavailable due to patched Oculus Desktop version on win-b",
+      "postcondition": "Action cannot be executed"
+    },
+    {
+      "cve_id": "CVE-2022-21819",
+      "id": "A12",
+      "kind": "action",
+      "host": "jetson-lab",
+      "label": "Attempt Jetson IOMMU physical attack (negative control)",
+      "prerequisite_logic": "AND",
+      "precondition": "Unavailable due to lack of physical and PCI bus access",
+      "postcondition": "Action cannot be executed"
+    },
+    {
+      "cve_id": "CVE-2021-38545",
+      "id": "S13",
+      "kind": "state",
+      "host": "audio-lab",
+      "label": "Recovered speech recording",
+      "precondition": "Glowworm optical observation lab artifact",
+      "postcondition": "Attacker possesses speech recording granting no credential or execution access"
+    },
+    {
+      "cve_id": "CVE-2021-38759",
+      "id": "A13",
+      "kind": "action",
+      "host": "pi-lab",
+      "label": "Attempt default password on pi-lab (negative control)",
+      "prerequisite_logic": "AND",
+      "precondition": "Unavailable because default password was changed",
+      "postcondition": "Action cannot be executed"
+    },
+    {
+      "cve_id": "CVE-2019-3562",
+      "id": "A14",
+      "kind": "action",
+      "host": "vr-headset",
+      "label": "Induce Oculus Browser HTML injection (negative control)",
+      "prerequisite_logic": "AND",
+      "precondition": "Unavailable because victim never opens untrusted page",
+      "postcondition": "Action cannot be executed"
+    }
+  ],
+  "edges": [
+    {
+      "from": "S01",
+      "to": "A01",
+      "relation": "requires",
+      "label": "requires piSignage API access"
+    },
+    {
+      "from": "A01",
+      "to": "S02",
+      "relation": "produces",
+      "label": "produces arbitrary file read"
+    },
+    {
+      "from": "S02",
+      "to": "A02",
+      "relation": "requires",
+      "label": "requires file read capability"
+    },
+    {
+      "from": "A02",
+      "to": "S03",
+      "relation": "produces",
+      "label": "produces RaspAP credentials"
+    },
+    {
+      "from": "S03",
+      "to": "A03",
+      "relation": "requires",
+      "label": "requires RaspAP credentials"
+    },
+    {
+      "from": "A03",
+      "to": "S04",
+      "relation": "produces",
+      "label": "produces ordinary OS user execution"
+    },
+    {
+      "from": "S04",
+      "to": "A04",
+      "relation": "requires",
+      "label": "requires ordinary user execution"
+    },
+    {
+      "from": "A04",
+      "to": "S05",
+      "relation": "produces",
+      "label": "produces win-a credentials"
+    },
+    {
+      "from": "S05",
+      "to": "A05",
+      "relation": "requires",
+      "label": "requires win-a credentials"
+    },
+    {
+      "from": "S06",
+      "to": "A05",
+      "relation": "requires",
+      "label": "requires reachability to win-a"
+    },
+    {
+      "from": "A05",
+      "to": "S07",
+      "relation": "produces",
+      "label": "produces local user process on win-a"
+    },
+    {
+      "from": "S07",
+      "to": "A06",
+      "relation": "requires",
+      "label": "requires local user process on win-a"
+    },
+    {
+      "from": "A06",
+      "to": "S08",
+      "relation": "produces",
+      "label": "produces administrator session on win-a"
+    },
+    {
+      "from": "S07",
+      "to": "A07",
+      "relation": "requires",
+      "label": "requires local unprivileged process on win-a"
+    },
+    {
+      "from": "A07",
+      "to": "S08",
+      "relation": "produces",
+      "label": "produces administrator session on win-a"
+    },
+    {
+      "from": "S08",
+      "to": "A08",
+      "relation": "requires",
+      "label": "requires administrator session on win-a"
+    },
+    {
+      "from": "A08",
+      "to": "S09",
+      "relation": "produces",
+      "label": "produces win-b credentials"
+    },
+    {
+      "from": "S08",
+      "to": "A09",
+      "relation": "requires",
+      "label": "requires administrator session on win-a"
+    },
+    {
+      "from": "S09",
+      "to": "A09",
+      "relation": "requires",
+      "label": "requires win-b credentials"
+    },
+    {
+      "from": "S10",
+      "to": "A09",
+      "relation": "requires",
+      "label": "requires win-a to win-b route reachability"
+    },
+    {
+      "from": "A09",
+      "to": "S11",
+      "relation": "produces",
+      "label": "produces local user process on win-b"
+    },
+    {
+      "from": "S11",
+      "to": "A10",
+      "relation": "requires",
+      "label": "requires local user process on win-b"
+    },
+    {
+      "from": "A10",
+      "to": "S12",
+      "relation": "produces",
+      "label": "produces administrator control of win-b"
+    }
+  ]
+}

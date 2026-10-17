@@ -1,0 +1,145 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:57:22.252936+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Assumes piSignage and RaspAP are deployed on the same Raspberry Pi or share a filesystem readable by the piSignage file-download path; not evidenced.",
+        "Assumes the arbitrary file download can target a file containing RaspAP administrative credentials or session keys; not stated in CVE-2019-20354.",
+        "Assumes any downloaded RaspAP credentials or session keys would be valid for authenticated access to RaspAP 2.5 includes/webconsole.php; not stated in CVE-2020-24572.",
+        "Assumes the target RaspAP service is present, reachable, and vulnerable; not evidenced.",
+        "Generated node pre/postconditions and the edge label are claims, not confirming evidence."
+      ],
+      "confidence": 0.88,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "via api/settings/log?file=../ path traversal"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "includes/webconsole.php in RaspAP 2.5"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "verified same-host or mutually readable filesystem relationship between the piSignage instance and the RaspAP instance",
+        "evidence that the arbitrary file download can read a file containing RaspAP administrative credentials or session keys",
+        "evidence that those credentials or session keys are valid for authenticating to RaspAP 2.5 includes/webconsole.php",
+        "verified source piSignage version before 2.6.4 and low-privilege authenticated access to the piSignage player API",
+        "verified target RaspAP 2.5 service presence and network reachability",
+        "environment observations confirming any of the above, since the supplied environment is absent"
+      ],
+      "reason": "CVE-2019-20354's actual effect is that an authenticated low-privilege remote attacker can download arbitrary files from the Raspberry Pi via the piSignage log-download path traversal. It does not state that downloaded configuration files contain RaspAP administrative credentials or session keys. CVE-2020-24572 requires authenticated access to the RaspAP 2.5 web interface and then allows command execution through includes/webconsole.php; it does not describe how such authentication is obtained. The edge's bridge is therefore an inference: it could potentially hold only if the piSignage file read can access RaspAP credential/session material on the same or mutually readable host and those values authenticate to RaspAP 2.5. Because the supplied CVE descriptions and absent environment do not establish those prerequisites, the edge cannot enter a strict graph as stated; it is unsupported, or at most conditional if the missing conditions are independently verified.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 4829,
+      "prompt_tokens": 2082,
+      "total_tokens": 6911,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4067,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.003413262,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003413262,
+        "upstream_inference_prompt_cost": 0.000274412,
+        "upstream_inference_completions_cost": 0.00313885
+      }
+    },
+    "latency_seconds": 21.439671799998905,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "6737b2247d7466df88c2630cd913feb426bf2299c54fe10f3d871d39bfaf3600",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4829,
+        "prompt_tokens": 2082,
+        "total_tokens": 6911,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4067,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.003413262,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003413262,
+          "upstream_inference_prompt_cost": 0.000274412,
+          "upstream_inference_completions_cost": 0.00313885
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\": [\"Assumes piSignage and RaspAP are deployed on the same Raspberry Pi or share a filesystem readable by the piSignage file-download path; not evidenced.\", \"Assumes the arbitrary file download can target a file containing RaspAP administrative credentials or session keys; not stated in CVE-2019-20354.\", \"Assumes any downloaded RaspAP credentials or session keys would be valid for authenticated access to RaspAP 2.5 includes/webconsole.php; not stated in CVE-2020-24572.\", \"Assumes the target RaspAP service is present, reachable, and vulnerable; not evidenced.\", \"Generated node pre/postconditions and the edge label are claims, not confirming evidence.\"], \"confidence\": 0.88, \"edge_id\": \"edge-0002\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-20354\", \"quote\": \"authenticated as a low-privilege user\"}, {\"cve_id\": \"CVE-2019-20354\", \"quote\": \"download arbitrary files\"}, {\"cve_id\": \"CVE-2019-20354\", \"quote\": \"from the Raspberry Pi\"}, {\"cve_id\": \"CVE-2019-20354\", \"quote\": \"via api/settings/log?file=../ path traversal\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"includes/webconsole.php in RaspAP 2.5\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"underlying OS (Raspberry Pi)\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system\"}], \"missing_conditions\": [\"verified same-host or mutually readable filesystem relationship between the piSignage instance and the RaspAP instance\", \"evidence that the arbitrary file download can read a file containing RaspAP administrative credentials or session keys\", \"evidence that those credentials or session keys are valid for authenticating to RaspAP 2.5 includes/webconsole.php\", \"verified source piSignage version before 2.6.4 and low-privilege authenticated access to the piSignage player API\", \"verified target RaspAP 2.5 service presence and network reachability\", \"environment observations confirming any of the above, since the supplied environment is absent\"], \"reason\": \"CVE-2019-20354's actual effect is that an authenticated low-privilege remote attacker can download arbitrary files from the Raspberry Pi via the piSignage log-download path traversal. It does not state that downloaded configuration files contain RaspAP administrative credentials or session keys. CVE-2020-24572 requires authenticated access to the RaspAP 2.5 web interface and then allows command execution through includes/webconsole.php; it does not describe how such authentication is obtained. The edge's bridge is therefore an inference: it could potentially hold only if the piSignage file read can access RaspAP credential/session material on the same or mutually readable host and those values authenticate to RaspAP 2.5. Because the supplied CVE descriptions and absent environment do not establish those prerequisites, the edge cannot enter a strict graph as stated; it is unsupported, or at most conditional if the missing conditions are independently verified.\", \"source_cve_id\": \"CVE-2019-20354\", \"suggested_status\": \"unsupported\", \"target_cve_id\": \"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:57:43.694585+00:00"
+}

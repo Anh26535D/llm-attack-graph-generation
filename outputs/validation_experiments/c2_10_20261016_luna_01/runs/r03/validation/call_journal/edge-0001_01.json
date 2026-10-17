@@ -1,0 +1,137 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:32:24.623342+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The source and target vulnerabilities may affect the same Raspberry Pi host; this is an inference, never a fact.",
+        "Downloaded files might contain usable credential material; this is an inference, never a fact.",
+        "A credential obtained from a file could potentially be used through an access path required by the target vulnerability; this is an inference, never a fact."
+      ],
+      "confidence": 0.96,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "before 2.6.4"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "has the raspberry default password for the pi account"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "gain administrator privileges"
+        }
+      ],
+      "missing_conditions": [
+        "Verified authenticated low-privilege access to the vulnerable piSignage API",
+        "Verified piSignage version before 2.6.4 on the source host",
+        "Verified relationship placing the piSignage service and Raspberry Pi OS target on the same host or otherwise linking the source output to the target",
+        "Verified existence and accessibility of the particular /etc/shadow or configuration file containing relevant credential material",
+        "Evidence that the downloaded file reveals, permits extraction of, or confirms a usable default password for the pi account",
+        "Verified that the Raspberry Pi OS default password remains unchanged",
+        "Verified access to an authentication interface through which any recovered credential could be used"
+      ],
+      "reason": "CVE-2019-20354 establishes a potentially useful source effect: an authenticated low-privilege user can download arbitrary files from a Raspberry Pi, but it does not state that the files contain the pi account's default password, usable credentials, or information sufficient to confirm them. CVE-2021-38759 requires the Raspberry Pi OS default password for the pi account to remain unchanged and states that this can allow administrator privileges; it does not establish that the password can be obtained through the source vulnerability. The edge therefore overstates the causal bridge from arbitrary file read to valid default credentials. The descriptions also do not verify a shared host, applicable versions in the environment, file contents, password state, or a usable authentication path. The bridge is potentially plausible only if those conditions are separately verified, so the edge cannot enter a strict supported graph on the supplied evidence.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1649,
+      "prompt_tokens": 1961,
+      "total_tokens": 3610,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1034,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1958,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0024689,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0024689,
+        "upstream_inference_prompt_cost": 0.0004901,
+        "upstream_inference_completions_cost": 0.0019788
+      }
+    },
+    "latency_seconds": 16.048067800000354,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "a841ac53033421f290b9d1943969e0c9ea039a1470265b879045f49c530fc5c6",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1649,
+        "prompt_tokens": 1961,
+        "total_tokens": 3610,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1034,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1958,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0024689,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0024689,
+          "upstream_inference_prompt_cost": 0.0004901,
+          "upstream_inference_completions_cost": 0.0019788
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The source and target vulnerabilities may affect the same Raspberry Pi host; this is an inference, never a fact.\",\"Downloaded files might contain usable credential material; this is an inference, never a fact.\",\"A credential obtained from a file could potentially be used through an access path required by the target vulnerability; this is an inference, never a fact.\"],\"confidence\":0.96,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"before 2.6.4\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"from the Raspberry Pi\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"has the raspberry default password for the pi account\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"gain administrator privileges\"}],\"missing_conditions\":[\"Verified authenticated low-privilege access to the vulnerable piSignage API\",\"Verified piSignage version before 2.6.4 on the source host\",\"Verified relationship placing the piSignage service and Raspberry Pi OS target on the same host or otherwise linking the source output to the target\",\"Verified existence and accessibility of the particular /etc/shadow or configuration file containing relevant credential material\",\"Evidence that the downloaded file reveals, permits extraction of, or confirms a usable default password for the pi account\",\"Verified that the Raspberry Pi OS default password remains unchanged\",\"Verified access to an authentication interface through which any recovered credential could be used\"],\"reason\":\"CVE-2019-20354 establishes a potentially useful source effect: an authenticated low-privilege user can download arbitrary files from a Raspberry Pi, but it does not state that the files contain the pi account's default password, usable credentials, or information sufficient to confirm them. CVE-2021-38759 requires the Raspberry Pi OS default password for the pi account to remain unchanged and states that this can allow administrator privileges; it does not establish that the password can be obtained through the source vulnerability. The edge therefore overstates the causal bridge from arbitrary file read to valid default credentials. The descriptions also do not verify a shared host, applicable versions in the environment, file contents, password state, or a usable authentication path. The bridge is potentially plausible only if those conditions are separately verified, so the edge cannot enter a strict supported graph on the supplied evidence.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"unknown\",\"target_cve_id\":\"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:32:40.673833+00:00"
+}

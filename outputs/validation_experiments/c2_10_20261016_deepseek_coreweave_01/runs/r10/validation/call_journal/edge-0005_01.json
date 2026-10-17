@@ -1,0 +1,140 @@
+{
+  "edge_id": "edge-0005",
+  "started_at": "2026-10-16T15:07:29.763618+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The edge label's 'Code execution gained' is treated as a claim requiring confirmation, not as evidence.",
+        "A strict graph is assumed to require a demonstrated causal bridge, not merely a plausible one.",
+        "No same-host, platform, or execution-context relationship is inferred from the absence of environment observations."
+      ],
+      "confidence": 0.74,
+      "edge_id": "edge-0005",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "inject arbitrary HTML code"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "via vectors involving a hard link to a log file"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "gain privileges"
+        }
+      ],
+      "missing_conditions": [
+        "source CVE produces actual code execution rather than only being able to 'potentially execute code'",
+        "source code execution yields local unprivileged execution on the target Windows host",
+        "Oculus Browser and Oculus Desktop are co-located on the same host",
+        "target host runs Oculus Desktop before 1.44.0.32849 on Windows",
+        "the attacker can construct the required hard link to a log file used by OVRRedir.exe",
+        "OVRRedir.exe writes to the unprivileged file through that hard link and thereby enables arbitrary file write/privilege escalation",
+        "source and target vulnerabilities are reachable in the necessary order and security context"
+      ],
+      "reason": "The source CVE-2019-3562 describes a remote web page that could 'inject arbitrary HTML code' into Oculus Browser UI and 'potentially execute code'; it does not confirm actual code execution, local filesystem access, Windows, or co-location with Oculus Desktop. The target CVE-2020-1885 requires 'on Windows' and 'allows local users' plus a 'hard link to a log file' so that privileged OVRRedir.exe writes to an unprivileged file and can 'gain privileges'. The edge overreaches by converting 'potentially execute code' into 'Code execution gained' and by asserting that this provides 'local unprivileged execution needed to construct hard links targeting OVRRedir.exe'; the description only supports a potential code-execution effect, not the target's local-user/hard-link prerequisites or a same-host bridge. A bounded causal bridge could exist only if the source's potential code execution is actual, is local unprivileged execution on the same Windows host, and the target hard-link vector is feasible; none of these are established by the supplied descriptions or empty environment observations. Thus the edge cannot enter a strict graph as stated and remains conditional on those unverified prerequisites.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 6851,
+      "prompt_tokens": 2197,
+      "total_tokens": 9048,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 6182,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 384,
+        "video_tokens": 0
+      },
+      "cost": 0.004725868,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.004725868,
+        "upstream_inference_prompt_cost": 0.000272718,
+        "upstream_inference_completions_cost": 0.00445315
+      }
+    },
+    "latency_seconds": 40.30601030000071,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "76a0dabf1bed3e679fc5305ecdf85258792a76ed398e8634fba571bd4e92ccdd",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6851,
+        "prompt_tokens": 2197,
+        "total_tokens": 9048,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6182,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384,
+          "video_tokens": 0
+        },
+        "cost": 0.004725868,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004725868,
+          "upstream_inference_prompt_cost": 0.000272718,
+          "upstream_inference_completions_cost": 0.00445315
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The edge label's 'Code execution gained' is treated as a claim requiring confirmation, not as evidence.\",\"A strict graph is assumed to require a demonstrated causal bridge, not merely a plausible one.\",\"No same-host, platform, or execution-context relationship is inferred from the absence of environment observations.\"],\"confidence\":0.74,\"edge_id\":\"edge-0005\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"inject arbitrary HTML code\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"potentially execute code\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"on Windows\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"allows local users\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"via vectors involving a hard link to a log file\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"gain privileges\"}],\"missing_conditions\":[\"source CVE produces actual code execution rather than only being able to 'potentially execute code'\",\"source code execution yields local unprivileged execution on the target Windows host\",\"Oculus Browser and Oculus Desktop are co-located on the same host\",\"target host runs Oculus Desktop before 1.44.0.32849 on Windows\",\"the attacker can construct the required hard link to a log file used by OVRRedir.exe\",\"OVRRedir.exe writes to the unprivileged file through that hard link and thereby enables arbitrary file write/privilege escalation\",\"source and target vulnerabilities are reachable in the necessary order and security context\"],\"reason\":\"The source CVE-2019-3562 describes a remote web page that could 'inject arbitrary HTML code' into Oculus Browser UI and 'potentially execute code'; it does not confirm actual code execution, local filesystem access, Windows, or co-location with Oculus Desktop. The target CVE-2020-1885 requires 'on Windows' and 'allows local users' plus a 'hard link to a log file' so that privileged OVRRedir.exe writes to an unprivileged file and can 'gain privileges'. The edge overreaches by converting 'potentially execute code' into 'Code execution gained' and by asserting that this provides 'local unprivileged execution needed to construct hard links targeting OVRRedir.exe'; the description only supports a potential code-execution effect, not the target's local-user/hard-link prerequisites or a same-host bridge. A bounded causal bridge could exist only if the source's potential code execution is actual, is local unprivileged execution on the same Windows host, and the target hard-link vector is feasible; none of these are established by the supplied descriptions or empty environment observations. Thus the edge cannot enter a strict graph as stated and remains conditional on those unverified prerequisites.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-1885\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:08:10.071330+00:00"
+}

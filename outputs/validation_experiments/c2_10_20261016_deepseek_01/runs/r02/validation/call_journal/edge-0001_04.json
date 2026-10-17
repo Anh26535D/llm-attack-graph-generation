@@ -1,0 +1,125 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:49:44.784600+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "piSignage may be installed on the same Raspberry Pi OS host, but neither CVE description states this.",
+        "Raspberry Pi OS default or discovered credentials may map to piSignage web credentials, but neither CVE description states credential reuse.",
+        "Administrator OS access may allow discovery or creation of piSignage credentials, but no supplied description establishes such a method.",
+        "The source CVE's default-password condition may be true on the target, but the environment observations are absent."
+      ],
+      "confidence": 0.86,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges."
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        }
+      ],
+      "missing_conditions": [
+        "verified unchanged default password on the target Raspberry Pi OS host",
+        "verified same-host deployment or explicit network/service relationship between the Raspberry Pi OS host and the piSignage web application",
+        "verified credential linkage or reuse between Raspberry Pi OS credentials and a piSignage low-privilege web user",
+        "attacker possession or acquisition of authenticated low-privilege piSignage credentials",
+        "verified piSignage version < 2.6.4 on the target",
+        "network reachability to the piSignage web application/API",
+        "explicit evidence that Raspberry Pi OS administrator access can obtain the required piSignage low-privilege web session"
+      ],
+      "reason": "CVE-2021-38759 describes a conditional OS-level effect: Raspberry Pi OS through 5.10 has a default password for the pi account, and if it is not changed, attackers can gain administrator privileges. CVE-2019-20354 requires an authenticated low-privilege piSignage user and piSignage before 2.6.4 to exploit the path traversal and download arbitrary files. The edge asserts that default system credentials or discovered credentials yield an authenticated low-privilege piSignage web session. The supplied descriptions do not establish piSignage deployment on the same host, credential reuse, or a method to obtain piSignage credentials from OS administrator access. The bridge is therefore conditional and potentially plausible only under unverified assumptions; as currently evidenced, it cannot enter a strict supported graph.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2019-20354"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "57223d6827dcfb0a88596ac508ccd84db30cd871827182731308649521b964f4",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 4283,
+      "prompt_tokens": 2039,
+      "total_tokens": 6322,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3718,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.000675448284,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000675448284,
+        "upstream_inference_prompt_cost": 6.3835884e-05,
+        "upstream_inference_completions_cost": 0.0006116124
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4283,
+        "prompt_tokens": 2039,
+        "total_tokens": 6322,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3718,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.000675448284,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000675448284,
+          "upstream_inference_prompt_cost": 6.3835884e-05,
+          "upstream_inference_completions_cost": 0.0006116124
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "baidu/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "Baidu"
+    },
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:49:44.792572+00:00"
+}

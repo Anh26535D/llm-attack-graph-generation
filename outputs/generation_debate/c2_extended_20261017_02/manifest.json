@@ -1,0 +1,55 @@
+{
+  "scope": "synthetic_C2_extended_state_action",
+  "created_at": "2026-10-16T17:21:03.872711+00:00",
+  "repeats": 1,
+  "strategies": [
+    "grounded",
+    "self_refine",
+    "debate"
+  ],
+  "config": {
+    "rounds": 1,
+    "max_output_tokens": 32768,
+    "reasoning_level": "medium",
+    "argument_words": 80
+  },
+  "roles": {
+    "generator": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "defender": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "skeptic": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "judge": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    }
+  },
+  "same_model_for_all_roles": true,
+  "max_api_calls_per_repeat": 7,
+  "max_api_calls_total": 7,
+  "public_sha256": "b7cc65f114d2eeefccaf6fd12a0b18e650307e6972bb5896e75a55ff68d4e291",
+  "reference_sha256": "bb7d7737064a536143a9ac85f3bb995bca2fe6dcca06f8fe12d4d3789f82a47c",
+  "task_sha256": "95eb5923efd18a302e1bfe4271bd1d121f53ec62d0a527652317447d6e6baa0e",
+  "code_sha256": {
+    "src\\crystalball\\scenario_debate.py": "214e3b60987aedb33db4c136d146f8bf5fe60704c417c178664c28ce85b5f7ff",
+    "src\\crystalball\\generation_debate.py": "782ec3eca409837d121578702606a94c018b8e003716f89f1414cc20af7562bf",
+    "src\\crystalball\\generation_debate_runner.py": "20ee5592c25d049034bcea8861ab83d5998e8d60f4f1217bce9141aaf26c1f07",
+    "src\\crystalball\\config.py": "d217fb95bc19ffde30834297ca780ba1eae6fac17a50adcdb73982d145664726",
+    "src\\crystalball\\experiment.py": "dfa1368db6df982d8b450ee66ebb5d5ce3e2ef5772e494d9b85794592f29fc1a",
+    "src\\crystalball\\llm\\base.py": "65a17b1f87bec77d025d013d43c3513cecd542388381840e837a7e82d549dc25",
+    "src\\crystalball\\llm\\factory.py": "8c2ed8fecf2075d2b2a613eced5e5545915672177d551ab9f17fe6207929d263",
+    "src\\crystalball\\llm\\gemini_client.py": "1d12c3359da04b08d945e2ec7e42cd60bdbce88a805a675ce302e03bede4f8a9",
+    "src\\crystalball\\llm\\openrouter_client.py": "e31d3004610654eb44b8f23a7c3e864d427053b7e12c4e060484ade218467e4e",
+    "src\\crystalball\\llm\\openai_client.py": "3ae8f63ab874158b6a2257e43575577937d4a33f09ab5bb19356edd08e060483"
+  },
+  "reference_visible_to_model": false,
+  "automatic_retries": false,
+  "accuracy": null
+}

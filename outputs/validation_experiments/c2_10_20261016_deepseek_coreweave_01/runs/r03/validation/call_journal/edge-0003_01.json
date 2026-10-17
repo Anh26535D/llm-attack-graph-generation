@@ -1,0 +1,139 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:57:43.696223+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The RaspAP instance and the Raspberry Pi OS default-credential target are the same host; this is not established by the supplied descriptions or environment_state.",
+        "The web-console commands execute as an unprivileged service account; the source CVE description does not state command privilege.",
+        "The pi account retains the default 'raspberry' password and has sudo/full-root rights; the target CVE description states a default password and administrator privileges but not the exact sudo/full-root mechanism.",
+        "The web-shell command context can non-interactively authenticate as pi with the default password and invoke sudo; this is not stated in either CVE description.",
+        "Network or local terminal access to Raspberry Pi OS is available; target description implies attacker access, but environment_state is empty."
+      ],
+      "confidence": 0.86,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "including ones for uploading of files and execution of code"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges"
+        }
+      ],
+      "missing_conditions": [
+        "externally_verified_source_target_host_relationship",
+        "source_command_privilege_confirmed_as_unprivileged_service_account",
+        "target_default_pi_password_unchanged",
+        "target_version_through_5.10_confirmed",
+        "pi_account_has_sudo_or_equivalent_full_root_administrative_rights",
+        "source_command_context_allows_su_or_authentication_as_pi",
+        "sudo_available_and_permitted_non_interactively",
+        "environment_state_has_network_or_local_access_to_target"
+      ],
+      "reason": "CVE-2020-24572 supports an authenticated attacker using the RaspAP web console to execute commands on the underlying Raspberry Pi OS, but it does not state that those commands run as an unprivileged service account or that they can authenticate as another local user. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the default pi password not changed and, under that condition, states attackers can gain administrator privileges; it does not state sudo, full root, or that web-shell command execution can invoke su/sudo with pi:raspberry. The edge claim overreaches by asserting a specific credential-based privilege-escalation bridge from web-shell commands to full root via sudo. The descriptions do not ground the same-host relationship, the command privilege, the ability to use default credentials from that context, or pi's sudo rights. Potentially conditional if those unverified prerequisites are present, but not a strict graph edge as stated.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 8550,
+      "prompt_tokens": 2040,
+      "total_tokens": 10590,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 7873,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.005825612,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005825612,
+        "upstream_inference_prompt_cost": 0.000268112,
+        "upstream_inference_completions_cost": 0.0055575
+      }
+    },
+    "latency_seconds": 44.97182199999952,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "bea1d3c87b207623803dd316ef07dda9f832150c3ac0900b3150b57b76922482",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 8550,
+        "prompt_tokens": 2040,
+        "total_tokens": 10590,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7873,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.005825612,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005825612,
+          "upstream_inference_prompt_cost": 0.000268112,
+          "upstream_inference_completions_cost": 0.0055575
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The RaspAP instance and the Raspberry Pi OS default-credential target are the same host; this is not established by the supplied descriptions or environment_state.\",\"The web-console commands execute as an unprivileged service account; the source CVE description does not state command privilege.\",\"The pi account retains the default 'raspberry' password and has sudo/full-root rights; the target CVE description states a default password and administrator privileges but not the exact sudo/full-root mechanism.\",\"The web-shell command context can non-interactively authenticate as pi with the default password and invoke sudo; this is not stated in either CVE description.\",\"Network or local terminal access to Raspberry Pi OS is available; target description implies attacker access, but environment_state is empty.\"],\"confidence\":0.86,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"including ones for uploading of files and execution of code\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges\"}],\"missing_conditions\":[\"externally_verified_source_target_host_relationship\",\"source_command_privilege_confirmed_as_unprivileged_service_account\",\"target_default_pi_password_unchanged\",\"target_version_through_5.10_confirmed\",\"pi_account_has_sudo_or_equivalent_full_root_administrative_rights\",\"source_command_context_allows_su_or_authentication_as_pi\",\"sudo_available_and_permitted_non_interactively\",\"environment_state_has_network_or_local_access_to_target\"],\"reason\":\"CVE-2020-24572 supports an authenticated attacker using the RaspAP web console to execute commands on the underlying Raspberry Pi OS, but it does not state that those commands run as an unprivileged service account or that they can authenticate as another local user. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the default pi password not changed and, under that condition, states attackers can gain administrator privileges; it does not state sudo, full root, or that web-shell command execution can invoke su/sudo with pi:raspberry. The edge claim overreaches by asserting a specific credential-based privilege-escalation bridge from web-shell commands to full root via sudo. The descriptions do not ground the same-host relationship, the command privilege, the ability to use default credentials from that context, or pi's sudo rights. Potentially conditional if those unverified prerequisites are present, but not a strict graph edge as stated.\",\"source_cve_id\":\"CVE-2020-24572\",\"suggested_status\":\"unsupported\",\"target_cve_id\":\"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:58:28.670306+00:00"
+}

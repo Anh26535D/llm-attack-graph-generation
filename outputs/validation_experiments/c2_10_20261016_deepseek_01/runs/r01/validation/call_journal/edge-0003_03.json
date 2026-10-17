@@ -1,0 +1,135 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:46:42.841854+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The edge presumes an authenticated RaspAP session is sufficient to navigate to includes/webconsole.php; this is an inference from the supplied CVE description, not an observed transition.",
+        "The source node label mentions Recovered/Default Credentials, but the supplied description does not confirm how authentication is obtained.",
+        "The candidate bridge possible_credential_access is not directly confirmed; the description supports authenticated access to a web console, not credential access by itself.",
+        "The graph treats the source node postcondition as matching the target node precondition; this is a semantic bridge claim that still needs environment validation."
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "use a misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "including ones for uploading of files and execution of code"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        }
+      ],
+      "missing_conditions": [
+        "The authenticated session must be verified to have access to includes/webconsole.php; the CVE requires authenticated access but does not state that every authenticated RaspAP user can reach that endpoint.",
+        "The RaspAP 2.5 instance must expose a misconfigured (and virtually unrestricted) web console at includes/webconsole.php.",
+        "The source credentials mechanism involving recovered or default credentials is not evidenced by the CVE description.",
+        "The edge label says navigation enables RCE, but navigation alone is not shown to execute commands; the description supports using the web console to execute commands.",
+        "No explicit environment observation confirms that the source session and target RCE path are on the same reachable RaspAP 2.5 deployment."
+      ],
+      "reason": "CVE-2020-24572 states that with authenticated access an attacker can use a misconfigured and virtually unrestricted web console to execute commands on the underlying Raspberry Pi OS. The source node's authenticated RaspAP session can satisfy the target prerequisite only if that session can reach includes/webconsole.php and the vulnerable web console is present and misconfigured. The bounded causal bridge is therefore conditional: authenticated access plus vulnerable web console access potentially leads to command execution, but the edge's navigation claim is weaker than the described execution effect and requires verification of endpoint accessibility and deployment relationships.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "a734ece1bc95c86f8f3cbb0158a32fe031e207698d36e39b15af92124fa78383",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 3415,
+      "prompt_tokens": 2031,
+      "total_tokens": 5446,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2845,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0005601687,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0005601687,
+        "upstream_inference_prompt_cost": 7.25067e-05,
+        "upstream_inference_completions_cost": 0.000487662
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 3415,
+        "prompt_tokens": 2031,
+        "total_tokens": 5446,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2845,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0005601687,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0005601687,
+          "upstream_inference_prompt_cost": 7.25067e-05,
+          "upstream_inference_completions_cost": 0.000487662
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "baidu/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "Baidu"
+    },
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:46:42.846734+00:00"
+}

@@ -1,0 +1,112 @@
+{
+  "edge_id": "edge-0007",
+  "started_at": "2026-10-16T14:38:23.114841+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The source and target conditions apply to the same Raspberry Pi OS instance; this is an inference, not a fact.",
+        "Administrator privileges would be sufficient for the target's OS-control behavior; this is an inference, not a fact."
+      ],
+      "confidence": 0.88,
+      "edge_id": "edge-0007",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "The pi account password is actually unchanged.",
+        "A reachable authentication service or console provides an exploitation path; no such service is identified by the CVE description.",
+        "Successful exploitation provides usable OS command execution on the relevant host, rather than only the stated potential to gain administrator privileges.",
+        "The source and target conditions hold on the same deployed host.",
+        "Connected audio peripherals and accessible hardware or power-control interfaces are present.",
+        "Independent evidence establishes process control, audio output, and power-state control; the target node claims do not confirm these effects.",
+        "A target CVE or other evidence mapping is available for the claimed target capability."
+      ],
+      "reason": "CVE-2021-38759 describes a conditional default-credential weakness whose stated effect is that attackers can gain administrator privileges if the password was not changed. It does not establish root or sudo shell access, direct control of OS services, code execution, hardware access, audio output, or power-state changes. Administrator access could potentially satisfy part of the target prerequisite, but that bridge is conditional on authentication access, same-host deployment, and the required hardware and interfaces. The target CVE is unmapped, and its generated precondition and postcondition are claims rather than confirming evidence. The edge therefore should not enter a strict graph as supported; it is only a conditional relationship.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "conditional",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2494,
+      "prompt_tokens": 1285,
+      "total_tokens": 3779,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2070,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1282,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0033139,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0033139,
+        "upstream_inference_prompt_cost": 0.0003211,
+        "upstream_inference_completions_cost": 0.0029928
+      }
+    },
+    "latency_seconds": 22.66481339999882,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "43490cd55a24e289562afd9a0f0538362c608b2f6781ffa69f6ca426804059b2",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2494,
+        "prompt_tokens": 1285,
+        "total_tokens": 3779,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2070,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1282,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0033139,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0033139,
+          "upstream_inference_prompt_cost": 0.0003211,
+          "upstream_inference_completions_cost": 0.0029928
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The source and target conditions apply to the same Raspberry Pi OS instance; this is an inference, not a fact.\",\"Administrator privileges would be sufficient for the target's OS-control behavior; this is an inference, not a fact.\"],\"confidence\":0.88,\"edge_id\":\"edge-0007\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"}],\"missing_conditions\":[\"The pi account password is actually unchanged.\",\"A reachable authentication service or console provides an exploitation path; no such service is identified by the CVE description.\",\"Successful exploitation provides usable OS command execution on the relevant host, rather than only the stated potential to gain administrator privileges.\",\"The source and target conditions hold on the same deployed host.\",\"Connected audio peripherals and accessible hardware or power-control interfaces are present.\",\"Independent evidence establishes process control, audio output, and power-state control; the target node claims do not confirm these effects.\",\"A target CVE or other evidence mapping is available for the claimed target capability.\"],\"reason\":\"CVE-2021-38759 describes a conditional default-credential weakness whose stated effect is that attackers can gain administrator privileges if the password was not changed. It does not establish root or sudo shell access, direct control of OS services, code execution, hardware access, audio output, or power-state changes. Administrator access could potentially satisfy part of the target prerequisite, but that bridge is conditional on authentication access, same-host deployment, and the required hardware and interfaces. The target CVE is unmapped, and its generated precondition and postcondition are claims rather than confirming evidence. The edge therefore should not enter a strict graph as supported; it is only a conditional relationship.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"conditional\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:38:45.799942+00:00"
+}

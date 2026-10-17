@@ -1,0 +1,84 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T13:45:46.115264+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inferred that the source node executes on the same host running Raspberry Pi OS",
+        "Inferred that default credentials 'pi:raspberry' remain unchanged on the target host",
+        "Inferred that obtaining shell access through the source component enables privilege escalation via local credentials"
+      ],
+      "confidence": 0.2,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "Supplied CVE description and evidence confirming source command execution effect",
+        "Verification that the target platform is Raspberry Pi OS through 5.10",
+        "Verification that default credentials for the 'pi' account are unchanged",
+        "Verification of same-host deployment or reachable authentication interface between source and target"
+      ],
+      "reason": "The source node lacks a mapped CVE and has no supplied CVE description to substantiate its claimed command execution effects. The target CVE-2021-38759 requires Raspberry Pi OS through 5.10 with unchanged default credentials for attackers to potentially gain administrator privileges. Without verified source effects or evidence of co-location, the bounded causal bridge cannot be established, preventing the edge from entering a strict graph.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 333,
+      "prompt_token_count": 1496,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1496
+        }
+      ],
+      "thoughts_token_count": 3014,
+      "total_token_count": 4843
+    },
+    "latency_seconds": 32.36692360000052,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "41a667fc4f826e8ced645ba53a25d2d0b6a7f4c22406a7e5b79ce015d55282db",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 333,
+        "prompt_token_count": 1496,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1496
+          }
+        ],
+        "thoughts_token_count": 3014,
+        "total_token_count": 4843
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"Inferred that the source node executes on the same host running Raspberry Pi OS\", \"Inferred that default credentials 'pi:raspberry' remain unchanged on the target host\", \"Inferred that obtaining shell access through the source component enables privilege escalation via local credentials\"], \"confidence\": 0.2, \"edge_id\": \"edge-0002\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.\"}], \"missing_conditions\": [\"Supplied CVE description and evidence confirming source command execution effect\", \"Verification that the target platform is Raspberry Pi OS through 5.10\", \"Verification that default credentials for the 'pi' account are unchanged\", \"Verification of same-host deployment or reachable authentication interface between source and target\"], \"reason\": \"The source node lacks a mapped CVE and has no supplied CVE description to substantiate its claimed command execution effects. The target CVE-2021-38759 requires Raspberry Pi OS through 5.10 with unchanged default credentials for attackers to potentially gain administrator privileges. Without verified source effects or evidence of co-location, the bounded causal bridge cannot be established, preventing the edge from entering a strict graph.\", \"source_cve_id\": null, \"suggested_status\": \"unknown\", \"target_cve_id\": \"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:46:18.484616+00:00"
+}

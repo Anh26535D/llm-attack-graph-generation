@@ -1,0 +1,130 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:32:40.693989+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The piSignage and RaspAP services may be co-deployed on the same Raspberry Pi; this is an inference, not an observation.",
+        "A file downloaded through the source flaw might contain authentication material accepted by RaspAP; this is an inference, not evidence.",
+        "Any downloaded authentication material might be valid, reusable, and have sufficient privilege for the target; this is an inference, not evidence."
+      ],
+      "confidence": 0.95,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "Verified applicability of CVE-2019-20354 to the source piSignage version and platform.",
+        "Authenticated low-privilege access to the piSignage player API.",
+        "Verified applicability of CVE-2020-24572 to RaspAP 2.5 and its platform.",
+        "An externally verified relationship showing that the source and target services are deployed on the same host or otherwise share readable files.",
+        "A specific RaspAP configuration, credential store, or session-material path that the source flaw can read.",
+        "Evidence that the downloaded material contains valid RaspAP authentication credentials or session keys.",
+        "Evidence that the material is reusable, unexpired, sufficiently privileged, and accepted by the target interface.",
+        "Authenticated access to the target RaspAP web interface and the target console's stated misconfiguration."
+      ],
+      "reason": "CVE-2019-20354 establishes only that a remote attacker already authenticated as a low-privilege user can download arbitrary files from the Raspberry Pi. It does not establish that the files contain RaspAP administrative credentials or session keys, that piSignage and RaspAP share a host or filesystem, or that any material is valid for the target. CVE-2020-24572 requires authenticated access to the RaspAP interface and describes command execution through a misconfigured web console. Therefore, the proposed credential-access bridge is potentially valid only if the missing host relationship, readable file, and valid target-accepted authentication conditions are verified. The generated node claims are not confirming evidence. Without those conditions, the edge should not enter a strict graph as a supported edge; it remains conditional.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2150,
+      "prompt_tokens": 1990,
+      "total_tokens": 4140,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1552,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1987,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00307735,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00307735,
+        "upstream_inference_prompt_cost": 0.00049735,
+        "upstream_inference_completions_cost": 0.00258
+      }
+    },
+    "latency_seconds": 21.043914300000324,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "45d48b9bbdca7312a533470edef3b16a4838883fb74dbe60720f9a4c5261a415",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2150,
+        "prompt_tokens": 1990,
+        "total_tokens": 4140,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1552,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1987,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00307735,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00307735,
+          "upstream_inference_prompt_cost": 0.00049735,
+          "upstream_inference_completions_cost": 0.00258
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The piSignage and RaspAP services may be co-deployed on the same Raspberry Pi; this is an inference, not an observation.\",\"A file downloaded through the source flaw might contain authentication material accepted by RaspAP; this is an inference, not evidence.\",\"Any downloaded authentication material might be valid, reusable, and have sufficient privilege for the target; this is an inference, not evidence.\"],\"confidence\":0.95,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"from the Raspberry Pi\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"misconfigured (and virtually unrestricted) web console\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"}],\"missing_conditions\":[\"Verified applicability of CVE-2019-20354 to the source piSignage version and platform.\",\"Authenticated low-privilege access to the piSignage player API.\",\"Verified applicability of CVE-2020-24572 to RaspAP 2.5 and its platform.\",\"An externally verified relationship showing that the source and target services are deployed on the same host or otherwise share readable files.\",\"A specific RaspAP configuration, credential store, or session-material path that the source flaw can read.\",\"Evidence that the downloaded material contains valid RaspAP authentication credentials or session keys.\",\"Evidence that the material is reusable, unexpired, sufficiently privileged, and accepted by the target interface.\",\"Authenticated access to the target RaspAP web interface and the target console's stated misconfiguration.\"],\"reason\":\"CVE-2019-20354 establishes only that a remote attacker already authenticated as a low-privilege user can download arbitrary files from the Raspberry Pi. It does not establish that the files contain RaspAP administrative credentials or session keys, that piSignage and RaspAP share a host or filesystem, or that any material is valid for the target. CVE-2020-24572 requires authenticated access to the RaspAP interface and describes command execution through a misconfigured web console. Therefore, the proposed credential-access bridge is potentially valid only if the missing host relationship, readable file, and valid target-accepted authentication conditions are verified. The generated node claims are not confirming evidence. Without those conditions, the edge should not enter a strict graph as a supported edge; it remains conditional.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:33:01.740293+00:00"
+}

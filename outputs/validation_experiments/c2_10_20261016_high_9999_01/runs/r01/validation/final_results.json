@@ -1,0 +1,252 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "final": {
+      "status": "unknown",
+      "reason": "CVE identity is missing, outside the corpus, or ambiguous.",
+      "issues": [
+        "offline_evidence_bound_preserved"
+      ],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2019-20354",
+            "path": "CVE-2019-20354.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/20xxx/CVE-2019-20354.json",
+            "sha256": "788efb357a4566d9181068aad5a01347ad249307300d9618cdf72aba7dd966dc",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "Evidence that exfiltrated files actually contain valid or crackable default credentials for the 'pi' user",
+        "Verification that the web service executes with elevated permissions allowing access to /etc/shadow or sensitive credential files",
+        "unique_source_and_target_CVE_mapping"
+      ],
+      "assumptions": [
+        "LLM inference: The piSignage process runs with root or sufficient privileges to read protected system files such as /etc/shadow",
+        "LLM inference: Sensitive configuration files or shadow hashes exist, are accessible via the path traversal, and can be cracked or read as plaintext credentials"
+      ],
+      "disagreement": true,
+      "suggestion_accepted": false,
+      "review_complete": true
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "final": {
+      "status": "unknown",
+      "reason": "CVE identity is missing, outside the corpus, or ambiguous.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping"
+      ],
+      "assumptions": [],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system (including ones for uploading of files and execution of code)",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "externally_verified_source_target_host_relationship",
+        "externally_verified_valid_raspap_credentials_or_session",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "network_accessibility_of_includes_webconsole_php",
+        "readable_valid_target_application_credentials",
+        "source:product_platform_version_and_prerequisites",
+        "source_process_can_read_or_modify_target_authentication_material",
+        "target:product_platform_version_and_prerequisites",
+        "verified_deployment_of_raspap_2.5_on_raspberry_pi"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition.",
+        "LLM inference: Valid credentials or an authenticated session for RaspAP 2.5 can be obtained without an identified credential-disclosure vulnerability",
+        "LLM inference: Source and target nodes refer to the same RaspAP deployment on the underlying Raspberry Pi OS"
+      ],
+      "disagreement": false,
+      "suggestion_accepted": true,
+      "review_complete": true
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2019-3562",
+            "path": "CVE-2019-3562.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/3xxx/CVE-2019-3562.json",
+            "sha256": "137bef4174fd3eb53c861e390718ce09e1aebb49aaae7f3efd4af426723b9bd3",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2020-1885",
+            "path": "CVE-2020-1885.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/1xxx/CVE-2020-1885.json",
+            "sha256": "d0a5ad39427223f0a713a0f159a9d257f0a6f8635e16cb7a680efb304b979bc0",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2020-1885",
+            "path": "CVE-2020-1885.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/1xxx/CVE-2020-1885.json",
+            "sha256": "d0a5ad39427223f0a713a0f159a9d257f0a6f8635e16cb7a680efb304b979bc0",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "Confirmation of local user filesystem privileges necessary to create hard links.",
+        "Confirmation that the UI injection in CVE-2019-3562 achieves local code execution outside of a browser sandbox.",
+        "Verification of same-host deployment of Oculus Browser and Oculus Desktop on Windows.",
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "source_code_execution_is_only_possible",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition.",
+        "LLM inference: Assuming Oculus Browser runs on Windows co-located on the same host as Oculus Desktop.",
+        "LLM inference: Assuming that the ability to 'potentially execute code' results in an unprivileged local user execution context capable of creating NTFS hard links."
+      ],
+      "disagreement": false,
+      "suggestion_accepted": true,
+      "review_complete": true
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2019-3562",
+            "path": "CVE-2019-3562.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/3xxx/CVE-2019-3562.json",
+            "sha256": "137bef4174fd3eb53c861e390718ce09e1aebb49aaae7f3efd4af426723b9bd3",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2019-3562",
+            "path": "CVE-2019-3562.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/3xxx/CVE-2019-3562.json",
+            "sha256": "137bef4174fd3eb53c861e390718ce09e1aebb49aaae7f3efd4af426723b9bd3",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "an unprivileged process",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2021-24038",
+            "path": "CVE-2021-24038.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/24xxx/CVE-2021-24038.json",
+            "sha256": "acb0748685128bcd238f4b070ec7f0231c2f8104cc878cef0105dfe556281a2c",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2021-24038",
+            "path": "CVE-2021-24038.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/24xxx/CVE-2021-24038.json",
+            "sha256": "acb0748685128bcd238f4b070ec7f0231c2f8104cc878cef0105dfe556281a2c",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "Confirmation that the UI injection actually yields local process execution rather than UI spoofing alone.",
+        "Environment compatibility confirming that the browser execution context can interact with OVRServiceLauncher.exe handles.",
+        "Proof of co-location/same-host deployment of Oculus Browser and Oculus Desktop.",
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "source_code_execution_is_only_possible",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition.",
+        "LLM inference: Oculus Browser and Oculus Desktop (OVRServiceLauncher.exe) are deployed on the same host.",
+        "LLM inference: The browser HTML injection vulnerability reliably achieves local process execution despite the description stating it can only 'potentially execute code'."
+      ],
+      "disagreement": false,
+      "suggestion_accepted": true,
+      "review_complete": true
+    }
+  }
+]

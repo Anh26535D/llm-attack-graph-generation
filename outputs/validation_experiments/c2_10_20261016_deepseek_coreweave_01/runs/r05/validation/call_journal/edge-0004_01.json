@@ -1,0 +1,89 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T15:05:33.861250+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 9999,
+      "prompt_tokens": 1464,
+      "total_tokens": 11463,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 9713,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.006681062,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.006681062,
+        "upstream_inference_prompt_cost": 0.000181712,
+        "upstream_inference_completions_cost": 0.00649935
+      }
+    },
+    "latency_seconds": 65.4969799999999,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "0c1bcec47046553ae1e6667c17b852969cdfea54b73f12fec63c92d0cfb7e81e",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 9999,
+        "prompt_tokens": 1464,
+        "total_tokens": 11463,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 9713,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.006681062,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.006681062,
+          "upstream_inference_prompt_cost": 0.000181712,
+          "upstream_inference_completions_cost": 0.00649935
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "length"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The edge label's 'to SYSTEM' and 'via manipulation' are inferences beyond the supplied CVE description.\",\"Local privilege escalation may potentially reach SYSTEM, but the description does not guarantee that integrity level.\",\"The leaked handle might be usable by the attacker to escalate privileges, but that step is not explicitly described.\",\"The target node is an outcome node without a mapped CVE, so strict CVE-to-CVE validation cannot confirm it.\",\"The target node's full-host-compromise postcondition is a generated claim, not confirming evidence.\"],\"confidence\":0.78,\"edge_id\":\"edge-0004\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"Due to a bug with management of handles in OVRServiceLauncher.exe\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"an attacker could expose a privileged process handle to an unprivileged process\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"leading to local privilege escalation\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.\"}],\"missing_conditions\":[\"Unique source-and-target CVE mapping is not satisfied because target_mapping.status is missing and target"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T15:06:39.359566+00:00"
+}

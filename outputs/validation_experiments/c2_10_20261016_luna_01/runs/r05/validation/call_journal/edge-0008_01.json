@@ -1,0 +1,120 @@
+{
+  "edge_id": "edge-0008",
+  "started_at": "2026-10-16T14:38:45.801867+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference only: the source command execution and the target audio/power controls occur on the same Raspberry Pi instance.",
+        "Inference only: the source execution context has sufficient permissions to control audio processes and power states.",
+        "Inference only: the required audio software, connected equipment, and power-control interfaces are present and reachable."
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0008",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "including ones for uploading of files and execution of code"
+        }
+      ],
+      "missing_conditions": [
+        "Valid authenticated access to RaspAP 2.5 is available.",
+        "The privilege of the command-execution context is sufficient to control the relevant processes and power states; command privilege is not stated.",
+        "Audio playback software is installed and controllable by the executed commands.",
+        "Connected audio peripheral equipment exists and is reachable.",
+        "The target audio and power-control capabilities are deployed on the same Raspberry Pi as the RaspAP instance.",
+        "A unique target CVE mapping or an explicitly permitted non-CVE target is available for strict graph admission."
+      ],
+      "reason": "CVE-2020-24572 establishes that, with authenticated access, the RaspAP web console can execute commands on the underlying Raspberry Pi, potentially including file upload and code execution. It does not establish administrator or root privilege, arbitrary control of audio or power subsystems, or how authenticated access is obtained; the node claims about default credentials or extracted credentials are not evidence in the description. The target node's stated outcome additionally requires suitable audio software, reachable hardware, power-control interfaces, sufficient permissions, and a verified co-located deployment. The causal bridge is therefore only potential and conditional. Because no target CVE is mapped, this edge cannot enter a strict uniquely mapped CVE graph.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 3212,
+      "prompt_tokens": 1347,
+      "total_tokens": 4559,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2755,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1344,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.004191,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.004191,
+        "upstream_inference_prompt_cost": 0.0003366,
+        "upstream_inference_completions_cost": 0.0038544
+      }
+    },
+    "latency_seconds": 31.384731600001032,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "90e6b40f987e65bdb9e2d9fe8b58bf92e5aaf1d95db701cec1fe020963a4830d",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 3212,
+        "prompt_tokens": 1347,
+        "total_tokens": 4559,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2755,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1344,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.004191,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004191,
+          "upstream_inference_prompt_cost": 0.0003366,
+          "upstream_inference_completions_cost": 0.0038544
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inference only: the source command execution and the target audio/power controls occur on the same Raspberry Pi instance.\",\"Inference only: the source execution context has sufficient permissions to control audio processes and power states.\",\"Inference only: the required audio software, connected equipment, and power-control interfaces are present and reachable.\"],\"confidence\":0.9,\"edge_id\":\"edge-0008\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"including ones for uploading of files and execution of code\"}],\"missing_conditions\":[\"Valid authenticated access to RaspAP 2.5 is available.\",\"The privilege of the command-execution context is sufficient to control the relevant processes and power states; command privilege is not stated.\",\"Audio playback software is installed and controllable by the executed commands.\",\"Connected audio peripheral equipment exists and is reachable.\",\"The target audio and power-control capabilities are deployed on the same Raspberry Pi as the RaspAP instance.\",\"A unique target CVE mapping or an explicitly permitted non-CVE target is available for strict graph admission.\"],\"reason\":\"CVE-2020-24572 establishes that, with authenticated access, the RaspAP web console can execute commands on the underlying Raspberry Pi, potentially including file upload and code execution. It does not establish administrator or root privilege, arbitrary control of audio or power subsystems, or how authenticated access is obtained; the node claims about default credentials or extracted credentials are not evidence in the description. The target node's stated outcome additionally requires suitable audio software, reachable hardware, power-control interfaces, sufficient permissions, and a verified co-located deployment. The causal bridge is therefore only potential and conditional. Because no target CVE is mapped, this edge cannot enter a strict uniquely mapped CVE graph.\",\"source_cve_id\":\"CVE-2020-24572\",\"suggested_status\":\"conditional\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:39:17.188386+00:00"
+}

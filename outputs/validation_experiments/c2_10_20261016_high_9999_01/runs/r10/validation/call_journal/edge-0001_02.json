@@ -1,0 +1,84 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:02:23.199943+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "piSignage and RaspAP are deployed on the same Raspberry Pi host",
+        "piSignage arbitrary file read can access RaspAP configuration or session files across service boundaries",
+        "RaspAP configuration files or session storage contain valid plaintext credentials or active session tokens"
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping",
+        "supplied vulnerability descriptions for CVE-2021-34336 and CVE-2021-33357",
+        "environment observation confirming co-location of piSignage and RaspAP on the same host",
+        "verification that piSignage process permissions allow reading RaspAP configuration or session files",
+        "verification of credential presence in accessible configuration files"
+      ],
+      "reason": "Both source and target CVEs are unmapped within the corpus and lack supplied vulnerability descriptions. The edge claims that arbitrary file read via piSignage allows an attacker to extract RaspAP configuration files and admin credentials to satisfy the authentication prerequisite for RaspAP web console command execution. However, this causal bridge improperly infers same-host deployment, cross-service filesystem read permissions, and credential exposure from absence of data. Without mapped CVE definitions and environmental co-location evidence, this edge cannot enter a strict graph.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 312,
+      "prompt_token_count": 965,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 965
+        }
+      ],
+      "thoughts_token_count": 6471,
+      "total_token_count": 7748
+    },
+    "latency_seconds": 50.44658479999998,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "6cd1ff3e1f3cb213d970c92cba36f001808399f42fc85c2fc58e3f2bcd36aa44",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 312,
+        "prompt_token_count": 965,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 965
+          }
+        ],
+        "thoughts_token_count": 6471,
+        "total_token_count": 7748
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"piSignage and RaspAP are deployed on the same Raspberry Pi host\", \"piSignage arbitrary file read can access RaspAP configuration or session files across service boundaries\", \"RaspAP configuration files or session storage contain valid plaintext credentials or active session tokens\"], \"confidence\": 0.9, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [], \"missing_conditions\": [\"unique_source_and_target_CVE_mapping\", \"supplied vulnerability descriptions for CVE-2021-34336 and CVE-2021-33357\", \"environment observation confirming co-location of piSignage and RaspAP on the same host\", \"verification that piSignage process permissions allow reading RaspAP configuration or session files\", \"verification of credential presence in accessible configuration files\"], \"reason\": \"Both source and target CVEs are unmapped within the corpus and lack supplied vulnerability descriptions. The edge claims that arbitrary file read via piSignage allows an attacker to extract RaspAP configuration files and admin credentials to satisfy the authentication prerequisite for RaspAP web console command execution. However, this causal bridge improperly infers same-host deployment, cross-service filesystem read permissions, and credential exposure from absence of data. Without mapped CVE definitions and environmental co-location evidence, this edge cannot enter a strict graph.\", \"source_cve_id\": null, \"suggested_status\": \"unknown\", \"target_cve_id\": null}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:03:13.654035+00:00"
+}

@@ -1,0 +1,132 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:49:44.809683+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "Generated node pre/postconditions and the edge label are claims, not confirming evidence.",
+        "No explicit environment observations are supplied beyond an empty environment_state.",
+        "The edge's '/etc/shadow' and 'configuration files' examples are treated as unverified claims, not as description facts."
+      ],
+      "confidence": 0.86,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "The path traversal can read credential-bearing files such as /etc/shadow or configuration files; the source description only states 'download arbitrary files' without specifying readable file contents or paths.",
+        "The piSignage process has sufficient filesystem permission to read credential-bearing files; not stated.",
+        "Downloaded files actually contain usable OS user credentials; not stated.",
+        "Any extracted credentials correspond to an account that grants administrative/sudo/root access; not stated.",
+        "The target Raspberry Pi OS has the default 'pi' account and 'raspberry' password unchanged; the target description is conditional: 'If not changed'.",
+        "The source piSignage instance and target Raspberry Pi OS are the same host or share the relevant filesystem/credentials; not established.",
+        "The target Raspberry Pi OS is reachable and usable for authentication; not established by the supplied descriptions."
+      ],
+      "reason": "CVE-2019-20354's actual described effect is that an authenticated low-privilege remote attacker can 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal.' That is a file-read/download primitive. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the 'raspberry default password for the pi account' unchanged; only then can attackers 'gain administrator privileges.' The edge asserts that downloaded system files, potentially including /etc/shadow or configuration files, yield OS user credentials that bridge to the default-credentials target. The supplied descriptions do not establish that bridge: they do not say which files are readable, that readable files contain credentials, that credentials are for the pi account, that the default password is unchanged, or that source and target are the same host. The edge is therefore overreaching and lacks description-grounded prerequisites; it cannot enter a strict graph as written.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "a3c8d4cc5edf923428d225614615d2cce0aa392609d9442b3a630074408e8ec4",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 6754,
+      "prompt_tokens": 2025,
+      "total_tokens": 8779,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 6131,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.001027807284,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.001027807284,
+        "upstream_inference_prompt_cost": 6.3336084e-05,
+        "upstream_inference_completions_cost": 0.0009644712
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6754,
+        "prompt_tokens": 2025,
+        "total_tokens": 8779,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6131,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.001027807284,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.001027807284,
+          "upstream_inference_prompt_cost": 6.3336084e-05,
+          "upstream_inference_completions_cost": 0.0009644712
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "baidu/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "Baidu"
+    },
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:49:44.815684+00:00"
+}

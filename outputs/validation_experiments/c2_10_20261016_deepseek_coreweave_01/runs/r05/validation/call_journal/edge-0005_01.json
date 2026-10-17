@@ -1,0 +1,128 @@
+{
+  "edge_id": "edge-0005",
+  "started_at": "2026-10-16T15:06:39.361904+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Assuming piSignage and RaspAP are co-located on the same Raspberry Pi filesystem, and that the piSignage path traversal can read RaspAP credential or session files, is an inference not supported by the supplied CVE descriptions or environment observations.",
+        "Assuming any downloaded file contains valid RaspAP credentials or usable session tokens is an inference not confirmed by the CVE descriptions.",
+        "Assuming such credentials or tokens satisfy RaspAP 2.5 authentication is an inference, not an observed causal transition.",
+        "No explicit environment observations are supplied; environment_state is empty."
+      ],
+      "confidence": 0.8,
+      "edge_id": "edge-0005",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "An issue was discovered in includes/webconsole.php in RaspAP 2.5."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "Explicit observation that piSignage and RaspAP are deployed on the same Raspberry Pi or share an accessible filesystem.",
+        "Explicit evidence that the piSignage arbitrary-file-download path can read RaspAP configuration, credential, or session-token files.",
+        "Explicit evidence that downloaded artifacts contain valid RaspAP credentials or session tokens.",
+        "Explicit evidence that such credentials or tokens satisfy RaspAP 2.5 authenticated access.",
+        "Explicit observation that RaspAP 2.5 is present and reachable in the environment.",
+        "Source-side low-privilege piSignage authentication is described, but no evidence it grants or bypasses RaspAP authentication."
+      ],
+      "reason": "The source CVE-2019-20354 describes an authenticated low-privilege piSignage user who can download arbitrary files from the Raspberry Pi via a path traversal. The target CVE-2020-24572 requires authenticated access to RaspAP 2.5 before the misconfigured web console can be used to attack the underlying OS. The edge claim overreaches by asserting that downloaded configuration files leak credentials and session tokens that satisfy RaspAP authentication; the supplied descriptions do not mention RaspAP credentials, session tokens, configuration-file contents, or a same-host relationship. The bounded bridge is only potentially possible if unobserved environment conditions hold. Therefore the edge cannot enter a strict graph as supported; it is at most conditional pending explicit environment verification.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 7943,
+      "prompt_tokens": 2091,
+      "total_tokens": 10034,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 7321,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 384,
+        "video_tokens": 0
+      },
+      "cost": 0.005419768,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005419768,
+        "upstream_inference_prompt_cost": 0.000256818,
+        "upstream_inference_completions_cost": 0.00516295
+      }
+    },
+    "latency_seconds": 53.53988229999959,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "8d98910e833550d3ee853bb37b5ad0236db7006ab01871c579d0c188f4e136f3",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 7943,
+        "prompt_tokens": 2091,
+        "total_tokens": 10034,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7321,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384,
+          "video_tokens": 0
+        },
+        "cost": 0.005419768,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005419768,
+          "upstream_inference_prompt_cost": 0.000256818,
+          "upstream_inference_completions_cost": 0.00516295
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Assuming piSignage and RaspAP are co-located on the same Raspberry Pi filesystem, and that the piSignage path traversal can read RaspAP credential or session files, is an inference not supported by the supplied CVE descriptions or environment observations.\",\"Assuming any downloaded file contains valid RaspAP credentials or usable session tokens is an inference not confirmed by the CVE descriptions.\",\"Assuming such credentials or tokens satisfy RaspAP 2.5 authentication is an inference, not an observed causal transition.\",\"No explicit environment observations are supplied; environment_state is empty.\"],\"confidence\":0.8,\"edge_id\":\"edge-0005\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"An issue was discovered in includes/webconsole.php in RaspAP 2.5.\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system\"}],\"missing_conditions\":[\"Explicit observation that piSignage and RaspAP are deployed on the same Raspberry Pi or share an accessible filesystem.\",\"Explicit evidence that the piSignage arbitrary-file-download path can read RaspAP configuration, credential, or session-token files.\",\"Explicit evidence that downloaded artifacts contain valid RaspAP credentials or session tokens.\",\"Explicit evidence that such credentials or tokens satisfy RaspAP 2.5 authenticated access.\",\"Explicit observation that RaspAP 2.5 is present and reachable in the environment.\",\"Source-side low-privilege piSignage authentication is described, but no evidence it grants or bypasses RaspAP authentication.\"],\"reason\":\"The source CVE-2019-20354 describes an authenticated low-privilege piSignage user who can download arbitrary files from the Raspberry Pi via a path traversal. The target CVE-2020-24572 requires authenticated access to RaspAP 2.5 before the misconfigured web console can be used to attack the underlying OS. The edge claim overreaches by asserting that downloaded configuration files leak credentials and session tokens that satisfy RaspAP authentication; the supplied descriptions do not mention RaspAP credentials, session tokens, configuration-file contents, or a same-host relationship. The bounded bridge is only potentially possible if unobserved environment conditions hold. Therefore the edge cannot enter a strict graph as supported; it is at most conditional pending explicit environment verification.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:07:32.904092+00:00"
+}

@@ -1,0 +1,111 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:30:32.292116+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Treating the source node's postcondition as evidence of administrative host access would be an inference, not a fact.",
+        "Treating the source and target as deployed on the same Raspberry Pi would be an inference, not a fact.",
+        "Treating administrative host access as sufficient to extract or reset RaspAP credentials would be an inference, not a fact."
+      ],
+      "confidence": 0.97,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code)."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "in RaspAP 2.5"
+        }
+      ],
+      "missing_conditions": [
+        "A mapped source CVE or independent supplied evidence establishing the claimed default-credential administrative foothold.",
+        "Confirmation that RaspAP 2.5 is deployed on the host reached through the source access.",
+        "Access to the RaspAP web console.",
+        "Authenticated RaspAP access, or an evidenced mechanism by which the source effect extracts or resets those credentials.",
+        "A demonstrated causal bridge from host access to RaspAP credential recovery or reset."
+      ],
+      "reason": "The source has no mapped CVE, and its administrative-access postcondition is only a generated claim rather than confirming evidence, so the source's actual effect cannot be established. CVE-2020-24572 describes a potentially exploitable RaspAP 2.5 web console that, with authenticated access, can attack the underlying Raspberry Pi OS and execute commands; it does not describe extracting or resetting RaspAP authentication credentials. The edge therefore overstates the source effect and does not establish the target's authenticated-access prerequisite, same-host deployment, or a credential-recovery mechanism. It cannot enter a strict graph on the supplied evidence, but the edge is not contradicted; its status is unknown.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2519,
+      "prompt_tokens": 1304,
+      "total_tokens": 3823,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2070,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1301,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00334865,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00334865,
+        "upstream_inference_prompt_cost": 0.00032585,
+        "upstream_inference_completions_cost": 0.0030228
+      }
+    },
+    "latency_seconds": 23.140816999999515,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "6cbbeb891250bbc4b2e2048d5f10c042c6423df0343bceca8e5eb1e0fe81900a",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2519,
+        "prompt_tokens": 1304,
+        "total_tokens": 3823,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2070,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1301,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00334865,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00334865,
+          "upstream_inference_prompt_cost": 0.00032585,
+          "upstream_inference_completions_cost": 0.0030228
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Treating the source node's postcondition as evidence of administrative host access would be an inference, not a fact.\",\"Treating the source and target as deployed on the same Raspberry Pi would be an inference, not a fact.\",\"Treating administrative host access as sufficient to extract or reset RaspAP credentials would be an inference, not a fact.\"],\"confidence\":0.97,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"in RaspAP 2.5\"}],\"missing_conditions\":[\"A mapped source CVE or independent supplied evidence establishing the claimed default-credential administrative foothold.\",\"Confirmation that RaspAP 2.5 is deployed on the host reached through the source access.\",\"Access to the RaspAP web console.\",\"Authenticated RaspAP access, or an evidenced mechanism by which the source effect extracts or resets those credentials.\",\"A demonstrated causal bridge from host access to RaspAP credential recovery or reset.\"],\"reason\":\"The source has no mapped CVE, and its administrative-access postcondition is only a generated claim rather than confirming evidence, so the source's actual effect cannot be established. CVE-2020-24572 describes a potentially exploitable RaspAP 2.5 web console that, with authenticated access, can attack the underlying Raspberry Pi OS and execute commands; it does not describe extracting or resetting RaspAP authentication credentials. The edge therefore overstates the source effect and does not establish the target's authenticated-access prerequisite, same-host deployment, or a credential-recovery mechanism. It cannot enter a strict graph on the supplied evidence, but the edge is not contradicted; its status is unknown.\",\"source_cve_id\":null,\"suggested_status\":\"unknown\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:30:55.434657+00:00"
+}

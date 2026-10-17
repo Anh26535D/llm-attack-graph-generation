@@ -1,0 +1,135 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:55:38.892172+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference: arbitrary file read can expose configuration or application credentials.",
+        "Inference: exposed credentials might be valid for RaspAP web-interface authentication.",
+        "Inference: piSignage and RaspAP are co-located or share a credential store.",
+        "Inference: extracted credentials can satisfy the target's authenticated access requirement."
+      ],
+      "confidence": 0.4,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        }
+      ],
+      "missing_conditions": [
+        "readable files obtained via CVE-2019-20354 contain valid RaspAP web-interface credentials",
+        "piSignage and RaspAP are deployed on the same host or share a credential store",
+        "the extracted credentials are accepted by RaspAP 2.5 authentication",
+        "target RaspAP 2.5 is reachable and vulnerable in the attacker's environment",
+        "no separate authentication boundary prevents reuse of piSignage-readable files for RaspAP"
+      ],
+      "reason": "The source CVE permits a low-privilege authenticated attacker to download arbitrary files from the Raspberry Pi via path traversal; it does not state file contents or that credentials are present. The target CVE requires authenticated access to RaspAP 2.5 and can execute commands on the system. The edge bridge additionally needs readable valid RaspAP credentials and same-host/shared credential store; those are unverified. Therefore the edge is overreaching and cannot enter a strict graph; it is at most conditional if missing conditions are independently established.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 7702,
+      "prompt_tokens": 2009,
+      "total_tokens": 9711,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 7235,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.005269762,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005269762,
+        "upstream_inference_prompt_cost": 0.000263462,
+        "upstream_inference_completions_cost": 0.0050063
+      }
+    },
+    "latency_seconds": 42.536084800000026,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "47580e035946bbf72b85d59156905af8d92eb60b86a344ee99e20d0a324d45ae",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 7702,
+        "prompt_tokens": 2009,
+        "total_tokens": 9711,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7235,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.005269762,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005269762,
+          "upstream_inference_prompt_cost": 0.000263462,
+          "upstream_inference_completions_cost": 0.0050063
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Inference: arbitrary file read can expose configuration or application credentials.\",\"Inference: exposed credentials might be valid for RaspAP web-interface authentication.\",\"Inference: piSignage and RaspAP are co-located or share a credential store.\",\"Inference: extracted credentials can satisfy the target's authenticated access requirement.\"],\"confidence\":0.4,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"from the Raspberry Pi\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"}],\"missing_conditions\":[\"readable files obtained via CVE-2019-20354 contain valid RaspAP web-interface credentials\",\"piSignage and RaspAP are deployed on the same host or share a credential store\",\"the extracted credentials are accepted by RaspAP 2.5 authentication\",\"target RaspAP 2.5 is reachable and vulnerable in the attacker's environment\",\"no separate authentication boundary prevents reuse of piSignage-readable files for RaspAP\"],\"reason\":\"The source CVE permits a low-privilege authenticated attacker to download arbitrary files from the Raspberry Pi via path traversal; it does not state file contents or that credentials are present. The target CVE requires authenticated access to RaspAP 2.5 and can execute commands on the system. The edge bridge additionally needs readable valid RaspAP credentials and same-host/shared credential store; those are unverified. Therefore the edge is overreaching and cannot enter a strict graph; it is at most conditional if missing conditions are independently established.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:56:21.430626+00:00"
+}

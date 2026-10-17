@@ -1,0 +1,132 @@
+{
+  "edge_id": "edge-0006",
+  "started_at": "2026-10-16T15:13:05.183325+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are treated as claims, not confirming evidence.",
+        "The candidate bridge is treated as an inference, not an observed causal transition.",
+        "Strict graph admission is assumed to require supplied evidence for the target's authenticated-access prerequisite.",
+        "No credential relationship between the Raspberry Pi OS pi account and RaspAP authentication is assumed without explicit evidence."
+      ],
+      "confidence": 0.82,
+      "edge_id": "edge-0006",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "includes/webconsole.php in RaspAP 2.5"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "Explicit evidence that RaspAP 2.5 is installed and reachable on the affected or connected host.",
+        "Explicit evidence that RaspAP web-console authentication accepts the Raspberry Pi OS pi default credentials, or that the source otherwise yields valid RaspAP credentials.",
+        "Default pi password remains unchanged.",
+        "Network or local access to the RaspAP web interface is available to the attacker.",
+        "Source and target product/platform/version relationships are explicitly verified.",
+        "The source's administrator-privilege effect is causally connected to satisfying the target's authenticated-access prerequisite."
+      ],
+      "reason": "CVE-2021-38759 states that Raspberry Pi OS through 5.10 has a default password for the pi account and that, if it is not changed, attackers can gain administrator privileges. That is at most an OS-account/admin effect; the supplied description does not state that those credentials authenticate to RaspAP or any web console. CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5, after which an attacker can use the web console to execute OS commands. The edge label 'Default administrative credentials allow access to local web interfaces and services including RaspAP' overreaches: it asserts a credential-to-RaspAP authentication bridge not present in either CVE description. The bridge is therefore only potentially conditional if the missing conditions are independently evidenced, and it cannot enter a strict graph as supported on the supplied evidence.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "3339d7c84ee669c5c3d8a4b5a8a0e4a2ace28d4ef147efbc95a2019147353a7d",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 5599,
+      "prompt_tokens": 2036,
+      "total_tokens": 7635,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 5032,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00394475,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00394475,
+        "upstream_inference_prompt_cost": 0.0003054,
+        "upstream_inference_completions_cost": 0.00363935
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 5599,
+        "prompt_tokens": 2036,
+        "total_tokens": 7635,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5032,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00394475,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00394475,
+          "upstream_inference_prompt_cost": 0.0003054,
+          "upstream_inference_completions_cost": 0.00363935
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:13:05.184401+00:00"
+}

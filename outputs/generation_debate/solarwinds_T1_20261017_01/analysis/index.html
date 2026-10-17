@@ -1,0 +1,549 @@
+<!doctype html><html lang="vi"><meta charset="utf-8"><title>SolarWinds: paper source + debate</title>
+<style>body{font:16px system-ui;margin:24px;color:#243344;background:#f5f7fa}section{background:white;margin:24px 0;padding:20px;border-radius:10px}svg{width:100%;height:780px;border:1px solid #d8e0e7;touch-action:none;cursor:grab}svg:active{cursor:grabbing}.node,.edge{cursor:help}pre{white-space:pre-wrap;line-height:1.5}details{margin:8px 0}</style>
+<h1>SolarWinds — Appendix C.1 / Figure 2</h1><p>Nguồn trong bài gốc; không data mô phỏng, không cho trước node/cạnh. Màu xanh lá = pair thêm, không phải nhãn đúng. Chưa có gold độc lập: accuracy = N/A.</p><details><summary>Hình tham chiếu trong bài gốc</summary><img style="max-width:100%" src="../paper_references/figure_02.png"></details><section><h2>r01: Single-agent / paper prompt</h2><p>19 nodes / 19 edges. Cuộn để zoom, kéo để di chuyển, rê chuột vào node/cạnh để đọc.</p><svg viewBox="0 0 1200 1200" role="img"><defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="15" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="context-stroke"/></marker></defs><g class="viewport"><line x1="345.9146487496863" y1="779.7011954881552" x2="501.91874783395303" y2="806.9837485898429" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0001: unc2452_actor → solarwinds_supply_chain
+Injects malicious backdoor code into legitimate source code</title></line><line x1="501.91874783395303" y1="806.9837485898429" x2="657.237361850605" y2="809.2994083896671" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0002: solarwinds_supply_chain → trojanized_patch
+Signs and publishes digitally signed installer patch (March-May 2020)</title></line><line x1="657.237361850605" y1="809.2994083896671" x2="781.157191514497" y2="746.5432785419669" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0003: trojanized_patch → sunburst_dll
+Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll</title></line><line x1="657.237361850605" y1="809.2994083896671" x2="732.6616472919387" y2="868.7680910285155" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0004: trojanized_patch → victim_host_install
+Downloaded and installed by administrators from updates website</title></line><line x1="732.6616472919387" y1="868.7680910285155" x2="801.6159285057256" y2="836.2045844403686" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0005: victim_host_install → businesslayerhost_exe
+Triggers execution of Orion software host framework</title></line><line x1="801.6159285057256" y1="836.2045844403686" x2="781.157191514497" y2="746.5432785419669" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0006: businesslayerhost_exe → sunburst_dll
+Loads digitally signed DLL into host process</title></line><line x1="781.157191514497" y1="746.5432785419669" x2="859.4346855358054" y2="624.2985048219795" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0007: sunburst_dll → inventory_manager_trigger
+Calls OrionImprovementBusinessLayer.Initialize via InventoryManager</title></line><line x1="859.4346855358054" y1="624.2985048219795" x2="905.2603200251533" y2="489.30261917101694" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0008: inventory_manager_trigger → initial_dormant_period
+Checks process name hash, assembly age threshold (12-14 days), and named pipe guard</title></line><line x1="905.2603200251533" y1="489.30261917101694" x2="915.953012758009" y2="345.71667680150864" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0009: initial_dormant_period → anti_analysis_defense_evasion
+Discovers analysis/AV processes, sets registry to disable services, checks drivers</title></line><line x1="915.953012758009" y1="345.71667680150864" x2="818.5270025596276" y2="274.88945621178885" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0010: anti_analysis_defense_evasion → dga_resolution
+Generates DGA subdomains encoding local domain name and userId</title></line><line x1="818.5270025596276" y1="274.88945621178885" x2="679.7810806094021" y2="325.24487775057264" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0011: dga_resolution → c2_domain_cname
+Queries DNS, checks A-records against IP blocklists, retrieves CNAME record</title></line><line x1="679.7810806094021" y1="325.24487775057264" x2="556.7971182328636" y2="404.79059387279136" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0012: c2_domain_cname → http_c2_communication
+Initializes HttpHelper C2 thread mimicking Orion Improvement Program (OIP)</title></line><line x1="556.7971182328636" y1="404.79059387279136" x2="452.73832255361765" y2="510.43655907997567" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0013: http_c2_communication → steganography_jobs
+Extracts steganographic commands from GUID/HEX strings to execute Jobs</title></line><line x1="452.73832255361765" y1="510.43655907997567" x2="369.0453670763749" y2="637.9392560728089" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0014: steganography_jobs → teardrop_dropper
+Deploys memory-only service dropper (NetSetupSvc.dll) reading fake JPG file</title></line><line x1="369.0453670763749" y1="637.9392560728089" x2="281.2935693130324" y2="667.610334307703" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0015: teardrop_dropper → cobalt_strike_beacon
+Decodes custom rolling XOR payload and loads customized Cobalt Strike BEACON into memory</title></line><line x1="281.2935693130324" y1="667.610334307703" x2="261.9836678726258" y2="753.5144197864931" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0016: cobalt_strike_beacon → c2_infrastructure_masquerading
+Communicates through victim-located VPS IPs and certificates mimicking internal hostnames</title></line><line x1="261.9836678726258" y1="753.5144197864931" x2="231.54627682770104" y2="832.9686918902971" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0017: c2_infrastructure_masquerading → credential_abuse
+Leverages legitimate remote access credentials and pivots using distinct secondary credentials</title></line><line x1="231.54627682770104" y1="832.9686918902971" x2="279.341561290978" y2="865.6270411001201" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0018: credential_abuse → temporary_file_task_mod
+Executes utilities via temporary file substitution and short-lived scheduled task modification</title></line><line x1="279.341561290978" y1="865.6270411001201" x2="217.18595042684183" y2="912.5700943451648" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0019: temporary_file_task_mod → data_theft_impact
+Facilitates wide-scale internal reconnaissance, lateral movement, and data theft</title></line><g class="node"><title>{
+  &quot;id&quot;: &quot;unc2452_actor&quot;,
+  &quot;label&quot;: &quot;Threat Actor UNC2452&quot;
+}</title><circle cx="345.9146487496863" cy="779.7011954881552" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="345.9146487496863" y="783.7011954881552" text-anchor="middle" font-size="12">N01</text><text x="345.9146487496863" y="813.7011954881552" text-anchor="middle" font-size="11" fill="#26384a">Threat Actor UNC2452</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;solarwinds_supply_chain&quot;,
+  &quot;label&quot;: &quot;Compromised SolarWinds Supply Chain (T1195.002, T1553.002)&quot;
+}</title><circle cx="501.91874783395303" cy="806.9837485898429" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="501.91874783395303" y="810.9837485898429" text-anchor="middle" font-size="12">N02</text><text x="501.91874783395303" y="840.9837485898429" text-anchor="middle" font-size="11" fill="#26384a">Compromised SolarWinds Supply Chain (T1195.002, T1553.002)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;trojanized_patch&quot;,
+  &quot;label&quot;: &quot;Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)&quot;
+}</title><circle cx="657.237361850605" cy="809.2994083896671" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="657.237361850605" y="813.2994083896671" text-anchor="middle" font-size="12">N03</text><text x="657.237361850605" y="843.2994083896671" text-anchor="middle" font-size="11" fill="#26384a">Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;sunburst_dll&quot;,
+  &quot;label&quot;: &quot;SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)&quot;
+}</title><circle cx="781.157191514497" cy="746.5432785419669" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="781.157191514497" y="750.5432785419669" text-anchor="middle" font-size="12">N04</text><text x="781.157191514497" y="780.5432785419669" text-anchor="middle" font-size="11" fill="#26384a">SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;victim_host_install&quot;,
+  &quot;label&quot;: &quot;Victim Host / Admin Update Installation&quot;
+}</title><circle cx="732.6616472919387" cy="868.7680910285155" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="732.6616472919387" y="872.7680910285155" text-anchor="middle" font-size="12">N05</text><text x="732.6616472919387" y="902.7680910285155" text-anchor="middle" font-size="11" fill="#26384a">Victim Host / Admin Update Installation</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;businesslayerhost_exe&quot;,
+  &quot;label&quot;: &quot;Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)&quot;
+}</title><circle cx="801.6159285057256" cy="836.2045844403686" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="801.6159285057256" y="840.2045844403686" text-anchor="middle" font-size="12">N06</text><text x="801.6159285057256" y="870.2045844403686" text-anchor="middle" font-size="11" fill="#26384a">Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;inventory_manager_trigger&quot;,
+  &quot;label&quot;: &quot;Plugin Invocation (InventoryManager.RefreshInternal -&gt; OrionImprovementBusinessLayer)&quot;
+}</title><circle cx="859.4346855358054" cy="624.2985048219795" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="859.4346855358054" y="628.2985048219795" text-anchor="middle" font-size="12">N07</text><text x="859.4346855358054" y="658.2985048219795" text-anchor="middle" font-size="11" fill="#26384a">Plugin Invocation (InventoryManager.RefreshInternal -&gt; OrionIm...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;initial_dormant_period&quot;,
+  &quot;label&quot;: &quot;Execution Guard &amp; Delay (12-14 Day File Age Check &amp; Single Instance Named Pipe)&quot;
+}</title><circle cx="905.2603200251533" cy="489.30261917101694" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="905.2603200251533" y="493.30261917101694" text-anchor="middle" font-size="12">N08</text><text x="905.2603200251533" y="523.3026191710169" text-anchor="middle" font-size="11" fill="#26384a">Execution Guard &amp; Delay (12-14 Day File Age Check &amp; Single Ins...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;anti_analysis_defense_evasion&quot;,
+  &quot;label&quot;: &quot;Process/Service/Driver Discovery &amp; Defense Evasion (FNV-1a Hashes, Disable Services via Registry)&quot;
+}</title><circle cx="915.953012758009" cy="345.71667680150864" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="915.953012758009" y="349.71667680150864" text-anchor="middle" font-size="12">N09</text><text x="915.953012758009" y="379.71667680150864" text-anchor="middle" font-size="11" fill="#26384a">Process/Service/Driver Discovery &amp; Defense Evasion (FNV-1a Has...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;dga_resolution&quot;,
+  &quot;label&quot;: &quot;DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)&quot;
+}</title><circle cx="818.5270025596276" cy="274.88945621178885" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="818.5270025596276" y="278.88945621178885" text-anchor="middle" font-size="12">N10</text><text x="818.5270025596276" y="308.88945621178885" text-anchor="middle" font-size="11" fill="#26384a">DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Enco...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;c2_domain_cname&quot;,
+  &quot;label&quot;: &quot;C2 Domain CNAME Resolution &amp; IP Check Validation&quot;
+}</title><circle cx="679.7810806094021" cy="325.24487775057264" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="679.7810806094021" y="329.24487775057264" text-anchor="middle" font-size="12">N11</text><text x="679.7810806094021" y="359.24487775057264" text-anchor="middle" font-size="11" fill="#26384a">C2 Domain CNAME Resolution &amp; IP Check Validation</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;http_c2_communication&quot;,
+  &quot;label&quot;: &quot;HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)&quot;
+}</title><circle cx="556.7971182328636" cy="404.79059387279136" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="556.7971182328636" y="408.79059387279136" text-anchor="middle" font-size="12">N12</text><text x="556.7971182328636" y="438.79059387279136" text-anchor="middle" font-size="11" fill="#26384a">HTTP C2 Communications (HttpHelper.Initialize, Masquerading as...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;steganography_jobs&quot;,
+  &quot;label&quot;: &quot;Steganographic C2 Dispatching &amp; Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)&quot;
+}</title><circle cx="452.73832255361765" cy="510.43655907997567" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="452.73832255361765" y="514.4365590799757" text-anchor="middle" font-size="12">N13</text><text x="452.73832255361765" y="544.4365590799757" text-anchor="middle" font-size="11" fill="#26384a">Steganographic C2 Dispatching &amp; Job Execution (RunTask, WriteF...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;teardrop_dropper&quot;,
+  &quot;label&quot;: &quot;TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)&quot;
+}</title><circle cx="369.0453670763749" cy="637.9392560728089" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="369.0453670763749" y="641.9392560728089" text-anchor="middle" font-size="12">N14</text><text x="369.0453670763749" y="671.9392560728089" text-anchor="middle" font-size="11" fill="#26384a">TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;cobalt_strike_beacon&quot;,
+  &quot;label&quot;: &quot;Customized Cobalt Strike BEACON Payload Execution&quot;
+}</title><circle cx="281.2935693130324" cy="667.610334307703" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="281.2935693130324" y="671.610334307703" text-anchor="middle" font-size="12">N15</text><text x="281.2935693130324" y="701.610334307703" text-anchor="middle" font-size="11" fill="#26384a">Customized Cobalt Strike BEACON Payload Execution</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;c2_infrastructure_masquerading&quot;,
+  &quot;label&quot;: &quot;C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL &amp; Local VPS IPs)&quot;
+}</title><circle cx="261.9836678726258" cy="753.5144197864931" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="261.9836678726258" y="757.5144197864931" text-anchor="middle" font-size="12">N16</text><text x="261.9836678726258" y="787.5144197864931" text-anchor="middle" font-size="11" fill="#26384a">C2 Infrastructure Masquerading (Hostnames match victim environ...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;credential_abuse&quot;,
+  &quot;label&quot;: &quot;Credential Compromise &amp; Lateral Movement (Distinct credentials for remote access vs internal movement)&quot;
+}</title><circle cx="231.54627682770104" cy="832.9686918902971" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="231.54627682770104" y="836.9686918902971" text-anchor="middle" font-size="12">N17</text><text x="231.54627682770104" y="866.9686918902971" text-anchor="middle" font-size="11" fill="#26384a">Credential Compromise &amp; Lateral Movement (Distinct credentials...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;temporary_file_task_mod&quot;,
+  &quot;label&quot;: &quot;Temporary File Replacement &amp; Scheduled Task Modification (Delete-Create-Execute-Delete-Create)&quot;
+}</title><circle cx="279.341561290978" cy="865.6270411001201" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="279.341561290978" y="869.6270411001201" text-anchor="middle" font-size="12">N18</text><text x="279.341561290978" y="899.6270411001201" text-anchor="middle" font-size="11" fill="#26384a">Temporary File Replacement &amp; Scheduled Task Modification (Dele...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;data_theft_impact&quot;,
+  &quot;label&quot;: &quot;Post-Compromise Lateral Movement &amp; Data Theft across Worldwide Victim Networks&quot;
+}</title><circle cx="217.18595042684183" cy="912.5700943451648" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="217.18595042684183" y="916.5700943451648" text-anchor="middle" font-size="12">N19</text><text x="217.18595042684183" y="946.5700943451648" text-anchor="middle" font-size="11" fill="#26384a">Post-Compromise Lateral Movement &amp; Data Theft across Worldwide...</text></g></g></svg><button class="reset">Reset view</button><p><a href="paper_style/r01_single/graph.html">Ảnh nhãn đầy đủ kiểu paper</a></p></section><section><h2>r01: Single-agent + self-refine</h2><p>20 nodes / 20 edges. Cuộn để zoom, kéo để di chuyển, rê chuột vào node/cạnh để đọc.</p><svg viewBox="0 0 1200 1200" role="img"><defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="15" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="context-stroke"/></marker></defs><g class="viewport"><line x1="345.9146487496863" y1="779.7011954881552" x2="501.91874783395303" y2="806.9837485898429" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0001: unc2452_actor → solarwinds_supply_chain
+Trojanizes SolarWinds Orion business software updates to distribute SUNBURST via supply chain compromise</title></line><line x1="501.91874783395303" y1="806.9837485898429" x2="657.237361850605" y2="809.2994083896671" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0002: solarwinds_supply_chain → trojanized_patch
+Signs and publishes digitally signed installer patch (March-May 2020)</title></line><line x1="657.237361850605" y1="809.2994083896671" x2="781.157191514497" y2="746.5432785419669" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0003: trojanized_patch → sunburst_dll
+Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll</title></line><line x1="657.237361850605" y1="809.2994083896671" x2="732.6616472919387" y2="868.7680910285155" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0004: trojanized_patch → victim_host_install
+Downloaded and installed by administrators from updates website</title></line><line x1="732.6616472919387" y1="868.7680910285155" x2="801.6159285057256" y2="836.2045844403686" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0005: victim_host_install → businesslayerhost_exe
+Triggers execution of Orion software host framework</title></line><line x1="801.6159285057256" y1="836.2045844403686" x2="781.157191514497" y2="746.5432785419669" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0006: businesslayerhost_exe → sunburst_dll
+Loads digitally signed DLL into host process</title></line><line x1="781.157191514497" y1="746.5432785419669" x2="859.4346855358054" y2="624.2985048219795" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0007: sunburst_dll → inventory_manager_trigger
+Calls OrionImprovementBusinessLayer.Initialize via InventoryManager</title></line><line x1="859.4346855358054" y1="624.2985048219795" x2="905.2603200251533" y2="489.30261917101694" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0008: inventory_manager_trigger → initial_dormant_period
+Checks process name hash, assembly age threshold (12-14 days), and named pipe guard</title></line><line x1="905.2603200251533" y1="489.30261917101694" x2="915.953012758009" y2="345.71667680150864" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0009: initial_dormant_period → anti_analysis_defense_evasion
+Discovers analysis/AV processes, sets registry to disable services, checks drivers</title></line><line x1="915.953012758009" y1="345.71667680150864" x2="908.8023384538315" y2="255.01763207229988" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0010: anti_analysis_defense_evasion → api_connectivity_check
+Attempts to resolve api.solarwinds.com to test network connectivity if blocklist tests pass</title></line><line x1="908.8023384538315" y1="255.01763207229988" x2="818.5270025596276" y2="274.88945621178885" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0011: api_connectivity_check → dga_resolution
+Starts generating DGA subdomains in a while loop once connectivity and blocklist checks pass</title></line><line x1="818.5270025596276" y1="274.88945621178885" x2="679.7810806094021" y2="325.24487775057264" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0012: dga_resolution → c2_domain_cname
+Queries DNS, checks A-records against IP blocklists, retrieves CNAME record</title></line><line x1="679.7810806094021" y1="325.24487775057264" x2="556.7971182328636" y2="404.79059387279136" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0013: c2_domain_cname → http_c2_communication
+Initializes HttpHelper C2 thread mimicking Orion Improvement Program (OIP)</title></line><line x1="556.7971182328636" y1="404.79059387279136" x2="452.73832255361765" y2="510.43655907997567" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0014: http_c2_communication → steganography_jobs
+Extracts steganographic commands from GUID/HEX strings to execute Jobs</title></line><line x1="345.9146487496863" y1="779.7011954881552" x2="369.0453670763749" y2="637.9392560728089" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0015: unc2452_actor → teardrop_dropper
+Deploys TEARDROP memory-only dropper in at least one instance (samples delivered different payloads)</title></line><line x1="369.0453670763749" y1="637.9392560728089" x2="281.2935693130324" y2="667.610334307703" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0016: teardrop_dropper → cobalt_strike_beacon
+Decodes rolling XOR payload from fake JPG file; believed to execute customized Cobalt Strike BEACON</title></line><line x1="345.9146487496863" y1="779.7011954881552" x2="261.9836678726258" y2="753.5144197864931" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0017: unc2452_actor → c2_infrastructure_masquerading
+Sets C2 hostnames matching victim environment and uses victim-country VPS IPs to evade detection</title></line><line x1="345.9146487496863" y1="779.7011954881552" x2="231.54627682770104" y2="832.9686918902971" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0018: unc2452_actor → credential_abuse
+Maintains light malware footprint, using compromised credentials for remote access and distinct credentials for lateral movement</title></line><line x1="345.9146487496863" y1="779.7011954881552" x2="279.341561290978" y2="865.6270411001201" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0019: unc2452_actor → temporary_file_task_mod
+Uses temporary file replacement and scheduled task modification to remotely execute utilities and evades detection by removing tools</title></line><line x1="231.54627682770104" y1="832.9686918902971" x2="217.18595042684183" y2="912.5700943451648" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0020: credential_abuse → data_theft_impact
+Facilitates lateral movement across victim networks leading to data theft</title></line><g class="node"><title>{
+  &quot;id&quot;: &quot;unc2452_actor&quot;,
+  &quot;label&quot;: &quot;Threat Actor UNC2452&quot;
+}</title><circle cx="345.9146487496863" cy="779.7011954881552" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="345.9146487496863" y="783.7011954881552" text-anchor="middle" font-size="12">N01</text><text x="345.9146487496863" y="813.7011954881552" text-anchor="middle" font-size="11" fill="#26384a">Threat Actor UNC2452</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;solarwinds_supply_chain&quot;,
+  &quot;label&quot;: &quot;Compromised SolarWinds Supply Chain (T1195.002, T1553.002)&quot;
+}</title><circle cx="501.91874783395303" cy="806.9837485898429" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="501.91874783395303" y="810.9837485898429" text-anchor="middle" font-size="12">N02</text><text x="501.91874783395303" y="840.9837485898429" text-anchor="middle" font-size="11" fill="#26384a">Compromised SolarWinds Supply Chain (T1195.002, T1553.002)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;trojanized_patch&quot;,
+  &quot;label&quot;: &quot;Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)&quot;
+}</title><circle cx="657.237361850605" cy="809.2994083896671" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="657.237361850605" y="813.2994083896671" text-anchor="middle" font-size="12">N03</text><text x="657.237361850605" y="843.2994083896671" text-anchor="middle" font-size="11" fill="#26384a">Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;sunburst_dll&quot;,
+  &quot;label&quot;: &quot;SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)&quot;
+}</title><circle cx="781.157191514497" cy="746.5432785419669" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="781.157191514497" y="750.5432785419669" text-anchor="middle" font-size="12">N04</text><text x="781.157191514497" y="780.5432785419669" text-anchor="middle" font-size="11" fill="#26384a">SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;victim_host_install&quot;,
+  &quot;label&quot;: &quot;Victim Host / Admin Update Installation&quot;
+}</title><circle cx="732.6616472919387" cy="868.7680910285155" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="732.6616472919387" y="872.7680910285155" text-anchor="middle" font-size="12">N05</text><text x="732.6616472919387" y="902.7680910285155" text-anchor="middle" font-size="11" fill="#26384a">Victim Host / Admin Update Installation</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;businesslayerhost_exe&quot;,
+  &quot;label&quot;: &quot;Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)&quot;
+}</title><circle cx="801.6159285057256" cy="836.2045844403686" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="801.6159285057256" y="840.2045844403686" text-anchor="middle" font-size="12">N06</text><text x="801.6159285057256" y="870.2045844403686" text-anchor="middle" font-size="11" fill="#26384a">Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;inventory_manager_trigger&quot;,
+  &quot;label&quot;: &quot;Plugin Invocation (InventoryManager.RefreshInternal -&gt; OrionImprovementBusinessLayer)&quot;
+}</title><circle cx="859.4346855358054" cy="624.2985048219795" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="859.4346855358054" y="628.2985048219795" text-anchor="middle" font-size="12">N07</text><text x="859.4346855358054" y="658.2985048219795" text-anchor="middle" font-size="11" fill="#26384a">Plugin Invocation (InventoryManager.RefreshInternal -&gt; OrionIm...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;initial_dormant_period&quot;,
+  &quot;label&quot;: &quot;Execution Guard &amp; Delay (12-14 Day File Age Check &amp; Single Instance Named Pipe)&quot;
+}</title><circle cx="905.2603200251533" cy="489.30261917101694" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="905.2603200251533" y="493.30261917101694" text-anchor="middle" font-size="12">N08</text><text x="905.2603200251533" y="523.3026191710169" text-anchor="middle" font-size="11" fill="#26384a">Execution Guard &amp; Delay (12-14 Day File Age Check &amp; Single Ins...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;anti_analysis_defense_evasion&quot;,
+  &quot;label&quot;: &quot;Process/Service/Driver Discovery &amp; Defense Evasion (FNV-1a Hashes, Disable Services via Registry)&quot;
+}</title><circle cx="915.953012758009" cy="345.71667680150864" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="915.953012758009" y="349.71667680150864" text-anchor="middle" font-size="12">N09</text><text x="915.953012758009" y="379.71667680150864" text-anchor="middle" font-size="11" fill="#26384a">Process/Service/Driver Discovery &amp; Defense Evasion (FNV-1a Has...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;api_connectivity_check&quot;,
+  &quot;label&quot;: &quot;Network Connectivity Check (api.solarwinds.com Resolution)&quot;
+}</title><circle cx="908.8023384538315" cy="255.01763207229988" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="908.8023384538315" y="259.0176320722999" text-anchor="middle" font-size="12">N20</text><text x="908.8023384538315" y="289.0176320722999" text-anchor="middle" font-size="11" fill="#26384a">Network Connectivity Check (api.solarwinds.com Resolution)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;dga_resolution&quot;,
+  &quot;label&quot;: &quot;DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)&quot;
+}</title><circle cx="818.5270025596276" cy="274.88945621178885" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="818.5270025596276" y="278.88945621178885" text-anchor="middle" font-size="12">N10</text><text x="818.5270025596276" y="308.88945621178885" text-anchor="middle" font-size="11" fill="#26384a">DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Enco...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;c2_domain_cname&quot;,
+  &quot;label&quot;: &quot;C2 Domain CNAME Resolution &amp; IP Check Validation&quot;
+}</title><circle cx="679.7810806094021" cy="325.24487775057264" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="679.7810806094021" y="329.24487775057264" text-anchor="middle" font-size="12">N11</text><text x="679.7810806094021" y="359.24487775057264" text-anchor="middle" font-size="11" fill="#26384a">C2 Domain CNAME Resolution &amp; IP Check Validation</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;http_c2_communication&quot;,
+  &quot;label&quot;: &quot;HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)&quot;
+}</title><circle cx="556.7971182328636" cy="404.79059387279136" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="556.7971182328636" y="408.79059387279136" text-anchor="middle" font-size="12">N12</text><text x="556.7971182328636" y="438.79059387279136" text-anchor="middle" font-size="11" fill="#26384a">HTTP C2 Communications (HttpHelper.Initialize, Masquerading as...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;steganography_jobs&quot;,
+  &quot;label&quot;: &quot;Steganographic C2 Dispatching &amp; Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)&quot;
+}</title><circle cx="452.73832255361765" cy="510.43655907997567" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="452.73832255361765" y="514.4365590799757" text-anchor="middle" font-size="12">N13</text><text x="452.73832255361765" y="544.4365590799757" text-anchor="middle" font-size="11" fill="#26384a">Steganographic C2 Dispatching &amp; Job Execution (RunTask, WriteF...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;teardrop_dropper&quot;,
+  &quot;label&quot;: &quot;TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)&quot;
+}</title><circle cx="369.0453670763749" cy="637.9392560728089" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="369.0453670763749" y="641.9392560728089" text-anchor="middle" font-size="12">N14</text><text x="369.0453670763749" y="671.9392560728089" text-anchor="middle" font-size="11" fill="#26384a">TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;cobalt_strike_beacon&quot;,
+  &quot;label&quot;: &quot;Customized Cobalt Strike BEACON Payload Execution&quot;
+}</title><circle cx="281.2935693130324" cy="667.610334307703" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="281.2935693130324" y="671.610334307703" text-anchor="middle" font-size="12">N15</text><text x="281.2935693130324" y="701.610334307703" text-anchor="middle" font-size="11" fill="#26384a">Customized Cobalt Strike BEACON Payload Execution</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;c2_infrastructure_masquerading&quot;,
+  &quot;label&quot;: &quot;C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL &amp; Local VPS IPs)&quot;
+}</title><circle cx="261.9836678726258" cy="753.5144197864931" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="261.9836678726258" y="757.5144197864931" text-anchor="middle" font-size="12">N16</text><text x="261.9836678726258" y="787.5144197864931" text-anchor="middle" font-size="11" fill="#26384a">C2 Infrastructure Masquerading (Hostnames match victim environ...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;credential_abuse&quot;,
+  &quot;label&quot;: &quot;Credential Compromise &amp; Lateral Movement (Distinct credentials for remote access vs internal movement)&quot;
+}</title><circle cx="231.54627682770104" cy="832.9686918902971" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="231.54627682770104" y="836.9686918902971" text-anchor="middle" font-size="12">N17</text><text x="231.54627682770104" y="866.9686918902971" text-anchor="middle" font-size="11" fill="#26384a">Credential Compromise &amp; Lateral Movement (Distinct credentials...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;temporary_file_task_mod&quot;,
+  &quot;label&quot;: &quot;Temporary File Replacement &amp; Scheduled Task Modification (Delete-Create-Execute-Delete-Create)&quot;
+}</title><circle cx="279.341561290978" cy="865.6270411001201" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="279.341561290978" y="869.6270411001201" text-anchor="middle" font-size="12">N18</text><text x="279.341561290978" y="899.6270411001201" text-anchor="middle" font-size="11" fill="#26384a">Temporary File Replacement &amp; Scheduled Task Modification (Dele...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;data_theft_impact&quot;,
+  &quot;label&quot;: &quot;Post-Compromise Lateral Movement &amp; Data Theft across Worldwide Victim Networks&quot;
+}</title><circle cx="217.18595042684183" cy="912.5700943451648" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="217.18595042684183" y="916.5700943451648" text-anchor="middle" font-size="12">N19</text><text x="217.18595042684183" y="946.5700943451648" text-anchor="middle" font-size="11" fill="#26384a">Post-Compromise Lateral Movement &amp; Data Theft across Worldwide...</text></g></g></svg><button class="reset">Reset view</button><p><a href="paper_style/r01_self_refine/graph.html">Ảnh nhãn đầy đủ kiểu paper</a></p></section><section><h2>r01: Multi-agent debate</h2><p>23 nodes / 23 edges. Cuộn để zoom, kéo để di chuyển, rê chuột vào node/cạnh để đọc.</p><svg viewBox="0 0 1200 1200" role="img"><defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="15" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="context-stroke"/></marker></defs><g class="viewport"><line x1="345.9146487496863" y1="779.7011954881552" x2="501.91874783395303" y2="806.9837485898429" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0001: unc2452_actor → solarwinds_supply_chain
+Trojanizes SolarWinds Orion business software updates to distribute SUNBURST</title></line><line x1="501.91874783395303" y1="806.9837485898429" x2="657.237361850605" y2="809.2994083896671" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0002: solarwinds_supply_chain → trojanized_patch
+Signs and publishes digitally signed installer patch (March-May 2020)</title></line><line x1="657.237361850605" y1="809.2994083896671" x2="781.157191514497" y2="746.5432785419669" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0003: trojanized_patch → sunburst_dll
+Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll</title></line><line x1="657.237361850605" y1="809.2994083896671" x2="732.6616472919387" y2="868.7680910285155" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0004: trojanized_patch → victim_host_install
+Downloaded and installed by administrators from updates website</title></line><line x1="732.6616472919387" y1="868.7680910285155" x2="801.6159285057256" y2="836.2045844403686" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0005: victim_host_install → businesslayerhost_exe
+Triggers execution of Orion software host framework</title></line><line x1="801.6159285057256" y1="836.2045844403686" x2="781.157191514497" y2="746.5432785419669" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0006: businesslayerhost_exe → sunburst_dll
+Loads digitally signed DLL into host process</title></line><line x1="781.157191514497" y1="746.5432785419669" x2="859.4346855358054" y2="624.2985048219795" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0007: sunburst_dll → inventory_manager_trigger
+Calls OrionImprovementBusinessLayer.Initialize via InventoryManager</title></line><line x1="859.4346855358054" y1="624.2985048219795" x2="905.2603200251533" y2="489.30261917101694" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0008: inventory_manager_trigger → initial_dormant_period
+Checks process name hash, assembly age threshold (12-14 days), and named pipe guard</title></line><line x1="905.2603200251533" y1="489.30261917101694" x2="915.953012758009" y2="345.71667680150864" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0009: initial_dormant_period → anti_analysis_defense_evasion
+Verifies ReportWatcherRetry and domain membership, then scans and disables security processes/services/drivers</title></line><line x1="915.953012758009" y1="345.71667680150864" x2="1015.7875476793567" y2="322.9002828818455" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0010: anti_analysis_defense_evasion → recon_storage_in_plugin_config
+Bit-packs stopped services and stores reconnaissance results in ReportWatcherPostpone config key</title></line><line x1="915.953012758009" y1="345.71667680150864" x2="881.1335597513896" y2="292.0016114744992" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0011: anti_analysis_defense_evasion → network_connectivity_check
+If all blocklist tests pass, attempts resolution of api.solarwinds.com to test connectivity</title></line><line x1="881.1335597513896" y1="292.0016114744992" x2="818.5270025596276" y2="274.88945621178885" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0012: network_connectivity_check → dga_resolution
+If all blocklist and connectivity checks pass, initiates DGA domain generation in while loop</title></line><line x1="818.5270025596276" y1="274.88945621178885" x2="814.8830932869841" y2="173.0638941229294" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0013: dga_resolution → ip_blocklist_termination
+Terminates malware and updates ReportWatcherRetry if DNS A-record matches hardcoded IP blocklists</title></line><line x1="818.5270025596276" y1="274.88945621178885" x2="679.7810806094021" y2="325.24487775057264" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0014: dga_resolution → c2_domain_cname
+Retrieves CNAME response pointing to Command and Control domain</title></line><line x1="679.7810806094021" y1="325.24487775057264" x2="556.7971182328636" y2="404.79059387279136" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0015: c2_domain_cname → http_c2_communication
+Spawns new thread executing HttpHelper.Initialize mimicking Orion Improvement Program</title></line><line x1="556.7971182328636" y1="404.79059387279136" x2="452.73832255361765" y2="510.43655907997567" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0016: http_c2_communication → steganography_jobs
+Extracts steganographic commands from GUID/HEX strings to execute Jobs</title></line><line x1="452.73832255361765" y1="510.43655907997567" x2="369.0453670763749" y2="637.9392560728089" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0017: steganography_jobs → teardrop_dropper
+In at least one instance, deployed previously unseen memory-only dropper TEARDROP</title></line><line x1="369.0453670763749" y1="637.9392560728089" x2="281.2935693130324" y2="667.610334307703" stroke="#8a98a6" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0018: teardrop_dropper → cobalt_strike_beacon
+Verifies HKU CTF registry, decodes payload from gracious_truth.jpg, believed to execute customized Cobalt Strike BEACON</title></line><line x1="345.9146487496863" y1="779.7011954881552" x2="261.9836678726258" y2="753.5144197864931" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0019: unc2452_actor → c2_infrastructure_masquerading
+Configures hostnames to match victim environments and uses victim-country VPS IPs</title></line><line x1="345.9146487496863" y1="779.7011954881552" x2="231.54627682770104" y2="832.9686918902971" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0020: unc2452_actor → credential_abuse
+Prefers legitimate remote access credentials and pivots using distinct secondary credentials</title></line><line x1="345.9146487496863" y1="779.7011954881552" x2="279.341561290978" y2="865.6270411001201" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0021: unc2452_actor → temporary_file_task_mod
+Remotely executes utilities via temporary file replacement and scheduled task modification</title></line><line x1="231.54627682770104" y1="832.9686918902971" x2="130.0" y2="864.6071477576886" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0022: credential_abuse → tool_and_backdoor_removal
+Routinely removes backdoors and tools once legitimate remote access is achieved</title></line><line x1="231.54627682770104" y1="832.9686918902971" x2="217.18595042684183" y2="912.5700943451648" stroke="#147752" stroke-width="3" marker-end="url(#arrow)" class="edge"><title>edge-0023: credential_abuse → data_theft_impact
+Enables lateral movement across victim networks and data theft</title></line><g class="node"><title>{
+  &quot;id&quot;: &quot;unc2452_actor&quot;,
+  &quot;label&quot;: &quot;Threat Actor UNC2452&quot;
+}</title><circle cx="345.9146487496863" cy="779.7011954881552" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="345.9146487496863" y="783.7011954881552" text-anchor="middle" font-size="12">N01</text><text x="345.9146487496863" y="813.7011954881552" text-anchor="middle" font-size="11" fill="#26384a">Threat Actor UNC2452</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;solarwinds_supply_chain&quot;,
+  &quot;label&quot;: &quot;Compromised SolarWinds Supply Chain (T1195.002, T1553.002)&quot;
+}</title><circle cx="501.91874783395303" cy="806.9837485898429" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="501.91874783395303" y="810.9837485898429" text-anchor="middle" font-size="12">N02</text><text x="501.91874783395303" y="840.9837485898429" text-anchor="middle" font-size="11" fill="#26384a">Compromised SolarWinds Supply Chain (T1195.002, T1553.002)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;trojanized_patch&quot;,
+  &quot;label&quot;: &quot;Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)&quot;
+}</title><circle cx="657.237361850605" cy="809.2994083896671" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="657.237361850605" y="813.2994083896671" text-anchor="middle" font-size="12">N03</text><text x="657.237361850605" y="843.2994083896671" text-anchor="middle" font-size="11" fill="#26384a">Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;sunburst_dll&quot;,
+  &quot;label&quot;: &quot;SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)&quot;
+}</title><circle cx="781.157191514497" cy="746.5432785419669" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="781.157191514497" y="750.5432785419669" text-anchor="middle" font-size="12">N04</text><text x="781.157191514497" y="780.5432785419669" text-anchor="middle" font-size="11" fill="#26384a">SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;victim_host_install&quot;,
+  &quot;label&quot;: &quot;Victim Host / Admin Update Installation&quot;
+}</title><circle cx="732.6616472919387" cy="868.7680910285155" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="732.6616472919387" y="872.7680910285155" text-anchor="middle" font-size="12">N05</text><text x="732.6616472919387" y="902.7680910285155" text-anchor="middle" font-size="11" fill="#26384a">Victim Host / Admin Update Installation</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;businesslayerhost_exe&quot;,
+  &quot;label&quot;: &quot;Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)&quot;
+}</title><circle cx="801.6159285057256" cy="836.2045844403686" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="801.6159285057256" y="840.2045844403686" text-anchor="middle" font-size="12">N06</text><text x="801.6159285057256" y="870.2045844403686" text-anchor="middle" font-size="11" fill="#26384a">Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;inventory_manager_trigger&quot;,
+  &quot;label&quot;: &quot;Plugin Invocation (InventoryManager.RefreshInternal -&gt; OrionImprovementBusinessLayer)&quot;
+}</title><circle cx="859.4346855358054" cy="624.2985048219795" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="859.4346855358054" y="628.2985048219795" text-anchor="middle" font-size="12">N07</text><text x="859.4346855358054" y="658.2985048219795" text-anchor="middle" font-size="11" fill="#26384a">Plugin Invocation (InventoryManager.RefreshInternal -&gt; OrionIm...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;initial_dormant_period&quot;,
+  &quot;label&quot;: &quot;Execution Guard &amp; Delay (12-14 Day File Age Check &amp; Single Instance Named Pipe)&quot;
+}</title><circle cx="905.2603200251533" cy="489.30261917101694" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="905.2603200251533" y="493.30261917101694" text-anchor="middle" font-size="12">N08</text><text x="905.2603200251533" y="523.3026191710169" text-anchor="middle" font-size="11" fill="#26384a">Execution Guard &amp; Delay (12-14 Day File Age Check &amp; Single Ins...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;anti_analysis_defense_evasion&quot;,
+  &quot;label&quot;: &quot;Process/Service/Driver Discovery &amp; Defense Evasion (FNV-1a Hashes, Disable Services via Registry)&quot;
+}</title><circle cx="915.953012758009" cy="345.71667680150864" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="915.953012758009" y="349.71667680150864" text-anchor="middle" font-size="12">N09</text><text x="915.953012758009" y="379.71667680150864" text-anchor="middle" font-size="11" fill="#26384a">Process/Service/Driver Discovery &amp; Defense Evasion (FNV-1a Has...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;recon_storage_in_plugin_config&quot;,
+  &quot;label&quot;: &quot;Reconnaissance Results Storage in Plugin Config (ReportWatcherPostpone)&quot;
+}</title><circle cx="1015.7875476793567" cy="322.9002828818455" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="1015.7875476793567" y="326.9002828818455" text-anchor="middle" font-size="12">N21</text><text x="1015.7875476793567" y="356.9002828818455" text-anchor="middle" font-size="11" fill="#26384a">Reconnaissance Results Storage in Plugin Config (ReportWatcher...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;network_connectivity_check&quot;,
+  &quot;label&quot;: &quot;Network Connectivity Verification (Resolve api.solarwinds.com)&quot;
+}</title><circle cx="881.1335597513896" cy="292.0016114744992" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="881.1335597513896" y="296.0016114744992" text-anchor="middle" font-size="12">N22</text><text x="881.1335597513896" y="326.0016114744992" text-anchor="middle" font-size="11" fill="#26384a">Network Connectivity Verification (Resolve api.solarwinds.com)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;dga_resolution&quot;,
+  &quot;label&quot;: &quot;DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)&quot;
+}</title><circle cx="818.5270025596276" cy="274.88945621178885" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="818.5270025596276" y="278.88945621178885" text-anchor="middle" font-size="12">N10</text><text x="818.5270025596276" y="308.88945621178885" text-anchor="middle" font-size="11" fill="#26384a">DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Enco...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;ip_blocklist_termination&quot;,
+  &quot;label&quot;: &quot;IP Blocklist Check &amp; Execution Termination (ReportWatcherRetry)&quot;
+}</title><circle cx="814.8830932869841" cy="173.0638941229294" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="814.8830932869841" y="177.0638941229294" text-anchor="middle" font-size="12">N23</text><text x="814.8830932869841" y="207.0638941229294" text-anchor="middle" font-size="11" fill="#26384a">IP Blocklist Check &amp; Execution Termination (ReportWatcherRetry)</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;c2_domain_cname&quot;,
+  &quot;label&quot;: &quot;C2 Domain CNAME Resolution &amp; IP Check Validation&quot;
+}</title><circle cx="679.7810806094021" cy="325.24487775057264" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="679.7810806094021" y="329.24487775057264" text-anchor="middle" font-size="12">N11</text><text x="679.7810806094021" y="359.24487775057264" text-anchor="middle" font-size="11" fill="#26384a">C2 Domain CNAME Resolution &amp; IP Check Validation</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;http_c2_communication&quot;,
+  &quot;label&quot;: &quot;HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)&quot;
+}</title><circle cx="556.7971182328636" cy="404.79059387279136" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="556.7971182328636" y="408.79059387279136" text-anchor="middle" font-size="12">N12</text><text x="556.7971182328636" y="438.79059387279136" text-anchor="middle" font-size="11" fill="#26384a">HTTP C2 Communications (HttpHelper.Initialize, Masquerading as...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;steganography_jobs&quot;,
+  &quot;label&quot;: &quot;Steganographic C2 Dispatching &amp; Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)&quot;
+}</title><circle cx="452.73832255361765" cy="510.43655907997567" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="452.73832255361765" y="514.4365590799757" text-anchor="middle" font-size="12">N13</text><text x="452.73832255361765" y="544.4365590799757" text-anchor="middle" font-size="11" fill="#26384a">Steganographic C2 Dispatching &amp; Job Execution (RunTask, WriteF...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;teardrop_dropper&quot;,
+  &quot;label&quot;: &quot;TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)&quot;
+}</title><circle cx="369.0453670763749" cy="637.9392560728089" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="369.0453670763749" y="641.9392560728089" text-anchor="middle" font-size="12">N14</text><text x="369.0453670763749" y="671.9392560728089" text-anchor="middle" font-size="11" fill="#26384a">TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;cobalt_strike_beacon&quot;,
+  &quot;label&quot;: &quot;Customized Cobalt Strike BEACON Payload Execution&quot;
+}</title><circle cx="281.2935693130324" cy="667.610334307703" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="281.2935693130324" y="671.610334307703" text-anchor="middle" font-size="12">N15</text><text x="281.2935693130324" y="701.610334307703" text-anchor="middle" font-size="11" fill="#26384a">Customized Cobalt Strike BEACON Payload Execution</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;c2_infrastructure_masquerading&quot;,
+  &quot;label&quot;: &quot;C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL &amp; Local VPS IPs)&quot;
+}</title><circle cx="261.9836678726258" cy="753.5144197864931" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="261.9836678726258" y="757.5144197864931" text-anchor="middle" font-size="12">N16</text><text x="261.9836678726258" y="787.5144197864931" text-anchor="middle" font-size="11" fill="#26384a">C2 Infrastructure Masquerading (Hostnames match victim environ...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;credential_abuse&quot;,
+  &quot;label&quot;: &quot;Credential Compromise &amp; Lateral Movement (Distinct credentials for remote access vs internal movement)&quot;
+}</title><circle cx="231.54627682770104" cy="832.9686918902971" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="231.54627682770104" y="836.9686918902971" text-anchor="middle" font-size="12">N17</text><text x="231.54627682770104" y="866.9686918902971" text-anchor="middle" font-size="11" fill="#26384a">Credential Compromise &amp; Lateral Movement (Distinct credentials...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;temporary_file_task_mod&quot;,
+  &quot;label&quot;: &quot;Temporary File Replacement &amp; Scheduled Task Modification (Delete-Create-Execute-Delete-Create)&quot;
+}</title><circle cx="279.341561290978" cy="865.6270411001201" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="279.341561290978" y="869.6270411001201" text-anchor="middle" font-size="12">N18</text><text x="279.341561290978" y="899.6270411001201" text-anchor="middle" font-size="11" fill="#26384a">Temporary File Replacement &amp; Scheduled Task Modification (Dele...</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;tool_and_backdoor_removal&quot;,
+  &quot;label&quot;: &quot;Tool and Backdoor Removal upon Remote Access&quot;
+}</title><circle cx="130.0" cy="864.6071477576886" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="130.0" y="868.6071477576886" text-anchor="middle" font-size="12">N24</text><text x="130.0" y="898.6071477576886" text-anchor="middle" font-size="11" fill="#26384a">Tool and Backdoor Removal upon Remote Access</text></g><g class="node"><title>{
+  &quot;id&quot;: &quot;data_theft_impact&quot;,
+  &quot;label&quot;: &quot;Post-Compromise Lateral Movement &amp; Data Theft across Worldwide Victim Networks&quot;
+}</title><circle cx="217.18595042684183" cy="912.5700943451648" r="19" fill="#e3edf7" stroke="#486b8c" stroke-width="2"/><text x="217.18595042684183" y="916.5700943451648" text-anchor="middle" font-size="12">N19</text><text x="217.18595042684183" y="946.5700943451648" text-anchor="middle" font-size="11" fill="#26384a">Post-Compromise Lateral Movement &amp; Data Theft across Worldwide...</text></g></g></svg><button class="reset">Reset view</button><p><a href="paper_style/r01_debate/graph.html">Ảnh nhãn đầy đủ kiểu paper</a></p></section><h2>Bảng và thay đổi chi tiết</h2><pre># SolarWinds: prompt bài gốc + multi-agent debate
+
+Case T1, Figure 2. Baseline nhận đúng bytes prompt đã trích và chuẩn hóa từ bài gốc.
+Không bổ sung data mô phỏng, node inventory hoặc ép số lượng cạnh. Model hiện tại khác GPT-4 trong bài; không kỳ vọng ảnh giống từng node/cạnh.
+
+| Round | Cách sinh | Trạng thái | Node | Cạnh | Node thêm/bỏ | Cặp cạnh thêm/bỏ | Token provider |
+|---|---|---|---:|---:|---|---|---:|
+| 1 | single | completed | 19 | 19 | 0/0 | 0/0 | 7324 |
+| 1 | self_refine | completed | 20 | 20 | 1/0 | 7/6 | 74152 |
+| 1 | debate | completed | 23 | 23 | 4/0 | 9/5 | 65171 |
+
+Tổng request riêng biệt: **7**. Tổng token theo provider: **131999**.
+Các nhánh dùng chung draft. Bảng tính draft vào mỗi nhánh để so sánh, API chỉ thực hiện draft một lần. Tự sửa và debate cùng bốn calls/cap nhưng khác input length/actual usage.
+
+**Chưa có gold độc lập: accuracy/precision/recall/F1 = N/A.** Số cạnh tăng, trích dẫn đúng hoặc reviewer đồng ý không chứng minh graph đúng hơn.
+
+## Round 1
+
+![Graph dùng chung vị trí node](r01_comparison.png)
+
+### Single-agent / paper prompt
+
+Thay đổi dựa trên ID/pair (cần người đối chiếu nếu tách/gộp/đổi tên node):
+
+```json
+{
+  &quot;added_node_ids&quot;: [],
+  &quot;removed_node_ids&quot;: [],
+  &quot;changed_nodes&quot;: [],
+  &quot;added_pairs&quot;: [],
+  &quot;removed_pairs&quot;: [],
+  &quot;changed_retained_pairs&quot;: [],
+  &quot;id_based_alignment_only&quot;: true,
+  &quot;warning&quot;: &quot;Renamed/split/merged concepts need human alignment; pair changes are not semantic errors.&quot;
+}
+```
+
+
+[Ảnh nhãn đầy đủ kiểu paper](paper_style/r01_single/graph.png) · [Bản xem tương tác](paper_style/r01_single/graph.html)
+
+### Single-agent + self-refine
+
+Thay đổi dựa trên ID/pair (cần người đối chiếu nếu tách/gộp/đổi tên node):
+
+```json
+{
+  &quot;added_node_ids&quot;: [
+    &quot;api_connectivity_check&quot;
+  ],
+  &quot;removed_node_ids&quot;: [],
+  &quot;changed_nodes&quot;: [],
+  &quot;added_pairs&quot;: [
+    [
+      &quot;anti_analysis_defense_evasion&quot;,
+      &quot;api_connectivity_check&quot;
+    ],
+    [
+      &quot;api_connectivity_check&quot;,
+      &quot;dga_resolution&quot;
+    ],
+    [
+      &quot;credential_abuse&quot;,
+      &quot;data_theft_impact&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;c2_infrastructure_masquerading&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;credential_abuse&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;teardrop_dropper&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;temporary_file_task_mod&quot;
+    ]
+  ],
+  &quot;removed_pairs&quot;: [
+    [
+      &quot;anti_analysis_defense_evasion&quot;,
+      &quot;dga_resolution&quot;
+    ],
+    [
+      &quot;c2_infrastructure_masquerading&quot;,
+      &quot;credential_abuse&quot;
+    ],
+    [
+      &quot;cobalt_strike_beacon&quot;,
+      &quot;c2_infrastructure_masquerading&quot;
+    ],
+    [
+      &quot;credential_abuse&quot;,
+      &quot;temporary_file_task_mod&quot;
+    ],
+    [
+      &quot;steganography_jobs&quot;,
+      &quot;teardrop_dropper&quot;
+    ],
+    [
+      &quot;temporary_file_task_mod&quot;,
+      &quot;data_theft_impact&quot;
+    ]
+  ],
+  &quot;changed_retained_pairs&quot;: [
+    [
+      &quot;teardrop_dropper&quot;,
+      &quot;cobalt_strike_beacon&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;solarwinds_supply_chain&quot;
+    ]
+  ],
+  &quot;id_based_alignment_only&quot;: true,
+  &quot;warning&quot;: &quot;Renamed/split/merged concepts need human alignment; pair changes are not semantic errors.&quot;
+}
+```
+
+Sidecar bên dưới là lượt tự sửa cuối; [lịch sử đủ ba lượt](r01_self_refine_history.json) giữ các sửa đổi trước đó. Diff phía trên luôn so graph cuối với baseline.
+
+- **add node `api_connectivity_check`:** The report specifies that before DGA domain generation begins, the malware explicitly verifies network connectivity by attempting to resolve api.solarwinds.com once blocklists pass.
+  - P044 (verified_text_only): If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.
+- **remove edge `edge-0010`:** Removes the direct edge from anti_analysis_defense_evasion to dga_resolution, as the connectivity check against api.solarwinds.com must succeed before DGA generation commences.
+  - P046 (verified_text_only): If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.
+- **add edge `anti_analysis_defense_evasion-&gt;api_connectivity_check`:** Captures the prerequisite check where the backdoor resolves api.solarwinds.com once all process, service, and driver blocklist tests pass.
+  - P044 (verified_text_only): If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.
+- **add edge `api_connectivity_check-&gt;dga_resolution`:** Captures that DGA domain generation in a while loop is entered only after both blocklist and connectivity checks succeed.
+  - P046 (verified_text_only): If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.
+
+[Ảnh nhãn đầy đủ kiểu paper](paper_style/r01_self_refine/graph.png) · [Bản xem tương tác](paper_style/r01_self_refine/graph.html)
+
+### Multi-agent debate
+
+Thay đổi dựa trên ID/pair (cần người đối chiếu nếu tách/gộp/đổi tên node):
+
+```json
+{
+  &quot;added_node_ids&quot;: [
+    &quot;ip_blocklist_termination&quot;,
+    &quot;network_connectivity_check&quot;,
+    &quot;recon_storage_in_plugin_config&quot;,
+    &quot;tool_and_backdoor_removal&quot;
+  ],
+  &quot;removed_node_ids&quot;: [],
+  &quot;changed_nodes&quot;: [],
+  &quot;added_pairs&quot;: [
+    [
+      &quot;anti_analysis_defense_evasion&quot;,
+      &quot;network_connectivity_check&quot;
+    ],
+    [
+      &quot;anti_analysis_defense_evasion&quot;,
+      &quot;recon_storage_in_plugin_config&quot;
+    ],
+    [
+      &quot;credential_abuse&quot;,
+      &quot;data_theft_impact&quot;
+    ],
+    [
+      &quot;credential_abuse&quot;,
+      &quot;tool_and_backdoor_removal&quot;
+    ],
+    [
+      &quot;dga_resolution&quot;,
+      &quot;ip_blocklist_termination&quot;
+    ],
+    [
+      &quot;network_connectivity_check&quot;,
+      &quot;dga_resolution&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;c2_infrastructure_masquerading&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;credential_abuse&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;temporary_file_task_mod&quot;
+    ]
+  ],
+  &quot;removed_pairs&quot;: [
+    [
+      &quot;anti_analysis_defense_evasion&quot;,
+      &quot;dga_resolution&quot;
+    ],
+    [
+      &quot;c2_infrastructure_masquerading&quot;,
+      &quot;credential_abuse&quot;
+    ],
+    [
+      &quot;cobalt_strike_beacon&quot;,
+      &quot;c2_infrastructure_masquerading&quot;
+    ],
+    [
+      &quot;credential_abuse&quot;,
+      &quot;temporary_file_task_mod&quot;
+    ],
+    [
+      &quot;temporary_file_task_mod&quot;,
+      &quot;data_theft_impact&quot;
+    ]
+  ],
+  &quot;changed_retained_pairs&quot;: [
+    [
+      &quot;c2_domain_cname&quot;,
+      &quot;http_c2_communication&quot;
+    ],
+    [
+      &quot;dga_resolution&quot;,
+      &quot;c2_domain_cname&quot;
+    ],
+    [
+      &quot;initial_dormant_period&quot;,
+      &quot;anti_analysis_defense_evasion&quot;
+    ],
+    [
+      &quot;steganography_jobs&quot;,
+      &quot;teardrop_dropper&quot;
+    ],
+    [
+      &quot;teardrop_dropper&quot;,
+      &quot;cobalt_strike_beacon&quot;
+    ],
+    [
+      &quot;unc2452_actor&quot;,
+      &quot;solarwinds_supply_chain&quot;
+    ]
+  ],
+  &quot;id_based_alignment_only&quot;: true,
+  &quot;warning&quot;: &quot;Renamed/split/merged concepts need human alignment; pair changes are not semantic errors.&quot;
+}
+```
+
+- **revise edge `edge-0001`:** The report specifies that the actors trojanized Orion business software updates rather than describing source code repository injection.
+  - P002 (verified_text_only): FireEye discovered a supply chain attack trojanizing SolarWinds Orion business software updates in order to distribute malware we call SUNBURST.
+- **revise edge `edge-0009`:** Execution only proceeds to process/service discovery if the ReportWatcherRetry key is valid and domain membership is validated.
+  - P042 (verified_text_only): The key ReportWatcherRetry must be any value other than 3 for the sample to continue execution. The sample checks that the machine is domain joined and retrieves the domain name before execution continues.
+- **add node `recon_storage_in_plugin_config`:** Captures the backdoor&#x27;s defense evasion technique of storing reconnaissance and stopped services into legitimate plugin config files.
+  - P006 (verified_text_only): stores reconnaissance results within legitimate plugin configuration files allowing it to blend in with legitimate SolarWinds activity.
+  - P044 (verified_text_only): The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples&#x27; config file.
+- **add edge `anti_analysis_defense_evasion-&gt;recon_storage_in_plugin_config`:** Identifies that stopped service findings are written directly into the ReportWatcherPostpone config field.
+  - P044 (verified_text_only): The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples&#x27; config file.
+- **add node `network_connectivity_check`:** The sample explicitly tests network connectivity before domain generation begins.
+  - P044 (verified_text_only): If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.
+- **revise edge `edge-0010`:** Passing anti-analysis blocklists directly transitions to the connectivity check rather than straight to DGA domain generation.
+  - P044 (verified_text_only): If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.
+- **add edge `network_connectivity_check-&gt;dga_resolution`:** DGA generation loop only initiates once both blocklists and network connectivity checks succeed.
+  - P046 (verified_text_only): If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.
+- **add node `ip_blocklist_termination`:** Hardcoded IP blocklist hits cause malware termination and persistent execution disabling.
+  - P046 (verified_text_only): Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry to a value that prevents further execution:
+- **add edge `dga_resolution-&gt;ip_blocklist_termination`:** DNS A-record resolution branches to termination if the resolved IP falls within blocklisted ranges.
+  - P046 (verified_text_only): The DNS A record of generated domains is checked against a hardcoded list of IP address blocks which control the malware&#x27;s behavior. Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry
+- **revise edge `edge-0011`:** Clarifies that CNAME DNS retrieval directly leads to C2 domain assignment and HTTP helper spawning.
+  - P046 (verified_text_only): Once a domain has been successfully retrieved in a CNAME DNS response the sample will spawn a new thread of execution invoking the method HttpHelper.Initialize which is responsible for all C2 communications and dispatching.
+- **revise edge `edge-0014`:** TEARDROP was observed in &#x27;at least one instance&#x27; among multiple different payloads, not as an inevitable universal next step.
+  - P012 (verified_text_only): Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we&#x27;ve dubbed TEARDROP to deploy Cobalt Strike BEACON.
+- **revise edge `edge-0015`:** Preserves the environmental check and the report&#x27;s qualified assessment (&#x27;believe&#x27;) that TEARDROP loaded customized Cobalt Strike BEACON.
+  - P012 (verified_text_only): Next it checks that HKU SOFTWARE Microsoft CTF exists, decodes an embedded payload using a custom rolling XOR algorithm and manually loads into memory an embedded payload using a custom PE-like file format.
+  - P012 (verified_text_only): We believe that this was used to execute a customized Cobalt Strike BEACON.
+- **remove edge `edge-0016`:** C2 infrastructure masquerading is an actor-level evasion practice, not a direct causal output of Cobalt Strike BEACON execution.
+  - P018 (verified_text_only): The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim&#x27;s environment.
+  - P024 (verified_text_only): The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers.
+- **add edge `unc2452_actor-&gt;c2_infrastructure_masquerading`:** Roots C2 infrastructure configuration and masquerading directly with the threat actor.
+  - P018 (verified_text_only): The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim&#x27;s environment.
+- **remove edge `edge-0017`:** Credential abuse is an overarching actor preference for access, not a downstream effect of C2 hostname masquerading.
+  - P010 (verified_text_only): This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim&#x27;s environment.
+- **add edge `unc2452_actor-&gt;credential_abuse`:** Directly links threat actor UNC2452 to credential abuse and distinct credential usage for lateral movement.
+  - P010 (verified_text_only): This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim&#x27;s environment.
+  - P028 (verified_text_only): Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials.
+- **remove edge `edge-0018`:** Temporary file replacement and task modification are execution evasion techniques employed by the actor, not downstream products of credential abuse.
+  - P032 (verified_text_only): The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file.
+- **add edge `unc2452_actor-&gt;temporary_file_task_mod`:** Directly links UNC2452 to remote execution via temporary file replacement and scheduled task modification.
+  - P032 (verified_text_only): The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file.
+- **add node `tool_and_backdoor_removal`:** Captures the attacker&#x27;s defining operational security habit of cleaning up backdoors once legitimate remote access was obtained.
+  - P032 (verified_text_only): They routinely removed their tools, including removing backdoors once legitimate remote access was achieved.
+- **add edge `credential_abuse-&gt;tool_and_backdoor_removal`:** Achieving legitimate remote access directly triggered routine removal of backdoors and tools.
+  - P032 (verified_text_only): They routinely removed their tools, including removing backdoors once legitimate remote access was achieved.
+- **revise edge `edge-0019`:** Reroutes impact from credential-enabled network access and lateral movement directly to data theft and lateral movement.
+  - P004 (verified_text_only): Post compromise activity following this supply chain compromise has included lateral movement and data theft.
+  - P028 (verified_text_only): Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials.
+
+Audit trích dẫn của hai reviewer: `{&quot;defender&quot;: {&quot;markdown_fence_removed&quot;: true, &quot;verified_citations&quot;: 20, &quot;unverified_citations&quot;: 1}, &quot;skeptic&quot;: {&quot;markdown_fence_removed&quot;: true, &quot;verified_citations&quot;: 16, &quot;unverified_citations&quot;: 0}}`.
+Đây là selective review tối đa 12 findings + 6 omissions mỗi bên; không phải audit toàn bộ graph.
+
+[Ảnh nhãn đầy đủ kiểu paper](paper_style/r01_debate/graph.png) · [Bản xem tương tác](paper_style/r01_debate/graph.html)
+
+## Cách đọc
+
+Màu xanh lá biểu thị pair/node thêm so với baseline, không phải nhãn đúng. Ảnh giữ chung vị trí và mã node; tên đầy đủ trong node_legend.csv và index.html.
+So sánh Figure 2 trong paper_references để tham khảo mức trừu tượng của bài; không dùng toàn bộ hình như nhãn chuẩn đầy đủ.
+Chấm cạnh bằng nguồn: supported/conditional/unknown/unsupported/contradicted, giữ uncertainty/alternative/scope. Đây là khung chấm cho người đọc, không chạy validator tám CVE.
+annotation_source_blind.json dành cho chuẩn coverage trước khi nhìn graph; runs/rNN/&lt;strategy&gt;/annotation_blind.json dành cho cạnh. Các ô nhãn đều để trống.</pre><h2>Báo cáo nguồn theo đoạn</h2><details><summary>P001</summary><p>Executive Summary</p></details><details><summary>P002</summary><p>We have discovered a global intrusion campaign. We are tracking the actors behind this campaign as UNC2452. FireEye discovered a supply chain attack trojanizing SolarWinds Orion business software updates in order to distribute malware we call SUNBURST. The attacker&#x27;s post compromise activity leverages multiple techniques to evade detection and obscure their activity, but these efforts also offer some opportunities for detection. The campaign is widespread, affecting public and private organizations around the world. FireEye is releasing signatures to detect this threat actor and supply chain attack in the wild. These are found on our public GitHub page. FireEye products and services can help customers detect and block this attack.</p></details><details><summary>P003</summary><p>Summary</p></details><details><summary>P004</summary><p>FireEye has uncovered a widespread campaign, that we are tracking as UNC2452. The actors behind this campaign gained access to numerous public and private organizations around the world. They gained access to victims via trojanized updates to SolarWind&#x27;s Orion IT monitoring and management software. This campaign may have begun as early as Spring 2020 and is currently ongoing. Post compromise activity following this supply chain compromise has included lateral movement and data theft. The campaign is the work of a highly skilled actor and the operation was conducted with significant operational security.</p></details><details><summary>P005</summary><p>SUNBURST Backdoor</p></details><details><summary>P006</summary><p>SolarWinds.Orion.Core.BusinessLayer.dll is a SolarWinds digitally-signed component of the Orion software framework that contains a backdoor that communicates via HTTP to third party servers. We are tracking the trojanized version of this SolarWinds Orion plug-in as SUNBURST. After an initial dormant period of up to two weeks, it retrieves and executes commands, called &quot;Jobs&quot;, that include the ability to transfer files, execute files, profile the system, reboot the machine, and disable system services. The malware masquerades its network traffic as the Orion Improvement Program (OIP) protocol and stores reconnaissance results within legitimate plugin configuration files allowing it to blend in with legitimate SolarWinds activity. The backdoor uses multiple obfuscated blocklists to identify forensic and anti-virus tools running as processes, services, and drivers. Multiple trojanzied updates were digitally signed from March - May 2020 and posted to the SolarWinds updates website, including: hxxps://downloads.solarwinds[.]com/solarwinds/CatalogResources/Core/2019.4/2019.4.5220.20574/SolarWinds-Core-v2019.4.5220-Hotfix5.msp The trojanized update file is a standard Windows Installer Patch file that includes compressed resources associated with the update, including the trojanized SolarWinds.Orion.Core.BusinessLayer.dll component. Once the update is installed, the malicious DLL will be loaded by the legitimate SolarWinds.BusinessLayerHost.exe or SolarWinds.BusinessLayerHostx64.exe (depending on system configuration). After a dormant period of up to two weeks, the malware will attempt to resolve a subdomain of avsvmcloud[.]com. The DNS response will return a CNAME record that points to a Command and Control (C2) domain. The C2 traffic to the malicious domains is designed to mimic normal SolarWinds API communications. The list of known malicious infrastructure is available on FireEye&#x27;s GitHub page.</p></details><details><summary>P007</summary><p>Worldwide Victims Across Multiple Verticals</p></details><details><summary>P008</summary><p>FireEye has detected this activity at multiple entities worldwide. The victims have included government, consulting, technology, telecom and extractive entities in North America, Europe, Asia and the Middle East. We anticipate there are additional victims in other countries and verticals. FireEye has notified all entities we are aware of being affected.</p></details><details><summary>P009</summary><p>Post Compromise Activity and Detection Opportunities</p></details><details><summary>P010</summary><p>We are currently tracking the software supply chain compromise and related post intrusion activity as UNC2452. After gaining initial access, this group uses a variety of techniques to disguise their operations while they move laterally (Figure 2). This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim&#x27;s environment. This section will detail the notable techniques and outline potential opportunities for detection.</p></details><details><summary>P011</summary><p>TEARDROP and BEACON Malware Used</p></details><details><summary>P012</summary><p>Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we&#x27;ve dubbed TEARDROP to deploy Cobalt Strike BEACON. TEARDROP is a memory only dropper that runs as a service, spawns a thread and reads from the file &quot;gracious_truth.jpg&quot;, which likely has a fake JPG header. Next it checks that HKU SOFTWARE Microsoft CTF exists, decodes an embedded payload using a custom rolling XOR algorithm and manually loads into memory an embedded payload using a custom PE-like file format. TEARDROP does not have code overlap with any previously seen malware. We believe that this was used to execute a customized Cobalt Strike BEACON.</p></details><details><summary>P013</summary><p>Mitigation:</p></details><details><summary>P014</summary><p>FireEye has provided two Yara rules to detect TEARDROP available on our GitHub. Defenders should look for the following alerts from FireEye HX: MalwareGuard and WindowsDefender:</p></details><details><summary>P015</summary><p>Process Information</p></details><details><summary>P016</summary><p>file_operation_closed file-path*: &quot;c: windows syswow64 netsetupsvc.dll actor-process: pid: 17900 Window&#x27;s defender Exploit Guard log entries: (Microsoft-Windows- Security-Mitigations/KernelMode event ID 12) Process&quot; Device HarddiskVolume2 Windows System32 svchost.exe&quot; (PID XXXXX) would have been blocked from loading the non-Microsoft-signed binary &#x27; Windows SysWOW64 NetSetupSvc.dll&#x27;</p></details><details><summary>P017</summary><p>Attacker Hostnames Match Victim Environment</p></details><details><summary>P018</summary><p>The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim&#x27;s environment. This allows the adversary to blend into the environment, avoid suspicion, and evade detection.</p></details><details><summary>P019</summary><p>Detection Opportunity</p></details><details><summary>P020</summary><p>The attacker infrastructure leaks its configured hostname in RDP SSL certificates, which is identifiable in internet-wide scan data. This presents a</p></details><details><summary>P021</summary><p>Detection Opportunity</p></details><details><summary>P022</summary><p>for defenders � querying internet-wide scan data sources for an organization&#x27;s hostnames can uncover malicious IP addresses that may be masquerading as the organization. (Note: IP Scan history often shows IPs switching between default (WIN-*) hostnames and victim&#x27;s hostnames) Cross-referencing the list of IPs identified in internet scan data with remote access logs may identify evidence of this actor in an environment. There is likely to be a single account per IP address.</p></details><details><summary>P023</summary><p>IP Addresses located in Victim&#x27;s Country</p></details><details><summary>P024</summary><p>The attacker&#x27;s choice of IP addresses was also optimized to evade detection. The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers.</p></details><details><summary>P025</summary><p>Detection Opportunity</p></details><details><summary>P026</summary><p>This also presents some detection opportunities, as geolocating IP addresses used for remote access may show an impossible rate of travel if a compromised account is being used by the legitimate user and the attacker from disparate IP addresses. The attacker used multiple IP addresses per VPS provider, so once a malicious login from an unusual ASN is identified, looking at all logins from that ASN can help detect additional malicious activity. This can be done alongside baselining and normalization of ASN&#x27;s used for legitimate remote access to help identify suspicious activity.</p></details><details><summary>P027</summary><p>Lateral Movement Using Different Credentials</p></details><details><summary>P028</summary><p>Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials. The credentials used for lateral movement were always different from those used for remote access.</p></details><details><summary>P029</summary><p>Detection Opportunity</p></details><details><summary>P030</summary><p>Organizations can use HX&#x27;s LogonTracker module to graph all logon activity and analyze systems displaying a one-to-many relationship between source systems and accounts. This will uncover any single system authenticating to multiple systems with multiple accounts, a relatively uncommon occurrence during normal business operations.</p></details><details><summary>P031</summary><p>Temporary File Replacement and Temporary Task Modification</p></details><details><summary>P032</summary><p>The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file. They similarly manipulated scheduled tasks by updating an existing legitimate task to execute their tools and then returning the scheduled task to its original configuration. They routinely removed their tools, including removing backdoors once legitimate remote access was achieved.</p></details><details><summary>P033</summary><p>Detection Opportunity</p></details><details><summary>P034</summary><p>Defenders can examine logs for SMB sessions that show access to legitimate directories and follow a delete-create-execute-delete-create pattern in a short amount of time. Additionally, defenders can monitor existing scheduled tasks for temporary updates, using frequency analysis to identify anomalous modification of tasks. Tasks can also be monitored to watch for legitimate Windows tasks executing new or unknown binaries. This campaign&#x27;s post compromise activity was conducted with a high regard for operational security, in many cases leveraging dedicated infrastructure per intrusion. This is some of the best operational security that FireEye has observed in a cyber attack, focusing on evasion and leveraging inherent trust. However, it can be detected through persistent defense.</p></details><details><summary>P035</summary><p>In-Depth Malware Analysis</p></details><details><summary>P036</summary><p>SolarWinds.Orion.Core.BusinessLayer.dll (b91ce2fa41029f6955bff20079468448) is a SolarWinds-signed plugin component of the Orion software framework that contains an obfuscated backdoor which communicates via HTTP to third party servers. After an initial dormant period of up to two weeks, it retrieves and executes commands, called &quot;Jobs&quot;, that include the ability to transfer and execute files, profile the system, and disable system services. The backdoor&#x27;s behavior and network protocol blend in with legitimate SolarWinds activity, such as by masquerading as the Orion Improvement Program (OIP) protocol and storing reconnaissance results within plugin configuration files. The backdoor uses multiple blocklists to identify forensic and anti-virus tools via processes, services, and drivers.</p></details><details><summary>P037</summary><p>Unique Capabilities</p></details><details><summary>P038</summary><p>Subdomain DomainName Generation Algorithm (DGA) is performed to vary DNS requests CNAME responses point to the C2 domain for the malware to connect to The IP block of A record responses controls malware behavior DGA encoded machine domain name, used to selectively target victims Command and control traffic masquerades as the legitimate Orion Improvement Program Code hides in plain site by using fake variable names and tying into legitimate components</p></details><details><summary>P039</summary><p>Delivery and Installation</p></details><details><summary>P040</summary><p>Authorized system administrators fetch and install updates to SolarWinds Orion via packages distributed by SolarWinds&#x27;s website. The update package CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp (02af7cec58b9a5da1c542b5a32151ba1) contains the SolarWinds.Orion.Core.BusinessLayer.dll described in this report. After installation, the Orion software framework executes the .NET program SolarWinds.BusinessLayerHost.exe to load plugins, including SolarWinds.Orion.Core.BusinessLayer.dll. This plugin contains many legitimate namespaces, classes, and routines that implement functionality within the Orion framework. Hidden in plain sight, the class SolarWinds.Orion.Core.BusinessLayer. Orion- ImprovementBusinessLayer implements an HTTP-based backdoor. Code within the logically unrelated routine SolarWinds.Orion.Core. BusinessLayer.BackgroundInventory.InventoryManager.RefreshInternal invokes the backdoor code when the Inventory Manager plugin is loaded. SolarWinds.Orion.Core.BusinessLayer.dll is signed by SolarWinds, using the certificate with serial number 0f:e9:73:75:20:22:a6:06:ad:f2:a3:6e: 34:5d:c0:ed. The file was signed on March 24, 2020.</p></details><details><summary>P041</summary><p>Initialization</p></details><details><summary>P042</summary><p>On execution of the malicious SolarWinds.Orion.Core.BusinessLayer. OrionImprovementBusinessLayer.Initialize method the sample verifies that its lower case process name hashes to the value 17291806236368054941. This hash value is calculated as the standard FNV-1A 64-bit hash with an additional XOR by 6605813339339102567 after computing the FNV-1A. This hash matches a process named &quot;solarwinds.businesslayerhost&quot;. The sample only executes if the filesystem write time of the assembly is at least 12 to 14 days prior to the current time; the exact threshold is selected randomly from an interval. The sample continues to check this time threshold as it is run by a legitimate recurring background task. Once the threshold is met, the sample creates the named pipe 583da945-62af-10e8-4902-a8f205c72b2e to act as a guard that only one instance is running before reading SolarWinds.Orion.Core.BusinessLayer.dll.config from disk and retrieving the XML field appSettings. The appSettings fields&#x27; keys are legitimate values that the malicious logic re-purposes as a persistent configuration. The key ReportWatcherRetry must be any value other than 3 for the sample to continue execution. The sample checks that the machine is domain joined and retrieves the domain name before execution continues. A userID is generated by computing the MD5 of a network interface MAC address that is up and not a loopback device, the domain name, and the registry value HKEY_LOCAL_MACHINE SOFTWARE Microsoft Cryptography MachineGuid. The userID is encoded via a custom XOR scheme after the MD5 is calculated. The ReportWatcherPostpone key of appSettings is then read from SolarWinds.Orion.Core.BusinessLayer.dll.config to retrieve the initial, legitimate value. This operation is performed as the sample later bit packs flags into this field and the initial value must be known in order to read out the bit flags. The sample then invokes the method Update which is the core event loop of the sample.</p></details><details><summary>P043</summary><p>DGA and Blocklists</p></details><details><summary>P044</summary><p>The backdoor determines its C2 server using a Domain Generation Algorithm (DGA) to construct and resolve a subdomain of avsvmcloud[.]com. The Update method is responsible for initializing cryptographic helpers for the generation of these random C2 subdomains. Subdomains are generated by concatenating a victim userId with a reversible encoding of the victims local machine domain name. The attacker likely utilizes the DGA subdomain to vary the DNS response to victims as a means to control the targeting of the malware. These subdomains are concatenated with one of the following to create the hostname to resolve: .appsync-api.eu-west-1[.]avsvmcloud[.]com .appsync-api.us-west- 2[.]avsvmcloud[.]com .appsync-api.us-east-1[.]avsvmcloud[.]com .appsync-api.us-east-2[.]avsvmcloud[.]com Process name, service name, and driver path listings are obtained, and each value is hashed via the FNV-1a + XOR algorithm as described previously and checked against hardcoded blocklists. Some of these hashes have been brute force reversed as part of this analysis, showing that these routines are scanning for analysis tools and antivirus engine components. If a blocklisted process is found the Update routine exits and the sample will continue to try executing the routine until the blocklist passes. Blocklisted services are stopped by setting their HKLM SYSTEM CurrentControlSet services &lt;service_name&gt; Start registry entries to value 4 for disabled. Some entries in the service list if found on the system may affect the DGA algorithms behavior in terms of the values generated. The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples&#x27; config file. If any service was transitioned to disabled the Update method exits and retries later. The sample retrieves a driver listing via the WMI query Select * From Win32_SystemDriver. If any blocklisted driver is seen the Update method exits and retries. If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.</p></details><details><summary>P045</summary><p>Network Command and Control (C2)</p></details><details><summary>P046</summary><p>If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA. The sample will delay for random intervals between the generation of domains; this interval may be any random value from the ranges 1 to 3 minutes, 30 to 120 minutes, or on error conditions up to 420 to 540 minutes (9 hours). The DNS A record of generated domains is checked against a hardcoded list of IP address blocks which control the malware&#x27;s behavior. Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry to a value that prevents further execution: 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 224.0.0.0/3 fc00:: - fe00:: fec0:: - ffc0:: ff00:: - ff00:: 20.140.0.0/15 96.31.172.0/24 131.228.12.0/22 144.86.226.0/24 Once a domain has been successfully retrieved in a CNAME DNS response the sample will spawn a new thread of execution invoking the method HttpHelper.Initialize which is responsible for all C2 communications and dispatching. The HTTP thread begins by delaying for a configurable amount of time that is controlled by the SetTime command. The HTTP thread will delay for a minimum of 1 minute between callouts. The malware uses HTTP GET or HTTP POST requests. If the sample is attempting to send outbound data the content-type HTTP header will be set to &quot;application/octet-stream&quot; otherwise to &quot;application/json&quot;. A JSON payload is present for all HTTP POST and PUT requests and contains the keys &quot;userId&quot;, &quot;sessionId&quot;, and &quot;steps&quot;. The &quot;steps&quot; field contains a list of objects with the following keys: &quot;Timestamp&quot;, &quot;Index&quot;, &quot;EventType&quot;, &quot;EventName&quot;, &quot;DurationMs&quot;, &quot;Succeeded&quot;, and &quot;Message&quot;. The JSON key &quot;EventType&quot; is hardcoded to the value &quot;Orion&quot;, and the &quot;EventName&quot; is hardcoded to &quot;EventManager&quot;. Malware response messages to send to the server are DEFLATE compressed and single-byte-XOR encoded, then split among the &quot;Message&quot; fields in the &quot;steps&quot; array. Each &quot;Message&quot; value is Base64 encoded separately. Not all objects in the &quot;steps&quot; array contribute to the malware message � the integer in the &quot;Timestamp&quot; field must have the 0x2 bit set to indicate that the contents of the &quot;Message&quot; field are used in the malware message. Step objects whose bit 0x2 is clear in the Timestamp field contain random data and are discarded when assembling the malware response.</p></details><details><summary>P047</summary><p>Steganography</p></details><details><summary>P048</summary><p>In observed traffic these HTTP response bodies attempt to appear like benign XML related to .NET assemblies, but command data is actually spread across the many GUID and HEX strings present. Commands are extracted from HTTP response bodies by searching for HEX strings using the following regular expression: &quot;{[0-9a-f-]36}&quot;|&quot;[0-9a-f]32&quot;|&quot;[0-9a-f]16&quot;. Command data is spread across multiple strings that are disguised as GUID and HEX strings. All matched substrings in the response are filtered for non HEX characters, joined together, and HEX-decoded. The first DWORD value shows the actual size of the message, followed immediately with the message, with optional additional junk bytes following. The extracted message is single-byte XOR decoded using the first byte of the message, and this is then DEFLATE decompressed. The first character is an ASCII integer that maps to the JobEngine enum, with optional additional command arguments delimited by space characters. Commands are then dispatched to a JobExecutionEngine based upon the command value as described next.</p></details><details><summary>P049</summary><p>Supported Commands</p></details><details><summary>P050</summary><p>Command Value Operation Idle 0 No operation Exit 1 Terminate the current thread. SetTime 2 Sets the delay time between main event loop executions Delay is in seconds, and varies random between [.9 * &lt;delay&gt;, 1.1 * &lt;delay&gt;]. If the delay is &lt; 300 it is doubled on the next execution through the loop, this means it should settle onto an interval of around [5, 10] minutes. There is a second, unrelated delay routine that delays for a random interval between [16hrs, 83hrs] CollectSystemDescription 3 Profile the local system including hostname, username, OS version, MAC addresses, IP address, DHCP configuration, and domain information. UploadSystemDescription 4 Perform a HTTP request to the specified URL, parse the results and compare components against unknown hashed values. Format a report and send to the C2 server. RunTask 5 Starts a new process with the given file path and arguments GetProcessByDescription 6 Returns a process listing. If no arguments are provided returns just the PID and process name. If an argument is provided it also returns the parent PID and username and domain for the process owner. KillTask 7 Terminate the given process, by PID. GetFileSystemEntries 8 Given a path and an optional match pattern recursively list files and directories WriteFile 9 Given a file path and a Base64 encoded string write the contents of the Base64 decoded string to the given file path. Write using append mode. Delay for [1s, 2s] after writing is done. FileExists 10 Tests whether the given file path exists. DeleteFile 11 Deletes the specified file path. GetFileHash 12 Compute the MD5 of a file at a given path and return result as a HEX string. If an argument is provided, it is the expected MD5 hash of the file and returns an error if the calculated MD5 differs. ReadRegistryValue 13 Arbitrary registry read from one of the supported hives SetRegistryValue 14 Arbitrary registry write from one of the supported hives. DeleteRegistryValue 15 Arbitrary registry delete from one of the supported hives GetRegistrySubKeyAndValueNames 16 Returns listing of subkeys and value names beneath the given registry path Reboot 17 Attempts to immediately trigger a system reboot.</p></details><details><summary>P051</summary><p>Indicators and Detections to Help the Community</p></details><details><summary>P052</summary><p>To empower the community to detect this supply chain backdoor, we are publishing indicators and detections to help organizations identify this backdoor and this threat actor. The signatures are a mix of Yara, IOC, and Snort formats. A list of the detections and signatures are available on the Mandiant GitHub repository. We are releasing detections and will continue to update the public repository with overlapping detections for host and network-based indicators as we develop new or refine existing ones. We have found multiple hashes with this backdoor and we will post updates of those hashes.</p></details><details><summary>P053</summary><p>MITRE ATT&amp;CK Techniques Observed</p></details><details><summary>P054</summary><p>ID Description T1012 Query Registry T1027 Obfuscated Files or Information T1057 Process Discovery T1070.004 File Deletion T1071.001 Web Protocols T1071.004 Application Layer Protocol: DNS T1083 File and Directory Discovery T1105 Ingress Tool Transfer T1132.001 Standard Encoding T1195.002 Compromise Software Supply Chain T1518 Software Discovery T1518.001 Security Software Discovery T1543.003 Windows Service T1553.002 Code Signing T1568.002 Domain Generation Algorithms T1569.002 Service Execution T1584 Compromise Infrastructure</p></details><details><summary>P055</summary><p>Immediate Mitigation Recommendations</p></details><details><summary>P056</summary><p>Prior to following SolarWind&#x27;s recommendation to utilize Orion Platform release 2020.2.1 HF 1, which is currently available via the Solar- Winds Customer Portal, organizations should consider preserving impacted devices and building new systems using the latest versions. Applying an upgrade to an impacted box could potentially overwrite forensic evidence as well as leave any additional backdoors on the system. In addition, SolarWinds has released additional mitigation and hardening instructions. In the event you are unable to follow SolarWinds&#x27; recommendations, the following are immediate mitigation techniques that could be deployed as first steps to address the risk of trojanized Solar- Winds software in an environment. If attacker activity is discovered in an environment, we recommend conducting a comprehensive investigation and designing and executing a remediation strategy driven by the investigative findings and details of the impacted environment. Ensure that SolarWinds servers are isolated / contained until a further review and investigation is conducted. This should include blocking all Internet egress from SolarWinds servers. If Solar- Winds infrastructure is not isolated, consider taking the following steps: Restrict scope of connectivity to endpoints from SolarWinds servers, especially those that would be considered Tier 0 / crown jewel assets Restrict the scope of accounts that have local administrator privileged on SolarWinds servers. Block Internet egress from servers or other endpoints with SolarWinds software. Consider (at a minimum) changing passwords for accounts that have access to SolarWinds servers / infrastructure. Based upon further review / investigation, additional remediation measures may be required. If SolarWinds is used to managed networking infrastructure, consider conducting a review of network device configurations for unexpected / unauthorized modifications. Note, this is a proactive measure due to the scope of SolarWinds functionality, not based on investigative findings.</p></details><script>for(const svg of document.querySelectorAll('svg')){const g=svg.querySelector('.viewport');let s=1,x=0,y=0,drag=null;function apply(){g.setAttribute('transform',`translate(${x},${y}) scale(${s})`)}svg.addEventListener('wheel',e=>{e.preventDefault();const rect=svg.getBoundingClientRect(),px=(e.clientX-rect.left)/rect.width*1200,py=(e.clientY-rect.top)/rect.height*1200;const n=Math.min(6,Math.max(.4,s*Math.exp(-e.deltaY*.001)));x=px-(px-x)*n/s;y=py-(py-y)*n/s;s=n;apply()},{passive:false});svg.addEventListener('pointerdown',e=>{drag=[e.clientX,e.clientY,x,y];svg.setPointerCapture(e.pointerId)});svg.addEventListener('pointermove',e=>{if(!drag)return;const r=svg.getBoundingClientRect();x=drag[2]+(e.clientX-drag[0])/r.width*1200;y=drag[3]+(e.clientY-drag[1])/r.height*1200;apply()});svg.addEventListener('pointerup',()=>drag=null);svg.parentElement.querySelector('.reset').onclick=()=>{s=1;x=0;y=0;apply()}};</script></html>

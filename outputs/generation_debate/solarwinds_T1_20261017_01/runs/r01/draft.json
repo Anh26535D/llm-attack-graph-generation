@@ -1,0 +1,180 @@
+{
+  "graph": {
+    "nodes": [
+      {
+        "id": "unc2452_actor",
+        "label": "Threat Actor UNC2452"
+      },
+      {
+        "id": "solarwinds_supply_chain",
+        "label": "Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+      },
+      {
+        "id": "trojanized_patch",
+        "label": "Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)"
+      },
+      {
+        "id": "sunburst_dll",
+        "label": "SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)"
+      },
+      {
+        "id": "victim_host_install",
+        "label": "Victim Host / Admin Update Installation"
+      },
+      {
+        "id": "businesslayerhost_exe",
+        "label": "Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)"
+      },
+      {
+        "id": "inventory_manager_trigger",
+        "label": "Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)"
+      },
+      {
+        "id": "initial_dormant_period",
+        "label": "Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)"
+      },
+      {
+        "id": "anti_analysis_defense_evasion",
+        "label": "Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+      },
+      {
+        "id": "dga_resolution",
+        "label": "DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)"
+      },
+      {
+        "id": "c2_domain_cname",
+        "label": "C2 Domain CNAME Resolution & IP Check Validation"
+      },
+      {
+        "id": "http_c2_communication",
+        "label": "HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+      },
+      {
+        "id": "steganography_jobs",
+        "label": "Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+      },
+      {
+        "id": "teardrop_dropper",
+        "label": "TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)"
+      },
+      {
+        "id": "cobalt_strike_beacon",
+        "label": "Customized Cobalt Strike BEACON Payload Execution"
+      },
+      {
+        "id": "c2_infrastructure_masquerading",
+        "label": "C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)"
+      },
+      {
+        "id": "credential_abuse",
+        "label": "Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)"
+      },
+      {
+        "id": "temporary_file_task_mod",
+        "label": "Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)"
+      },
+      {
+        "id": "data_theft_impact",
+        "label": "Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks"
+      }
+    ],
+    "edges": [
+      {
+        "from": "unc2452_actor",
+        "to": "solarwinds_supply_chain",
+        "label": "Injects malicious backdoor code into legitimate source code"
+      },
+      {
+        "from": "solarwinds_supply_chain",
+        "to": "trojanized_patch",
+        "label": "Signs and publishes digitally signed installer patch (March-May 2020)"
+      },
+      {
+        "from": "trojanized_patch",
+        "to": "sunburst_dll",
+        "label": "Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll"
+      },
+      {
+        "from": "trojanized_patch",
+        "to": "victim_host_install",
+        "label": "Downloaded and installed by administrators from updates website"
+      },
+      {
+        "from": "victim_host_install",
+        "to": "businesslayerhost_exe",
+        "label": "Triggers execution of Orion software host framework"
+      },
+      {
+        "from": "businesslayerhost_exe",
+        "to": "sunburst_dll",
+        "label": "Loads digitally signed DLL into host process"
+      },
+      {
+        "from": "sunburst_dll",
+        "to": "inventory_manager_trigger",
+        "label": "Calls OrionImprovementBusinessLayer.Initialize via InventoryManager"
+      },
+      {
+        "from": "inventory_manager_trigger",
+        "to": "initial_dormant_period",
+        "label": "Checks process name hash, assembly age threshold (12-14 days), and named pipe guard"
+      },
+      {
+        "from": "initial_dormant_period",
+        "to": "anti_analysis_defense_evasion",
+        "label": "Discovers analysis/AV processes, sets registry to disable services, checks drivers"
+      },
+      {
+        "from": "anti_analysis_defense_evasion",
+        "to": "dga_resolution",
+        "label": "Generates DGA subdomains encoding local domain name and userId"
+      },
+      {
+        "from": "dga_resolution",
+        "to": "c2_domain_cname",
+        "label": "Queries DNS, checks A-records against IP blocklists, retrieves CNAME record"
+      },
+      {
+        "from": "c2_domain_cname",
+        "to": "http_c2_communication",
+        "label": "Initializes HttpHelper C2 thread mimicking Orion Improvement Program (OIP)"
+      },
+      {
+        "from": "http_c2_communication",
+        "to": "steganography_jobs",
+        "label": "Extracts steganographic commands from GUID/HEX strings to execute Jobs"
+      },
+      {
+        "from": "steganography_jobs",
+        "to": "teardrop_dropper",
+        "label": "Deploys memory-only service dropper (NetSetupSvc.dll) reading fake JPG file"
+      },
+      {
+        "from": "teardrop_dropper",
+        "to": "cobalt_strike_beacon",
+        "label": "Decodes custom rolling XOR payload and loads customized Cobalt Strike BEACON into memory"
+      },
+      {
+        "from": "cobalt_strike_beacon",
+        "to": "c2_infrastructure_masquerading",
+        "label": "Communicates through victim-located VPS IPs and certificates mimicking internal hostnames"
+      },
+      {
+        "from": "c2_infrastructure_masquerading",
+        "to": "credential_abuse",
+        "label": "Leverages legitimate remote access credentials and pivots using distinct secondary credentials"
+      },
+      {
+        "from": "credential_abuse",
+        "to": "temporary_file_task_mod",
+        "label": "Executes utilities via temporary file substitution and short-lived scheduled task modification"
+      },
+      {
+        "from": "temporary_file_task_mod",
+        "to": "data_theft_impact",
+        "label": "Facilitates wide-scale internal reconnaissance, lateral movement, and data theft"
+      }
+    ]
+  },
+  "changes": []
+}

@@ -1,0 +1,124 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:56:21.432754+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The edge target is the non-CVE node labeled 'Raspberry Pi Default Credential Authentication' rather than a mapped CVE.",
+        "A strict graph requires explicit evidence for the causal bridge, not merely a plausible chain."
+      ],
+      "confidence": 0.94,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "via api/settings/log?file=../ path traversal"
+        }
+      ],
+      "missing_conditions": [
+        "Downloaded files include /etc/shadow or configuration password hashes.",
+        "The piSignage process can read those files; arbitrary file download does not prove file permissions or contents.",
+        "The recovered hashes correspond to the default 'pi' system account.",
+        "Cracking or recovery of the default 'pi' password from the exfiltrated hashes is feasible.",
+        "The target Raspberry Pi OS is reachable via network or local access with unmodified default credentials ('pi':'raspberry').",
+        "The source file-read host and target default-credential authentication host are the same deployment or otherwise causally connected.",
+        "A target CVE mapping and target CVE description are supplied; the target CVE mapping is missing.",
+        "Evidence that the source file read grants shell access or administrative/sudo privileges; the source description does not state this."
+      ],
+      "reason": "CVE-2019-20354 supports only a remote, low-privilege-authenticated arbitrary file download/read from the Raspberry Pi via path traversal. It does not state which files are obtained, that /etc/shadow or configuration hashes are exposed, that any hash corresponds to the default 'pi' account, that cracking succeeds, or that the target Raspberry Pi OS has unmodified default credentials. The target node requires network/local access to Raspberry Pi OS with default 'pi':'raspberry' credentials and yields sudo shell access, but that is not supplied by the source CVE. Arbitrary file download could potentially expose readable files, but the supplied description gives no file-content or credential-recovery evidence. The bridge is therefore overclaimed and cannot enter a strict graph as stated.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "unsupported",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 3813,
+      "prompt_tokens": 1373,
+      "total_tokens": 5186,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3294,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0026844,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0026844,
+        "upstream_inference_prompt_cost": 0.00020595,
+        "upstream_inference_completions_cost": 0.00247845
+      }
+    },
+    "latency_seconds": 17.129836300000534,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "5357432f7cc6f2c21b99cd6237b1c105f0677ddf4d2a4c022ee08d9a42886b05",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 3813,
+        "prompt_tokens": 1373,
+        "total_tokens": 5186,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3294,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0026844,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0026844,
+          "upstream_inference_prompt_cost": 0.00020595,
+          "upstream_inference_completions_cost": 0.00247845
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The edge target is the non-CVE node labeled 'Raspberry Pi Default Credential Authentication' rather than a mapped CVE.\",\"A strict graph requires explicit evidence for the causal bridge, not merely a plausible chain.\"],\"confidence\":0.94,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files from the Raspberry Pi\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"via api/settings/log?file=../ path traversal\"}],\"missing_conditions\":[\"Downloaded files include /etc/shadow or configuration password hashes.\",\"The piSignage process can read those files; arbitrary file download does not prove file permissions or contents.\",\"The recovered hashes correspond to the default 'pi' system account.\",\"Cracking or recovery of the default 'pi' password from the exfiltrated hashes is feasible.\",\"The target Raspberry Pi OS is reachable via network or local access with unmodified default credentials ('pi':'raspberry').\",\"The source file-read host and target default-credential authentication host are the same deployment or otherwise causally connected.\",\"A target CVE mapping and target CVE description are supplied; the target CVE mapping is missing.\",\"Evidence that the source file read grants shell access or administrative/sudo privileges; the source description does not state this.\"],\"reason\":\"CVE-2019-20354 supports only a remote, low-privilege-authenticated arbitrary file download/read from the Raspberry Pi via path traversal. It does not state which files are obtained, that /etc/shadow or configuration hashes are exposed, that any hash corresponds to the default 'pi' account, that cracking succeeds, or that the target Raspberry Pi OS has unmodified default credentials. The target node requires network/local access to Raspberry Pi OS with default 'pi':'raspberry' credentials and yields sudo shell access, but that is not supplied by the source CVE. Arbitrary file download could potentially expose readable files, but the supplied description gives no file-content or credential-recovery evidence. The bridge is therefore overclaimed and cannot enter a strict graph as stated.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"unsupported\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:56:38.564840+00:00"
+}

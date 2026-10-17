@@ -1,0 +1,60 @@
+{
+  "scope": "paper_SolarWinds_paired_debate",
+  "case": "T1",
+  "paper_figure": 2,
+  "created_at": "2026-10-16T17:40:28.842699+00:00",
+  "repeats": 1,
+  "strategies": [
+    "single",
+    "self_refine",
+    "debate"
+  ],
+  "config": {
+    "rounds": 1,
+    "max_output_tokens": 32768,
+    "reasoning_level": "medium",
+    "argument_words": 80
+  },
+  "roles": {
+    "generator": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "defender": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "skeptic": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "judge": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    }
+  },
+  "prompt_sha256": "2a84c0a9579144a58d2cd1e0b6085bda1ac9d05190593776f50fd8809d8842af",
+  "paragraphs_sha256": "a6b8f4dbfcecd571f55f23297af8c4d555c95b28adc0da2af7d286293c96f213",
+  "report_sha256": "854aa2119d96708be153e57e2adc20d4f9ec4ac8d0ae4072351bb07e4de2cb2e",
+  "code_sha256": {
+    "src\\crystalball\\report_debate.py": "fe5ee44f4a21b09597d0cc78e0b12723395234d4c0403171801d805106d4a8a0",
+    "src\\crystalball\\generation_debate.py": "782ec3eca409837d121578702606a94c018b8e003716f89f1414cc20af7562bf",
+    "src\\crystalball\\generation_debate_runner.py": "20ee5592c25d049034bcea8861ab83d5998e8d60f4f1217bce9141aaf26c1f07",
+    "src\\crystalball\\experiment.py": "dfa1368db6df982d8b450ee66ebb5d5ce3e2ef5772e494d9b85794592f29fc1a",
+    "src\\crystalball\\paper_cases.py": "de83cfbe162bef0737ee85d0693cacb81e3439b8439c45e46c077f0f9e0da90d",
+    "src\\crystalball\\llm\\base.py": "65a17b1f87bec77d025d013d43c3513cecd542388381840e837a7e82d549dc25",
+    "src\\crystalball\\llm\\factory.py": "8c2ed8fecf2075d2b2a613eced5e5545915672177d551ab9f17fe6207929d263",
+    "src\\crystalball\\llm\\gemini_client.py": "1d12c3359da04b08d945e2ec7e42cd60bdbce88a805a675ce302e03bede4f8a9",
+    "src\\crystalball\\llm\\openai_client.py": "3ae8f63ab874158b6a2257e43575577937d4a33f09ab5bb19356edd08e060483",
+    "src\\crystalball\\llm\\openrouter_client.py": "e31d3004610654eb44b8f23a7c3e864d427053b7e12c4e060484ade218467e4e"
+  },
+  "max_api_calls_per_repeat": 7,
+  "max_api_calls_total": 7,
+  "baseline_prompt": "unchanged_pinned_paper_prompt",
+  "synthetic_data": false,
+  "fixed_node_inventory": false,
+  "automatic_retries": false,
+  "independent_gold": false,
+  "accuracy": null,
+  "parser_policy": "one whole-response Markdown fence allowed; strict JSON, no repair"
+}

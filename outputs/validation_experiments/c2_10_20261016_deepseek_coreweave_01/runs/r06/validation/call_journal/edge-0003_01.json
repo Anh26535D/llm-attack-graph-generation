@@ -1,0 +1,149 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:53:54.985382+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not confirming evidence.",
+        "The candidate bridge 'possible_audio_activation' is an inference, not an observed causal transition.",
+        "Admin privileges on Raspberry Pi OS could potentially allow audio configuration on compatible hardware, but this causal step is not stated in CVE-2021-38759 or CVE-2021-38545.",
+        "The Glowworm target may not require admin privileges from CVE-2021-38759; that is an inference from the target description.",
+        "No environment observations establish same-host deployment, speaker connection, sensitive speech playback, or optical line-of-sight."
+      ],
+      "confidence": 0.82,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "Raspberry Pi 3 B+ and 4 B devices through 2021-08-09"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "in certain specific use cases in which the device supplies power to audio-output equipment"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "allow remote attackers to recover speech signals"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "via a telescope and an electro-optical sensor"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "The sound played by the speakers affects the Raspberry Pi's power consumption"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "By analyzing measurements obtained from an electro-optical sensor directed at the power indicator LED of the Raspberry Pi, we can recover the sound played by the speakers."
+        }
+      ],
+      "missing_conditions": [
+        "externally verified source-target host relationship",
+        "source: network or local access path to exploit default pi credentials",
+        "source: default pi password remains unchanged",
+        "source: admin privileges actually enable command/control of target audio playback",
+        "target: Raspberry Pi 3 B+ or 4 B device through 2021-08-09",
+        "target: device supplies power to audio-output equipment",
+        "target: connected speakers are playing sound, including sensitive speech data",
+        "target: optical line-of-sight to the power indicator LED",
+        "target: telescope and electro-optical sensor measurement capability",
+        "full edge claim entailment from admin privileges to side-channel eavesdropping"
+      ],
+      "reason": "The source CVE describes only default pi password and conditional admin privileges if unchanged; it does not describe controlling audio output, connecting speakers, playing sensitive speech, or side-channel eavesdropping. The target CVE describes a Glowworm optical side-channel that requires Raspberry Pi 3 B+ or 4 B, powered audio-output equipment, sound played by speakers, and line-of-sight to the power indicator LED; its effect is recovering speech signals, not granting audio control. The edge label asserts a stronger bridge: admin privileges cause or control audio playback and sensitive speech to facilitate the target side-channel. That bridge is not entailed by either CVE. At most, if the same device exists and admin privileges are used to activate audio with powered speakers and optical line-of-sight, the target could potentially be reachable, but those conditions are unverified. Therefore it should not enter a strict graph as supported; it is conditional only if missing conditions are independently verified.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-38545"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 7680,
+      "prompt_tokens": 2237,
+      "total_tokens": 9917,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 6894,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.005289662,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005289662,
+        "upstream_inference_prompt_cost": 0.000297662,
+        "upstream_inference_completions_cost": 0.004992
+      }
+    },
+    "latency_seconds": 36.33371309999893,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "634a3e993adaa93cbbc5de667c1e949766314921dde827fb023ddc7e5ff3795b",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 7680,
+        "prompt_tokens": 2237,
+        "total_tokens": 9917,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6894,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.005289662,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005289662,
+          "upstream_inference_prompt_cost": 0.000297662,
+          "upstream_inference_completions_cost": 0.004992
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Generated node pre/postconditions and edge text are claims, not confirming evidence.\",\"The candidate bridge 'possible_audio_activation' is an inference, not an observed causal transition.\",\"Admin privileges on Raspberry Pi OS could potentially allow audio configuration on compatible hardware, but this causal step is not stated in CVE-2021-38759 or CVE-2021-38545.\",\"The Glowworm target may not require admin privileges from CVE-2021-38759; that is an inference from the target description.\",\"No environment observations establish same-host deployment, speaker connection, sensitive speech playback, or optical line-of-sight.\"],\"confidence\":0.82,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"Raspberry Pi 3 B+ and 4 B devices through 2021-08-09\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"in certain specific use cases in which the device supplies power to audio-output equipment\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"allow remote attackers to recover speech signals\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"via a telescope and an electro-optical sensor\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"The sound played by the speakers affects the Raspberry Pi's power consumption\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"By analyzing measurements obtained from an electro-optical sensor directed at the power indicator LED of the Raspberry Pi, we can recover the sound played by the speakers.\"}],\"missing_conditions\":[\"externally verified source-target host relationship\",\"source: network or local access path to exploit default pi credentials\",\"source: default pi password remains unchanged\",\"source: admin privileges actually enable command/control of target audio playback\",\"target: Raspberry Pi 3 B+ or 4 B device through 2021-08-09\",\"target: device supplies power to audio-output equipment\",\"target: connected speakers are playing sound, including sensitive speech data\",\"target: optical line-of-sight to the power indicator LED\",\"target: telescope and electro-optical sensor measurement capability\",\"full edge claim entailment from admin privileges to side-channel eavesdropping\"],\"reason\":\"The source CVE describes only default pi password and conditional admin privileges if unchanged; it does not describe controlling audio output, connecting speakers, playing sensitive speech, or side-channel eavesdropping. The target CVE describes a Glowworm optical side-channel that requires Raspberry Pi 3 B+ or 4 B, powered audio-output equipment, sound played by speakers, and line-of-sight to the power indicator LED; its effect is recovering speech signals, not granting audio control. The edge label asserts a stronger bridge: admin privileges cause or control audio playback and sensitive speech to facilitate the target side-channel. That bridge is not entailed by either CVE. At most, if the same device exists and admin privileges are used to activate audio with powered speakers and optical line-of-sight, the target could potentially be reachable, but those conditions are unverified. Therefore it should not enter a strict graph as supported; it is conditional only if missing conditions are independently verified.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-38545\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:54:31.320850+00:00"
+}

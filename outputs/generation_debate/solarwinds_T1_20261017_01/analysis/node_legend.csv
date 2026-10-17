@@ -1,0 +1,63 @@
+﻿repeat,strategy,display_code,original_id,model_label
+1,single,N01,unc2452_actor,Threat Actor UNC2452
+1,single,N02,solarwinds_supply_chain,"Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+1,single,N03,trojanized_patch,Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)
+1,single,N04,sunburst_dll,SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)
+1,single,N05,victim_host_install,Victim Host / Admin Update Installation
+1,single,N06,businesslayerhost_exe,Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)
+1,single,N07,inventory_manager_trigger,Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)
+1,single,N08,initial_dormant_period,Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)
+1,single,N09,anti_analysis_defense_evasion,"Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+1,single,N10,dga_resolution,DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)
+1,single,N11,c2_domain_cname,C2 Domain CNAME Resolution & IP Check Validation
+1,single,N12,http_c2_communication,"HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+1,single,N13,steganography_jobs,"Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+1,single,N14,teardrop_dropper,TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)
+1,single,N15,cobalt_strike_beacon,Customized Cobalt Strike BEACON Payload Execution
+1,single,N16,c2_infrastructure_masquerading,C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)
+1,single,N17,credential_abuse,Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)
+1,single,N18,temporary_file_task_mod,Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)
+1,single,N19,data_theft_impact,Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks
+1,self_refine,N01,unc2452_actor,Threat Actor UNC2452
+1,self_refine,N02,solarwinds_supply_chain,"Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+1,self_refine,N03,trojanized_patch,Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)
+1,self_refine,N04,sunburst_dll,SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)
+1,self_refine,N05,victim_host_install,Victim Host / Admin Update Installation
+1,self_refine,N06,businesslayerhost_exe,Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)
+1,self_refine,N07,inventory_manager_trigger,Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)
+1,self_refine,N08,initial_dormant_period,Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)
+1,self_refine,N09,anti_analysis_defense_evasion,"Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+1,self_refine,N20,api_connectivity_check,Network Connectivity Check (api.solarwinds.com Resolution)
+1,self_refine,N10,dga_resolution,DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)
+1,self_refine,N11,c2_domain_cname,C2 Domain CNAME Resolution & IP Check Validation
+1,self_refine,N12,http_c2_communication,"HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+1,self_refine,N13,steganography_jobs,"Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+1,self_refine,N14,teardrop_dropper,TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)
+1,self_refine,N15,cobalt_strike_beacon,Customized Cobalt Strike BEACON Payload Execution
+1,self_refine,N16,c2_infrastructure_masquerading,C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)
+1,self_refine,N17,credential_abuse,Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)
+1,self_refine,N18,temporary_file_task_mod,Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)
+1,self_refine,N19,data_theft_impact,Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks
+1,debate,N01,unc2452_actor,Threat Actor UNC2452
+1,debate,N02,solarwinds_supply_chain,"Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+1,debate,N03,trojanized_patch,Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)
+1,debate,N04,sunburst_dll,SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)
+1,debate,N05,victim_host_install,Victim Host / Admin Update Installation
+1,debate,N06,businesslayerhost_exe,Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)
+1,debate,N07,inventory_manager_trigger,Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)
+1,debate,N08,initial_dormant_period,Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)
+1,debate,N09,anti_analysis_defense_evasion,"Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+1,debate,N21,recon_storage_in_plugin_config,Reconnaissance Results Storage in Plugin Config (ReportWatcherPostpone)
+1,debate,N22,network_connectivity_check,Network Connectivity Verification (Resolve api.solarwinds.com)
+1,debate,N10,dga_resolution,DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)
+1,debate,N23,ip_blocklist_termination,IP Blocklist Check & Execution Termination (ReportWatcherRetry)
+1,debate,N11,c2_domain_cname,C2 Domain CNAME Resolution & IP Check Validation
+1,debate,N12,http_c2_communication,"HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+1,debate,N13,steganography_jobs,"Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+1,debate,N14,teardrop_dropper,TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)
+1,debate,N15,cobalt_strike_beacon,Customized Cobalt Strike BEACON Payload Execution
+1,debate,N16,c2_infrastructure_masquerading,C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)
+1,debate,N17,credential_abuse,Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)
+1,debate,N18,temporary_file_task_mod,Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)
+1,debate,N24,tool_and_backdoor_removal,Tool and Backdoor Removal upon Remote Access
+1,debate,N19,data_theft_impact,Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks

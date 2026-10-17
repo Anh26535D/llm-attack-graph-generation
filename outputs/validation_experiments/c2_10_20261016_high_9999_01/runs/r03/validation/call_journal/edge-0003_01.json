@@ -1,0 +1,87 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T13:52:33.391612+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The RaspAP application is deployed on the same host as the target Raspberry Pi OS instance rather than in an isolated container or remote host.",
+        "The default 'pi' account exists and its password remains unchanged in the environment."
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system (including ones for uploading of files and execution of code)"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "Verification that the host is running Raspberry Pi OS through version 5.10.",
+        "Verification that the default password 'raspberry' for the 'pi' user account has not been changed.",
+        "Verification of co-location/same-host deployment between RaspAP and the targeted operating system account.",
+        "Verification that the command execution environment allows interactive or scripted credential-based privilege escalation (such as via sudo)."
+      ],
+      "reason": "CVE-2020-24572 provides command execution on the underlying operating system ('execute commands on the system (including ones for uploading of files and execution of code)'). CVE-2021-38759 states that 'Raspberry Pi OS through 5.10 has the raspberry default password for the pi account' and that 'If not changed, attackers can gain administrator privileges.' Command execution can potentially enable an attacker to utilize default credentials locally to escalate privileges, but this transition requires that the underlying OS is indeed Raspberry Pi OS <= 5.10, that the default credentials remain unchanged, and that both components reside on the same host. Because credentials and same-host deployment cannot be inferred from absence of data, this edge is conditional and cannot enter a strict attack graph without these prerequisites being met.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 489,
+      "prompt_token_count": 2211,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2211
+        }
+      ],
+      "thoughts_token_count": 3286,
+      "total_token_count": 5986
+    },
+    "latency_seconds": 29.205781399999978,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "e2caa467fbd93f895bb753a84bf2e3457b65d2345e64c14f8ecb33fda7ad9a64",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 489,
+        "prompt_token_count": 2211,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2211
+          }
+        ],
+        "thoughts_token_count": 3286,
+        "total_token_count": 5986
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"The RaspAP application is deployed on the same host as the target Raspberry Pi OS instance rather than in an isolated container or remote host.\", \"The default 'pi' account exists and its password remains unchanged in the environment.\"], \"confidence\": 0.85, \"edge_id\": \"edge-0003\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system (including ones for uploading of files and execution of code)\"}, {\"cve_id\": \"CVE-2021-38759\", \"quote\": \"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.\"}], \"missing_conditions\": [\"Verification that the host is running Raspberry Pi OS through version 5.10.\", \"Verification that the default password 'raspberry' for the 'pi' user account has not been changed.\", \"Verification of co-location/same-host deployment between RaspAP and the targeted operating system account.\", \"Verification that the command execution environment allows interactive or scripted credential-based privilege escalation (such as via sudo).\"], \"reason\": \"CVE-2020-24572 provides command execution on the underlying operating system ('execute commands on the system (including ones for uploading of files and execution of code)'). CVE-2021-38759 states that 'Raspberry Pi OS through 5.10 has the raspberry default password for the pi account' and that 'If not changed, attackers can gain administrator privileges.' Command execution can potentially enable an attacker to utilize default credentials locally to escalate privileges, but this transition requires that the underlying OS is indeed Raspberry Pi OS <= 5.10, that the default credentials remain unchanged, and that both components reside on the same host. Because credentials and same-host deployment cannot be inferred from absence of data, this edge is conditional and cannot enter a strict attack graph without these prerequisites being met.\", \"source_cve_id\": \"CVE-2020-24572\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:53:02.599135+00:00"
+}

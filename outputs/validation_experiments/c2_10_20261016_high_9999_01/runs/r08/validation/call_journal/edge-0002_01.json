@@ -1,0 +1,60 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T13:51:16.094954+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 400,
+      "prompt_token_count": 1534,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1534
+        }
+      ],
+      "thoughts_token_count": 9595,
+      "total_token_count": 11529
+    },
+    "latency_seconds": 72.56379839999863,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "7c5749f854670f03d0fb5bce6a3edce9c39e3b4c9f542c7a4e4eb1ae7483383b",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "MAX_TOKENS",
+      "usage": {
+        "candidates_token_count": 400,
+        "prompt_token_count": 1534,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1534
+          }
+        ],
+        "thoughts_token_count": 9595,
+        "total_token_count": 11529
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "MAX_TOKENS"
+      ]
+    },
+    "raw_response": "```json\n{\n  \"assumptions\": [\n    \"piSignage player API accepts default Raspberry Pi OS credentials for authentication\",\n    \"Default credentials remain unchanged on the target device\",\n    \"The target is running a vulnerable version of piSignage before 2.6.4\"\n  ],\n  \"confidence\": 0.9,\n  \"edge_id\": \"edge-0002\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal.\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"authenticated as a low-privilege user\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Source CVE description and valid mapping to verify source postconditions\",\n    \"Evidence that default OS credentials grant an authenticated low-privilege session to the piSignage player API\",\n    \"Verification of piSignage version before 2.6.4 in the target environment\"\n  ],\n  \"reason\": \"The source node is unmapped to any supplied CVE description, meaning its actual effect cannot be confirmed from the evidence. The target CVE-2019-20354 requires a remote attacker to be 'authenticated as a low-privilege user' on the piSignage player API. The edge claims default credentials bridge this requirement, but there is no evidence establishing that default OS credentials authenticate to the piSignage web application component. Because the source effect is"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T13:52:28.661530+00:00"
+}

@@ -1,0 +1,60 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T13:57:46.735987+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 400,
+      "prompt_token_count": 1452,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1452
+        }
+      ],
+      "thoughts_token_count": 9595,
+      "total_token_count": 11447
+    },
+    "latency_seconds": 79.99895319999996,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "1e098726b63a5511e72e71042415dd0f100943850b77c7f6de59f60094e9161d",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "MAX_TOKENS",
+      "usage": {
+        "candidates_token_count": 400,
+        "prompt_token_count": 1452,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1452
+          }
+        ],
+        "thoughts_token_count": 9595,
+        "total_token_count": 11447
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "MAX_TOKENS"
+      ]
+    },
+    "raw_response": " connects:\nnode_1: Raspberry Pi OS Default Credentials Exploitation (pi:raspberry)\nnode_3: RaspAP Authenticated Remote Command Execution via Web Console (CVE-2021-33357)\nThe edge connects node_1 to node_3 by claiming that default 'pi' credentials permit extraction or direct modification of RaspAP web administrative credentials.\nNotice:\n1) Inferring that RaspAP credentials exist and can be extracted: \"Never infer credentials ... from absence of data.\"\n2) Inferring that RaspAP is on the same host as Raspberry Pi OS: \"Never infer ... same-host deployment ... from absence of data.\"\n3) Inferring that the attacker can execute code or access the host: \"Never infer ... code execution from absence of data.\"\nIf you do NOT infer credentials or same-host deployment, does the source effect (\"gain administrator privileges\" on Raspberry Pi OS) satisfy the target requirement (authenticated access to RaspAP web interface)?\nNO! Without inferring same-host deployment and credential extraction, the causal bridge does not hold!\nWait, if you do NOT infer it, is it `unsupported` or `conditional`?\nWait! If an edge relies on inferences that you are instructed to NEVER infer, what is the status?\nWait! Look at the schema:\n`\"assumptions\": [\"inference, never a fact\"]`\nThe schema definition literally says:\n`\"assumptions\": [\"inference, never a fact\"]`!\nAnd:\n`\"missing_conditions\": [\"unverified prerequisite\"]`!\nSo assumptions ARE inferences!\nAnd if an edge relies on assumptions / unverified prerequisites, what is its status?\nIt is `conditional`!\nWait, but what if it's `unsupported`?\nWhy would someone mark it `unsupported` vs `conditional`?\nLet's think carefully:\nIn"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T13:59:06.736748+00:00"
+}

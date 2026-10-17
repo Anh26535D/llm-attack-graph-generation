@@ -1,0 +1,136 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T15:01:48.052995+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not confirming evidence.",
+        "No explicit environment observations were supplied; environment_state is empty.",
+        "The source applicability note that only a user-level foothold is granted is a curated interpretation, not a CVE description fact.",
+        "Same-host deployment, reachable local authentication, unchanged default credentials, and sudo availability are not confirmed."
+      ],
+      "confidence": 0.76,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execution of code"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "externally verified same-host or guest-to-host relationship between the RaspAP command-execution context and the Raspberry Pi OS default-credential target",
+        "confirmed that the default 'pi' password remains unchanged on the target",
+        "an authentication path or local-shell mechanism that lets the source command execution use the 'pi' account credentials",
+        "confirmed privilege level of source command execution and whether it can invoke local authentication or sudo",
+        "evidence for the claimed 'sudo rules' beyond the CVE descriptions",
+        "confirmation that the relevant source RaspAP 2.5 and target Raspberry Pi OS through 5.10 systems are the same affected environment"
+      ],
+      "reason": "CVE-2020-24572 supports an authenticated attacker using a misconfigured web console against the underlying Raspberry Pi OS to 'execute commands on the system', potentially including file upload and 'execution of code'. It does not state that those commands yield an interactive local shell, run as 'pi', can use the default 'pi' password, or can invoke sudo. CVE-2021-38759 supports that Raspberry Pi OS through 5.10 has a default password for the 'pi' account and, 'If not changed', attackers can 'gain administrator privileges'; its stated prerequisite is an unchanged default password, plus some unstated path to authenticate or otherwise use that account. The edge adds a local-shell credential/sudo bridge not grounded in either description. With absent environment observations, unchanged credentials, same-host deployment, and source command privilege unverified, the edge is at most potentially conditional and cannot enter a strict graph as stated.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 6691,
+      "prompt_tokens": 2081,
+      "total_tokens": 8772,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 6077,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0046613,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0046613,
+        "upstream_inference_prompt_cost": 0.00031215,
+        "upstream_inference_completions_cost": 0.00434915
+      }
+    },
+    "latency_seconds": 40.110788399999365,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "46709abf58c4e22be1f5855831e452b3bc2bed82b37b4e600491363b1120cbcd",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6691,
+        "prompt_tokens": 2081,
+        "total_tokens": 8772,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6077,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0046613,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0046613,
+          "upstream_inference_prompt_cost": 0.00031215,
+          "upstream_inference_completions_cost": 0.00434915
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Generated node pre/postconditions and edge text are claims, not confirming evidence.\",\"No explicit environment observations were supplied; environment_state is empty.\",\"The source applicability note that only a user-level foothold is granted is a curated interpretation, not a CVE description fact.\",\"Same-host deployment, reachable local authentication, unchanged default credentials, and sudo availability are not confirmed.\"],\"confidence\":0.76,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execution of code\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"}],\"missing_conditions\":[\"externally verified same-host or guest-to-host relationship between the RaspAP command-execution context and the Raspberry Pi OS default-credential target\",\"confirmed that the default 'pi' password remains unchanged on the target\",\"an authentication path or local-shell mechanism that lets the source command execution use the 'pi' account credentials\",\"confirmed privilege level of source command execution and whether it can invoke local authentication or sudo\",\"evidence for the claimed 'sudo rules' beyond the CVE descriptions\",\"confirmation that the relevant source RaspAP 2.5 and target Raspberry Pi OS through 5.10 systems are the same affected environment\"],\"reason\":\"CVE-2020-24572 supports an authenticated attacker using a misconfigured web console against the underlying Raspberry Pi OS to 'execute commands on the system', potentially including file upload and 'execution of code'. It does not state that those commands yield an interactive local shell, run as 'pi', can use the default 'pi' password, or can invoke sudo. CVE-2021-38759 supports that Raspberry Pi OS through 5.10 has a default password for the 'pi' account and, 'If not changed', attackers can 'gain administrator privileges'; its stated prerequisite is an unchanged default password, plus some unstated path to authenticate or otherwise use that account. The edge adds a local-shell credential/sudo bridge not grounded in either description. With absent environment observations, unchanged credentials, same-host deployment, and source command privilege unverified, the edge is at most potentially conditional and cannot enter a strict graph as stated.\",\"source_cve_id\":\"CVE-2020-24572\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:02:28.165904+00:00"
+}

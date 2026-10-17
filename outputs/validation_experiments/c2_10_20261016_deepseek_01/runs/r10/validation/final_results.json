@@ -1,0 +1,169 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "final": {
+      "status": "unknown",
+      "reason": "CVE identity is missing, outside the corpus, or ambiguous.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping"
+      ],
+      "assumptions": [],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "final": {
+      "status": "unknown",
+      "reason": "CVE identity is missing, outside the corpus, or ambiguous.",
+      "issues": [
+        "negative_suggestion_lacks_deterministic_evidence"
+      ],
+      "verified_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2021-38759",
+            "path": "CVE-2021-38759.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38759.json",
+            "sha256": "eaca8d8cb870dfccf552ba3019b6cfb98f615103ada4af3578f86358bb496a19",
+            "field": "containers.cna.descriptions[en]"
+          }
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges",
+          "kind": "description_evidence",
+          "provenance": {
+            "cve_id": "CVE-2021-38759",
+            "path": "CVE-2021-38759.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38759.json",
+            "sha256": "eaca8d8cb870dfccf552ba3019b6cfb98f615103ada4af3578f86358bb496a19",
+            "field": "containers.cna.descriptions[en]"
+          }
+        }
+      ],
+      "missing_conditions": [
+        "Default Raspberry Pi OS 'pi' password has not been changed.",
+        "Explicit environment observations confirm deployment, reachability and credential-handling paths.",
+        "Extracting or modifying those credentials yields authenticated access to the RaspAP 2.5 web interface.",
+        "RaspAP is installed on the same host as Raspberry Pi OS.",
+        "RaspAP web administrative credentials are stored in a location readable or writable through the source effect.",
+        "Target CVE mapping is missing, and no supplied target CVE description supports the target prerequisites.",
+        "The RaspAP web interface is network-reachable.",
+        "unique_source_and_target_CVE_mapping"
+      ],
+      "assumptions": [
+        "LLM inference: The edge assumes OS administrator privileges from default 'pi' credentials can be used to extract or modify RaspAP web administrative credentials.",
+        "LLM inference: The edge assumes RaspAP credentials are locally accessible or modifiable through that source effect.",
+        "LLM inference: The edge assumes RaspAP is present and configured on the affected Raspberry Pi OS host.",
+        "LLM inference: The edge assumes extraction or modification of RaspAP credentials is sufficient to satisfy the target's authenticated web-interface precondition.",
+        "LLM inference: The edge assumes a network path to the RaspAP web interface exists."
+      ],
+      "disagreement": true,
+      "suggestion_accepted": false,
+      "review_complete": true
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "command_control_of_target_audio_playback",
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition."
+      ],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "final": {
+      "status": "unknown",
+      "reason": "CVE identity is missing, outside the corpus, or ambiguous.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping"
+      ],
+      "assumptions": [],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "source_code_execution_is_only_possible",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition."
+      ],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  },
+  {
+    "edge_id": "edge-0006",
+    "final": {
+      "status": "conditional",
+      "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified.",
+      "issues": [
+        "Review unavailable; offline result preserved."
+      ],
+      "verified_quotes": [],
+      "missing_conditions": [
+        "externally_verified_source_target_host_relationship",
+        "full_edge_claim_entailment_requires_semantic_review",
+        "source:product_platform_version_and_prerequisites",
+        "source_code_execution_is_only_possible",
+        "target:product_platform_version_and_prerequisites"
+      ],
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not evidence.",
+        "The candidate bridge is an inference, not an observed causal transition."
+      ],
+      "disagreement": false,
+      "suggestion_accepted": false,
+      "review_complete": false
+    }
+  }
+]

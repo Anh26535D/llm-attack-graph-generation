@@ -1,0 +1,188 @@
+{
+  "arguments": [
+    {
+      "edge_id": "edge-0001",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "S01 supplies the valid low-privilege piSignage API login and reachability explicitly required by A01 to trigger the path traversal.",
+      "source_quote": "The attacker initially has a valid low-privilege piSignage API login on pi-lab. The API is reachable.",
+      "target_quote": "Use the authenticated piSignage path-traversal capability on pi-lab."
+    },
+    {
+      "edge_id": "edge-0002",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A01 directly grants arbitrary file download capability on pi-lab, producing S02.",
+      "source_quote": "This grants arbitrary file download, not code execution.",
+      "target_quote": "The attacker can download arbitrary files readable by the piSignage service on pi-lab. This is file-read capability only."
+    },
+    {
+      "edge_id": "edge-0003",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A02 explicitly requires the arbitrary file-read capability provided by S02 to download the lab configuration file.",
+      "source_quote": "The attacker can download arbitrary files readable by the piSignage service on pi-lab.",
+      "target_quote": "Download a lab configuration file using file-read capability on pi-lab."
+    },
+    {
+      "edge_id": "edge-0004",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A02 downloads the configuration file containing the RaspAP credentials, directly producing S03.",
+      "source_quote": "The fixture explicitly says this readable file contains a valid RaspAP low-privilege login for this same host.",
+      "target_quote": "The attacker possesses a valid RaspAP login for pi-lab and can authenticate to its reachable web console."
+    },
+    {
+      "edge_id": "edge-0005",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A03 explicitly requires valid RaspAP authentication on pi-lab, which is supplied by S03.",
+      "source_quote": "The attacker possesses a valid RaspAP login for pi-lab and can authenticate to its reachable web console.",
+      "target_quote": "With a valid RaspAP login, use the unrestricted web console on pi-lab, version 2.5."
+    },
+    {
+      "edge_id": "edge-0006",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "Executing commands via A03 yields an ordinary OS user shell on pi-lab, establishing S04.",
+      "source_quote": "The lab assumes command execution yields an ordinary OS user, not root.",
+      "target_quote": "The attacker controls an ordinary local OS process on pi-lab."
+    },
+    {
+      "edge_id": "edge-0007",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A04 explicitly requires local user OS execution on pi-lab to read the connector file, directly satisfied by S04.",
+      "source_quote": "The attacker controls an ordinary local OS process on pi-lab.",
+      "target_quote": "Read the ordinary-user-readable connector file on pi-lab after obtaining local user execution."
+    },
+    {
+      "edge_id": "edge-0008",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A04 reveals the remote-login credential for win-a, producing S05.",
+      "source_quote": "The fixture states that this file contains a valid ordinary-user remote-login credential for win-a.",
+      "target_quote": "The attacker holds a valid ordinary-user remote-login credential for win-a."
+    },
+    {
+      "edge_id": "edge-0009",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "S05 supplies the valid win-a credential conjunctively required by A05.",
+      "source_quote": "The attacker holds a valid ordinary-user remote-login credential for win-a.",
+      "target_quote": "Both a valid win-a credential AND network reachability to its remote-login service are necessary; neither alone supplies a session."
+    },
+    {
+      "edge_id": "edge-0010",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "S06 supplies network reachability to win-a, the second conjunctive prerequisite needed for A05.",
+      "source_quote": "An initial lab network observation confirms that the attacker can reach the remote-login service of win-a.",
+      "target_quote": "Both a valid win-a credential AND network reachability to its remote-login service are necessary; neither alone supplies a session."
+    },
+    {
+      "edge_id": "edge-0011",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A05 executes remote login to establish an ordinary user process on win-a, producing S07.",
+      "source_quote": "Log in as an ordinary user on win-a.",
+      "target_quote": "An ordinary local user process is controlled on win-a, which runs Windows and Oculus Desktop 1.40.0."
+    },
+    {
+      "edge_id": "edge-0012",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A06 explicitly requires a controlled local Windows user process on win-a, which S07 provides.",
+      "source_quote": "An ordinary local user process is controlled on win-a, which runs Windows and Oculus Desktop 1.40.0.",
+      "target_quote": "A controlled local Windows user process on this same host is required."
+    },
+    {
+      "edge_id": "edge-0013",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A06 achieves local privilege escalation yielding an administrator session on win-a, producing S08.",
+      "source_quote": "For this fixture the elevation outcome is assumed to be administrator.",
+      "target_quote": "The attacker controls an administrator session on win-a."
+    },
+    {
+      "edge_id": "edge-0014",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A07 requires a controlled unprivileged process on win-a, which is supplied by S07.",
+      "source_quote": "An ordinary local user process is controlled on win-a, which runs Windows and Oculus Desktop 1.40.0.",
+      "target_quote": "A controlled unprivileged process on this same host is required."
+    },
+    {
+      "edge_id": "edge-0015",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A07 achieves local privilege escalation to administrator on win-a, producing S08.",
+      "source_quote": "For the fixture the resulting elevation is administrator.",
+      "target_quote": "The attacker controls an administrator session on win-a."
+    },
+    {
+      "edge_id": "edge-0016",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A08 explicitly requires an administrator session on win-a because ordinary users cannot read the connector secret, so S08 is required.",
+      "source_quote": "The attacker controls an administrator session on win-a.",
+      "target_quote": "Read an administrator-only connector secret on win-a. The lab states it contains a valid ordinary-user remote-login credential for win-b. An ordinary win-a user cannot read it."
+    },
+    {
+      "edge_id": "edge-0017",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A08 extracts the win-b remote-login credential from the administrator secret, producing S09.",
+      "source_quote": "The lab states it contains a valid ordinary-user remote-login credential for win-b.",
+      "target_quote": "The attacker possesses a valid ordinary-user remote-login credential for win-b, obtained from the administrator-only win-a connector secret."
+    },
+    {
+      "edge_id": "edge-0018",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A09 explicitly specifies that controlling the administrator session on win-a is one of three conjunctive requirements, making S08 an immediate prerequisite.",
+      "source_quote": "The attacker controls an administrator session on win-a.",
+      "target_quote": "Three requirements are conjunctive: a valid win-b credential, the win-a-to-win-b route, AND control of the administrator session on win-a."
+    },
+    {
+      "edge_id": "edge-0019",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A09 requires a valid win-b remote credential as one of its three conjunctive prerequisites, satisfied by S09.",
+      "source_quote": "The attacker possesses a valid ordinary-user remote-login credential for win-b, obtained from the administrator-only win-a connector secret.",
+      "target_quote": "Three requirements are conjunctive: a valid win-b credential, the win-a-to-win-b route, AND control of the administrator session on win-a."
+    },
+    {
+      "edge_id": "edge-0020",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A09 requires reachability along the win-a to win-b network route, which S10 satisfies.",
+      "source_quote": "An initial routing observation confirms that win-b remote login is reachable only from win-a.",
+      "target_quote": "Three requirements are conjunctive: a valid win-b credential, the win-a-to-win-b route, AND control of the administrator session on win-a."
+    },
+    {
+      "edge_id": "edge-0021",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "Executing A09 establishes an ordinary local process on win-b, producing S11.",
+      "source_quote": "Start remote login to win-b from the controlled administrator session on win-a.",
+      "target_quote": "The attacker controls an ordinary local process on win-b."
+    },
+    {
+      "edge_id": "edge-0022",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A10 explicitly requires an ordinary local process on win-b to trigger the handle-exposure vulnerability, directly provided by S11.",
+      "source_quote": "The attacker controls an ordinary local process on win-b.",
+      "target_quote": "Use privileged-handle exposure locally on win-b after obtaining an ordinary local process on win-b."
+    },
+    {
+      "edge_id": "edge-0023",
+      "missing_conditions": [],
+      "position": "keep",
+      "reason": "A10 elevates privileges to administrator on win-b, producing the objective state S12.",
+      "source_quote": "The fixture assumes administrator elevation.",
+      "target_quote": "The attacker has administrator control of win-b, the final objective of the intended lab route."
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "edge_id": "edge-0006",
+  "started_at": "2026-10-16T14:04:34.393332+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "Oculus Browser and Oculus Desktop (OVRServiceLauncher.exe) reside on the same Windows host.",
+        "Exploitation of CVE-2019-3562 reliably yields local unprivileged process execution rather than being confined to UI spoofing or HTML injection.",
+        "The unprivileged process spawned via browser execution has sufficient local environment access to interact with OVRServiceLauncher.exe."
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0006",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code."
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "an unprivileged process, leading to local privilege escalation."
+        }
+      ],
+      "missing_conditions": [
+        "Verification of same-host co-location between Oculus Browser and Oculus Desktop",
+        "Verification that CVE-2019-3562 yields local process execution rather than merely HTML injection or UI spoofing",
+        "Verification that the host operating system supports both applications (Windows for OVRServiceLauncher.exe)",
+        "Verification of specific vulnerable version deployments for both products"
+      ],
+      "reason": "CVE-2019-3562 allows an attacker to inject arbitrary HTML into the Oculus Browser UI to spoof UI and 'potentially execute code'. CVE-2021-24038 requires 'an unprivileged process' on a host running Oculus Desktop to capture leaked handles from OVRServiceLauncher.exe. Although unprivileged code execution could plausibly bridge to a local unprivileged process, the source CVE description only states that an attacker may 'potentially execute code', which is not a confirmed postcondition. Furthermore, same-host deployment between Oculus Browser and Oculus Desktop cannot be inferred from the data. Because these prerequisites are unverified, the edge cannot enter a strict graph and is conditional.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-24038"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "308491ae2e1d3299aab6084d81f8f83fe911167077a309c7f788abbd0ec91baa",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "candidates_token_count": 473,
+      "prompt_token_count": 2329,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2329
+        }
+      ],
+      "thoughts_token_count": 3129,
+      "total_token_count": 5931
+    },
+    "cached_response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 473,
+        "prompt_token_count": 2329,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2329
+          }
+        ],
+        "thoughts_token_count": 3129,
+        "total_token_count": 5931
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:04:34.397320+00:00"
+}

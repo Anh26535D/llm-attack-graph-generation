@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "scope": "fresh_c2_paired_validation",
+  "created_at": "2026-10-16T14:30:00.197661+00:00",
+  "condition": "C2",
+  "repeats": 10,
+  "prompt_sha256": "fa3bf955bfe73ca6f691b2bc24eea7d1213a1698f94c034c59c3570386fe717e",
+  "dataset_digest": "3ece5b6bc3739cffffb70f6f60e37d6312d0924ec175f496f9448fa9a2296563",
+  "environment": "absent",
+  "generation": {
+    "backend": "gemini",
+    "model": "gemini-3.8-flash",
+    "reasoning": "medium",
+    "max_output_tokens": 8192
+  },
+  "review": {
+    "backend": "openrouter",
+    "model": "openai/gpt-5.6-luna",
+    "reasoning": "high",
+    "max_output_tokens": 9999,
+    "max_calls_per_repeat": 10,
+    "statuses": [
+      "conditional",
+      "unknown"
+    ],
+    "cache_enabled": true,
+    "cache_root": "D:\\AHUST\\An ninh mạng\\llm-attack-graph-generation\\outputs\\validator_cache",
+    "enabled": true
+  },
+  "code_sha256": {
+    "src\\crystalball\\validation\\__init__.py": "236300ef6f309c49cd3a9f2c125c1151c10e16ca0f6ad08e4d85db691489403a",
+    "src\\crystalball\\validation\\__main__.py": "80fa50f97f230dfcc8354f9eba4bd0d03e4b6a942832c070ac31de97da00b1c2",
+    "src\\crystalball\\validation\\conditions.py": "643134c118ec43ee9de774cb012cbd8e8ea08bc093ab56bcee9ecb63aaaabf37",
+    "src\\crystalball\\validation\\config.py": "fd38cf2d53693e955d3a8581b1e8d3344f4007d850e291b57cd5cfd7675a6b87",
+    "src\\crystalball\\validation\\evidence.py": "4e8f8ffb26d3b90a6d12acec05af6674a22110123e047ce49273857c9f44c6b4",
+    "src\\crystalball\\validation\\metrics.py": "f38c37c81829b7d4cd69358fcecee082cd5e8def16669e980f903eeb4d6f7389",
+    "src\\crystalball\\validation\\offline.py": "3f08e7adf95a32dee85898420ceebab0d9c7ddde3993c2153a06103faee3b192",
+    "src\\crystalball\\validation\\pipeline.py": "87bd3413264c7f4e4ffb8fd7ad7795d96836a44f3b9d57ea9e8e5369de5c94e0",
+    "src\\crystalball\\validation\\review.py": "15fbdca3fc94832d7af9e856db01b1f6b36bf827e35b5b000e4ec2be0942338a",
+    "src\\crystalball\\validation\\visualization.py": "32c26cf3cf52499150586d871a0ea13f7da3bbe55aed3f5b85e076e3f7635584"
+  },
+  "gold_state": "not_available",
+  "automatic_retries": false,
+  "scoring": "independent candidate precision when gold supplied; otherwise descriptive metrics only",
+  "generation_reused_from": "D:\\AHUST\\An ninh mạng\\llm-attack-graph-generation\\outputs\\validation_experiments\\c2_10_20261016_01"
+}

@@ -1,0 +1,107 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:52:20.877729+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [],
+      "confidence": 0.6,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [],
+      "missing_conditions": [
+        "Unique and confirmed source CVE mapping.",
+        "Unique and confirmed target CVE mapping.",
+        "Source arbitrary file read can access RaspAP configuration or session files.",
+        "RaspAP configuration or session files contain valid, usable credentials or session tokens.",
+        "Extracted credentials or session data are accepted by the RaspAP 2.5 web interface authentication.",
+        "Network reachability to the RaspAP web interface and vulnerable webconsole.php.",
+        "No additional authentication, authorization, or environmental barriers prevent command execution after authentication."
+      ],
+      "reason": "The source node label suggests a piSignage Player API path traversal that may allow arbitrary file read. The target node label suggests RaspAP webconsole unrestricted command execution requiring authenticated access to the RaspAP 2.5 web interface. The edge claims that arbitrary file read can extract credentials or session data from web configs and then authenticate to RaspAP. This is a bounded causal bridge, but it overreaches from file read to credential extraction and authentication without evidence that the readable files contain usable RaspAP credentials or that those credentials are accepted. The supplied mappings are missing (cve_id null), and no CVE descriptions or environment observations are provided. Therefore the edge cannot be placed in a strict graph as currently supplied; it would require verification of the listed prerequisites.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 7158,
+      "prompt_tokens": 959,
+      "total_tokens": 8117,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 6846,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00479655,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00479655,
+        "upstream_inference_prompt_cost": 0.00014385,
+        "upstream_inference_completions_cost": 0.0046527
+      }
+    },
+    "latency_seconds": 52.51704140000038,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "816891fbbf8e86a90db9b1f57d2781ff8f68526cd9bfca5b91ec3c88b3b94b66",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 7158,
+        "prompt_tokens": 959,
+        "total_tokens": 8117,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6846,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00479655,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00479655,
+          "upstream_inference_prompt_cost": 0.00014385,
+          "upstream_inference_completions_cost": 0.0046527
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[],\"confidence\":0.6,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[],\"missing_conditions\":[\"Unique and confirmed source CVE mapping.\",\"Unique and confirmed target CVE mapping.\",\"Source arbitrary file read can access RaspAP configuration or session files.\",\"RaspAP configuration or session files contain valid, usable credentials or session tokens.\",\"Extracted credentials or session data are accepted by the RaspAP 2.5 web interface authentication.\",\"Network reachability to the RaspAP web interface and vulnerable webconsole.php.\",\"No additional authentication, authorization, or environmental barriers prevent command execution after authentication.\"],\"reason\":\"The source node label suggests a piSignage Player API path traversal that may allow arbitrary file read. The target node label suggests RaspAP webconsole unrestricted command execution requiring authenticated access to the RaspAP 2.5 web interface. The edge claims that arbitrary file read can extract credentials or session data from web configs and then authenticate to RaspAP. This is a bounded causal bridge, but it overreaches from file read to credential extraction and authentication without evidence that the readable files contain usable RaspAP credentials or that those credentials are accepted. The supplied mappings are missing (cve_id null), and no CVE descriptions or environment observations are provided. Therefore the edge cannot be placed in a strict graph as currently supplied; it would require verification of the listed prerequisites.\",\"source_cve_id\":null,\"suggested_status\":\"unknown\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:53:13.396732+00:00"
+}

@@ -1,0 +1,79 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T13:45:10.449775+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "piSignage and RaspAP are deployed on the same host",
+        "Arbitrary file read can access RaspAP configuration files or session data",
+        "RaspAP credentials or session tokens are stored in readable plaintext or recoverable format"
+      ],
+      "confidence": 0.95,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping",
+        "Supplied CVE descriptions for source and target vulnerabilities",
+        "Explicit environment observation confirming same-host deployment of piSignage and RaspAP",
+        "Verification that readable files contain valid credentials or session data for RaspAP"
+      ],
+      "reason": "Both source and target CVE mappings are unmapped (cve_id is null) and no CVE descriptions are supplied in the input corpus, leaving the source's actual effect and target prerequisites unverified. The edge claims arbitrary file read enables credential or session extraction to authenticate to RaspAP, which overreaches by inferring same-host deployment and credential availability across separate software components. Because same-host deployment and credentials cannot be inferred from the absence of data, this causal bridge is unverified and the edge cannot enter a strict graph.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 279,
+      "prompt_token_count": 989,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 989
+        }
+      ],
+      "thoughts_token_count": 4660,
+      "total_token_count": 5928
+    },
+    "latency_seconds": 35.660970400000224,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "39d45ee0bbb04488b64042571152f85348d910109f8af9509e5ac88640c30a34",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 279,
+        "prompt_token_count": 989,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 989
+          }
+        ],
+        "thoughts_token_count": 4660,
+        "total_token_count": 5928
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"piSignage and RaspAP are deployed on the same host\", \"Arbitrary file read can access RaspAP configuration files or session data\", \"RaspAP credentials or session tokens are stored in readable plaintext or recoverable format\"], \"confidence\": 0.95, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [], \"missing_conditions\": [\"unique_source_and_target_CVE_mapping\", \"Supplied CVE descriptions for source and target vulnerabilities\", \"Explicit environment observation confirming same-host deployment of piSignage and RaspAP\", \"Verification that readable files contain valid credentials or session data for RaspAP\"], \"reason\": \"Both source and target CVE mappings are unmapped (cve_id is null) and no CVE descriptions are supplied in the input corpus, leaving the source's actual effect and target prerequisites unverified. The edge claims arbitrary file read enables credential or session extraction to authenticate to RaspAP, which overreaches by inferring same-host deployment and credential availability across separate software components. Because same-host deployment and credentials cannot be inferred from the absence of data, this causal bridge is unverified and the edge cannot enter a strict graph.\", \"source_cve_id\": null, \"suggested_status\": \"unknown\", \"target_cve_id\": null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:45:46.112671+00:00"
+}

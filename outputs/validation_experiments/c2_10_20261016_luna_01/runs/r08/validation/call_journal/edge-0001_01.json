@@ -1,0 +1,119 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:34:56.411339+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "It is inferred, but unverified, that the proposed default administrative credentials would be accepted by the RaspAP web interface.",
+        "It is inferred, but unverified, that the credential-bearing source and the RaspAP instance are deployed on the same Raspberry Pi.",
+        "It is inferred, but unverified, that RaspAP 2.5 is present and reachable in the relevant environment."
+      ],
+      "confidence": 0.95,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "An issue was discovered in includes/webconsole.php in RaspAP 2.5."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system (including ones for uploading of files and execution of code)."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        }
+      ],
+      "missing_conditions": [
+        "A unique source-CVE mapping and a supplied description establishing the source's actual effect.",
+        "Evidence that the source effect provides usable credentials.",
+        "Evidence that those credentials are valid for the RaspAP web interface and satisfy its authenticated-access requirement.",
+        "Evidence that RaspAP 2.5 is running on and reachable at the same Raspberry Pi target.",
+        "Evidence of any required network path to the RaspAP web interface."
+      ],
+      "reason": "The supplied description for CVE-2020-24572 establishes that, with authenticated access to RaspAP 2.5, an attacker can potentially use its web console to attack the underlying Raspberry Pi OS and execute commands, including file uploads and code execution. It does not establish that default administrative credentials exist, authenticate to RaspAP, or provide the claimed privilege or persistence. No source-CVE description is supplied, so the source's actual effect and credential acquisition cannot be verified; the node postcondition is only a claim. The authentication bridge, target deployment, version, and reachability are therefore unverified. This edge cannot enter a strict graph as a supported causal edge and is unknown rather than contradicted.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2292,
+      "prompt_tokens": 1343,
+      "total_tokens": 3635,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1815,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1340,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.003086,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003086,
+        "upstream_inference_prompt_cost": 0.0003356,
+        "upstream_inference_completions_cost": 0.0027504
+      }
+    },
+    "latency_seconds": 18.594010400000116,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "5160fa7924bfe12c1fb6c184ca96da25bb3f288acd8f0334864f7061df9db16c",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2292,
+        "prompt_tokens": 1343,
+        "total_tokens": 3635,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1815,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1340,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.003086,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003086,
+          "upstream_inference_prompt_cost": 0.0003356,
+          "upstream_inference_completions_cost": 0.0027504
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"It is inferred, but unverified, that the proposed default administrative credentials would be accepted by the RaspAP web interface.\",\"It is inferred, but unverified, that the credential-bearing source and the RaspAP instance are deployed on the same Raspberry Pi.\",\"It is inferred, but unverified, that RaspAP 2.5 is present and reachable in the relevant environment.\"],\"confidence\":0.95,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"An issue was discovered in includes/webconsole.php in RaspAP 2.5.\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system (including ones for uploading of files and execution of code).\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"}],\"missing_conditions\":[\"A unique source-CVE mapping and a supplied description establishing the source's actual effect.\",\"Evidence that the source effect provides usable credentials.\",\"Evidence that those credentials are valid for the RaspAP web interface and satisfy its authenticated-access requirement.\",\"Evidence that RaspAP 2.5 is running on and reachable at the same Raspberry Pi target.\",\"Evidence of any required network path to the RaspAP web interface.\"],\"reason\":\"The supplied description for CVE-2020-24572 establishes that, with authenticated access to RaspAP 2.5, an attacker can potentially use its web console to attack the underlying Raspberry Pi OS and execute commands, including file uploads and code execution. It does not establish that default administrative credentials exist, authenticate to RaspAP, or provide the claimed privilege or persistence. No source-CVE description is supplied, so the source's actual effect and credential acquisition cannot be verified; the node postcondition is only a claim. The authentication bridge, target deployment, version, and reachability are therefore unverified. This edge cannot enter a strict graph as a supported causal edge and is unknown rather than contradicted.\",\"source_cve_id\":null,\"suggested_status\":\"unknown\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:35:15.007332+00:00"
+}

@@ -1,0 +1,575 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "The Raspberry Pi OS instance affected by CVE-2021-38759 may be the same host running piSignage; inference, never a fact.",
+          "The Raspberry Pi OS pi-account password may be accepted by, or otherwise provide access to, a low-privilege piSignage web session; inference, never a fact.",
+          "The phrase \"discovered credentials\" may refer to credentials usable for piSignage authentication; inference, never a fact."
+        ],
+        "confidence": 0.97,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "If not changed, attackers can gain administrator privileges."
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal."
+          }
+        ],
+        "missing_conditions": [
+          "The relevant Raspberry Pi OS version is within the affected range and the pi-account password remains unchanged.",
+          "The source Raspberry Pi OS host and the target piSignage deployment are the same reachable system.",
+          "piSignage is deployed at a version before 2.6.4.",
+          "The attacker can reach the piSignage web application over the network.",
+          "The source credentials are valid for, or can be used to obtain, an authenticated low-privilege piSignage user session.",
+          "A demonstrated credential-reuse, account-mapping, or other causal mechanism connects the OS default password to piSignage authentication."
+        ],
+        "reason": "CVE-2021-38759 describes a conditional Raspberry Pi OS issue in which an unchanged default pi-account password can allow attackers to gain administrator privileges. It does not state that those credentials are valid for the piSignage web application, that the products share a host, or that an authenticated low-privilege application session is obtained. CVE-2019-20354 requires a remote attacker authenticated as a low-privilege user and affects piSignage before 2.6.4; its described effect is arbitrary file download through path traversal. The edge claim overreaches by adding discovered credentials and asserting a web-session transition not entailed by either description. The causal bridge is therefore potentially valid only after the listed deployment, version, reachability, and credential-usability conditions are verified; it is not a supported strict edge on the supplied evidence.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2019-20354"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 1613,
+        "prompt_tokens": 1944,
+        "total_tokens": 3557,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1034,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1941,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00242145,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00242145,
+          "upstream_inference_prompt_cost": 0.00048585,
+          "upstream_inference_completions_cost": 0.0019356
+        }
+      },
+      "latency_seconds": 19.83971550000024,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "8a360c732a2cb8d4d89d08b6ed96db1dba48bd3866dacb0e7f3275aec17953f8",
+      "model_identity": {
+        "backend": "openrouter",
+        "model": "openai/gpt-5.6-luna",
+        "client_name": "openrouter",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "openai/gpt-5.6-luna",
+        "actual_model": "openai/gpt-5.6-luna",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 1613,
+          "prompt_tokens": 1944,
+          "total_tokens": 3557,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 1034,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1941,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00242145,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00242145,
+            "upstream_inference_prompt_cost": 0.00048585,
+            "upstream_inference_completions_cost": 0.0019356
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high"
+        },
+        "finish_reasons": [
+          "stop"
+        ]
+      },
+      "raw_response": "{\"assumptions\":[\"The Raspberry Pi OS instance affected by CVE-2021-38759 may be the same host running piSignage; inference, never a fact.\",\"The Raspberry Pi OS pi-account password may be accepted by, or otherwise provide access to, a low-privilege piSignage web session; inference, never a fact.\",\"The phrase \\\"discovered credentials\\\" may refer to credentials usable for piSignage authentication; inference, never a fact.\"],\"confidence\":0.97,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal.\"}],\"missing_conditions\":[\"The relevant Raspberry Pi OS version is within the affected range and the pi-account password remains unchanged.\",\"The source Raspberry Pi OS host and the target piSignage deployment are the same reachable system.\",\"piSignage is deployed at a version before 2.6.4.\",\"The attacker can reach the piSignage web application over the network.\",\"The source credentials are valid for, or can be used to obtain, an authenticated low-privilege piSignage user session.\",\"A demonstrated credential-reuse, account-mapping, or other causal mechanism connects the OS default password to piSignage authentication.\"],\"reason\":\"CVE-2021-38759 describes a conditional Raspberry Pi OS issue in which an unchanged default pi-account password can allow attackers to gain administrator privileges. It does not state that those credentials are valid for the piSignage web application, that the products share a host, or that an authenticated low-privilege application session is obtained. CVE-2019-20354 requires a remote attacker authenticated as a low-privilege user and affects piSignage before 2.6.4; its described effect is arbitrary file download through path traversal. The edge claim overreaches by adding discovered credentials and asserting a web-session transition not entailed by either description. The causal bridge is therefore potentially valid only after the listed deployment, version, reachability, and credential-usability conditions are verified; it is not a supported strict edge on the supplied evidence.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2019-20354\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "The source and target vulnerabilities affect the same Raspberry Pi deployment is an inference, never a fact.",
+          "The default pi credential is valid for authenticating to the RaspAP interface is an inference, never a fact.",
+          "Administrator privileges described by the source imply access to the target application's webconsole.php is an inference, never a fact."
+        ],
+        "confidence": 0.9,
+        "edge_id": "edge-0002",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "If not changed, attackers can gain administrator privileges."
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "An issue was discovered in includes/webconsole.php in RaspAP 2.5."
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code)."
+          }
+        ],
+        "missing_conditions": [
+          "The raspberry default password for the pi account remains unchanged on the relevant host.",
+          "The relevant host runs an applicable Raspberry Pi OS version through 5.10.",
+          "RaspAP 2.5 with the vulnerable includes/webconsole.php is installed on that same host, or an explicitly established bridge connects the source and target systems.",
+          "The source credential or resulting administrator access is accepted by the RaspAP web interface.",
+          "The attacker can reach the RaspAP web interface and access includes/webconsole.php.",
+          "The web console is misconfigured and virtually unrestricted as described.",
+          "The source and target products share the required host and deployment relationship."
+        ],
+        "reason": "CVE-2021-38759 describes a default pi password and states that, if it is not changed, attackers can gain administrator privileges. Its actual effect does not establish that the credential is valid for RaspAP, that RaspAP is present on the same host, or that the attacker obtains authenticated web-console access. CVE-2020-24572 describes command execution, including potentially uploading files and executing code, only with authenticated access to the misconfigured webconsole.php in RaspAP 2.5. Thus the source can provide a bounded, potentially relevant access precursor, but the edge claim overreaches by treating OS administrator access as RaspAP authentication and by asserting the same-host interface relationship without evidence. The edge should not enter a strict graph as an unconditional supported edge; it is conditional pending verification of the listed prerequisites.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 2144,
+        "prompt_tokens": 1930,
+        "total_tokens": 4074,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1552,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1927,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00305515,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00305515,
+          "upstream_inference_prompt_cost": 0.00048235,
+          "upstream_inference_completions_cost": 0.0025728
+        }
+      },
+      "latency_seconds": 17.94237460000113,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "4560f9497a6e134398fc7e62b0307097222f10f936f61bc4e0f1b1c408b0bcc6",
+      "model_identity": {
+        "backend": "openrouter",
+        "model": "openai/gpt-5.6-luna",
+        "client_name": "openrouter",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "openai/gpt-5.6-luna",
+        "actual_model": "openai/gpt-5.6-luna",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 2144,
+          "prompt_tokens": 1930,
+          "total_tokens": 4074,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 1552,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1927,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00305515,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00305515,
+            "upstream_inference_prompt_cost": 0.00048235,
+            "upstream_inference_completions_cost": 0.0025728
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high"
+        },
+        "finish_reasons": [
+          "stop"
+        ]
+      },
+      "raw_response": "{\"assumptions\":[\"The source and target vulnerabilities affect the same Raspberry Pi deployment is an inference, never a fact.\",\"The default pi credential is valid for authenticating to the RaspAP interface is an inference, never a fact.\",\"Administrator privileges described by the source imply access to the target application's webconsole.php is an inference, never a fact.\"],\"confidence\":0.9,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"An issue was discovered in includes/webconsole.php in RaspAP 2.5.\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).\"}],\"missing_conditions\":[\"The raspberry default password for the pi account remains unchanged on the relevant host.\",\"The relevant host runs an applicable Raspberry Pi OS version through 5.10.\",\"RaspAP 2.5 with the vulnerable includes/webconsole.php is installed on that same host, or an explicitly established bridge connects the source and target systems.\",\"The source credential or resulting administrator access is accepted by the RaspAP web interface.\",\"The attacker can reach the RaspAP web interface and access includes/webconsole.php.\",\"The web console is misconfigured and virtually unrestricted as described.\",\"The source and target products share the required host and deployment relationship.\"],\"reason\":\"CVE-2021-38759 describes a default pi password and states that, if it is not changed, attackers can gain administrator privileges. Its actual effect does not establish that the credential is valid for RaspAP, that RaspAP is present on the same host, or that the attacker obtains authenticated web-console access. CVE-2020-24572 describes command execution, including potentially uploading files and executing code, only with authenticated access to the misconfigured webconsole.php in RaspAP 2.5. Thus the source can provide a bounded, potentially relevant access precursor, but the edge claim overreaches by treating OS administrator access as RaspAP authentication and by asserting the same-host interface relationship without evidence. The edge should not enter a strict graph as an unconditional supported edge; it is conditional pending verification of the listed prerequisites.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Inference only: the piSignage instance and Raspberry Pi OS target are deployed on the same host.",
+          "Inference only: an arbitrary downloaded file could contain usable OS credential material.",
+          "Inference only: the target's default-password condition may independently hold."
+        ],
+        "confidence": 0.97,
+        "edge_id": "edge-0003",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "from the Raspberry Pi"
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "Raspberry Pi OS through 5.10"
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "raspberry default password for the pi account"
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "If not changed, attackers can gain administrator privileges"
+          }
+        ],
+        "missing_conditions": [
+          "Verified piSignage version before 2.6.4 and deployment on the relevant Raspberry Pi",
+          "Authenticated low-privilege piSignage web-application access",
+          "Verified Raspberry Pi OS version through 5.10 on the target host",
+          "Verified that the pi account's default password is unchanged",
+          "Verified source and target host/deployment relationship",
+          "Evidence that the arbitrary files include usable OS credential material or the target default password",
+          "A demonstrated capability bridge showing that the source file-read effect enables exploitation of the target default-credential condition",
+          "Verified network or other access path to the target"
+        ],
+        "reason": "CVE-2019-20354's actual effect is remote, authenticated low-privilege access to download arbitrary files from a Raspberry Pi through the piSignage path traversal. Its description does not identify /etc/shadow, configuration files, credential contents, password recovery, or administrative access. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the pi account's default password not changed, and states that this condition can yield administrator privileges. The descriptions do not establish that the source and target affect the same host, that downloaded files contain usable credentials, or that the source effect enables the target condition. The edge therefore cannot enter a strict graph as supported; absence of the bridge is not a contradiction, so the status is unknown.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "unknown",
+        "target_cve_id": "CVE-2021-38759"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 2058,
+        "prompt_tokens": 1929,
+        "total_tokens": 3987,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1532,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1926,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0029517,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0029517,
+          "upstream_inference_prompt_cost": 0.0004821,
+          "upstream_inference_completions_cost": 0.0024696
+        }
+      },
+      "latency_seconds": 18.237713799999256,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "ce34bf5dc8b8fe018d46b59343ac416ad470e2834a7ad5e2f2fe688644cae241",
+      "model_identity": {
+        "backend": "openrouter",
+        "model": "openai/gpt-5.6-luna",
+        "client_name": "openrouter",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "openai/gpt-5.6-luna",
+        "actual_model": "openai/gpt-5.6-luna",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 2058,
+          "prompt_tokens": 1929,
+          "total_tokens": 3987,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 1532,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 1926,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0029517,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0029517,
+            "upstream_inference_prompt_cost": 0.0004821,
+            "upstream_inference_completions_cost": 0.0024696
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high"
+        },
+        "finish_reasons": [
+          "stop"
+        ]
+      },
+      "raw_response": "{\"assumptions\":[\"Inference only: the piSignage instance and Raspberry Pi OS target are deployed on the same host.\",\"Inference only: an arbitrary downloaded file could contain usable OS credential material.\",\"Inference only: the target's default-password condition may independently hold.\"],\"confidence\":0.97,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"from the Raspberry Pi\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"raspberry default password for the pi account\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges\"}],\"missing_conditions\":[\"Verified piSignage version before 2.6.4 and deployment on the relevant Raspberry Pi\",\"Authenticated low-privilege piSignage web-application access\",\"Verified Raspberry Pi OS version through 5.10 on the target host\",\"Verified that the pi account's default password is unchanged\",\"Verified source and target host/deployment relationship\",\"Evidence that the arbitrary files include usable OS credential material or the target default password\",\"A demonstrated capability bridge showing that the source file-read effect enables exploitation of the target default-credential condition\",\"Verified network or other access path to the target\"],\"reason\":\"CVE-2019-20354's actual effect is remote, authenticated low-privilege access to download arbitrary files from a Raspberry Pi through the piSignage path traversal. Its description does not identify /etc/shadow, configuration files, credential contents, password recovery, or administrative access. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the pi account's default password not changed, and states that this condition can yield administrator privileges. The descriptions do not establish that the source and target affect the same host, that downloaded files contain usable credentials, or that the source effect enables the target condition. The edge therefore cannot enter a strict graph as supported; absence of the bridge is not a contradiction, so the status is unknown.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"unknown\",\"target_cve_id\":\"CVE-2021-38759\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "The Oculus Browser and Oculus Desktop would need to be deployed on the same relevant Windows host; this is an inference, not an observation.",
+          "The source's potentially achieved code execution would need to provide local-user filesystem access sufficient to attempt the target; this is an inference, not an observation.",
+          "The target's privileged OVRRedir.exe and hard-link/log-file sequence would need to be reachable from the source foothold; this is an inference, not an observation."
+        ],
+        "confidence": 0.94,
+        "edge_id": "edge-0004",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code."
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file."
+          }
+        ],
+        "missing_conditions": [
+          "The affected Oculus Browser version and the required victim interaction with the remote page are unverified.",
+          "Actual code execution is unverified; CVE-2019-3562 describes code execution only as potentially occurring after HTML injection.",
+          "Whether any source execution would have local-user privileges and filesystem access is unverified.",
+          "A same-host relationship between Oculus Browser and Oculus Desktop is unverified.",
+          "A Windows host with Oculus Desktop before version 1.44.0.32849 is unverified.",
+          "A privileged OVRRedir.exe process writing to an attacker-influenced unprivileged file or log file is unverified.",
+          "The attacker’s ability to create or exploit the required hard link and trigger the arbitrary-file write is unverified.",
+          "The target description does not establish the node claim's exact overwrite of critical system files or escalation specifically to SYSTEM."
+        ],
+        "reason": "CVE-2019-3562 establishes arbitrary HTML injection and UI spoofing, with code execution stated only as potentially possible; it does not establish local execution, filesystem access, or a host relationship. CVE-2020-1885 describes a local-user attack on Windows requiring the affected Oculus Desktop version, a privileged OVRRedir.exe process writing an unprivileged file, and a hard-link/log-file exploitation path that can allow arbitrary file writes and privilege gain. The proposed transition is therefore only a bounded conditional bridge, not an observed causal transition. The edge should not enter a strict graph as supported without validating the missing source, target, deployment, and exploitability conditions.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-1885"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 2358,
+        "prompt_tokens": 2155,
+        "total_tokens": 4513,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1779,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2152,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0033682,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0033682,
+          "upstream_inference_prompt_cost": 0.0005386,
+          "upstream_inference_completions_cost": 0.0028296
+        }
+      },
+      "latency_seconds": 20.372313900001245,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "90500a70b5dd81a4ac7ae40a0e3929c87059ee4581a1f5153f57ce1744a2a28b",
+      "model_identity": {
+        "backend": "openrouter",
+        "model": "openai/gpt-5.6-luna",
+        "client_name": "openrouter",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "openai/gpt-5.6-luna",
+        "actual_model": "openai/gpt-5.6-luna",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 2358,
+          "prompt_tokens": 2155,
+          "total_tokens": 4513,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 1779,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 2152,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0033682,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0033682,
+            "upstream_inference_prompt_cost": 0.0005386,
+            "upstream_inference_completions_cost": 0.0028296
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high"
+        },
+        "finish_reasons": [
+          "stop"
+        ]
+      },
+      "raw_response": "{\"assumptions\":[\"The Oculus Browser and Oculus Desktop would need to be deployed on the same relevant Windows host; this is an inference, not an observation.\",\"The source's potentially achieved code execution would need to provide local-user filesystem access sufficient to attempt the target; this is an inference, not an observation.\",\"The target's privileged OVRRedir.exe and hard-link/log-file sequence would need to be reachable from the source foothold; this is an inference, not an observation.\"],\"confidence\":0.94,\"edge_id\":\"edge-0004\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code.\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.\"}],\"missing_conditions\":[\"The affected Oculus Browser version and the required victim interaction with the remote page are unverified.\",\"Actual code execution is unverified; CVE-2019-3562 describes code execution only as potentially occurring after HTML injection.\",\"Whether any source execution would have local-user privileges and filesystem access is unverified.\",\"A same-host relationship between Oculus Browser and Oculus Desktop is unverified.\",\"A Windows host with Oculus Desktop before version 1.44.0.32849 is unverified.\",\"A privileged OVRRedir.exe process writing to an attacker-influenced unprivileged file or log file is unverified.\",\"The attacker’s ability to create or exploit the required hard link and trigger the arbitrary-file write is unverified.\",\"The target description does not establish the node claim's exact overwrite of critical system files or escalation specifically to SYSTEM.\"],\"reason\":\"CVE-2019-3562 establishes arbitrary HTML injection and UI spoofing, with code execution stated only as potentially possible; it does not establish local execution, filesystem access, or a host relationship. CVE-2020-1885 describes a local-user attack on Windows requiring the affected Oculus Desktop version, a privileged OVRRedir.exe process writing an unprivileged file, and a hard-link/log-file exploitation path that can allow arbitrary file writes and privilege gain. The proposed transition is therefore only a bounded conditional bridge, not an observed causal transition. The edge should not enter a strict graph as supported without validating the missing source, target, deployment, and exploitability conditions.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-1885\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "A successful source-side code execution leading to a local unprivileged process is an inference, never a fact.",
+          "Co-deployment of Oculus Browser and Oculus Desktop on the same host is an inference, never a fact.",
+          "The generated node preconditions, postconditions, and edge wording are claims, not confirming evidence."
+        ],
+        "confidence": 0.91,
+        "edge_id": "edge-0005",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code."
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation."
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507."
+          }
+        ],
+        "missing_conditions": [
+          "victim interaction with the attacker-controlled remote page",
+          "successful source-side code execution rather than merely potential code execution",
+          "proof that the resulting execution is a local unprivileged process",
+          "Oculus Desktop being deployed on the same host as the source execution",
+          "target Oculus Desktop version being within the affected range",
+          "verification that the target handle-management flaw exposes the privileged handle to the source-created process",
+          "externally verified source-target host and platform relationship"
+        ],
+        "reason": "CVE-2019-3562 actually describes arbitrary HTML injection, UI spoofing, and only potentially code execution from a remote web page; it does not establish successful local process execution. CVE-2021-24038 describes exposure of a privileged process handle to an unprivileged process, leading to local privilege escalation. Thus, a bounded causal bridge is plausible only if the browser vulnerability successfully yields a local unprivileged process on the same host where an affected Oculus Desktop installation and its handle-management flaw are present. The edge overreaches by asserting remote browser execution, capture of the leaked handle, and a local transition without evidence for those conditions. It should not enter a strict graph as a supported edge; it is conditional pending verification of the missing prerequisites.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2021-24038"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 2046,
+        "prompt_tokens": 2098,
+        "total_tokens": 4144,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1552,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2095,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00297955,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00297955,
+          "upstream_inference_prompt_cost": 0.00052435,
+          "upstream_inference_completions_cost": 0.0024552
+        }
+      },
+      "latency_seconds": 17.394713699999556,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "26be20dd83053440a578e987d43c86733771d4843e3be435980477fdc4e8aeda",
+      "model_identity": {
+        "backend": "openrouter",
+        "model": "openai/gpt-5.6-luna",
+        "client_name": "openrouter",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "openai/gpt-5.6-luna",
+        "actual_model": "openai/gpt-5.6-luna",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 2046,
+          "prompt_tokens": 2098,
+          "total_tokens": 4144,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 1552,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 2095,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00297955,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00297955,
+            "upstream_inference_prompt_cost": 0.00052435,
+            "upstream_inference_completions_cost": 0.0024552
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high"
+        },
+        "finish_reasons": [
+          "stop"
+        ]
+      },
+      "raw_response": "{\"assumptions\":[\"A successful source-side code execution leading to a local unprivileged process is an inference, never a fact.\",\"Co-deployment of Oculus Browser and Oculus Desktop on the same host is an inference, never a fact.\",\"The generated node preconditions, postconditions, and edge wording are claims, not confirming evidence.\"],\"confidence\":0.91,\"edge_id\":\"edge-0005\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code.\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation.\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.\"}],\"missing_conditions\":[\"victim interaction with the attacker-controlled remote page\",\"successful source-side code execution rather than merely potential code execution\",\"proof that the resulting execution is a local unprivileged process\",\"Oculus Desktop being deployed on the same host as the source execution\",\"target Oculus Desktop version being within the affected range\",\"verification that the target handle-management flaw exposes the privileged handle to the source-created process\",\"externally verified source-target host and platform relationship\"],\"reason\":\"CVE-2019-3562 actually describes arbitrary HTML injection, UI spoofing, and only potentially code execution from a remote web page; it does not establish successful local process execution. CVE-2021-24038 describes exposure of a privileged process handle to an unprivileged process, leading to local privilege escalation. Thus, a bounded causal bridge is plausible only if the browser vulnerability successfully yields a local unprivileged process on the same host where an affected Oculus Desktop installation and its handle-management flaw are present. The edge overreaches by asserting remote browser execution, capture of the leaked handle, and a local transition without evidence for those conditions. It should not enter a strict graph as a supported edge; it is conditional pending verification of the missing prerequisites.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-24038\"}"
+    }
+  }
+]

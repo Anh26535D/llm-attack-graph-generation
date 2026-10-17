@@ -1,0 +1,133 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:47:42.814684+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The path traversal can be used to read /etc/shadow or credential-bearing configuration files; the description only says 'download arbitrary files'.",
+        "Any downloaded file content would expose default 'pi' credentials or crackable system hashes.",
+        "The target Raspberry Pi has unchanged default credentials 'pi:raspberry' and satisfies Raspberry Pi OS <= 5.10.",
+        "The source piSignage host and target Raspberry Pi are the same host or otherwise reachable by the attacker; no environment observation establishes this.",
+        "Recovered hashes, if any, are crackable or usable to authenticate as 'pi'.",
+        "The low-privilege piSignage web application can read protected files such as /etc/shadow despite its privilege level.",
+        "The target node can be represented as a strict-graph target despite missing target CVE mapping."
+      ],
+      "confidence": 0.91,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "path traversal"
+        }
+      ],
+      "missing_conditions": [
+        "Unique target CVE mapping for node_rpi_default_creds.",
+        "Evidence that arbitrary file download actually reaches /etc/shadow or credential-bearing configuration files.",
+        "Evidence that downloaded files expose default 'pi' credentials or crackable hashes.",
+        "Evidence that the target Raspberry Pi uses unchanged default credentials pi:raspberry.",
+        "Evidence of network or local access to the target Raspberry Pi running Raspberry Pi OS <= 5.10.",
+        "Evidence that recovered credential material can authenticate to the target and grant sudo/administrative control.",
+        "Evidence that the source and target are the same host or connected attack path; same-host deployment is not supplied.",
+        "Evidence that the web application process privilege permits reading the files in question."
+      ],
+      "reason": "Source CVE-2019-20354's description supports only that an authenticated low-privilege remote attacker can 'download arbitrary files' 'from the Raspberry Pi' via path traversal in the player log-download API. The target node requires a Raspberry Pi running Raspberry Pi OS <= 5.10 with unchanged default credentials (pi:raspberry) and network/local access, leading to authenticated 'pi' access. The edge label asserts that exfiltrated '/etc/shadow or configuration files' expose default 'pi' credentials or system hashes, but the description does not name those files, does not state that arbitrary files are readable at a privilege level that can access /etc/shadow, and does not mention default credentials or authentication reuse. A bounded bridge could potentially exist only if downloaded files contain credential material, any hashes are crackable or plaintext, the target still has default pi:raspberry, and recovered credentials can authenticate to the target; none of those are supplied. The target CVE mapping is missing, so this edge cannot enter a strict graph as stated.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "unsupported",
+      "target_cve_id": null
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "9ecaa82f6110df090e63030d9c4ae3e4f717fb041e25c06b084babdd334de091",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 5365,
+      "prompt_tokens": 1414,
+      "total_tokens": 6779,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4677,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0008166018,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0008166018,
+        "upstream_inference_prompt_cost": 5.04798e-05,
+        "upstream_inference_completions_cost": 0.000766122
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 5365,
+        "prompt_tokens": 1414,
+        "total_tokens": 6779,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4677,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0008166018,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0008166018,
+          "upstream_inference_prompt_cost": 5.04798e-05,
+          "upstream_inference_completions_cost": 0.000766122
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "baidu/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "Baidu"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:47:42.836110+00:00"
+}

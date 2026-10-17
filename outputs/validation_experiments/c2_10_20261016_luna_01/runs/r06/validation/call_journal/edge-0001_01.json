@@ -1,0 +1,111 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:30:48.454505+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The CVE IDs shown in the node labels are treated as candidate identifiers rather than validated mappings because both mapping records have null cve_id values and status missing.",
+        "If the source characterization is accurate, a readable file could potentially contain authentication-relevant data; this does not establish that such data exists or is usable."
+      ],
+      "confidence": 0.96,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38383",
+          "quote": "piSignage Player API Path Traversal Arbitrary File Read"
+        },
+        {
+          "cve_id": "CVE-2021-33357",
+          "quote": "RaspAP includes/webconsole.php Unrestricted Command Execution"
+        }
+      ],
+      "missing_conditions": [
+        "Validated unique mapping of the source and target to CVEs",
+        "Authoritative CVE description or other confirming evidence for the source vulnerability's actual file-read scope and prerequisites",
+        "Reachability of a vulnerable piSignage API and satisfaction of its required authentication",
+        "A readable file containing valid RaspAP credentials or session data",
+        "A reachable RaspAP 2.5 web interface from the relevant execution context",
+        "Successful authentication to RaspAP using the extracted data"
+      ],
+      "reason": "The supplied node text characterizes the source as path traversal with arbitrary file read and the target as unrestricted command execution, but these generated node claims are not confirming evidence. Even accepting the claimed source effect, arbitrary file read only potentially exposes files; it does not establish that RaspAP credentials or session data are present, valid, accepted by the target, or reachable through the source. The target prerequisite is authenticated access to the RaspAP 2.5 web interface, which is unverified. No environment observations establish deployment, reachability, authentication, or a usable file. Because both CVE mappings are marked missing and the causal bridge is unverified, this edge is unknown and cannot enter a strict supported graph.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 4550,
+      "prompt_tokens": 904,
+      "total_tokens": 5454,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4142,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0056408,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0056408,
+        "upstream_inference_prompt_cost": 0.0001808,
+        "upstream_inference_completions_cost": 0.00546
+      }
+    },
+    "latency_seconds": 40.263576999999714,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "023ef09027744447194ce0b5baf66a2fd04d2153f13805970e3c6451e5d4755e",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4550,
+        "prompt_tokens": 904,
+        "total_tokens": 5454,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4142,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0056408,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0056408,
+          "upstream_inference_prompt_cost": 0.0001808,
+          "upstream_inference_completions_cost": 0.00546
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The CVE IDs shown in the node labels are treated as candidate identifiers rather than validated mappings because both mapping records have null cve_id values and status missing.\",\"If the source characterization is accurate, a readable file could potentially contain authentication-relevant data; this does not establish that such data exists or is usable.\"],\"confidence\":0.96,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38383\",\"quote\":\"piSignage Player API Path Traversal Arbitrary File Read\"},{\"cve_id\":\"CVE-2021-33357\",\"quote\":\"RaspAP includes/webconsole.php Unrestricted Command Execution\"}],\"missing_conditions\":[\"Validated unique mapping of the source and target to CVEs\",\"Authoritative CVE description or other confirming evidence for the source vulnerability's actual file-read scope and prerequisites\",\"Reachability of a vulnerable piSignage API and satisfaction of its required authentication\",\"A readable file containing valid RaspAP credentials or session data\",\"A reachable RaspAP 2.5 web interface from the relevant execution context\",\"Successful authentication to RaspAP using the extracted data\"],\"reason\":\"The supplied node text characterizes the source as path traversal with arbitrary file read and the target as unrestricted command execution, but these generated node claims are not confirming evidence. Even accepting the claimed source effect, arbitrary file read only potentially exposes files; it does not establish that RaspAP credentials or session data are present, valid, accepted by the target, or reachable through the source. The target prerequisite is authenticated access to the RaspAP 2.5 web interface, which is unverified. No environment observations establish deployment, reachability, authentication, or a usable file. Because both CVE mappings are marked missing and the causal bridge is unverified, this edge is unknown and cannot enter a strict supported graph.\",\"source_cve_id\":null,\"suggested_status\":\"unknown\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T14:31:28.720601+00:00"
+}

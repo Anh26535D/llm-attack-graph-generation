@@ -1,0 +1,114 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T14:31:44.475012+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The Oculus Browser and Oculus Desktop would need to be deployed on the same relevant Windows host; this is an inference, not an observation.",
+        "The source's potentially achieved code execution would need to provide local-user filesystem access sufficient to attempt the target; this is an inference, not an observation.",
+        "The target's privileged OVRRedir.exe and hard-link/log-file sequence would need to be reachable from the source foothold; this is an inference, not an observation."
+      ],
+      "confidence": 0.94,
+      "edge_id": "edge-0004",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code."
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file."
+        }
+      ],
+      "missing_conditions": [
+        "The affected Oculus Browser version and the required victim interaction with the remote page are unverified.",
+        "Actual code execution is unverified; CVE-2019-3562 describes code execution only as potentially occurring after HTML injection.",
+        "Whether any source execution would have local-user privileges and filesystem access is unverified.",
+        "A same-host relationship between Oculus Browser and Oculus Desktop is unverified.",
+        "A Windows host with Oculus Desktop before version 1.44.0.32849 is unverified.",
+        "A privileged OVRRedir.exe process writing to an attacker-influenced unprivileged file or log file is unverified.",
+        "The attacker’s ability to create or exploit the required hard link and trigger the arbitrary-file write is unverified.",
+        "The target description does not establish the node claim's exact overwrite of critical system files or escalation specifically to SYSTEM."
+      ],
+      "reason": "CVE-2019-3562 establishes arbitrary HTML injection and UI spoofing, with code execution stated only as potentially possible; it does not establish local execution, filesystem access, or a host relationship. CVE-2020-1885 describes a local-user attack on Windows requiring the affected Oculus Desktop version, a privileged OVRRedir.exe process writing an unprivileged file, and a hard-link/log-file exploitation path that can allow arbitrary file writes and privilege gain. The proposed transition is therefore only a bounded conditional bridge, not an observed causal transition. The edge should not enter a strict graph as supported without validating the missing source, target, deployment, and exploitability conditions.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2358,
+      "prompt_tokens": 2155,
+      "total_tokens": 4513,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1779,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 2152,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0033682,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0033682,
+        "upstream_inference_prompt_cost": 0.0005386,
+        "upstream_inference_completions_cost": 0.0028296
+      }
+    },
+    "latency_seconds": 20.372313900001245,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "90500a70b5dd81a4ac7ae40a0e3929c87059ee4581a1f5153f57ce1744a2a28b",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2358,
+        "prompt_tokens": 2155,
+        "total_tokens": 4513,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1779,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2152,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0033682,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0033682,
+          "upstream_inference_prompt_cost": 0.0005386,
+          "upstream_inference_completions_cost": 0.0028296
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The Oculus Browser and Oculus Desktop would need to be deployed on the same relevant Windows host; this is an inference, not an observation.\",\"The source's potentially achieved code execution would need to provide local-user filesystem access sufficient to attempt the target; this is an inference, not an observation.\",\"The target's privileged OVRRedir.exe and hard-link/log-file sequence would need to be reachable from the source foothold; this is an inference, not an observation.\"],\"confidence\":0.94,\"edge_id\":\"edge-0004\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code.\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.\"}],\"missing_conditions\":[\"The affected Oculus Browser version and the required victim interaction with the remote page are unverified.\",\"Actual code execution is unverified; CVE-2019-3562 describes code execution only as potentially occurring after HTML injection.\",\"Whether any source execution would have local-user privileges and filesystem access is unverified.\",\"A same-host relationship between Oculus Browser and Oculus Desktop is unverified.\",\"A Windows host with Oculus Desktop before version 1.44.0.32849 is unverified.\",\"A privileged OVRRedir.exe process writing to an attacker-influenced unprivileged file or log file is unverified.\",\"The attacker’s ability to create or exploit the required hard link and trigger the arbitrary-file write is unverified.\",\"The target description does not establish the node claim's exact overwrite of critical system files or escalation specifically to SYSTEM.\"],\"reason\":\"CVE-2019-3562 establishes arbitrary HTML injection and UI spoofing, with code execution stated only as potentially possible; it does not establish local execution, filesystem access, or a host relationship. CVE-2020-1885 describes a local-user attack on Windows requiring the affected Oculus Desktop version, a privileged OVRRedir.exe process writing an unprivileged file, and a hard-link/log-file exploitation path that can allow arbitrary file writes and privilege gain. The proposed transition is therefore only a bounded conditional bridge, not an observed causal transition. The edge should not enter a strict graph as supported without validating the missing source, target, deployment, and exploitability conditions.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-1885\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:32:04.849453+00:00"
+}

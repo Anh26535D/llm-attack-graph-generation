@@ -1,0 +1,135 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:58:05.084595+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The piSignage web application may be deployed on the same Raspberry Pi OS host as the default pi account, but this is not established by the supplied descriptions or environment observations.",
+        "The default Raspberry Pi OS pi credentials or resulting OS administrator access may be reusable, discoverable, or convertible into a piSignage low-privilege web session.",
+        "OS administrator access might allow reading or changing piSignage configuration or user records to recover/reset web credentials.",
+        "The target piSignage version may be before 2.6.4 and may be reachable and authenticable by the attacker."
+      ],
+      "confidence": 0.83,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "The web application component of piSignage before 2.6.4"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        }
+      ],
+      "missing_conditions": [
+        "Explicit observation that piSignage is installed on the same Raspberry Pi OS instance as the default pi account.",
+        "Evidence that the target piSignage version is before 2.6.4.",
+        "A verified credential-access path from Raspberry Pi OS default/admin credentials to a piSignage authenticated low-privilege web session, such as credential reuse, readable configuration, or a password reset path.",
+        "Confirmation that the Raspberry Pi OS default pi password is unchanged, as the source effect is conditional on 'If not changed'.",
+        "Network or local access to the relevant Raspberry Pi OS and piSignage services sufficient for the claimed bridge."
+      ],
+      "reason": "CVE-2021-38759's supplied effect is bounded: Raspberry Pi OS through 5.10 has a default raspberry password for the pi account, and 'If not changed, attackers can gain administrator privileges.' CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user' in the piSignage web application before 2.6.4, allowing 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal.' The edge label goes beyond these descriptions by claiming default system credentials or discovered credentials lead to an authenticated low-privilege piSignage web session. No supplied evidence establishes co-location, credential reuse, piSignage credential discovery, or that OS administrator access yields a web session. The bridge is therefore potentially plausible only under additional unverified conditions; it cannot enter a strict graph as fully supported and is at most conditional.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2019-20354"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 6155,
+      "prompt_tokens": 2039,
+      "total_tokens": 8194,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 5487,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0043066,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0043066,
+        "upstream_inference_prompt_cost": 0.00030585,
+        "upstream_inference_completions_cost": 0.00400075
+      }
+    },
+    "latency_seconds": 36.150207699998646,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "b3fce8f83b62de1642eeef2a36a6524705ce28d294f4c56083d70b3c14a46eec",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6155,
+        "prompt_tokens": 2039,
+        "total_tokens": 8194,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5487,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0043066,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0043066,
+          "upstream_inference_prompt_cost": 0.00030585,
+          "upstream_inference_completions_cost": 0.00400075
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The piSignage web application may be deployed on the same Raspberry Pi OS host as the default pi account, but this is not established by the supplied descriptions or environment observations.\",\"The default Raspberry Pi OS pi credentials or resulting OS administrator access may be reusable, discoverable, or convertible into a piSignage low-privilege web session.\",\"OS administrator access might allow reading or changing piSignage configuration or user records to recover/reset web credentials.\",\"The target piSignage version may be before 2.6.4 and may be reachable and authenticable by the attacker.\"],\"confidence\":0.83,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"The web application component of piSignage before 2.6.4\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"}],\"missing_conditions\":[\"Explicit observation that piSignage is installed on the same Raspberry Pi OS instance as the default pi account.\",\"Evidence that the target piSignage version is before 2.6.4.\",\"A verified credential-access path from Raspberry Pi OS default/admin credentials to a piSignage authenticated low-privilege web session, such as credential reuse, readable configuration, or a password reset path.\",\"Confirmation that the Raspberry Pi OS default pi password is unchanged, as the source effect is conditional on 'If not changed'.\",\"Network or local access to the relevant Raspberry Pi OS and piSignage services sufficient for the claimed bridge.\"],\"reason\":\"CVE-2021-38759's supplied effect is bounded: Raspberry Pi OS through 5.10 has a default raspberry password for the pi account, and 'If not changed, attackers can gain administrator privileges.' CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user' in the piSignage web application before 2.6.4, allowing 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal.' The edge label goes beyond these descriptions by claiming default system credentials or discovered credentials lead to an authenticated low-privilege piSignage web session. No supplied evidence establishes co-location, credential reuse, piSignage credential discovery, or that OS administrator access yields a web session. The bridge is therefore potentially plausible only under additional unverified conditions; it cannot enter a strict graph as fully supported and is at most conditional.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2019-20354\"}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:58:41.938747+00:00"
+}

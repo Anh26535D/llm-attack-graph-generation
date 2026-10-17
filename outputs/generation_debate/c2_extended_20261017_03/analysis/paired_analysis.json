@@ -1,0 +1,127 @@
+{
+  "scope": "synthetic_C2_extended_state_action",
+  "results": [
+    {
+      "repeat": 1,
+      "strategies": {
+        "grounded": {
+          "audit": {
+            "mechanical_checks_passed": true,
+            "issues": [],
+            "edge_count": 23,
+            "semantic_accuracy": null,
+            "warning": "Inventory/quote checks do not prove a causal relation."
+          },
+          "status": "ready_for_independent_validation",
+          "api_calls_including_common_draft": 1,
+          "usage": {
+            "input_tokens": 6183,
+            "output_tokens": 4492,
+            "total_tokens": 14836,
+            "requests_with_usage": 1,
+            "requests_missing_usage": 0,
+            "totals_are_partial": false,
+            "gemini_thoughts_tokens": 4161
+          },
+          "request_seconds": 55.82060899999851,
+          "nodes": 27,
+          "edges": 23,
+          "synthetic_evaluation": {
+            "metric": "agreement_with_synthetic_typed_relation_reference",
+            "independent_gold": false,
+            "real_world_accuracy": null,
+            "matched_edges": 23,
+            "extra_or_wrong_edges": 0,
+            "missing_edges": 0,
+            "reference_precision": 1.0,
+            "reference_recall": 1.0,
+            "reference_f1": 1.0,
+            "extra_relations": [],
+            "omitted_relations": [],
+            "and_groups_complete": {
+              "A05": true,
+              "A09": true
+            },
+            "control_incident_edges": 0
+          },
+          "decisions": [],
+          "added_relations": [],
+          "removed_relations": []
+        },
+        "self_refine": {
+          "status": "not_run",
+          "api_calls_including_common_draft": 4,
+          "usage": {
+            "input_tokens": 30288,
+            "output_tokens": 16335,
+            "total_tokens": 56095,
+            "requests_with_usage": 3,
+            "requests_missing_usage": 1,
+            "totals_are_partial": true,
+            "gemini_thoughts_tokens": null
+          },
+          "request_seconds": 145.15695729999788
+        },
+        "debate": {
+          "status": "not_run",
+          "api_calls_including_common_draft": 1,
+          "usage": {
+            "input_tokens": 6183,
+            "output_tokens": 4492,
+            "total_tokens": 14836,
+            "requests_with_usage": 1,
+            "requests_missing_usage": 0,
+            "totals_are_partial": false,
+            "gemini_thoughts_tokens": 4161
+          },
+          "request_seconds": 55.82060899999851
+        }
+      },
+      "figure": "r01_comparison.png"
+    }
+  ],
+  "unique_api_calls": 4,
+  "unique_usage": {
+    "input_tokens": 30288,
+    "output_tokens": 16335,
+    "total_tokens": 56095,
+    "requests_with_usage": 3,
+    "requests_missing_usage": 1,
+    "totals_are_partial": true,
+    "gemini_thoughts_tokens": null
+  },
+  "request_states": {
+    "received": 3,
+    "started": 1
+  },
+  "actual_models": {
+    "gemini-3.8-flash": 3,
+    "None": 1
+  },
+  "continuation": {
+    "reason": "User explicitly requested continuation after session usage limit interrupted execution.",
+    "resumes": "c2_extended_20261017_02",
+    "process_alive": false,
+    "old_draft_request_state": "started_without_saved_response",
+    "old_request_cost": "unknown",
+    "retry_policy": "New run, same frozen inputs/config; interrupted request not counted as a successful result. No existing journal altered.",
+    "historical_attempts": [
+      {
+        "run": "c2_extended_20261017_01",
+        "requests": 1,
+        "result": "invalid JSON duplicate host key",
+        "reported_total_tokens": 12130
+      },
+      {
+        "run": "c2_extended_20261017_02",
+        "requests": 1,
+        "result": "interrupted request with no response",
+        "reported_total_tokens": null
+      }
+    ],
+    "new_max_requests": 7,
+    "cumulative_possible_requests_including_history": 9
+  },
+  "independent_human_gold": false,
+  "real_world_accuracy": null
+}

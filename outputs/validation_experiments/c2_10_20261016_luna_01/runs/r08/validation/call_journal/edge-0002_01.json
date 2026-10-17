@@ -1,0 +1,114 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:35:15.009264+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "That CVE-2021-37594 is the intended source CVE, despite the source mapping being marked missing, is an inference.",
+        "That piSignage is deployed on the same Raspberry Pi as the asserted source condition is an inference."
+      ],
+      "confidence": 0.96,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "the player API for log download"
+        }
+      ],
+      "missing_conditions": [
+        "Verified source CVE identity and a supplied description establishing the source's actual effect",
+        "A low-privilege account or session accepted by the piSignage player API, rather than merely operating-system or SSH credentials",
+        "Network reachability to the piSignage web application",
+        "Evidence that piSignage is deployed on the relevant Raspberry Pi host",
+        "Evidence that the piSignage version is before 2.6.4"
+      ],
+      "reason": "CVE-2019-20354 describes a remote attacker authenticated as a low-privilege user downloading arbitrary files from a Raspberry Pi through the piSignage player API. The source's actual effect is not established: CVE-2021-37594 appears only in an asserted node label/candidate mapping, while the source mapping is explicitly missing and no source CVE description is supplied. The asserted default-credential postcondition is not confirming evidence, and even if accepted it does not establish a low-privilege piSignage API session, network access, same-host deployment, or the required version. The causal bridge is therefore unverified and the edge should not enter a strict graph as supported.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2019-20354"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1968,
+      "prompt_tokens": 1365,
+      "total_tokens": 3333,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1552,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1362,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0027027,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0027027,
+        "upstream_inference_prompt_cost": 0.0003411,
+        "upstream_inference_completions_cost": 0.0023616
+      }
+    },
+    "latency_seconds": 19.02818339999976,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "ef2b88e55ffbeb6bd11cdb28a18114c6c9dfae39380b95c56ce398ca99a70b8f",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1968,
+        "prompt_tokens": 1365,
+        "total_tokens": 3333,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1552,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1362,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0027027,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0027027,
+          "upstream_inference_prompt_cost": 0.0003411,
+          "upstream_inference_completions_cost": 0.0023616
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"That CVE-2021-37594 is the intended source CVE, despite the source mapping being marked missing, is an inference.\",\"That piSignage is deployed on the same Raspberry Pi as the asserted source condition is an inference.\"],\"confidence\":0.96,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"the player API for log download\"}],\"missing_conditions\":[\"Verified source CVE identity and a supplied description establishing the source's actual effect\",\"A low-privilege account or session accepted by the piSignage player API, rather than merely operating-system or SSH credentials\",\"Network reachability to the piSignage web application\",\"Evidence that piSignage is deployed on the relevant Raspberry Pi host\",\"Evidence that the piSignage version is before 2.6.4\"],\"reason\":\"CVE-2019-20354 describes a remote attacker authenticated as a low-privilege user downloading arbitrary files from a Raspberry Pi through the piSignage player API. The source's actual effect is not established: CVE-2021-37594 appears only in an asserted node label/candidate mapping, while the source mapping is explicitly missing and no source CVE description is supplied. The asserted default-credential postcondition is not confirming evidence, and even if accepted it does not establish a low-privilege piSignage API session, network access, same-host deployment, or the required version. The causal bridge is therefore unverified and the edge should not enter a strict graph as supported.\",\"source_cve_id\":null,\"suggested_status\":\"unknown\",\"target_cve_id\":\"CVE-2019-20354\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:35:34.039207+00:00"
+}

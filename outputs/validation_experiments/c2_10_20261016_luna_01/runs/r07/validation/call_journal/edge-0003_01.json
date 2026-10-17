@@ -1,0 +1,114 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:33:51.635229+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference only: if node_3's claimed administrative shell access were established, it might provide a route to RaspAP web credentials; this is not evidence.",
+        "Inference only: the source and target would need to concern the same or a network-reachable deployment; no such relationship is supplied."
+      ],
+      "confidence": 0.97,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system (including ones for uploading of files and execution of code)"
+        }
+      ],
+      "missing_conditions": [
+        "A unique source CVE mapping and supplied description establishing node_3's actual effect.",
+        "Evidence that node_3's claimed administrative or sudo shell access is present.",
+        "Authenticated access to the RaspAP web interface required by CVE-2020-24572.",
+        "A deployed and reachable RaspAP service associated with the system access in node_3.",
+        "A demonstrated mechanism by which that system access can retrieve or manipulate the RaspAP web credentials."
+      ],
+      "reason": "The source node claims default-credential authentication leading to an administrative shell, but it has no mapped CVE or supplied description establishing that effect. CVE-2020-24572 describes a RaspAP web-console issue whose actual effect is command execution, including file upload and code execution, after web-interface authentication; generic administrative system access is not itself authenticated access to that interface. The proposed bridge is therefore only potentially valid if a relevant RaspAP deployment, credential-access mechanism, and causal relationship are demonstrated. The edge also overreaches by treating facilitation of credentials as established and by implying the target's execution outcome. Because the source mapping and required bridge are unverified, this edge cannot enter a strict graph.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1786,
+      "prompt_tokens": 1289,
+      "total_tokens": 3075,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1353,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1286,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0024653,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0024653,
+        "upstream_inference_prompt_cost": 0.0003221,
+        "upstream_inference_completions_cost": 0.0021432
+      }
+    },
+    "latency_seconds": 16.426144300001397,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "1cf84f84ae978248d0eff36d4863fa23f3f39324d9c7a9011b91a33a4cf6e8de",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1786,
+        "prompt_tokens": 1289,
+        "total_tokens": 3075,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1353,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1286,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0024653,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0024653,
+          "upstream_inference_prompt_cost": 0.0003221,
+          "upstream_inference_completions_cost": 0.0021432
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inference only: if node_3's claimed administrative shell access were established, it might provide a route to RaspAP web credentials; this is not evidence.\",\"Inference only: the source and target would need to concern the same or a network-reachable deployment; no such relationship is supplied.\"],\"confidence\":0.97,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"misconfigured (and virtually unrestricted) web console\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system (including ones for uploading of files and execution of code)\"}],\"missing_conditions\":[\"A unique source CVE mapping and supplied description establishing node_3's actual effect.\",\"Evidence that node_3's claimed administrative or sudo shell access is present.\",\"Authenticated access to the RaspAP web interface required by CVE-2020-24572.\",\"A deployed and reachable RaspAP service associated with the system access in node_3.\",\"A demonstrated mechanism by which that system access can retrieve or manipulate the RaspAP web credentials.\"],\"reason\":\"The source node claims default-credential authentication leading to an administrative shell, but it has no mapped CVE or supplied description establishing that effect. CVE-2020-24572 describes a RaspAP web-console issue whose actual effect is command execution, including file upload and code execution, after web-interface authentication; generic administrative system access is not itself authenticated access to that interface. The proposed bridge is therefore only potentially valid if a relevant RaspAP deployment, credential-access mechanism, and causal relationship are demonstrated. The edge also overreaches by treating facilitation of credentials as established and by implying the target's execution outcome. Because the source mapping and required bridge are unverified, this edge cannot enter a strict graph.\",\"source_cve_id\":null,\"suggested_status\":\"unknown\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:34:08.082150+00:00"
+}

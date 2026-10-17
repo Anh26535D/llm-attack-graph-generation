@@ -1,0 +1,197 @@
+{
+  "nodes": [
+    {
+      "id": "node_oculus_browser_inject",
+      "label": "Oculus Browser Remote HTML Injection and Code Execution (5.2.7 - 5.7.11)",
+      "precondition": "Attacker lures victim using Oculus Browser (versions 5.2.7 through 5.7.11) to visit a malicious remote web page.",
+      "postcondition": "Attacker injects arbitrary HTML into the Oculus Browser UI, spoofs UI elements, and gains local unprivileged code execution within the user's session."
+    },
+    {
+      "id": "node_oculus_ovrredir_lpe",
+      "label": "Oculus Desktop OVRRedir.exe Hardlink Arbitrary File Write Privilege Escalation (< 1.44.0.32849)",
+      "precondition": "Attacker possesses local unprivileged code execution on a Windows host running Oculus Desktop before version 1.44.0.32849.",
+      "postcondition": "Attacker creates a hard link pointing an unprivileged log file to a critical target file, causing the privileged OVRRedir.exe process to write to arbitrary files and elevating privileges to SYSTEM."
+    },
+    {
+      "id": "node_oculus_ovrservice_lpe",
+      "label": "Oculus Desktop OVRServiceLauncher.exe Handle Exposure Privilege Escalation (1.39 - 31.1.0.67.507)",
+      "precondition": "Attacker has local unprivileged code execution on a Windows host running Oculus Desktop (versions > 1.39 and < 31.1.0.67.507).",
+      "postcondition": "Privileged process handle is leaked to the attacker's unprivileged process, permitting local privilege escalation to high-integrity/SYSTEM."
+    },
+    {
+      "id": "node_oculus_system_compromise",
+      "label": "Full Host Compromise via Oculus Windows Privilege Escalation",
+      "precondition": "Attacker obtains local privilege escalation via OVRRedir.exe arbitrary file write or OVRServiceLauncher.exe handle exposure.",
+      "postcondition": "Full administrative/SYSTEM access to the host operating system with complete control over data, processes, and configurations."
+    },
+    {
+      "id": "node_raspi_default_creds",
+      "label": "Raspberry Pi OS Default Credentials Exploitation (<= 5.10)",
+      "precondition": "Raspberry Pi running Raspberry Pi OS through version 5.10 is accessible over the network or console with unmodified default credentials ('pi':'raspberry').",
+      "postcondition": "Attacker gains authenticated shell and administrator/sudo access on the Raspberry Pi system."
+    },
+    {
+      "id": "node_pisignage_path_traversal",
+      "label": "piSignage Player API Path Traversal Arbitrary File Download (< 2.6.4)",
+      "precondition": "Attacker holds low-privilege authenticated user access to piSignage web application prior to version 2.6.4.",
+      "postcondition": "Attacker downloads arbitrary sensitive files (including system configs, shadow files, and service credentials) from the underlying Raspberry Pi via api/settings/log?file=../."
+    },
+    {
+      "id": "node_raspap_webconsole_rce",
+      "label": "RaspAP 2.5 Web Console Remote Command Execution (includes/webconsole.php)",
+      "precondition": "Attacker possesses valid authenticated web access to RaspAP 2.5 (e.g., via default credentials or credentials extracted from arbitrary file download).",
+      "postcondition": "Attacker uses the misconfigured, unrestricted web console to execute arbitrary OS commands, upload malicious files, and execute code on the Raspberry Pi."
+    },
+    {
+      "id": "node_raspi_os_control_audio",
+      "label": "Raspberry Pi OS Command and Audio Hardware Control",
+      "precondition": "Attacker attains OS command execution or administrator access on the Raspberry Pi via RaspAP web console or default credentials.",
+      "postcondition": "Attacker controls processes, drives audio output through connected peripheral equipment, and alters power consumption states."
+    },
+    {
+      "id": "node_raspi_glowworm_sidechannel",
+      "label": "Raspberry Pi Power LED Glowworm Optical Acoustic Eavesdropping",
+      "precondition": "Raspberry Pi 3 B+ or 4 B (through 2021-08-09) supplies power to audio-output speakers playing speech, and attacker has optical line-of-sight to the power indicator LED using a telescope and electro-optical sensor.",
+      "postcondition": "Attacker recovers sensitive speech and sound signals played through the speakers by measuring and analyzing optical fluctuations corresponding to power consumption."
+    },
+    {
+      "id": "node_jetson_iommu_dma",
+      "label": "NVIDIA Jetson Linux IOMMU Misconfiguration DMA Exploitation",
+      "precondition": "Unprivileged attacker possesses physical access to an NVIDIA Jetson board running vulnerable Jetson Linux and interfaces directly with the PCI bus.",
+      "postcondition": "Attacker bypasses IOMMU restrictions to obtain direct read/write Direct Memory Access (DMA) to the entire system address space."
+    },
+    {
+      "id": "node_jetson_system_takeover",
+      "label": "NVIDIA Jetson Total System Takeover and Scope Extension",
+      "precondition": "Attacker achieves direct read/write access across the entire system address space via PCI bus DMA.",
+      "postcondition": "Attacker achieves complete denial of service, arbitrary kernel/system code execution, privilege escalation to highest execution levels, and cross-component integrity/confidentiality breach."
+    }
+  ],
+  "edges": [],
+  "validation": {
+    "source_graph_sha256": "0cf1016073dbb5b461e179d5387d1662d5caa276923814040fe50a7e0df628d2",
+    "strict": true,
+    "excluded_edges": [
+      {
+        "from": "node_oculus_browser_inject",
+        "to": "node_oculus_ovrredir_lpe",
+        "label": "Provides local unprivileged code execution required to create hardlinks against unprivileged log files targeted by OVRRedir.exe",
+        "validation": {
+          "edge_id": "edge-0001",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      },
+      {
+        "from": "node_oculus_browser_inject",
+        "to": "node_oculus_ovrservice_lpe",
+        "label": "Provides local unprivileged process execution required to capture privileged handles exposed by OVRServiceLauncher.exe",
+        "validation": {
+          "edge_id": "edge-0002",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      },
+      {
+        "from": "node_oculus_ovrredir_lpe",
+        "to": "node_oculus_system_compromise",
+        "label": "Escalates local privileges to SYSTEM via arbitrary file write overwrite of system binaries/DLLs",
+        "validation": {
+          "edge_id": "edge-0003",
+          "original_edge_id": null,
+          "status": "unknown",
+          "offline_status": "unknown",
+          "reason": "CVE identity is missing, outside the corpus, or ambiguous."
+        }
+      },
+      {
+        "from": "node_oculus_ovrservice_lpe",
+        "to": "node_oculus_system_compromise",
+        "label": "Escalates local privileges to SYSTEM via manipulation of leaked privileged process handle",
+        "validation": {
+          "edge_id": "edge-0004",
+          "original_edge_id": null,
+          "status": "unknown",
+          "offline_status": "unknown",
+          "reason": "CVE identity is missing, outside the corpus, or ambiguous."
+        }
+      },
+      {
+        "from": "node_pisignage_path_traversal",
+        "to": "node_raspap_webconsole_rce",
+        "label": "Leaked credentials and session tokens from downloaded configuration files satisfy authentication requirements for RaspAP",
+        "validation": {
+          "edge_id": "edge-0005",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      },
+      {
+        "from": "node_raspi_default_creds",
+        "to": "node_raspap_webconsole_rce",
+        "label": "Default administrative credentials allow access to local web interfaces and services including RaspAP",
+        "validation": {
+          "edge_id": "edge-0006",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      },
+      {
+        "from": "node_raspi_default_creds",
+        "to": "node_raspi_os_control_audio",
+        "label": "Provides root/sudo shell access directly controlling OS services and hardware interfaces",
+        "validation": {
+          "edge_id": "edge-0007",
+          "original_edge_id": null,
+          "status": "unknown",
+          "offline_status": "unknown",
+          "reason": "CVE identity is missing, outside the corpus, or ambiguous."
+        }
+      },
+      {
+        "from": "node_raspap_webconsole_rce",
+        "to": "node_raspi_os_control_audio",
+        "label": "Executes shell commands on Raspberry Pi OS to manipulate audio playback software and power draw",
+        "validation": {
+          "edge_id": "edge-0008",
+          "original_edge_id": null,
+          "status": "unknown",
+          "offline_status": "unknown",
+          "reason": "CVE identity is missing, outside the corpus, or ambiguous."
+        }
+      },
+      {
+        "from": "node_raspi_os_control_audio",
+        "to": "node_raspi_glowworm_sidechannel",
+        "label": "Directs playback of sensitive speech or victim communication through connected audio-output equipment powered by the Raspberry Pi",
+        "validation": {
+          "edge_id": "edge-0009",
+          "original_edge_id": null,
+          "status": "unknown",
+          "offline_status": "unknown",
+          "reason": "CVE identity is missing, outside the corpus, or ambiguous."
+        }
+      },
+      {
+        "from": "node_jetson_iommu_dma",
+        "to": "node_jetson_system_takeover",
+        "label": "Leverages unconstrained physical memory access to overwrite kernel data, execute code, and compromise adjacent hardware components",
+        "validation": {
+          "edge_id": "edge-0010",
+          "original_edge_id": null,
+          "status": "unknown",
+          "offline_status": "unknown",
+          "reason": "The descriptions do not establish the claimed causal bridge; absence of evidence is not contradiction."
+        }
+      }
+    ]
+  }
+}

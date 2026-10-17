@@ -1,0 +1,141 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T15:02:56.081800+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Generated node pre/postconditions and edge text are claims, not confirming evidence.",
+        "The source and target mappings CVE-2021-38759 and CVE-2020-24572 are treated as supplied identities, not proof of deployment.",
+        "Any same-host relationship between Raspberry Pi OS and RaspAP 2.5 is an inference, not stated by either CVE description.",
+        "Any reuse of the Raspberry Pi OS pi-account credentials for RaspAP web authentication is an inference, not stated by either CVE description.",
+        "System-level admin access might permit local configuration tampering, but this is a potential consequence not a provided target prerequisite."
+      ],
+      "confidence": 0.72,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "default password for the pi account"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "gain administrator privileges"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software"
+        }
+      ],
+      "missing_conditions": [
+        "externally verified same-host deployment of Raspberry Pi OS and RaspAP 2.5",
+        "RaspAP 2.5 web interface installed and reachable from the attacker",
+        "source administrator privileges are valid for, or can obtain, an authenticated RaspAP web session",
+        "credential reuse or a credential-disclosure path from the Raspberry Pi OS pi account to RaspAP",
+        "ability for system-level admin to read, reset, or bypass RaspAP authentication or modify the web-console configuration",
+        "verification that the source effect is not merely redundant with an already-existing OS-level code-execution capability"
+      ],
+      "reason": "CVE-2021-38759's supplied description says an unchanged default password for the Raspberry Pi OS pi account can allow attackers to gain administrator privileges. That is an OS-account effect, not evidence that the same credentials authenticate to RaspAP, nor that RaspAP 2.5 is installed on the same host. CVE-2020-24572 requires authenticated access to the RaspAP 2.5 web interface before a misconfigured unrestricted web console can execute commands on the underlying Raspberry Pi OS. The edge's claim that system-level administrative credentials allow administrative login to installed web services overreaches the descriptions: it bridges only if unstated conditions such as same-host deployment, RaspAP installation/reachability, and credential validity or local credential/config tampering are verified. The bridge is therefore potentially plausible but not confirmed, and it should not enter a strict graph without those prerequisites.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 4882,
+      "prompt_tokens": 1996,
+      "total_tokens": 6878,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4210,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.003434812,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003434812,
+        "upstream_inference_prompt_cost": 0.000261512,
+        "upstream_inference_completions_cost": 0.0031733
+      }
+    },
+    "latency_seconds": 26.05181850000008,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "9f3ff9bb2ee15a6a718533f3361d4344f20d8929ffb8ef0060029134a2ca5700",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4882,
+        "prompt_tokens": 1996,
+        "total_tokens": 6878,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4210,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.003434812,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003434812,
+          "upstream_inference_prompt_cost": 0.000261512,
+          "upstream_inference_completions_cost": 0.0031733
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Generated node pre/postconditions and edge text are claims, not confirming evidence.\",\"The source and target mappings CVE-2021-38759 and CVE-2020-24572 are treated as supplied identities, not proof of deployment.\",\"Any same-host relationship between Raspberry Pi OS and RaspAP 2.5 is an inference, not stated by either CVE description.\",\"Any reuse of the Raspberry Pi OS pi-account credentials for RaspAP web authentication is an inference, not stated by either CVE description.\",\"System-level admin access might permit local configuration tampering, but this is a potential consequence not a provided target prerequisite.\"],\"confidence\":0.72,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"default password for the pi account\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"gain administrator privileges\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software\"}],\"missing_conditions\":[\"externally verified same-host deployment of Raspberry Pi OS and RaspAP 2.5\",\"RaspAP 2.5 web interface installed and reachable from the attacker\",\"source administrator privileges are valid for, or can obtain, an authenticated RaspAP web session\",\"credential reuse or a credential-disclosure path from the Raspberry Pi OS pi account to RaspAP\",\"ability for system-level admin to read, reset, or bypass RaspAP authentication or modify the web-console configuration\",\"verification that the source effect is not merely redundant with an already-existing OS-level code-execution capability\"],\"reason\":\"CVE-2021-38759's supplied description says an unchanged default password for the Raspberry Pi OS pi account can allow attackers to gain administrator privileges. That is an OS-account effect, not evidence that the same credentials authenticate to RaspAP, nor that RaspAP 2.5 is installed on the same host. CVE-2020-24572 requires authenticated access to the RaspAP 2.5 web interface before a misconfigured unrestricted web console can execute commands on the underlying Raspberry Pi OS. The edge's claim that system-level administrative credentials allow administrative login to installed web services overreaches the descriptions: it bridges only if unstated conditions such as same-host deployment, RaspAP installation/reachability, and credential validity or local credential/config tampering are verified. The bridge is therefore potentially plausible but not confirmed, and it should not enter a strict graph without those prerequisites.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:03:22.135844+00:00"
+}

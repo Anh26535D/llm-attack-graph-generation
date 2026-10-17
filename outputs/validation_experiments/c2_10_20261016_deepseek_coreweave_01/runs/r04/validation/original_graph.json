@@ -1,0 +1,79 @@
+{
+  "nodes": [
+    {
+      "id": "vuln_pisignage_traversal",
+      "label": "piSignage Arbitrary File Download via Log Path Traversal (api/settings/log)",
+      "precondition": "Remote network access and low-privilege authenticated user credentials for the piSignage player web application (version < 2.6.4) on a Raspberry Pi device.",
+      "postcondition": "Download of arbitrary local files across the Raspberry Pi file system via the 'api/settings/log?file=../' parameter traversal, exposing sensitive configurations, source code, and stored system credentials."
+    },
+    {
+      "id": "vuln_raspap_webconsole",
+      "label": "RaspAP Misconfigured Web Console Command Execution (includes/webconsole.php)",
+      "precondition": "Network access and authenticated user access to RaspAP (version 2.5) web application hosting 'includes/webconsole.php' on the Raspberry Pi.",
+      "postcondition": "Unrestricted command execution on the underlying Raspberry Pi operating system, enabling arbitrary file uploads, shell code execution, and lateral compromise of system services."
+    },
+    {
+      "id": "vuln_rpi_default_creds",
+      "label": "Raspberry Pi OS Default Credentials Administrator Access",
+      "precondition": "Network reachability (e.g., SSH, local login, or service console) to Raspberry Pi OS (version <= 5.10) where the factory default credentials for account 'pi' with password 'raspberry' remain unchanged.",
+      "postcondition": "Attacker acquires administrator (sudo/root) privileges and unrestricted control over the Raspberry Pi operating system and resident applications."
+    },
+    {
+      "id": "vuln_rpi_glowworm",
+      "label": "Raspberry Pi Optical Power LED Acoustic Eavesdropping (Glowworm Attack)",
+      "precondition": "Raspberry Pi 3 B+ or 4 B (firmware/hardware through 2021-08-09) directly powering external audio-output equipment (speakers) currently playing sound, with a remote attacker possessing direct optical line of sight to the device power LED using a telescope and electro-optical sensor.",
+      "postcondition": "Non-invasive exfiltration and physical reconstruction of acoustic speech signals played through the speakers derived from optical power consumption fluctuations captured from the power LED."
+    },
+    {
+      "id": "vuln_oculus_browser_ui_inject",
+      "label": "Oculus Browser Arbitrary HTML UI Injection and Potential Code Execution",
+      "precondition": "Target user browsing the web using Oculus Browser (versions 5.2.7 through 5.7.11) visits an attacker-controlled remote web page.",
+      "postcondition": "Arbitrary HTML injected into the Oculus Browser user interface, facilitating UI spoofing, credential phishing, and potential code execution in the context of an unprivileged local user session."
+    },
+    {
+      "id": "vuln_oculus_ovrredir_privesc",
+      "label": "Oculus Desktop OVRRedir.exe Privileged File Write Local Privilege Escalation",
+      "precondition": "Unprivileged local process execution on a Windows host running Oculus Desktop (version < 1.44.0.32849) capable of creating file-system hard links to log files targeted by OVRRedir.exe.",
+      "postcondition": "Arbitrary file write with the elevated permissions of the privileged OVRRedir.exe process, resulting in full local privilege escalation to Administrator or SYSTEM on Windows."
+    },
+    {
+      "id": "vuln_oculus_ovrservice_privesc",
+      "label": "Oculus Desktop OVRServiceLauncher.exe Handle Exposure Local Privilege Escalation",
+      "precondition": "Unprivileged local process running on a Windows host with Oculus Desktop (version > 1.39 and < 31.1.0.67.507) where OVRServiceLauncher.exe fails to restrict privileged process handle management.",
+      "postcondition": "Attacker captures and utilizes an exposed privileged process handle, gaining full local privilege escalation to Administrator or SYSTEM permissions."
+    },
+    {
+      "id": "vuln_jetson_iommu",
+      "label": "NVIDIA Jetson Linux IOMMU Configuration Error PCI Bus Memory Compromise",
+      "precondition": "Unprivileged attacker with physical access to an NVIDIA Jetson development board running vulnerable Jetson Linux distributions with improper IOMMU configuration via the PCI bus.",
+      "postcondition": "Direct read and write access across the entire system address space via the PCI bus, resulting in denial of service, host code execution, complete privilege escalation, total integrity/confidentiality failure, and lateral scope extension to adjacent system components."
+    }
+  ],
+  "edges": [
+    {
+      "from": "vuln_pisignage_traversal",
+      "to": "vuln_rpi_default_creds",
+      "label": "Path traversal file download enables exfiltration of Linux credential stores (/etc/shadow, password hashes) or application config files, verifying or extracting default 'pi:raspberry' credentials to obtain administrator privileges."
+    },
+    {
+      "from": "vuln_pisignage_traversal",
+      "to": "vuln_raspap_webconsole",
+      "label": "Arbitrary file download allows extraction of RaspAP configuration, session databases, or cleartext credentials from the filesystem, fulfilling the authenticated access precondition for the misconfigured web console."
+    },
+    {
+      "from": "vuln_raspap_webconsole",
+      "to": "vuln_rpi_default_creds",
+      "label": "Executing commands on the underlying OS allows an attacker to interact with the local shell, leveraging unhardened default 'pi' account credentials or sudo rules to escalate to full administrator status."
+    },
+    {
+      "from": "vuln_oculus_browser_ui_inject",
+      "to": "vuln_oculus_ovrredir_privesc",
+      "label": "Potential code execution achieved via Oculus Browser UI injection provides the initial local unprivileged Windows execution context required to craft log hard links and trigger OVRRedir.exe arbitrary file write."
+    },
+    {
+      "from": "vuln_oculus_browser_ui_inject",
+      "to": "vuln_oculus_ovrservice_privesc",
+      "label": "Initial unprivileged code execution achieved via the browser engine allows an attacker to execute as a local unprivileged process to query and acquire exposed privileged handles from OVRServiceLauncher.exe."
+    }
+  ]
+}

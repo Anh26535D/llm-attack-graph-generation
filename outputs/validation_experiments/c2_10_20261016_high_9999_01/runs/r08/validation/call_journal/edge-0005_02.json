@@ -1,0 +1,86 @@
+{
+  "edge_id": "edge-0005",
+  "started_at": "2026-10-16T14:00:06.440156+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "Oculus Browser and Oculus Desktop (OVRServiceLauncher.exe) are deployed on the same Windows host.",
+        "The HTML injection vulnerability in Oculus Browser reliably yields arbitrary code execution rather than solely UI spoofing."
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0005",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code."
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "expose a privileged process handle to an unprivileged process, leading to local privilege escalation."
+        }
+      ],
+      "missing_conditions": [
+        "Verification of co-location of Oculus Browser and Oculus Desktop on the same host",
+        "Verification that code execution is achieved from the source vulnerability, which only notes it may 'potentially execute code'",
+        "Verification of process interaction capabilities allowing the browser process to capture handles exposed by OVRServiceLauncher.exe"
+      ],
+      "reason": "CVE-2019-3562 allows an attacker to inject HTML into the Oculus Browser UI and 'potentially execute code'. CVE-2021-24038 requires 'an unprivileged process' on a host with Oculus Desktop to obtain an exposed privileged handle from OVRServiceLauncher.exe. Bridging these components requires assuming co-location on the same Windows host and actualizing the modal 'potentially execute code' effect into a functioning local process foothold. Because same-host deployment cannot be inferred and execution is only potential, the edge is conditional.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-24038"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "cfe1f760af6796684c5c20eecde7b9ae1e211acef0e1309790d040e14324e990",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "candidates_token_count": 461,
+      "prompt_token_count": 2347,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2347
+        }
+      ],
+      "thoughts_token_count": 2076,
+      "total_token_count": 4884
+    },
+    "cached_response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 461,
+        "prompt_token_count": 2347,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2347
+          }
+        ],
+        "thoughts_token_count": 2076,
+        "total_token_count": 4884
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:00:06.442690+00:00"
+}

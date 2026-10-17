@@ -1,0 +1,392 @@
+{
+  "graph": {
+    "nodes": [
+      {
+        "id": "unc2452_actor",
+        "label": "Threat Actor UNC2452"
+      },
+      {
+        "id": "solarwinds_supply_chain",
+        "label": "Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+      },
+      {
+        "id": "trojanized_patch",
+        "label": "Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)"
+      },
+      {
+        "id": "sunburst_dll",
+        "label": "SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)"
+      },
+      {
+        "id": "victim_host_install",
+        "label": "Victim Host / Admin Update Installation"
+      },
+      {
+        "id": "businesslayerhost_exe",
+        "label": "Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)"
+      },
+      {
+        "id": "inventory_manager_trigger",
+        "label": "Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)"
+      },
+      {
+        "id": "initial_dormant_period",
+        "label": "Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)"
+      },
+      {
+        "id": "anti_analysis_defense_evasion",
+        "label": "Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+      },
+      {
+        "id": "api_connectivity_check",
+        "label": "Network Connectivity Check (api.solarwinds.com Resolution)"
+      },
+      {
+        "id": "dga_resolution",
+        "label": "DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)"
+      },
+      {
+        "id": "c2_domain_cname",
+        "label": "C2 Domain CNAME Resolution & IP Check Validation"
+      },
+      {
+        "id": "http_c2_communication",
+        "label": "HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+      },
+      {
+        "id": "steganography_jobs",
+        "label": "Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+      },
+      {
+        "id": "teardrop_dropper",
+        "label": "TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)"
+      },
+      {
+        "id": "cobalt_strike_beacon",
+        "label": "Customized Cobalt Strike BEACON Payload Execution"
+      },
+      {
+        "id": "c2_infrastructure_masquerading",
+        "label": "C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)"
+      },
+      {
+        "id": "credential_abuse",
+        "label": "Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)"
+      },
+      {
+        "id": "temporary_file_task_mod",
+        "label": "Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)"
+      },
+      {
+        "id": "data_theft_impact",
+        "label": "Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks"
+      }
+    ],
+    "edges": [
+      {
+        "from": "unc2452_actor",
+        "to": "solarwinds_supply_chain",
+        "label": "Trojanizes SolarWinds Orion business software updates to distribute SUNBURST via supply chain compromise"
+      },
+      {
+        "from": "solarwinds_supply_chain",
+        "to": "trojanized_patch",
+        "label": "Signs and publishes digitally signed installer patch (March-May 2020)"
+      },
+      {
+        "from": "trojanized_patch",
+        "to": "sunburst_dll",
+        "label": "Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll"
+      },
+      {
+        "from": "trojanized_patch",
+        "to": "victim_host_install",
+        "label": "Downloaded and installed by administrators from updates website"
+      },
+      {
+        "from": "victim_host_install",
+        "to": "businesslayerhost_exe",
+        "label": "Triggers execution of Orion software host framework"
+      },
+      {
+        "from": "businesslayerhost_exe",
+        "to": "sunburst_dll",
+        "label": "Loads digitally signed DLL into host process"
+      },
+      {
+        "from": "sunburst_dll",
+        "to": "inventory_manager_trigger",
+        "label": "Calls OrionImprovementBusinessLayer.Initialize via InventoryManager"
+      },
+      {
+        "from": "inventory_manager_trigger",
+        "to": "initial_dormant_period",
+        "label": "Checks process name hash, assembly age threshold (12-14 days), and named pipe guard"
+      },
+      {
+        "from": "initial_dormant_period",
+        "to": "anti_analysis_defense_evasion",
+        "label": "Discovers analysis/AV processes, sets registry to disable services, checks drivers"
+      },
+      {
+        "from": "anti_analysis_defense_evasion",
+        "to": "api_connectivity_check",
+        "label": "Attempts to resolve api.solarwinds.com to test network connectivity if blocklist tests pass"
+      },
+      {
+        "from": "api_connectivity_check",
+        "to": "dga_resolution",
+        "label": "Starts generating DGA subdomains in a while loop once connectivity and blocklist checks pass"
+      },
+      {
+        "from": "dga_resolution",
+        "to": "c2_domain_cname",
+        "label": "Queries DNS, checks A-records against IP blocklists, retrieves CNAME record"
+      },
+      {
+        "from": "c2_domain_cname",
+        "to": "http_c2_communication",
+        "label": "Initializes HttpHelper C2 thread mimicking Orion Improvement Program (OIP)"
+      },
+      {
+        "from": "http_c2_communication",
+        "to": "steganography_jobs",
+        "label": "Extracts steganographic commands from GUID/HEX strings to execute Jobs"
+      },
+      {
+        "from": "unc2452_actor",
+        "to": "teardrop_dropper",
+        "label": "Deploys TEARDROP memory-only dropper in at least one instance (samples delivered different payloads)"
+      },
+      {
+        "from": "teardrop_dropper",
+        "to": "cobalt_strike_beacon",
+        "label": "Decodes rolling XOR payload from fake JPG file; believed to execute customized Cobalt Strike BEACON"
+      },
+      {
+        "from": "unc2452_actor",
+        "to": "c2_infrastructure_masquerading",
+        "label": "Sets C2 hostnames matching victim environment and uses victim-country VPS IPs to evade detection"
+      },
+      {
+        "from": "unc2452_actor",
+        "to": "credential_abuse",
+        "label": "Maintains light malware footprint, using compromised credentials for remote access and distinct credentials for lateral movement"
+      },
+      {
+        "from": "unc2452_actor",
+        "to": "temporary_file_task_mod",
+        "label": "Uses temporary file replacement and scheduled task modification to remotely execute utilities and evades detection by removing tools"
+      },
+      {
+        "from": "credential_abuse",
+        "to": "data_theft_impact",
+        "label": "Facilitates lateral movement across victim networks leading to data theft"
+      }
+    ]
+  },
+  "changes": [
+    {
+      "kind": "node",
+      "action": "add",
+      "id": "api_connectivity_check",
+      "reason": "The report specifies that before DGA domain generation begins, the malware explicitly verifies network connectivity by attempting to resolve api.solarwinds.com once blocklists pass.",
+      "citations": [
+        {
+          "paragraph_id": "P044",
+          "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "action": "remove",
+      "id": "edge-0010",
+      "reason": "Removes the direct edge from anti_analysis_defense_evasion to dga_resolution, as the connectivity check against api.solarwinds.com must succeed before DGA generation commences.",
+      "citations": [
+        {
+          "paragraph_id": "P046",
+          "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "action": "add",
+      "id": "anti_analysis_defense_evasion->api_connectivity_check",
+      "reason": "Captures the prerequisite check where the backdoor resolves api.solarwinds.com once all process, service, and driver blocklist tests pass.",
+      "citations": [
+        {
+          "paragraph_id": "P044",
+          "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "action": "add",
+      "id": "api_connectivity_check->dga_resolution",
+      "reason": "Captures that DGA domain generation in a while loop is entered only after both blocklist and connectivity checks succeed.",
+      "citations": [
+        {
+          "paragraph_id": "P046",
+          "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA."
+        }
+      ]
+    }
+  ],
+  "parsing": {
+    "strict_json_without_fence": false,
+    "markdown_fence_removed": true,
+    "json_repair": false,
+    "schema": {
+      "schema_valid": true,
+      "non_empty_graph": true,
+      "missing_node_required_fields_count": 0,
+      "invalid_node_ids_count": 0,
+      "duplicate_node_ids_count": 0,
+      "invalid_node_labels_count": 0,
+      "missing_node_condition_fields_count": 0,
+      "missing_edge_required_fields_count": 0,
+      "invalid_edge_labels_count": 0,
+      "edge_schema_compliance": 1.0,
+      "alternate_source_target_edges_count": 0,
+      "valid_edges": 20,
+      "invalid_edges": 0,
+      "edge_endpoint_integrity": 1.0
+    }
+  },
+  "change_citations": [
+    {
+      "kind": "node",
+      "action": "add",
+      "id": "api_connectivity_check",
+      "reason": "The report specifies that before DGA domain generation begins, the malware explicitly verifies network connectivity by attempting to resolve api.solarwinds.com once blocklists pass.",
+      "citations": [
+        {
+          "paragraph_id": "P044",
+          "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+          "verification": "verified_text_only"
+        }
+      ],
+      "has_verified_citation": true
+    },
+    {
+      "kind": "edge",
+      "action": "remove",
+      "id": "edge-0010",
+      "reason": "Removes the direct edge from anti_analysis_defense_evasion to dga_resolution, as the connectivity check against api.solarwinds.com must succeed before DGA generation commences.",
+      "citations": [
+        {
+          "paragraph_id": "P046",
+          "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+          "verification": "verified_text_only"
+        }
+      ],
+      "has_verified_citation": true
+    },
+    {
+      "kind": "edge",
+      "action": "add",
+      "id": "anti_analysis_defense_evasion->api_connectivity_check",
+      "reason": "Captures the prerequisite check where the backdoor resolves api.solarwinds.com once all process, service, and driver blocklist tests pass.",
+      "citations": [
+        {
+          "paragraph_id": "P044",
+          "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+          "verification": "verified_text_only"
+        }
+      ],
+      "has_verified_citation": true
+    },
+    {
+      "kind": "edge",
+      "action": "add",
+      "id": "api_connectivity_check->dga_resolution",
+      "reason": "Captures that DGA domain generation in a while loop is entered only after both blocklist and connectivity checks succeed.",
+      "citations": [
+        {
+          "paragraph_id": "P046",
+          "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+          "verification": "verified_text_only"
+        }
+      ],
+      "has_verified_citation": true
+    }
+  ],
+  "diff": {
+    "added_node_ids": [
+      "api_connectivity_check"
+    ],
+    "removed_node_ids": [],
+    "changed_nodes": [],
+    "added_pairs": [
+      [
+        "anti_analysis_defense_evasion",
+        "api_connectivity_check"
+      ],
+      [
+        "api_connectivity_check",
+        "dga_resolution"
+      ],
+      [
+        "credential_abuse",
+        "data_theft_impact"
+      ],
+      [
+        "unc2452_actor",
+        "c2_infrastructure_masquerading"
+      ],
+      [
+        "unc2452_actor",
+        "credential_abuse"
+      ],
+      [
+        "unc2452_actor",
+        "teardrop_dropper"
+      ],
+      [
+        "unc2452_actor",
+        "temporary_file_task_mod"
+      ]
+    ],
+    "removed_pairs": [
+      [
+        "anti_analysis_defense_evasion",
+        "dga_resolution"
+      ],
+      [
+        "c2_infrastructure_masquerading",
+        "credential_abuse"
+      ],
+      [
+        "cobalt_strike_beacon",
+        "c2_infrastructure_masquerading"
+      ],
+      [
+        "credential_abuse",
+        "temporary_file_task_mod"
+      ],
+      [
+        "steganography_jobs",
+        "teardrop_dropper"
+      ],
+      [
+        "temporary_file_task_mod",
+        "data_theft_impact"
+      ]
+    ],
+    "changed_retained_pairs": [
+      [
+        "teardrop_dropper",
+        "cobalt_strike_beacon"
+      ],
+      [
+        "unc2452_actor",
+        "solarwinds_supply_chain"
+      ]
+    ],
+    "id_based_alignment_only": true,
+    "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+  }
+}

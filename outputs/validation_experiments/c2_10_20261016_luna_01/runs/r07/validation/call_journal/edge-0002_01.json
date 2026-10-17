@@ -1,0 +1,114 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:33:37.547980+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference: a causal bridge could potentially exist only if the downloaded material is usable for authentication and both vulnerabilities apply to the same Raspberry Pi instance."
+      ],
+      "confidence": 0.97,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        }
+      ],
+      "missing_conditions": [
+        "Whether the arbitrary-file download can access /etc/shadow or relevant configuration files",
+        "Whether any retrieved file contains the default 'pi' account hash or usable authentication material",
+        "Whether the retrieved hash is crackable or otherwise recoverable as the target credential",
+        "Whether the 'pi':'raspberry' credential remains unmodified and valid",
+        "Whether the source and target refer to the same Raspberry Pi instance and authentication surface",
+        "Unique target CVE mapping or other supported evidence for the target authentication condition"
+      ],
+      "reason": "CVE-2019-20354 establishes that a remote attacker authenticated as a low-privilege user can download arbitrary files from the Raspberry Pi through path traversal. It does not establish that /etc/shadow or configuration hashes are accessible, that they contain the default 'pi' credential, or that the credential can be cracked or recovered. The target node's default-credential and administrative-shell pre/postconditions are claims, not confirming evidence, and the target has no mapped CVE. Therefore the causal bridge is unverified and the edge cannot enter a strict graph; it would require the listed conditions to be established.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "unsupported",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1409,
+      "prompt_tokens": 1302,
+      "total_tokens": 2711,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1034,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1299,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00201615,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00201615,
+        "upstream_inference_prompt_cost": 0.00032535,
+        "upstream_inference_completions_cost": 0.0016908
+      }
+    },
+    "latency_seconds": 14.084613799999715,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "432662e54794b9aa8560c491822f4ce0e10e0306b6a7083866b8e370b60592c4",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1409,
+        "prompt_tokens": 1302,
+        "total_tokens": 2711,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1034,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1299,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00201615,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00201615,
+          "upstream_inference_prompt_cost": 0.00032535,
+          "upstream_inference_completions_cost": 0.0016908
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inference: a causal bridge could potentially exist only if the downloaded material is usable for authentication and both vulnerabilities apply to the same Raspberry Pi instance.\"],\"confidence\":0.97,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"from the Raspberry Pi\"}],\"missing_conditions\":[\"Whether the arbitrary-file download can access /etc/shadow or relevant configuration files\",\"Whether any retrieved file contains the default 'pi' account hash or usable authentication material\",\"Whether the retrieved hash is crackable or otherwise recoverable as the target credential\",\"Whether the 'pi':'raspberry' credential remains unmodified and valid\",\"Whether the source and target refer to the same Raspberry Pi instance and authentication surface\",\"Unique target CVE mapping or other supported evidence for the target authentication condition\"],\"reason\":\"CVE-2019-20354 establishes that a remote attacker authenticated as a low-privilege user can download arbitrary files from the Raspberry Pi through path traversal. It does not establish that /etc/shadow or configuration hashes are accessible, that they contain the default 'pi' credential, or that the credential can be cracked or recovered. The target node's default-credential and administrative-shell pre/postconditions are claims, not confirming evidence, and the target has no mapped CVE. Therefore the causal bridge is unverified and the edge cannot enter a strict graph; it would require the listed conditions to be established.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"unsupported\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:33:51.634170+00:00"
+}

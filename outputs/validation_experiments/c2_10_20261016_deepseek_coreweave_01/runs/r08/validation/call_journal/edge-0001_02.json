@@ -1,0 +1,124 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T15:02:26.013434+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The edge label's 'Default administrative credentials' is interpreted as referring to the source node's Raspberry Pi OS default credentials rather than independently confirmed RaspAP web credentials."
+      ],
+      "confidence": 0.82,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "includes/webconsole.php in RaspAP 2.5"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "Exact source CVE mapping and description for node_rpi_default_creds, because source_mapping.cve_id is null and status is missing.",
+        "Evidence that default Raspberry Pi OS credentials, or any source-obtained access, satisfy RaspAP 2.5 web interface authentication.",
+        "Evidence that the RaspAP 2.5 web interface is reachable and exposed to the source access state, without inferring same-host deployment from absence of data.",
+        "Evidence that the target includes includes/webconsole.php and that authenticated access grants the described unrestricted web console.",
+        "Confirmation that the source effect meets the target prerequisite 'With authenticated access', rather than only providing an OS shell or credentials for a different service."
+      ],
+      "reason": "The source side is unmapped: source_mapping.cve_id is null and no source CVE description is supplied, so the source's actual effect is unknown; the node postcondition claiming authenticated shell access as user 'pi' with sudo privileges is only a claim. The target CVE-2020-24572 requires authentication: it states 'With authenticated access' for RaspAP 2.5 and then allows an attacker to 'execute commands on the system' via the web console on the 'underlying OS (Raspberry Pi)'. The edge asserts that default administrative credentials satisfy that authenticated access requirement. This bridge is overbroad: the supplied evidence supports target authentication and post-auth command execution, but it does not show that Raspberry Pi OS default credentials, or any credentials obtained by the source node, authenticate to the RaspAP web interface. A shell as 'pi' with sudo could potentially provide a path, but that causal step is not in the supplied description and would require additional prerequisites. Therefore the edge is unsupported for a strict graph; it would become conditional only if the source CVE mapping and RaspAP credential-reuse/access conditions are verified.",
+      "source_cve_id": null,
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "47741193872fc2fb8198fbe0ffb948f9f60ec96477a4c752f085e8a7f7ffadf8",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 5776,
+      "prompt_tokens": 1407,
+      "total_tokens": 7183,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 5205,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.003927562,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003927562,
+        "upstream_inference_prompt_cost": 0.000173162,
+        "upstream_inference_completions_cost": 0.0037544
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 5776,
+        "prompt_tokens": 1407,
+        "total_tokens": 7183,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5205,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.003927562,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003927562,
+          "upstream_inference_prompt_cost": 0.000173162,
+          "upstream_inference_completions_cost": 0.0037544
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:02:26.014640+00:00"
+}

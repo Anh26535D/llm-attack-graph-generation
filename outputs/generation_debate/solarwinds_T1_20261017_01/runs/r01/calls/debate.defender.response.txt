@@ -1,0 +1,188 @@
+```json
+{
+  "findings": [
+    {
+      "kind": "edge",
+      "id": "edge-0014",
+      "position": "revise",
+      "reason": "The report notes that multiple SUNBURST samples delivered different payloads, and TEARDROP was observed in at least one instance, rather than being an inevitable universal outcome of steganography jobs.",
+      "citations": [
+        {
+          "paragraph_id": "P012",
+          "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "id": "edge-0015",
+      "position": "revise",
+      "reason": "The deployment of customized Cobalt Strike BEACON by TEARDROP is explicitly qualified as an analytical belief rather than an absolute fact.",
+      "citations": [
+        {
+          "paragraph_id": "P012",
+          "quote": "We believe that this was used to execute a customized Cobalt Strike BEACON."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "id": "edge-0016",
+      "position": "revise",
+      "reason": "The text does not state that Cobalt Strike BEACON itself communicates via VPS IPs masquerading as internal hosts. Rather, the actor broadly sets up C2 infrastructure and VPS IPs matching victim countries to evade detection.",
+      "citations": [
+        {
+          "paragraph_id": "P018",
+          "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment."
+        },
+        {
+          "paragraph_id": "P024",
+          "quote": "The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "id": "edge-0017",
+      "position": "revise",
+      "reason": "Masquerading C2 infrastructure does not directly leverage credentials; rather, the threat actor relies on compromised credentials to gain initial access and moves laterally using distinct credentials.",
+      "citations": [
+        {
+          "paragraph_id": "P010",
+          "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment."
+        },
+        {
+          "paragraph_id": "P028",
+          "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "id": "edge-0018",
+      "position": "revise",
+      "reason": "Credential compromise and temporary file/task modification are distinct techniques used by the actor during post-compromise activity, rather than temporary file execution strictly flowing out of credential abuse.",
+      "citations": [
+        {
+          "paragraph_id": "P010",
+          "quote": "After gaining initial access, this group uses a variety of techniques to disguise their operations while they move laterally"
+        },
+        {
+          "paragraph_id": "P032",
+          "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "id": "edge-0009",
+      "position": "revise",
+      "reason": "Dormancy checks do not directly transition to DGA subdomain generation without passing network connectivity and blocklist evaluations; failing blocklists causes retry or termination.",
+      "citations": [
+        {
+          "paragraph_id": "P044",
+          "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."
+        },
+        {
+          "paragraph_id": "P046",
+          "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA."
+        }
+      ]
+    },
+    {
+      "kind": "edge",
+      "id": "edge-0011",
+      "position": "revise",
+      "reason": "The DGA DNS resolution checks A-record responses first against hardcoded IP blocklists to govern continuation/termination before resolving a CNAME record to identify the C2 domain.",
+      "citations": [
+        {
+          "paragraph_id": "P046",
+          "quote": "The DNS A record of generated domains is checked against a hardcoded list of IP address blocks which control the malware's behavior. Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry"
+        },
+        {
+          "paragraph_id": "P046",
+          "quote": "Once a domain has been successfully retrieved in a CNAME DNS response the sample will spawn a new thread of execution invoking the method HttpHelper.Initialize"
+        }
+      ]
+    },
+    {
+      "kind": "node",
+      "id": "initial_dormant_period",
+      "position": "keep",
+      "reason": "Preserving the execution guard and delay node is well-grounded; the malware strictly verifies process hash, assembly age threshold (12-14 days), and named pipe guard prior to proceeding.",
+      "citations": [
+        {
+          "paragraph_id": "P042",
+          "quote": "The sample only executes if the filesystem write time of the assembly is at least 12 to 14 days prior to the current time; the exact threshold is selected randomly from an interval."
+        },
+        {
+          "paragraph_id": "P042",
+          "quote": "Once the threshold is met, the sample creates the named pipe 583da945-62af-10e8-4902-a8f205c72b2e to act as a guard that only one instance is running"
+        }
+      ]
+    },
+    {
+      "kind": "node",
+      "id": "temporary_file_task_mod",
+      "position": "keep",
+      "reason": "Preserving this node captures an important post-compromise execution and operational security technique specifically detailed in the report.",
+      "citations": [
+        {
+          "paragraph_id": "P032",
+          "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file. They similarly manipulated scheduled tasks by updating an existing legitimate task to execute their tools and then returning the scheduled task"
+        }
+      ]
+    }
+  ],
+  "omissions": [
+    {
+      "kind": "missing",
+      "id": "network_connectivity_check",
+      "position": "add",
+      "reason": "Before commencing DGA domain generation in its loop, the backdoor explicitly checks network connectivity by attempting to resolve api.solarwinds.com.",
+      "citations": [
+        {
+          "paragraph_id": "P044",
+          "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."
+        },
+        {
+          "paragraph_id": "P046",
+          "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA."
+        }
+      ]
+    },
+    {
+      "kind": "missing",
+      "id": "backdoor_removal_upon_access",
+      "position": "add",
+      "reason": "The report highlights that the actor actively removes backdoors once legitimate remote access is achieved to maintain a minimal malware footprint.",
+      "citations": [
+        {
+          "paragraph_id": "P032",
+          "quote": "They routinely removed their tools, including removing backdoors once legitimate remote access was achieved."
+        },
+        {
+          "paragraph_id": "P010",
+          "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment."
+        }
+      ]
+    },
+    {
+      "kind": "missing",
+      "id": "recon_storage_in_plugin_config",
+      "position": "add",
+      "reason": "SUNBURST performs defense evasion by storing reconnaissance results directly within legitimate plugin configuration files to blend in with benign activity.",
+      "citations": [
+        {
+          "paragraph_id": "P006",
+          "quote": "stores reconnaissance results within legitimate plugin configuration files allowing it to blend in with legitimate SolarWinds activity."
+        },
+        {
+          "paragraph_id": "P044",
+          "quote": "The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples' config file."
+        }
+      ]
+    }
+  ]
+}
+```

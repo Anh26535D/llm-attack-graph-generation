@@ -1,0 +1,135 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T15:02:26.015544+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The edge's validity depends on an unstated assumption that piSignage authentication accepts the same credentials as the default Raspberry Pi OS account.",
+        "The source node's generated shell/sudo postcondition is treated as a claim, not as confirming evidence.",
+        "No explicit environment observations were supplied to verify deployment, reachability, or credential state."
+      ],
+      "confidence": 0.88,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "api/settings/log?file=../"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "player API"
+        }
+      ],
+      "missing_conditions": [
+        "Source CVE identity is missing (source_mapping.cve_id is null), so no source CVE effect can be verified from supplied descriptions.",
+        "Evidence that the piSignage service accepts the same credentials as the default Raspberry Pi OS account.",
+        "Evidence that the default account is a low-privilege user on the piSignage service, not only on the OS.",
+        "Evidence that the target piSignage web application version is before 2.6.4 and is reachable at api/settings/log?file=../.",
+        "Explicit environment observations confirming network reachability, unchanged default credentials, and service deployment are absent.",
+        "Any same-host deployment or shared authentication context between the Raspberry Pi OS account and the piSignage web application is not stated."
+      ],
+      "reason": "The edge's source is unmapped: source_mapping.cve_id is null, and the source node's postcondition of authenticated shell/sudo access is a generated claim rather than a supplied CVE description. CVE-2019-20354's supplied description requires a remote attacker 'authenticated as a low-privilege user' to 'download arbitrary files' from 'the Raspberry Pi' via 'api/settings/log?file=../' in the 'player API'. The edge asserts default credentials provide that low-privilege authenticated session for piSignage, but the description does not mention default credentials, credential reuse, or that OS-level default credentials authenticate to piSignage. With environment_state empty, the causal bridge from default Raspberry Pi credentials to piSignage API authentication is unverified. Thus the edge cannot enter a strict graph as supported; it is unsupported and would be conditional at best on the missing credential-reuse and service-mapping conditions.",
+      "source_cve_id": null,
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2019-20354"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 8241,
+      "prompt_tokens": 1438,
+      "total_tokens": 9679,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 7565,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 1280,
+        "video_tokens": 0
+      },
+      "cost": 0.00538291,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00538291,
+        "upstream_inference_prompt_cost": 2.626e-05,
+        "upstream_inference_completions_cost": 0.00535665
+      }
+    },
+    "latency_seconds": 43.398405199999615,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "ba2e0dca71f8283e90e8358b2f9eaeadec01d98333c330bde6d9b5a2c282623e",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 8241,
+        "prompt_tokens": 1438,
+        "total_tokens": 9679,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7565,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 1280,
+          "video_tokens": 0
+        },
+        "cost": 0.00538291,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00538291,
+          "upstream_inference_prompt_cost": 2.626e-05,
+          "upstream_inference_completions_cost": 0.00535665
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\n  \"assumptions\": [\n    \"The edge's validity depends on an unstated assumption that piSignage authentication accepts the same credentials as the default Raspberry Pi OS account.\",\n    \"The source node's generated shell/sudo postcondition is treated as a claim, not as confirming evidence.\",\n    \"No explicit environment observations were supplied to verify deployment, reachability, or credential state.\"\n  ],\n  \"confidence\": 0.88,\n  \"edge_id\": \"edge-0002\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"authenticated as a low-privilege user\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"download arbitrary files\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"from the Raspberry Pi\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"api/settings/log?file=../\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"player API\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Source CVE identity is missing (source_mapping.cve_id is null), so no source CVE effect can be verified from supplied descriptions.\",\n    \"Evidence that the piSignage service accepts the same credentials as the default Raspberry Pi OS account.\",\n    \"Evidence that the default account is a low-privilege user on the piSignage service, not only on the OS.\",\n    \"Evidence that the target piSignage web application version is before 2.6.4 and is reachable at api/settings/log?file=../.\",\n    \"Explicit environment observations confirming network reachability, unchanged default credentials, and service deployment are absent.\",\n    \"Any same-host deployment or shared authentication context between the Raspberry Pi OS account and the piSignage web application is not stated.\"\n  ],\n  \"reason\": \"The edge's source is unmapped: source_mapping.cve_id is null, and the source node's postcondition of authenticated shell/sudo access is a generated claim rather than a supplied CVE description. CVE-2019-20354's supplied description requires a remote attacker 'authenticated as a low-privilege user' to 'download arbitrary files' from 'the Raspberry Pi' via 'api/settings/log?file=../' in the 'player API'. The edge asserts default credentials provide that low-privilege authenticated session for piSignage, but the description does not mention default credentials, credential reuse, or that OS-level default credentials authenticate to piSignage. With environment_state empty, the causal bridge from default Raspberry Pi credentials to piSignage API authentication is unverified. Thus the edge cannot enter a strict graph as supported; it is unsupported and would be conditional at best on the missing credential-reuse and service-mapping conditions.\",\n  \"source_cve_id\": null,\n  \"suggested_status\": \"unsupported\",\n  \"target_cve_id\": \"CVE-2019-20354\"\n}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:03:09.966378+00:00"
+}

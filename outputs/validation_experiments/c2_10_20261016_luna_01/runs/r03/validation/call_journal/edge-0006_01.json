@@ -1,0 +1,126 @@
+{
+  "edge_id": "edge-0006",
+  "started_at": "2026-10-16T14:34:06.325744+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Treating the mapped CVEs as the intended source and target is an inference, never a fact.",
+        "Inferring that the source's potential code execution could provide the target's local-user capability is an inference, never a fact.",
+        "Inferring that Oculus Browser and Oculus Desktop are co-located on the same Windows host is an inference, never a fact."
+      ],
+      "confidence": 0.93,
+      "edge_id": "edge-0006",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "inject arbitrary HTML code into the Oculus Browser UI"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users to write to arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "via vectors involving a hard link to a log file"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows"
+        }
+      ],
+      "missing_conditions": [
+        "Victim visits or opens the attacker-controlled remote page required for CVE-2019-3562 applicability.",
+        "CVE-2019-3562's potential code execution actually occurs rather than only HTML injection or UI spoofing.",
+        "The resulting capability is execution or equivalent local-user activity on the relevant host.",
+        "Oculus Browser and the vulnerable Oculus Desktop installation are deployed on the same host.",
+        "The host runs Windows and a vulnerable Oculus Desktop version described by CVE-2020-1885.",
+        "A privileged OVRRedir.exe process is running and writes to the relevant log file.",
+        "The hard-link vector and required file-system permissions are available for the attempted exploitation.",
+        "The source capability can create the hard link or otherwise satisfy CVE-2020-1885's local-user prerequisite."
+      ],
+      "reason": "CVE-2019-3562 describes arbitrary HTML injection into the Oculus Browser UI and only says an attacker could \"potentially execute code\"; it does not establish actual code execution, local-user capability, operating system, or host placement. CVE-2020-1885 describes a Windows local-user issue in which a privileged OVRRedir.exe process can write to arbitrary files through a hard-link-to-log-file vector, but its vulnerable product, process state, file-system conditions, and local-user prerequisite are unverified. If the source's potential execution occurs as a local user on the same Windows host running the vulnerable Oculus Desktop process, it could provide a bounded capability bridge to the target prerequisite. Those conditions are not entailed by the supplied descriptions, so the edge is conditional and cannot enter a strict graph as established causality.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1614,
+      "prompt_tokens": 2136,
+      "total_tokens": 3750,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1034,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 2133,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00247065,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00247065,
+        "upstream_inference_prompt_cost": 0.00053385,
+        "upstream_inference_completions_cost": 0.0019368
+      }
+    },
+    "latency_seconds": 12.751459999999497,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "d6225db3c1c5687fcc415baa1bfffb2dc1451239729c37a0fa58a6bc9cb4d0a4",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1614,
+        "prompt_tokens": 2136,
+        "total_tokens": 3750,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1034,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2133,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00247065,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00247065,
+          "upstream_inference_prompt_cost": 0.00053385,
+          "upstream_inference_completions_cost": 0.0019368
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Treating the mapped CVEs as the intended source and target is an inference, never a fact.\",\"Inferring that the source's potential code execution could provide the target's local-user capability is an inference, never a fact.\",\"Inferring that Oculus Browser and Oculus Desktop are co-located on the same Windows host is an inference, never a fact.\"],\"confidence\":0.93,\"edge_id\":\"edge-0006\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"inject arbitrary HTML code into the Oculus Browser UI\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"potentially execute code\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"allows local users to write to arbitrary files\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"via vectors involving a hard link to a log file\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"on Windows\"}],\"missing_conditions\":[\"Victim visits or opens the attacker-controlled remote page required for CVE-2019-3562 applicability.\",\"CVE-2019-3562's potential code execution actually occurs rather than only HTML injection or UI spoofing.\",\"The resulting capability is execution or equivalent local-user activity on the relevant host.\",\"Oculus Browser and the vulnerable Oculus Desktop installation are deployed on the same host.\",\"The host runs Windows and a vulnerable Oculus Desktop version described by CVE-2020-1885.\",\"A privileged OVRRedir.exe process is running and writes to the relevant log file.\",\"The hard-link vector and required file-system permissions are available for the attempted exploitation.\",\"The source capability can create the hard link or otherwise satisfy CVE-2020-1885's local-user prerequisite.\"],\"reason\":\"CVE-2019-3562 describes arbitrary HTML injection into the Oculus Browser UI and only says an attacker could \\\"potentially execute code\\\"; it does not establish actual code execution, local-user capability, operating system, or host placement. CVE-2020-1885 describes a Windows local-user issue in which a privileged OVRRedir.exe process can write to arbitrary files through a hard-link-to-log-file vector, but its vulnerable product, process state, file-system conditions, and local-user prerequisite are unverified. If the source's potential execution occurs as a local user on the same Windows host running the vulnerable Oculus Desktop process, it could provide a bounded capability bridge to the target prerequisite. Those conditions are not entailed by the supplied descriptions, so the edge is conditional and cannot enter a strict graph as established causality.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-1885\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:34:19.079543+00:00"
+}

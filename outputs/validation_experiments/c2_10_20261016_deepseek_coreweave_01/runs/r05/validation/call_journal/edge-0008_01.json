@@ -1,0 +1,132 @@
+{
+  "edge_id": "edge-0008",
+  "started_at": "2026-10-16T15:09:14.318554+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The target node corresponds to the same Raspberry Pi OS instance described in CVE-2020-24572 as 'underlying OS (Raspberry Pi)'.",
+        "An OS command-execution foothold can potentially be used to manipulate audio playback software and power draw.",
+        "Executed commands have sufficient privileges to control audio and power subsystems.",
+        "Required audio software, peripheral equipment, and power-control interfaces are present and reachable."
+      ],
+      "confidence": 0.7,
+      "edge_id": "edge-0008",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "including ones for uploading of files and execution of code"
+        }
+      ],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping",
+        "target_cve_mapping",
+        "privilege level of executed commands sufficient for audio/power control",
+        "presence and reachability of audio playback software, audio hardware/peripherals, and power-control interfaces",
+        "ability of available commands to alter power consumption states",
+        "explicit environment observations confirming target node capabilities"
+      ],
+      "reason": "CVE-2020-24572 supports an authenticated attacker using a 'misconfigured (and virtually unrestricted) web console' against the 'underlying OS (Raspberry Pi)' to 'execute commands on the system', including uploads and 'execution of code'. That supports a general OS command-execution foothold, which could potentially satisfy the target node's stated precondition of OS command execution or administrator access. However, the edge label further claims execution of 'shell commands' and manipulation of audio playback software and power draw; those specific effects are not stated in the CVE. The target has no mapped CVE, the environment is absent, and the privilege level of the executed commands is not stated. Thus the bounded causal bridge is general command execution only; audio/power control requires additional unverified privileges, software/hardware, and command capabilities. The edge should not enter a strict graph as supported; it is at most conditional pending verification of those conditions.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 4906,
+      "prompt_tokens": 1416,
+      "total_tokens": 6322,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4336,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0034013,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0034013,
+        "upstream_inference_prompt_cost": 0.0002124,
+        "upstream_inference_completions_cost": 0.0031889
+      }
+    },
+    "latency_seconds": 28.932925800001613,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "9cd5f7af0f1fa441adfdb4a608dbd80f6ca182e297b4a277d66cd1c0e8f65424",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4906,
+        "prompt_tokens": 1416,
+        "total_tokens": 6322,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4336,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0034013,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0034013,
+          "upstream_inference_prompt_cost": 0.0002124,
+          "upstream_inference_completions_cost": 0.0031889
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\": [\"The target node corresponds to the same Raspberry Pi OS instance described in CVE-2020-24572 as 'underlying OS (Raspberry Pi)'.\", \"An OS command-execution foothold can potentially be used to manipulate audio playback software and power draw.\", \"Executed commands have sufficient privileges to control audio and power subsystems.\", \"Required audio software, peripheral equipment, and power-control interfaces are present and reachable.\"], \"confidence\": 0.7, \"edge_id\": \"edge-0008\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"misconfigured (and virtually unrestricted) web console\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"underlying OS (Raspberry Pi)\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"including ones for uploading of files and execution of code\"}], \"missing_conditions\": [\"unique_source_and_target_CVE_mapping\", \"target_cve_mapping\", \"privilege level of executed commands sufficient for audio/power control\", \"presence and reachability of audio playback software, audio hardware/peripherals, and power-control interfaces\", \"ability of available commands to alter power consumption states\", \"explicit environment observations confirming target node capabilities\"], \"reason\": \"CVE-2020-24572 supports an authenticated attacker using a 'misconfigured (and virtually unrestricted) web console' against the 'underlying OS (Raspberry Pi)' to 'execute commands on the system', including uploads and 'execution of code'. That supports a general OS command-execution foothold, which could potentially satisfy the target node's stated precondition of OS command execution or administrator access. However, the edge label further claims execution of 'shell commands' and manipulation of audio playback software and power draw; those specific effects are not stated in the CVE. The target has no mapped CVE, the environment is absent, and the privilege level of the executed commands is not stated. Thus the bounded causal bridge is general command execution only; audio/power control requires additional unverified privileges, software/hardware, and command capabilities. The edge should not enter a strict graph as supported; it is at most conditional pending verification of those conditions.\", \"source_cve_id\": \"CVE-2020-24572\", \"suggested_status\": \"conditional\", \"target_cve_id\": null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:09:43.255228+00:00"
+}

@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "scope": "C2_source_grounded_generation_pilot",
+  "created_at": "2026-10-16T16:54:11.075633+00:00",
+  "repeats": 1,
+  "strategies": [
+    "grounded",
+    "self_refine",
+    "debate"
+  ],
+  "roles": {
+    "generator": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "defender": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "skeptic": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    },
+    "judge": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash"
+    }
+  },
+  "config": {
+    "rounds": 1,
+    "max_output_tokens": 16384,
+    "reasoning_level": "medium",
+    "argument_words": 80
+  },
+  "sources_sha256": "dbde9276065fa44cc4e18da0a113bda4a704c74ee0dc2cfdcb41f493a634daf7",
+  "dataset_digest": "3ece5b6bc3739cffffb70f6f60e37d6312d0924ec175f496f9448fa9a2296563",
+  "draft_prompt_sha256": "c78fe9b77c0bf973ee866b3118ce2ef2a45a74b4cf04eb21cf08c18c343c7738",
+  "snapshot_sha256": "c5a4b6ed002e33ad9e83aebdcb2af1fadd7cb6b9c20cd651192ba6a80e0d3b68",
+  "code_sha256": {
+    "src\\crystalball\\cve_mapping.py": "6dc9d082fa705d7e24f96daec2017134a0b3dcf7f42801bc615209c51039ca60",
+    "src\\crystalball\\experiment.py": "dfa1368db6df982d8b450ee66ebb5d5ce3e2ef5772e494d9b85794592f29fc1a",
+    "src\\crystalball\\generation_debate.py": "97b742023a1eb7f8d6da73d92587f0847ddf7c8354a5b67c15deb990bffb2e14",
+    "src\\crystalball\\generation_debate_runner.py": "20ee5592c25d049034bcea8861ab83d5998e8d60f4f1217bce9141aaf26c1f07",
+    "src\\crystalball\\llm\\base.py": "65a17b1f87bec77d025d013d43c3513cecd542388381840e837a7e82d549dc25",
+    "src\\crystalball\\llm\\factory.py": "8c2ed8fecf2075d2b2a613eced5e5545915672177d551ab9f17fe6207929d263",
+    "src\\crystalball\\llm\\gemini_client.py": "1d12c3359da04b08d945e2ec7e42cd60bdbce88a805a675ce302e03bede4f8a9",
+    "src\\crystalball\\llm\\openai_client.py": "3ae8f63ab874158b6a2257e43575577937d4a33f09ab5bb19356edd08e060483",
+    "src\\crystalball\\llm\\openrouter_client.py": "e31d3004610654eb44b8f23a7c3e864d427053b7e12c4e060484ade218467e4e",
+    "src\\crystalball\\postprocess.py": "80a20dee5655426495ab0c46bf7621ce68f734534bbdd13459f79e31c2dc3caf",
+    "src\\crystalball\\validation\\__init__.py": "236300ef6f309c49cd3a9f2c125c1151c10e16ca0f6ad08e4d85db691489403a",
+    "src\\crystalball\\validation\\__main__.py": "80fa50f97f230dfcc8354f9eba4bd0d03e4b6a942832c070ac31de97da00b1c2",
+    "src\\crystalball\\validation\\conditions.py": "643134c118ec43ee9de774cb012cbd8e8ea08bc093ab56bcee9ecb63aaaabf37",
+    "src\\crystalball\\validation\\config.py": "fd38cf2d53693e955d3a8581b1e8d3344f4007d850e291b57cd5cfd7675a6b87",
+    "src\\crystalball\\validation\\evidence.py": "4e8f8ffb26d3b90a6d12acec05af6674a22110123e047ce49273857c9f44c6b4",
+    "src\\crystalball\\validation\\experiment_runner.py": "26bf08f4dbc0f535f5271108c4f4abc9681417cec07b7a3a744be758a741f177",
+    "src\\crystalball\\validation\\metrics.py": "f38c37c81829b7d4cd69358fcecee082cd5e8def16669e980f903eeb4d6f7389",
+    "src\\crystalball\\validation\\offline.py": "3f08e7adf95a32dee85898420ceebab0d9c7ddde3993c2153a06103faee3b192",
+    "src\\crystalball\\validation\\pipeline.py": "87bd3413264c7f4e4ffb8fd7ad7795d96836a44f3b9d57ea9e8e5369de5c94e0",
+    "src\\crystalball\\validation\\review.py": "15fbdca3fc94832d7af9e856db01b1f6b36bf827e35b5b000e4ec2be0942338a",
+    "src\\crystalball\\validation\\visualization.py": "32c26cf3cf52499150586d871a0ea13f7da3bbe55aed3f5b85e076e3f7635584"
+  },
+  "environment": "absent",
+  "automatic_retries": false,
+  "shared_draft": true,
+  "max_api_calls_per_repeat": 7,
+  "max_api_calls_total": 7,
+  "max_sum_output_token_caps": 114688,
+  "same_model_for_all_roles": true,
+  "accuracy": null,
+  "limitations": [
+    "Caps do not bound input-token charges or monetary cost.",
+    "Matched call counts/output caps do not equal matched actual tokens or input lengths.",
+    "Debate uses independent role prompts; agents need not be different models.",
+    "This is a graph-generation adaptation, not a replication of Khan et al.'s reading task.",
+    "Verified quotations authenticate text; causal entailment needs independent assessment.",
+    "New prompt, exact CVE IDs and granularity differ from the historical paper baseline."
+  ]
+}

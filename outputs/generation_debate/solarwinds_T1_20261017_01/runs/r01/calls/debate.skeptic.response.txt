@@ -1,0 +1,152 @@
+```json
+{
+  "findings": [
+    {
+      "citations": [
+        {"paragraph_id": "P002", "quote": "FireEye discovered a supply chain attack trojanizing SolarWinds Orion business software updates in order to distribute malware we call SUNBURST."}
+      ],
+      "id": "edge-0001",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The candidate edge asserts that UNC2452 injected backdoor code into legitimate source code. The report specifically describes a supply chain attack trojanizing software updates without detailing the exact mechanism of developer repository tampering or source code access."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P042", "quote": "On execution of the malicious SolarWinds.Orion.Core.BusinessLayer. OrionImprovementBusinessLayer.Initialize method the sample verifies that its lower case process name hashes to the value 17291806236368054941."}
+      ],
+      "id": "edge-0008",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The edge bundles distinct initialization stages together. The report details a sequential verification process: matching the process name FNV-1a hash, enforcing the 12-14 day assembly filesystem age threshold, creating the named pipe single-instance mutex, and validating configuration keys."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P042", "quote": "The key ReportWatcherRetry must be any value other than 3 for the sample to continue execution. The sample checks that the machine is domain joined and retrieves the domain name before execution continues."}
+      ],
+      "id": "edge-0009",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The transition bypasses critical initialization logic. Before invoking the Update event loop that discovers processes and drivers, the malware verifies ReportWatcherRetry is not 3, checks domain membership, and constructs an encoded userId from the MAC address, domain, and MachineGuid."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P044", "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."}
+      ],
+      "id": "edge-0010",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The edge bypasses the connectivity check. The report explicitly specifies that passing all process, service, and driver blocklists triggers a DNS resolution check against api.solarwinds.com to confirm internet connectivity before DGA subdomain generation begins."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P046", "quote": "Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry to a value that prevents further execution:"}
+      ],
+      "id": "edge-0011",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The candidate edge depicts an unconditional transition to CNAME retrieval. In the report, DNS A-record responses are validated against specific blocklisted IP subnets; matching addresses terminate the malware and modify ReportWatcherRetry to permanently prevent subsequent execution."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P012", "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON."}
+      ],
+      "id": "edge-0014",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The candidate edge turns TEARDROP deployment into a universal pipeline step for all victims. The report explicitly clarifies that SUNBURST samples delivered different payloads and TEARDROP was observed in 'at least one instance'."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P012", "quote": "We believe that this was used to execute a customized Cobalt Strike BEACON."}
+      ],
+      "id": "edge-0015",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The candidate edge states as a confirmed fact that TEARDROP loaded Cobalt Strike BEACON. The report frames this connection as an analytical belief rather than direct certainty ('We believe that this was used to execute a customized Cobalt Strike BEACON')."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P018", "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment."}
+      ],
+      "id": "edge-0016",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The edge models C2 masquerading as an action caused by Cobalt Strike BEACON. In the report, setting hostnames to match victim environments and using country-matched VPS IPs describe actor-level C2 infrastructure operational security, not a payload-level execution output."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P010", "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment."}
+      ],
+      "id": "edge-0017",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The candidate edge makes credential abuse a consequence of C2 infrastructure masquerading. The report presents the actor's preference for legitimate credentials and dedicated remote access as an overarching tactical preference to maintain a light malware footprint."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P032", "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file."}
+      ],
+      "id": "edge-0018",
+      "kind": "edge",
+      "position": "revise",
+      "reason": "The edge directly links credential abuse to temporary file replacement in a strict linear sequence. In the text, temporary file substitution and task manipulation are distinct execution techniques used to run utilities while evading detection."
+    }
+  ],
+  "omissions": [
+    {
+      "citations": [
+        {"paragraph_id": "P044", "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."}
+      ],
+      "id": "network_connectivity_check",
+      "kind": "missing",
+      "position": "add",
+      "reason": "Before initiating DGA domain generation, SUNBURST conducts an explicit network connectivity test by attempting to resolve api.solarwinds.com."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P046", "quote": "Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry to a value that prevents further execution:"}
+      ],
+      "id": "ip_blocklist_termination",
+      "kind": "missing",
+      "position": "add",
+      "reason": "Evaluating DNS A-records against hardcoded IP blocklists can trigger permanent malware termination and modify the ReportWatcherRetry configuration key to prevent execution."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P032", "quote": "They routinely removed their tools, including removing backdoors once legitimate remote access was achieved."}
+      ],
+      "id": "tool_and_backdoor_removal",
+      "kind": "missing",
+      "position": "add",
+      "reason": "A defining operational security technique of UNC2452 is routinely removing backdoors and utilities once legitimate remote access is achieved to minimize their footprint."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P042", "quote": "The sample checks that the machine is domain joined and retrieves the domain name before execution continues. A userID is generated by computing the MD5 of a network interface MAC address that is up and not a loopback device, the domain name, and the registry value HKEY_LOCAL_MACHINE SOFTWARE Microsoft Cryptography MachineGuid."}
+      ],
+      "id": "domain_joined_check_and_userid_generation",
+      "kind": "missing",
+      "position": "add",
+      "reason": "Prior to starting the C2 event loop, SUNBURST checks if the machine is domain joined and derives a unique userId from network MAC address, domain, and MachineGuid."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P012", "quote": "Next it checks that HKU SOFTWARE Microsoft CTF exists, decodes an embedded payload using a custom rolling XOR algorithm and manually loads into memory an embedded payload using a custom PE-like file format."}
+      ],
+      "id": "teardrop_registry_check",
+      "kind": "missing",
+      "position": "add",
+      "reason": "TEARDROP evaluates an environmental prerequisite by verifying the existence of HKU\\SOFTWARE\\Microsoft\\CTF before payload decoding and memory execution."
+    },
+    {
+      "citations": [
+        {"paragraph_id": "P006", "quote": "The malware masquerades its network traffic as the Orion Improvement Program (OIP) protocol and stores reconnaissance results within legitimate plugin configuration files allowing it to blend in with legitimate SolarWinds activity."}
+      ],
+      "id": "recon_results_config_storage",
+      "kind": "missing",
+      "position": "add",
+      "reason": "SUNBURST performs defense evasion on the host by storing reconnaissance findings inside legitimate plugin configuration files to blend into normal Orion activity."
+    }
+  ]
+}
+```

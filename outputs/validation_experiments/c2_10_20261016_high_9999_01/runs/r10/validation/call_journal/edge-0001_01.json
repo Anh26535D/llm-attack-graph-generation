@@ -1,0 +1,60 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T13:56:31.399648+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 393,
+      "prompt_token_count": 965,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 965
+        }
+      ],
+      "thoughts_token_count": 9596,
+      "total_token_count": 10954
+    },
+    "latency_seconds": 75.3145213000007,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "15cfba86456c8a5c8e2b6413679a47758b67e281277dcc771b0ec2c4701ff3a5",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 393,
+        "prompt_token_count": 965,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 965
+          }
+        ],
+        "thoughts_token_count": 9596,
+        "total_token_count": 10954
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "```json\n{\n  \"assumptions\": [\n    \"piSignage and RaspAP are deployed on the same Raspberry Pi host\",\n    \"RaspAP configuration files contain valid plaintext credentials or active session tokens\",\n    \"piSignage path traversal vulnerability allows reading RaspAP configuration and session files\",\n    \"Arbitrary file read alone provides authenticated access to RaspAP's web console\"\n  ],\n  \"confidence\": 0.95,\n  \"edge_id\": \"edge-0001\",\n  \"evidence_quotes\": [],\n  \"missing_conditions\": [\n    \"unique_source_and_target_CVE_mapping\",\n    \"Supplied CVE descriptions for CVE-2021-34336 and CVE-2021-33357\",\n    \"Evidence of same-host co-location of piSignage and RaspAP\",\n    \"Verification that RaspAP credentials or session tokens are stored in files accessible via path traversal\",\n    \"Valid authenticated session or administrative credentials for RaspAP\"\n  ],\n  \"reason\": \"The source and target CVEs are unmapped and missing from the supplied evidence corpus, precluding verification of their respective effects and prerequisites against authoritative descriptions. Furthermore, the causal bridge relies on unsubstantiated assumptions: it presumes same-host deployment between two distinct software applications (piSignage and RaspAP), infers credential and session disclosure from an arbitrary file read without evidence of file locations or contents, and improperly bridges path traversal to authenticated access on a separate service. Under strict graph rules prohibiting inference of credentials and same-host deployment from absence of data, this edge cannot be validated.\",\n  \"source_cve_id\": null,\n  \"suggested_status\": \"unknown\",\n  \"target_cve_id\": null\n}\n```"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T13:57:46.715802+00:00"
+}

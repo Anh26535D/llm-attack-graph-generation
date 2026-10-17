@@ -1,0 +1,227 @@
+{
+  "input_invariants": {
+    "same_original_graph_bytes": true,
+    "same_offline_baselines": true,
+    "same_review_prompt_bytes": true,
+    "same_layout": true
+  },
+  "same_primary_review_protocol": true,
+  "models": [
+    {
+      "model": "gemini-3.8-flash",
+      "backend": "gemini",
+      "repeats": 10,
+      "graph_reports": 10,
+      "candidate_edges": 58,
+      "first_pass_valid": 49,
+      "first_pass_valid_rate": 0.8448275862068966,
+      "first_pass_states": {
+        "completed": 49,
+        "invalid_response": 9
+      },
+      "final_review_valid": 57,
+      "final_review_valid_rate": 0.9827586206896551,
+      "final_review_states": {
+        "cache_hit": 17,
+        "invalid_response": 1,
+        "completed": 40
+      },
+      "incomplete_review_issues": {
+        "Review unavailable; offline result preserved.": 1
+      },
+      "llm_suggested_distribution": {
+        "conditional": 48,
+        "unsupported": 4,
+        "unknown": 5
+      },
+      "final_distribution": {
+        "unknown": 23,
+        "conditional": 35
+      },
+      "llm_disagreements_with_offline": 17,
+      "accepted_label_changes": 0,
+      "review_api_calls": 67,
+      "usage": {
+        "input_tokens": 136341,
+        "output_tokens": 27879,
+        "total_tokens": 460079,
+        "requests_with_usage": 67,
+        "requests_missing_usage": 0,
+        "totals_are_partial": false
+      },
+      "requests_with_unknown_outcome": 0,
+      "mean_request_seconds": 37.62640947462691,
+      "provider_reported_cost": null,
+      "provider_reported_cost_is_partial": true,
+      "provider_config": null,
+      "observed_actual_models": {
+        "gemini-3.8-flash": 67
+      },
+      "observed_actual_providers": {},
+      "primary_max_output_tokens": 9999,
+      "reasoning": "high",
+      "max_calls_per_repeat": 20,
+      "accuracy": null,
+      "accuracy_reason": "No independent gold labels",
+      "run_directory": "D:\\AHUST\\An ninh mạng\\llm-attack-graph-generation\\outputs\\validation_experiments\\c2_10_20261016_high_9999_01"
+    },
+    {
+      "model": "deepseek/deepseek-v4.1-flash",
+      "backend": "openrouter_v2",
+      "repeats": 10,
+      "graph_reports": 10,
+      "candidate_edges": 58,
+      "first_pass_valid": 50,
+      "first_pass_valid_rate": 0.8620689655172413,
+      "first_pass_states": {
+        "completed": 52,
+        "api_error": 1,
+        "invalid_response": 5
+      },
+      "final_review_valid": 56,
+      "final_review_valid_rate": 0.9655172413793104,
+      "final_review_states": {
+        "cache_hit": 21,
+        "completed": 36,
+        "budget_exhausted": 1
+      },
+      "incomplete_review_issues": {
+        "Review unavailable; offline result preserved.": 1,
+        "source_cve_id_mismatch": 1,
+        "target_cve_id_mismatch": 1,
+        "unverified_evidence_quote": 2
+      },
+      "llm_suggested_distribution": {
+        "unsupported": 17,
+        "conditional": 37,
+        "unknown": 2
+      },
+      "final_distribution": {
+        "unknown": 23,
+        "conditional": 35
+      },
+      "llm_disagreements_with_offline": 26,
+      "accepted_label_changes": 0,
+      "review_api_calls": 65,
+      "usage": {
+        "input_tokens": 122222,
+        "output_tokens": 434290,
+        "total_tokens": 556512,
+        "requests_with_usage": 64,
+        "requests_missing_usage": 1,
+        "totals_are_partial": true
+      },
+      "requests_with_unknown_outcome": 0,
+      "mean_request_seconds": 39.3059720200001,
+      "provider_reported_cost": 0.298329576,
+      "provider_reported_cost_is_partial": true,
+      "provider_config": {
+        "only": [
+          "coreweave/fp8"
+        ],
+        "allow_fallbacks": false
+      },
+      "observed_actual_models": {
+        "deepseek/deepseek-v4.1-flash": 64
+      },
+      "observed_actual_providers": {
+        "CoreWeave": 64
+      },
+      "primary_max_output_tokens": 9999,
+      "reasoning": "high",
+      "max_calls_per_repeat": 10,
+      "accuracy": null,
+      "accuracy_reason": "No independent gold labels",
+      "run_directory": "D:\\AHUST\\An ninh mạng\\llm-attack-graph-generation\\outputs\\validation_experiments\\c2_10_20261016_deepseek_coreweave_01"
+    },
+    {
+      "model": "openai/gpt-5.6-luna",
+      "backend": "openrouter",
+      "repeats": 10,
+      "graph_reports": 10,
+      "candidate_edges": 58,
+      "first_pass_valid": 56,
+      "first_pass_valid_rate": 0.9655172413793104,
+      "first_pass_states": {
+        "completed": 58
+      },
+      "final_review_valid": 57,
+      "final_review_valid_rate": 0.9827586206896551,
+      "final_review_states": {
+        "completed": 49,
+        "cache_hit": 9
+      },
+      "incomplete_review_issues": {
+        "source_cve_id_mismatch": 1,
+        "target_cve_id_mismatch": 1,
+        "unverified_evidence_quote": 4
+      },
+      "llm_suggested_distribution": {
+        "unknown": 14,
+        "conditional": 39,
+        "unsupported": 4
+      },
+      "final_distribution": {
+        "unknown": 23,
+        "conditional": 35
+      },
+      "llm_disagreements_with_offline": 9,
+      "accepted_label_changes": 0,
+      "review_api_calls": 60,
+      "usage": {
+        "input_tokens": 108869,
+        "output_tokens": 136112,
+        "total_tokens": 244981,
+        "requests_with_usage": 60,
+        "requests_missing_usage": 0,
+        "totals_are_partial": false
+      },
+      "requests_with_unknown_outcome": 0,
+      "mean_request_seconds": 21.402479543333264,
+      "provider_reported_cost": 0.19036395,
+      "provider_reported_cost_is_partial": false,
+      "provider_config": null,
+      "observed_actual_models": {
+        "openai/gpt-5.6-luna": 60
+      },
+      "observed_actual_providers": {},
+      "primary_max_output_tokens": 9999,
+      "reasoning": "high",
+      "max_calls_per_repeat": 10,
+      "accuracy": null,
+      "accuracy_reason": "No independent gold labels",
+      "run_directory": "D:\\AHUST\\An ninh mạng\\llm-attack-graph-generation\\outputs\\validation_experiments\\c2_10_20261016_luna_01"
+    }
+  ],
+  "raw_suggestion_agreement": [
+    {
+      "model_a": "gemini-3.8-flash",
+      "model_b": "deepseek/deepseek-v4.1-flash",
+      "common_valid_reviews": 55,
+      "same_suggested_status": 41,
+      "agreement_rate": 0.7454545454545455,
+      "scope": "LLM suggestions on common verified review outputs; not accuracy"
+    },
+    {
+      "model_a": "gemini-3.8-flash",
+      "model_b": "openai/gpt-5.6-luna",
+      "common_valid_reviews": 56,
+      "same_suggested_status": 41,
+      "agreement_rate": 0.7321428571428571,
+      "scope": "LLM suggestions on common verified review outputs; not accuracy"
+    },
+    {
+      "model_a": "deepseek/deepseek-v4.1-flash",
+      "model_b": "openai/gpt-5.6-luna",
+      "common_valid_reviews": 55,
+      "same_suggested_status": 34,
+      "agreement_rate": 0.6181818181818182,
+      "scope": "LLM suggestions on common verified review outputs; not accuracy"
+    }
+  ],
+  "limitations": [
+    "No independent gold: no accuracy ranking",
+    "Provider tokenizers and reasoning effort differ",
+    "First-pass results kept separate from technical retries; final labels include offline fallbacks"
+  ]
+}

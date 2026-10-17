@@ -1,0 +1,129 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:34:48.174158+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference, never a fact: the source and target vulnerabilities affect the same Raspberry Pi host.",
+        "Inference, never a fact: an arbitrary downloaded file could contain usable pi-account credentials or other relevant credential material.",
+        "Inference, never a fact: any recovered credential would be accepted by a reachable authentication service and provide administrator privileges."
+      ],
+      "confidence": 0.95,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "the raspberry default password for the pi account"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "attackers can gain administrator privileges"
+        }
+      ],
+      "missing_conditions": [
+        "The piSignage instance and the Raspberry Pi OS instance are the same host.",
+        "The source vulnerability is deployed in a version before 2.6.4 and is reachable with valid low-privilege piSignage credentials.",
+        "The target host runs Raspberry Pi OS through version 5.10.",
+        "The pi account password remains unchanged from its default.",
+        "A file reachable through the traversal contains the pi password, a usable hash, or other credential material; neither CVE description establishes this.",
+        "A reachable authentication service accepts the recovered credential and grants the target administrator privileges.",
+        "A recovered credential can be used by the attacker; no login channel or service is established by the supplied descriptions."
+      ],
+      "reason": "CVE-2019-20354 establishes a path-traversal effect allowing an authenticated low-privilege remote attacker to download arbitrary files from a Raspberry Pi. It does not establish that /etc/shadow, password hashes, application configuration, or any file containing pi:raspberry is present, readable, or downloaded. CVE-2021-38759 establishes that an unchanged default pi password can potentially allow administrator privileges on applicable Raspberry Pi OS, but it does not establish deployment on the source host or a usable authentication channel. The edge label therefore overreaches by asserting credential-store exfiltration, credential extraction, and privilege acquisition. A bounded causal bridge is only conditional on the missing same-host, version, unchanged-password, file-content, and credential-use conditions; as stated, it should not enter a strict graph as an unconditional edge.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2118,
+      "prompt_tokens": 2004,
+      "total_tokens": 4122,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1552,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 2001,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00304245,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00304245,
+        "upstream_inference_prompt_cost": 0.00050085,
+        "upstream_inference_completions_cost": 0.0025416
+      }
+    },
+    "latency_seconds": 20.68148359999941,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "18f8825a10ab42e6b813469df756e5dbf5592e7d6854d1bdae08d1356dd9c734",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2118,
+        "prompt_tokens": 2004,
+        "total_tokens": 4122,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1552,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2001,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00304245,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00304245,
+          "upstream_inference_prompt_cost": 0.00050085,
+          "upstream_inference_completions_cost": 0.0025416
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inference, never a fact: the source and target vulnerabilities affect the same Raspberry Pi host.\",\"Inference, never a fact: an arbitrary downloaded file could contain usable pi-account credentials or other relevant credential material.\",\"Inference, never a fact: any recovered credential would be accepted by a reachable authentication service and provide administrator privileges.\"],\"confidence\":0.95,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"from the Raspberry Pi\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"the raspberry default password for the pi account\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"attackers can gain administrator privileges\"}],\"missing_conditions\":[\"The piSignage instance and the Raspberry Pi OS instance are the same host.\",\"The source vulnerability is deployed in a version before 2.6.4 and is reachable with valid low-privilege piSignage credentials.\",\"The target host runs Raspberry Pi OS through version 5.10.\",\"The pi account password remains unchanged from its default.\",\"A file reachable through the traversal contains the pi password, a usable hash, or other credential material; neither CVE description establishes this.\",\"A reachable authentication service accepts the recovered credential and grants the target administrator privileges.\",\"A recovered credential can be used by the attacker; no login channel or service is established by the supplied descriptions.\"],\"reason\":\"CVE-2019-20354 establishes a path-traversal effect allowing an authenticated low-privilege remote attacker to download arbitrary files from a Raspberry Pi. It does not establish that /etc/shadow, password hashes, application configuration, or any file containing pi:raspberry is present, readable, or downloaded. CVE-2021-38759 establishes that an unchanged default pi password can potentially allow administrator privileges on applicable Raspberry Pi OS, but it does not establish deployment on the source host or a usable authentication channel. The edge label therefore overreaches by asserting credential-store exfiltration, credential extraction, and privilege acquisition. A bounded causal bridge is only conditional on the missing same-host, version, unchanged-password, file-content, and credential-use conditions; as stated, it should not enter a strict graph as an unconditional edge.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:35:08.857622+00:00"
+}

@@ -1,0 +1,127 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T15:04:50.489722+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The edge assumes the arbitrary-file-write primitive can target system binaries or DLLs; CVE-2020-1885 does not state those target file types.",
+        "The edge assumes the resulting privilege level is SYSTEM/full host compromise; CVE-2020-1885 only says the user can 'gain privileges'.",
+        "The edge assumes the target node is causally reachable from this source without additional vulnerabilities or environment conditions; this is not confirmed by the supplied description or environment."
+      ],
+      "confidence": 0.82,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users to write to arbitrary files and consequently gain privileges"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "via vectors involving a hard link to a log file"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows"
+        }
+      ],
+      "missing_conditions": [
+        "Unique target CVE mapping; target_mapping.status is 'missing' with no candidates.",
+        "Confirmation that arbitrary file write can target system binaries or DLLs rather than only arbitrary files generally.",
+        "Confirmation that the resulting privilege escalation reaches SYSTEM/full host compromise rather than a non-specific 'gain privileges' or potentially administrative level.",
+        "Confirmation that the hard-link-to-log-file vector can be used for the claimed system-binary/DLL overwrite.",
+        "Explicit environment observation that source and target apply to the same host, since environment_state is empty.",
+        "Confirmation that no additional local access, credentials, service state, or other preconditions beyond those in CVE-2020-1885 are required."
+      ],
+      "reason": "CVE-2020-1885 supports a privileged OVRRedir.exe process writing to an unprivileged file, local users writing to arbitrary files, and consequently gaining privileges via a hard link to a log file on Windows. The edge claims escalation to SYSTEM by overwriting system binaries/DLLs. The description does not state SYSTEM, system binaries/DLLs, or that arbitrary file write is used for that specific escalation; it only says 'gain privileges'. The target node is not CVE-mapped, and its generated precondition mentions OVRRedir.exe arbitrary file write or OVRServiceLauncher.exe handle exposure, but that is a claim, not confirming evidence. Therefore the bounded bridge is potentially plausible only if arbitrary file write can overwrite a privileged executable/DLL and yield SYSTEM; as written the edge overreaches and cannot enter a strict graph. It may be conditional if those missing conditions are verified.",
+      "source_cve_id": "CVE-2020-1885",
+      "suggested_status": "conditional",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 6984,
+      "prompt_tokens": 1521,
+      "total_tokens": 8505,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 6381,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00476775,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00476775,
+        "upstream_inference_prompt_cost": 0.00022815,
+        "upstream_inference_completions_cost": 0.0045396
+      }
+    },
+    "latency_seconds": 43.36835939999946,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "fd9be90303d32cfdc30b0a83874fb859e9216a99cfc437a1b0acbf51f4662455",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6984,
+        "prompt_tokens": 1521,
+        "total_tokens": 8505,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6381,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00476775,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00476775,
+          "upstream_inference_prompt_cost": 0.00022815,
+          "upstream_inference_completions_cost": 0.0045396
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The edge assumes the arbitrary-file-write primitive can target system binaries or DLLs; CVE-2020-1885 does not state those target file types.\",\"The edge assumes the resulting privilege level is SYSTEM/full host compromise; CVE-2020-1885 only says the user can 'gain privileges'.\",\"The edge assumes the target node is causally reachable from this source without additional vulnerabilities or environment conditions; this is not confirmed by the supplied description or environment.\"],\"confidence\":0.82,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"Writing to an unprivileged file from a privileged OVRRedir.exe process\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"allows local users to write to arbitrary files and consequently gain privileges\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"via vectors involving a hard link to a log file\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"on Windows\"}],\"missing_conditions\":[\"Unique target CVE mapping; target_mapping.status is 'missing' with no candidates.\",\"Confirmation that arbitrary file write can target system binaries or DLLs rather than only arbitrary files generally.\",\"Confirmation that the resulting privilege escalation reaches SYSTEM/full host compromise rather than a non-specific 'gain privileges' or potentially administrative level.\",\"Confirmation that the hard-link-to-log-file vector can be used for the claimed system-binary/DLL overwrite.\",\"Explicit environment observation that source and target apply to the same host, since environment_state is empty.\",\"Confirmation that no additional local access, credentials, service state, or other preconditions beyond those in CVE-2020-1885 are required.\"],\"reason\":\"CVE-2020-1885 supports a privileged OVRRedir.exe process writing to an unprivileged file, local users writing to arbitrary files, and consequently gaining privileges via a hard link to a log file on Windows. The edge claims escalation to SYSTEM by overwriting system binaries/DLLs. The description does not state SYSTEM, system binaries/DLLs, or that arbitrary file write is used for that specific escalation; it only says 'gain privileges'. The target node is not CVE-mapped, and its generated precondition mentions OVRRedir.exe arbitrary file write or OVRServiceLauncher.exe handle exposure, but that is a claim, not confirming evidence. Therefore the bounded bridge is potentially plausible only if arbitrary file write can overwrite a privileged executable/DLL and yield SYSTEM; as written the edge overreaches and cannot enter a strict graph. It may be conditional if those missing conditions are verified.\",\"source_cve_id\":\"CVE-2020-1885\",\"suggested_status\":\"conditional\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:05:33.859806+00:00"
+}

@@ -1,0 +1,653 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Inference: arbitrary file read can expose configuration or application credentials.",
+          "Inference: exposed credentials might be valid for RaspAP web-interface authentication.",
+          "Inference: piSignage and RaspAP are co-located or share a credential store.",
+          "Inference: extracted credentials can satisfy the target's authenticated access requirement."
+        ],
+        "confidence": 0.4,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "from the Raspberry Pi"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "execute commands on the system"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "underlying OS (Raspberry Pi)"
+          }
+        ],
+        "missing_conditions": [
+          "readable files obtained via CVE-2019-20354 contain valid RaspAP web-interface credentials",
+          "piSignage and RaspAP are deployed on the same host or share a credential store",
+          "the extracted credentials are accepted by RaspAP 2.5 authentication",
+          "target RaspAP 2.5 is reachable and vulnerable in the attacker's environment",
+          "no separate authentication boundary prevents reuse of piSignage-readable files for RaspAP"
+        ],
+        "reason": "The source CVE permits a low-privilege authenticated attacker to download arbitrary files from the Raspberry Pi via path traversal; it does not state file contents or that credentials are present. The target CVE requires authenticated access to RaspAP 2.5 and can execute commands on the system. The edge bridge additionally needs readable valid RaspAP credentials and same-host/shared credential store; those are unverified. Therefore the edge is overreaching and cannot enter a strict graph; it is at most conditional if missing conditions are independently established.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 7702,
+        "prompt_tokens": 2009,
+        "total_tokens": 9711,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7235,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.005269762,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005269762,
+          "upstream_inference_prompt_cost": 0.000263462,
+          "upstream_inference_completions_cost": 0.0050063
+        }
+      },
+      "latency_seconds": 42.536084800000026,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "47580e035946bbf72b85d59156905af8d92eb60b86a344ee99e20d0a324d45ae",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 7702,
+          "prompt_tokens": 2009,
+          "total_tokens": 9711,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 7235,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 256,
+            "video_tokens": 0
+          },
+          "cost": 0.005269762,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.005269762,
+            "upstream_inference_prompt_cost": 0.000263462,
+            "upstream_inference_completions_cost": 0.0050063
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      },
+      "raw_response": "{\"assumptions\":[\"Inference: arbitrary file read can expose configuration or application credentials.\",\"Inference: exposed credentials might be valid for RaspAP web-interface authentication.\",\"Inference: piSignage and RaspAP are co-located or share a credential store.\",\"Inference: extracted credentials can satisfy the target's authenticated access requirement.\"],\"confidence\":0.4,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"from the Raspberry Pi\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"}],\"missing_conditions\":[\"readable files obtained via CVE-2019-20354 contain valid RaspAP web-interface credentials\",\"piSignage and RaspAP are deployed on the same host or share a credential store\",\"the extracted credentials are accepted by RaspAP 2.5 authentication\",\"target RaspAP 2.5 is reachable and vulnerable in the attacker's environment\",\"no separate authentication boundary prevents reuse of piSignage-readable files for RaspAP\"],\"reason\":\"The source CVE permits a low-privilege authenticated attacker to download arbitrary files from the Raspberry Pi via path traversal; it does not state file contents or that credentials are present. The target CVE requires authenticated access to RaspAP 2.5 and can execute commands on the system. The edge bridge additionally needs readable valid RaspAP credentials and same-host/shared credential store; those are unverified. Therefore the edge is overreaching and cannot enter a strict graph; it is at most conditional if missing conditions are independently established.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "The edge target is the non-CVE node labeled 'Raspberry Pi Default Credential Authentication' rather than a mapped CVE.",
+          "A strict graph requires explicit evidence for the causal bridge, not merely a plausible chain."
+        ],
+        "confidence": 0.94,
+        "edge_id": "edge-0002",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "via api/settings/log?file=../ path traversal"
+          }
+        ],
+        "missing_conditions": [
+          "Downloaded files include /etc/shadow or configuration password hashes.",
+          "The piSignage process can read those files; arbitrary file download does not prove file permissions or contents.",
+          "The recovered hashes correspond to the default 'pi' system account.",
+          "Cracking or recovery of the default 'pi' password from the exfiltrated hashes is feasible.",
+          "The target Raspberry Pi OS is reachable via network or local access with unmodified default credentials ('pi':'raspberry').",
+          "The source file-read host and target default-credential authentication host are the same deployment or otherwise causally connected.",
+          "A target CVE mapping and target CVE description are supplied; the target CVE mapping is missing.",
+          "Evidence that the source file read grants shell access or administrative/sudo privileges; the source description does not state this."
+        ],
+        "reason": "CVE-2019-20354 supports only a remote, low-privilege-authenticated arbitrary file download/read from the Raspberry Pi via path traversal. It does not state which files are obtained, that /etc/shadow or configuration hashes are exposed, that any hash corresponds to the default 'pi' account, that cracking succeeds, or that the target Raspberry Pi OS has unmodified default credentials. The target node requires network/local access to Raspberry Pi OS with default 'pi':'raspberry' credentials and yields sudo shell access, but that is not supplied by the source CVE. Arbitrary file download could potentially expose readable files, but the supplied description gives no file-content or credential-recovery evidence. The bridge is therefore overclaimed and cannot enter a strict graph as stated.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "unsupported",
+        "target_cve_id": null
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 3813,
+        "prompt_tokens": 1373,
+        "total_tokens": 5186,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3294,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0026844,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0026844,
+          "upstream_inference_prompt_cost": 0.00020595,
+          "upstream_inference_completions_cost": 0.00247845
+        }
+      },
+      "latency_seconds": 17.129836300000534,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "5357432f7cc6f2c21b99cd6237b1c105f0677ddf4d2a4c022ee08d9a42886b05",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 3813,
+          "prompt_tokens": 1373,
+          "total_tokens": 5186,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 3294,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0026844,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0026844,
+            "upstream_inference_prompt_cost": 0.00020595,
+            "upstream_inference_completions_cost": 0.00247845
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      },
+      "raw_response": "{\"assumptions\":[\"The edge target is the non-CVE node labeled 'Raspberry Pi Default Credential Authentication' rather than a mapped CVE.\",\"A strict graph requires explicit evidence for the causal bridge, not merely a plausible chain.\"],\"confidence\":0.94,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files from the Raspberry Pi\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"via api/settings/log?file=../ path traversal\"}],\"missing_conditions\":[\"Downloaded files include /etc/shadow or configuration password hashes.\",\"The piSignage process can read those files; arbitrary file download does not prove file permissions or contents.\",\"The recovered hashes correspond to the default 'pi' system account.\",\"Cracking or recovery of the default 'pi' password from the exfiltrated hashes is feasible.\",\"The target Raspberry Pi OS is reachable via network or local access with unmodified default credentials ('pi':'raspberry').\",\"The source file-read host and target default-credential authentication host are the same deployment or otherwise causally connected.\",\"A target CVE mapping and target CVE description are supplied; the target CVE mapping is missing.\",\"Evidence that the source file read grants shell access or administrative/sudo privileges; the source description does not state this.\"],\"reason\":\"CVE-2019-20354 supports only a remote, low-privilege-authenticated arbitrary file download/read from the Raspberry Pi via path traversal. It does not state which files are obtained, that /etc/shadow or configuration hashes are exposed, that any hash corresponds to the default 'pi' account, that cracking succeeds, or that the target Raspberry Pi OS has unmodified default credentials. The target node requires network/local access to Raspberry Pi OS with default 'pi':'raspberry' credentials and yields sudo shell access, but that is not supplied by the source CVE. Arbitrary file download could potentially expose readable files, but the supplied description gives no file-content or credential-recovery evidence. The bridge is therefore overclaimed and cannot enter a strict graph as stated.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"unsupported\",\"target_cve_id\":null}"
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Administrative OS access might permit reading or modifying RaspAP configuration if such configuration exists and is accessible.",
+          "RaspAP web administrative credentials might be stored on the Raspberry Pi OS filesystem in a form usable by an administrative shell.",
+          "Recovered or modified RaspAP web credentials might satisfy the target's authenticated-access requirement."
+        ],
+        "confidence": 0.91,
+        "edge_id": "edge-0003",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "misconfigured (and virtually unrestricted) web console"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "execute commands on the system"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "underlying OS (Raspberry Pi)"
+          }
+        ],
+        "missing_conditions": [
+          "Mapped source CVE and source description evidence for default-credential authentication.",
+          "Evidence that RaspAP web administrative credentials exist and are stored on the Raspberry Pi OS.",
+          "Evidence that administrative system access can retrieve or manipulate RaspAP web administrative credentials.",
+          "Evidence that retrieved or manipulated credentials grant authenticated access to the RaspAP web interface.",
+          "Explicit environment observation that RaspAP is installed, reachable, and colocated with the source host.",
+          "Unique source and target CVE mapping."
+        ],
+        "reason": "The source node claims authenticated shell access with administrative (sudo) privileges on Raspberry Pi OS, but no source CVE is mapped, so that effect is not CVE-backed evidence. CVE-2020-24572 requires 'With authenticated access' to a RaspAP web console and supports command execution via that console. The edge asserts an additional bridge: administrative system access facilitates retrieval or manipulation of RaspAP web administrative credentials. The supplied CVE description does not mention RaspAP credential storage, retrieval, or manipulation, nor does it connect OS administrative access to web-interface authentication. Thus the causal bridge is potentially plausible only under unverified assumptions and cannot enter a strict graph as supported; suggested unsupported.",
+        "source_cve_id": null,
+        "suggested_status": "unsupported",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 5057,
+        "prompt_tokens": 1353,
+        "total_tokens": 6410,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4592,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.003452112,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003452112,
+          "upstream_inference_prompt_cost": 0.000165062,
+          "upstream_inference_completions_cost": 0.00328705
+        }
+      },
+      "latency_seconds": 27.668556000000535,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "e6d2b66c8adf05e5d2ed2bf80986a0b78a73c605dc8a96f54b89cd6e67b909da",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 5057,
+          "prompt_tokens": 1353,
+          "total_tokens": 6410,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 4592,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 256,
+            "video_tokens": 0
+          },
+          "cost": 0.003452112,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.003452112,
+            "upstream_inference_prompt_cost": 0.000165062,
+            "upstream_inference_completions_cost": 0.00328705
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      },
+      "raw_response": "{\"assumptions\":[\"Administrative OS access might permit reading or modifying RaspAP configuration if such configuration exists and is accessible.\",\"RaspAP web administrative credentials might be stored on the Raspberry Pi OS filesystem in a form usable by an administrative shell.\",\"Recovered or modified RaspAP web credentials might satisfy the target's authenticated-access requirement.\"],\"confidence\":0.91,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"misconfigured (and virtually unrestricted) web console\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"}],\"missing_conditions\":[\"Mapped source CVE and source description evidence for default-credential authentication.\",\"Evidence that RaspAP web administrative credentials exist and are stored on the Raspberry Pi OS.\",\"Evidence that administrative system access can retrieve or manipulate RaspAP web administrative credentials.\",\"Evidence that retrieved or manipulated credentials grant authenticated access to the RaspAP web interface.\",\"Explicit environment observation that RaspAP is installed, reachable, and colocated with the source host.\",\"Unique source and target CVE mapping.\"],\"reason\":\"The source node claims authenticated shell access with administrative (sudo) privileges on Raspberry Pi OS, but no source CVE is mapped, so that effect is not CVE-backed evidence. CVE-2020-24572 requires 'With authenticated access' to a RaspAP web console and supports command execution via that console. The edge asserts an additional bridge: administrative system access facilitates retrieval or manipulation of RaspAP web administrative credentials. The supplied CVE description does not mention RaspAP credential storage, retrieval, or manipulation, nor does it connect OS administrative access to web-interface authentication. Thus the causal bridge is potentially plausible only under unverified assumptions and cannot enter a strict graph as supported; suggested unsupported.\",\"source_cve_id\":null,\"suggested_status\":\"unsupported\",\"target_cve_id\":\"CVE-2020-24572\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Assumes the source code execution, if any, occurs on the same Windows host as the target Oculus Desktop installation; this is an inference, not stated in the supplied descriptions.",
+          "Assumes 'potentially execute code' from CVE-2019-3562 becomes actual code execution; this is an inference, not confirmed.",
+          "Assumes browser-context code execution provides local unprivileged filesystem access sufficient to create hard links; this is an inference.",
+          "Assumes the target hard-link vector can be triggered to affect OVRRedir.exe from that context; this is an inference."
+        ],
+        "confidence": 0.9,
+        "edge_id": "edge-0004",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "A remote web page"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "inject arbitrary HTML code"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "privileged OVRRedir.exe process in Oculus Desktop"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "allows local users"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "on Windows"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "write to arbitrary files"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "gain privileges"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "via vectors involving a hard link to a log file"
+          }
+        ],
+        "missing_conditions": [
+          "Evidence that source exploitation and target OVRRedir.exe are on the same host; no supplied CVE description or environment observation establishes this.",
+          "Explicit confirmation that the source effect is actual code execution, not only 'potentially execute code'.",
+          "Evidence that source code execution yields an unprivileged local user context with filesystem permission to create hard links on Windows.",
+          "Evidence that Oculus Desktop is installed and affected on that same Windows host before version 1.44.0.32849.",
+          "Evidence that the hard-link-to-log-file vector can target OVRRedir.exe from the source-obtained context.",
+          "Explicit environment observations of affected products, versions, platforms, and access prerequisites."
+        ],
+        "reason": "Source CVE-2019-3562 describes a remote web page that could 'inject arbitrary HTML code' into Oculus Browser UI, allowing spoofing and only 'potentially execute code'; it does not establish actual code execution or a Windows local-user foothold. Target CVE-2020-1885 requires local users on Windows with Oculus Desktop before 1.44.0.32849 and abuses a hard link to a log file for arbitrary file write and to 'gain privileges' via a 'privileged OVRRedir.exe process in Oculus Desktop'. The edge claim converts the source's potential code execution into obtained local unprivileged context and assumes same-host deployment, Windows filesystem access, and hard-link creation against OVRRedir.exe. These bridging conditions are not supplied by the descriptions or environment (environment absent). The edge therefore cannot enter a strict graph as an evidenced transition; it is at most conditional under unverified assumptions.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "unsupported",
+        "target_cve_id": "CVE-2020-1885"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 5528,
+        "prompt_tokens": 2190,
+        "total_tokens": 7718,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4798,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384,
+          "video_tokens": 0
+        },
+        "cost": 0.003864868,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003864868,
+          "upstream_inference_prompt_cost": 0.000271668,
+          "upstream_inference_completions_cost": 0.0035932
+        }
+      },
+      "latency_seconds": 27.67463839999982,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "4dee055008c75679eae9fbb00dbbaced7ccb15111454db4c429abbf901a52255",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 5528,
+          "prompt_tokens": 2190,
+          "total_tokens": 7718,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 4798,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 384,
+            "video_tokens": 0
+          },
+          "cost": 0.003864868,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.003864868,
+            "upstream_inference_prompt_cost": 0.000271668,
+            "upstream_inference_completions_cost": 0.0035932
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      },
+      "raw_response": "{\"assumptions\":[\"Assumes the source code execution, if any, occurs on the same Windows host as the target Oculus Desktop installation; this is an inference, not stated in the supplied descriptions.\",\"Assumes 'potentially execute code' from CVE-2019-3562 becomes actual code execution; this is an inference, not confirmed.\",\"Assumes browser-context code execution provides local unprivileged filesystem access sufficient to create hard links; this is an inference.\",\"Assumes the target hard-link vector can be triggered to affect OVRRedir.exe from that context; this is an inference.\"],\"confidence\":0.9,\"edge_id\":\"edge-0004\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"inject arbitrary HTML code\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"potentially execute code\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"privileged OVRRedir.exe process in Oculus Desktop\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"allows local users\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"on Windows\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"write to arbitrary files\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"gain privileges\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"via vectors involving a hard link to a log file\"}],\"missing_conditions\":[\"Evidence that source exploitation and target OVRRedir.exe are on the same host; no supplied CVE description or environment observation establishes this.\",\"Explicit confirmation that the source effect is actual code execution, not only 'potentially execute code'.\",\"Evidence that source code execution yields an unprivileged local user context with filesystem permission to create hard links on Windows.\",\"Evidence that Oculus Desktop is installed and affected on that same Windows host before version 1.44.0.32849.\",\"Evidence that the hard-link-to-log-file vector can target OVRRedir.exe from the source-obtained context.\",\"Explicit environment observations of affected products, versions, platforms, and access prerequisites.\"],\"reason\":\"Source CVE-2019-3562 describes a remote web page that could 'inject arbitrary HTML code' into Oculus Browser UI, allowing spoofing and only 'potentially execute code'; it does not establish actual code execution or a Windows local-user foothold. Target CVE-2020-1885 requires local users on Windows with Oculus Desktop before 1.44.0.32849 and abuses a hard link to a log file for arbitrary file write and to 'gain privileges' via a 'privileged OVRRedir.exe process in Oculus Desktop'. The edge claim converts the source's potential code execution into obtained local unprivileged context and assumes same-host deployment, Windows filesystem access, and hard-link creation against OVRRedir.exe. These bridging conditions are not supplied by the descriptions or environment (environment absent). The edge therefore cannot enter a strict graph as an evidenced transition; it is at most conditional under unverified assumptions.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"unsupported\",\"target_cve_id\":\"CVE-2020-1885\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "The edge infers same-host deployment between Oculus Browser and Oculus Desktop; this is not stated in the supplied CVE descriptions.",
+          "The edge infers that browser exploitation yields the specific local unprivileged process required by CVE-2021-24038; this is not evidenced.",
+          "The edge infers that a browser-derived process can capture and use leaked OVRServiceLauncher.exe handles; this is not evidenced.",
+          "The target's vulnerable Oculus Desktop version and local access are inferred; no explicit environment observation confirms them.",
+          "Generated node pre/postconditions and the candidate bridge are claims, not confirming evidence."
+        ],
+        "confidence": 0.82,
+        "edge_id": "edge-0005",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "A remote web page could inject arbitrary HTML code"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "This affects the Oculus Browser starting from version 5.2.7 until 5.7.11."
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "Due to a bug with management of handles in OVRServiceLauncher.exe"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "expose a privileged process handle to an unprivileged process"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "leading to local privilege escalation"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507."
+          }
+        ],
+        "missing_conditions": [
+          "Actual code execution from CVE-2019-3562, not merely the described 'potentially execute code'.",
+          "Oculus Browser exploitation yields a local unprivileged process/context capable of interacting with Oculus Desktop and OVRServiceLauncher.exe.",
+          "Same-host deployment of the affected Oculus Browser and affected Oculus Desktop components.",
+          "Local unprivileged access on a host running affected Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.",
+          "The OVRServiceLauncher.exe handle-management bug is triggerable by that unprivileged process.",
+          "The leaked privileged process handle can be captured and used to achieve local privilege escalation.",
+          "Victim visit to an attacker-controlled remote web page using affected Oculus Browser versions 5.2.7 through 5.7.11."
+        ],
+        "reason": "CVE-2019-3562's described effect is HTML injection into Oculus Browser UI, UI spoofing, and only 'potentially execute code'; it does not guarantee code execution, an OS-level unprivileged process, or same-host presence with Oculus Desktop. CVE-2021-24038 requires an unprivileged process on a host running vulnerable Oculus Desktop, where a bug in OVRServiceLauncher.exe handle management can expose a privileged process handle to an unprivileged process and lead to local privilege escalation. The edge overreaches by treating 'potentially execute code' as code execution obtained and by asserting that browser exploitation supplies the local unprivileged process able to capture leaked OVRServiceLauncher.exe handles. The causal bridge is bounded and plausible only if same-host deployment, actual execution, target version/local access, and handle-capture/use are independently verified; it cannot enter a strict graph as stated and is conditional at best.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2021-24038"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 6987,
+        "prompt_tokens": 2147,
+        "total_tokens": 9134,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6104,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384,
+          "video_tokens": 0
+        },
+        "cost": 0.004806768,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004806768,
+          "upstream_inference_prompt_cost": 0.000265218,
+          "upstream_inference_completions_cost": 0.00454155
+        }
+      },
+      "latency_seconds": 27.67552539999997,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "9d12e7d2555c540d0f79b7a966f2ae7935ccd9a2fe8821ab9c09832a3fdb8c9a",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 6987,
+          "prompt_tokens": 2147,
+          "total_tokens": 9134,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 6104,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 384,
+            "video_tokens": 0
+          },
+          "cost": 0.004806768,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.004806768,
+            "upstream_inference_prompt_cost": 0.000265218,
+            "upstream_inference_completions_cost": 0.00454155
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      },
+      "raw_response": "{\n  \"assumptions\": [\n    \"The edge infers same-host deployment between Oculus Browser and Oculus Desktop; this is not stated in the supplied CVE descriptions.\",\n    \"The edge infers that browser exploitation yields the specific local unprivileged process required by CVE-2021-24038; this is not evidenced.\",\n    \"The edge infers that a browser-derived process can capture and use leaked OVRServiceLauncher.exe handles; this is not evidenced.\",\n    \"The target's vulnerable Oculus Desktop version and local access are inferred; no explicit environment observation confirms them.\",\n    \"Generated node pre/postconditions and the candidate bridge are claims, not confirming evidence.\"\n  ],\n  \"confidence\": 0.82,\n  \"edge_id\": \"edge-0005\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-3562\",\n      \"quote\": \"A remote web page could inject arbitrary HTML code\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-3562\",\n      \"quote\": \"potentially execute code\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-3562\",\n      \"quote\": \"This affects the Oculus Browser starting from version 5.2.7 until 5.7.11.\"\n    },\n    {\n      \"cve_id\": \"CVE-2021-24038\",\n      \"quote\": \"Due to a bug with management of handles in OVRServiceLauncher.exe\"\n    },\n    {\n      \"cve_id\": \"CVE-2021-24038\",\n      \"quote\": \"expose a privileged process handle to an unprivileged process\"\n    },\n    {\n      \"cve_id\": \"CVE-2021-24038\",\n      \"quote\": \"leading to local privilege escalation\"\n    },\n    {\n      \"cve_id\": \"CVE-2021-24038\",\n      \"quote\": \"This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Actual code execution from CVE-2019-3562, not merely the described 'potentially execute code'.\",\n    \"Oculus Browser exploitation yields a local unprivileged process/context capable of interacting with Oculus Desktop and OVRServiceLauncher.exe.\",\n    \"Same-host deployment of the affected Oculus Browser and affected Oculus Desktop components.\",\n    \"Local unprivileged access on a host running affected Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.\",\n    \"The OVRServiceLauncher.exe handle-management bug is triggerable by that unprivileged process.\",\n    \"The leaked privileged process handle can be captured and used to achieve local privilege escalation.\",\n    \"Victim visit to an attacker-controlled remote web page using affected Oculus Browser versions 5.2.7 through 5.7.11.\"\n  ],\n  \"reason\": \"CVE-2019-3562's described effect is HTML injection into Oculus Browser UI, UI spoofing, and only 'potentially execute code'; it does not guarantee code execution, an OS-level unprivileged process, or same-host presence with Oculus Desktop. CVE-2021-24038 requires an unprivileged process on a host running vulnerable Oculus Desktop, where a bug in OVRServiceLauncher.exe handle management can expose a privileged process handle to an unprivileged process and lead to local privilege escalation. The edge overreaches by treating 'potentially execute code' as code execution obtained and by asserting that browser exploitation supplies the local unprivileged process able to capture leaked OVRServiceLauncher.exe handles. The causal bridge is bounded and plausible only if same-host deployment, actual execution, target version/local access, and handle-capture/use are independently verified; it cannot enter a strict graph as stated and is conditional at best.\",\n  \"source_cve_id\": \"CVE-2019-3562\",\n  \"suggested_status\": \"conditional\",\n  \"target_cve_id\": \"CVE-2021-24038\"\n}"
+    }
+  }
+]

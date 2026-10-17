@@ -1,0 +1,82 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T13:58:49.077189+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The attacker already has local unprivileged code execution on the target system to interact with OVRServiceLauncher.exe handles",
+        "The leaked privileged process handle belongs to a process with SYSTEM or administrator-level privileges that can be leveraged for full host compromise"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0004",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation."
+        }
+      ],
+      "missing_conditions": [
+        "Existing local unprivileged code execution on the target host",
+        "Confirmation that the vulnerable Oculus Desktop version (after 1.39 and prior to 31.1.0.67.507) is installed",
+        "Verification that the privileged process handle provides permissions sufficient to achieve complete SYSTEM/administrative control"
+      ],
+      "reason": "CVE-2021-24038 confirms that an attacker could expose a privileged process handle to an unprivileged process leading to local privilege escalation in OVRServiceLauncher.exe, which satisfies the target's prerequisite of obtaining local privilege escalation via handle exposure. However, the edge is conditional because it requires existing local access on a host running the affected software and presumes that the privileged handle provides complete SYSTEM-level host compromise.",
+      "source_cve_id": "CVE-2021-24038",
+      "suggested_status": "conditional",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 349,
+      "prompt_token_count": 1561,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1561
+        }
+      ],
+      "thoughts_token_count": 2815,
+      "total_token_count": 4725
+    },
+    "latency_seconds": 25.717079000000012,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "7cabcd03a1e4d02b6c43d9589bbbfca81a38a2d7937fe69f8cb74a7877e8a2d5",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 349,
+        "prompt_token_count": 1561,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1561
+          }
+        ],
+        "thoughts_token_count": 2815,
+        "total_token_count": 4725
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"The attacker already has local unprivileged code execution on the target system to interact with OVRServiceLauncher.exe handles\", \"The leaked privileged process handle belongs to a process with SYSTEM or administrator-level privileges that can be leveraged for full host compromise\"], \"confidence\": 0.85, \"edge_id\": \"edge-0004\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-24038\", \"quote\": \"Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation.\"}], \"missing_conditions\": [\"Existing local unprivileged code execution on the target host\", \"Confirmation that the vulnerable Oculus Desktop version (after 1.39 and prior to 31.1.0.67.507) is installed\", \"Verification that the privileged process handle provides permissions sufficient to achieve complete SYSTEM/administrative control\"], \"reason\": \"CVE-2021-24038 confirms that an attacker could expose a privileged process handle to an unprivileged process leading to local privilege escalation in OVRServiceLauncher.exe, which satisfies the target's prerequisite of obtaining local privilege escalation via handle exposure. However, the edge is conditional because it requires existing local access on a host running the affected software and presumes that the privileged handle provides complete SYSTEM-level host compromise.\", \"source_cve_id\": \"CVE-2021-24038\", \"suggested_status\": \"conditional\", \"target_cve_id\": null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:59:14.796523+00:00"
+}

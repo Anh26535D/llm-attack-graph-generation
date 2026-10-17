@@ -1,0 +1,128 @@
+{
+  "edge_id": "edge-0007",
+  "started_at": "2026-10-16T14:34:19.081041+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The source's potentially successful code execution is treated as a possible, not guaranteed, unprivileged local process.",
+        "The Oculus Browser and Oculus Desktop vulnerabilities may be present on the same host, but this is an inference rather than an observation.",
+        "The exposed handle may be reachable and usable by the source-created process, but the supplied descriptions do not establish that exploitation path."
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0007",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "inject arbitrary HTML code"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "an unprivileged process"
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "expose a privileged process handle"
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "local privilege escalation"
+        }
+      ],
+      "missing_conditions": [
+        "A victim actually loads the attacker-controlled remote page in an affected Oculus Browser version.",
+        "The source vulnerability results in an unprivileged local process rather than only HTML injection, UI spoofing, or another non-process effect.",
+        "The affected Oculus Browser and Oculus Desktop installations are present in a compatible same-host execution context.",
+        "The Oculus Desktop installation and OVRServiceLauncher.exe are within the target CVE's affected version range.",
+        "The vulnerable handle exposure is triggerable from the source-created process, and that process can obtain and abuse the exposed handle.",
+        "The specific privileged outcome asserted by the edge is established; the target description does not specify acquisition mechanics or a SYSTEM-level identity."
+      ],
+      "reason": "CVE-2019-3562 describes arbitrary HTML injection in the Oculus Browser and only says an attacker could potentially execute code; it does not confirm achieved local process execution. CVE-2021-24038 requires an unprivileged process and describes exposure of a privileged process handle leading to local privilege escalation. A bounded capability bridge is therefore plausible only if the browser issue actually yields an unprivileged process in the same compatible host context as the vulnerable Oculus Desktop service and the handle can be obtained and abused. The supplied descriptions and absent environment observations do not verify those conditions, and the edge's stronger capture, abuse, and specific privilege claims overreach the evidence. The edge is not strictly supported without verification.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-24038"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2913,
+      "prompt_tokens": 2101,
+      "total_tokens": 5014,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2373,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 2098,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0040207,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0040207,
+        "upstream_inference_prompt_cost": 0.0005251,
+        "upstream_inference_completions_cost": 0.0034956
+      }
+    },
+    "latency_seconds": 27.626143800000136,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "8a7984c5093da7f4dd25a6e5d3fcee457eeb9a7aa5a0518f7015766471411e73",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2913,
+        "prompt_tokens": 2101,
+        "total_tokens": 5014,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2373,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2098,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0040207,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0040207,
+          "upstream_inference_prompt_cost": 0.0005251,
+          "upstream_inference_completions_cost": 0.0034956
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The source's potentially successful code execution is treated as a possible, not guaranteed, unprivileged local process.\",\"The Oculus Browser and Oculus Desktop vulnerabilities may be present on the same host, but this is an inference rather than an observation.\",\"The exposed handle may be reachable and usable by the source-created process, but the supplied descriptions do not establish that exploitation path.\"],\"confidence\":0.9,\"edge_id\":\"edge-0007\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"inject arbitrary HTML code\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"potentially execute code\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"an unprivileged process\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"expose a privileged process handle\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"local privilege escalation\"}],\"missing_conditions\":[\"A victim actually loads the attacker-controlled remote page in an affected Oculus Browser version.\",\"The source vulnerability results in an unprivileged local process rather than only HTML injection, UI spoofing, or another non-process effect.\",\"The affected Oculus Browser and Oculus Desktop installations are present in a compatible same-host execution context.\",\"The Oculus Desktop installation and OVRServiceLauncher.exe are within the target CVE's affected version range.\",\"The vulnerable handle exposure is triggerable from the source-created process, and that process can obtain and abuse the exposed handle.\",\"The specific privileged outcome asserted by the edge is established; the target description does not specify acquisition mechanics or a SYSTEM-level identity.\"],\"reason\":\"CVE-2019-3562 describes arbitrary HTML injection in the Oculus Browser and only says an attacker could potentially execute code; it does not confirm achieved local process execution. CVE-2021-24038 requires an unprivileged process and describes exposure of a privileged process handle leading to local privilege escalation. A bounded capability bridge is therefore plausible only if the browser issue actually yields an unprivileged process in the same compatible host context as the vulnerable Oculus Desktop service and the handle can be obtained and abused. The supplied descriptions and absent environment observations do not verify those conditions, and the edge's stronger capture, abuse, and specific privilege claims overreach the evidence. The edge is not strictly supported without verification.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-24038\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:34:46.726643+00:00"
+}

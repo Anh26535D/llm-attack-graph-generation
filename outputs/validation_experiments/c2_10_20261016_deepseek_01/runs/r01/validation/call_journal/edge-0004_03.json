@@ -1,0 +1,147 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T14:46:42.848591+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The source's 'potentially execute code' could be read as an OS-level local code-execution primitive, but that is an inference not stated in the description.",
+        "Oculus Browser and Oculus Desktop might be deployed on the same Windows host in some environment, but no supplied observation establishes co-installation.",
+        "An unprivileged code-execution context might be sufficient to create the hard link to a log file required by the target, but that capability is not established by the source description."
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0004",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "allowing an attacker to spoof UI and potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "This affects the Oculus Browser starting from version 5.2.7 until 5.7.11"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "in Oculus Desktop before 1.44.0.32849 on Windows"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users to write to arbitrary files and consequently gain privileges"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "via vectors involving a hard link to a log file"
+        }
+      ],
+      "missing_conditions": [
+        "Explicit environment observation that the source and target products run on the same host.",
+        "Confirmed source effect of code execution at an unprivileged local user level, rather than only 'potentially execute code' in the Oculus Browser UI.",
+        "Confirmed Oculus Desktop installation on Windows at an affected version (< 1.44.0.32849 per description).",
+        "Confirmed local-user permission and ability to create the hard link to a log file needed for CVE-2020-1885.",
+        "Causal/timing evidence that the source initial context precedes and enables the target hard-link vector.",
+        "Resolution of the target version discrepancy between the affected-list version '1.44.0.328549' and the description's 'before 1.44.0.32849'."
+      ],
+      "reason": "The source CVE-2019-3562 describes HTML injection into the Oculus Browser UI, UI spoofing, and 'potentially execute code'; it does not confirm that code execution occurs, that it is local/OS-level on the host, or that it can create hard links. The target CVE-2020-1885 requires a local user on Windows with Oculus Desktop before 1.44.0.32849 and a vector involving 'a hard link to a log file' to achieve privileged arbitrary file write/gain privileges. The edge claim converts modal 'potentially execute code' into established 'Initial code execution' and infers an unprivileged local context capable of hard-link creation; that causal bridge is not entailed by the supplied descriptions or by any explicit environment observations. Thus the edge is conditional at best: it cannot enter a strict graph as a supported edge unless same-host deployment, local code-execution context, affected Oculus Desktop version, and hard-link capability are verified.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 4760,
+      "prompt_tokens": 2221,
+      "total_tokens": 6981,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3979,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.000750061284,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.000750061284,
+        "upstream_inference_prompt_cost": 7.0333284e-05,
+        "upstream_inference_completions_cost": 0.000679728
+      }
+    },
+    "latency_seconds": 21.6600557999991,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "40c3b18d2cf733fa4ba53032aaa78e3e7ca20d4b9ddfdcd6785e242163830e0a",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4760,
+        "prompt_tokens": 2221,
+        "total_tokens": 6981,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3979,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.000750061284,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000750061284,
+          "upstream_inference_prompt_cost": 7.0333284e-05,
+          "upstream_inference_completions_cost": 0.000679728
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "baidu/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "Baidu"
+    },
+    "raw_response": "{\"assumptions\":[\"The source's 'potentially execute code' could be read as an OS-level local code-execution primitive, but that is an inference not stated in the description.\",\"Oculus Browser and Oculus Desktop might be deployed on the same Windows host in some environment, but no supplied observation establishes co-installation.\",\"An unprivileged code-execution context might be sufficient to create the hard link to a log file required by the target, but that capability is not established by the source description.\"],\"confidence\":0.9,\"edge_id\":\"edge-0004\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page could inject arbitrary HTML code into the Oculus Browser UI\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"allowing an attacker to spoof UI and potentially execute code\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"potentially execute code\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"This affects the Oculus Browser starting from version 5.2.7 until 5.7.11\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"Writing to an unprivileged file from a privileged OVRRedir.exe process\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"in Oculus Desktop before 1.44.0.32849 on Windows\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"allows local users to write to arbitrary files and consequently gain privileges\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"via vectors involving a hard link to a log file\"}],\"missing_conditions\":[\"Explicit environment observation that the source and target products run on the same host.\",\"Confirmed source effect of code execution at an unprivileged local user level, rather than only 'potentially execute code' in the Oculus Browser UI.\",\"Confirmed Oculus Desktop installation on Windows at an affected version (< 1.44.0.32849 per description).\",\"Confirmed local-user permission and ability to create the hard link to a log file needed for CVE-2020-1885.\",\"Causal/timing evidence that the source initial context precedes and enables the target hard-link vector.\",\"Resolution of the target version discrepancy between the affected-list version '1.44.0.328549' and the description's 'before 1.44.0.32849'.\"],\"reason\":\"The source CVE-2019-3562 describes HTML injection into the Oculus Browser UI, UI spoofing, and 'potentially execute code'; it does not confirm that code execution occurs, that it is local/OS-level on the host, or that it can create hard links. The target CVE-2020-1885 requires a local user on Windows with Oculus Desktop before 1.44.0.32849 and a vector involving 'a hard link to a log file' to achieve privileged arbitrary file write/gain privileges. The edge claim converts modal 'potentially execute code' into established 'Initial code execution' and infers an unprivileged local context capable of hard-link creation; that causal bridge is not entailed by the supplied descriptions or by any explicit environment observations. Thus the edge is conditional at best: it cannot enter a strict graph as a supported edge unless same-host deployment, local code-execution context, affected Oculus Desktop version, and hard-link capability are verified.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-1885\"}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:47:04.512948+00:00"
+}

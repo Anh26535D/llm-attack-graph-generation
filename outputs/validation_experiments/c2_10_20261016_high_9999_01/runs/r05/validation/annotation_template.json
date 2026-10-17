@@ -1,0 +1,1118 @@
+{
+  "independent": true,
+  "label_source": "human",
+  "provenance": "",
+  "graph_sha256": "0cf1016073dbb5b461e179d5387d1662d5caa276923814040fe50a7e0df628d2",
+  "labels": {
+    "edge-0001": null,
+    "edge-0002": null,
+    "edge-0003": null,
+    "edge-0004": null,
+    "edge-0005": null,
+    "edge-0006": null,
+    "edge-0007": null,
+    "edge-0008": null,
+    "edge-0009": null,
+    "edge-0010": null
+  },
+  "candidates": [
+    {
+      "edge_id": "edge-0001",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_oculus_browser_inject",
+        "to": "node_oculus_ovrredir_lpe",
+        "label": "Provides local unprivileged code execution required to create hardlinks against unprivileged log files targeted by OVRRedir.exe"
+      },
+      "source_node": {
+        "id": "node_oculus_browser_inject",
+        "label": "Oculus Browser Remote HTML Injection and Code Execution (5.2.7 - 5.7.11)",
+        "precondition": "Attacker lures victim using Oculus Browser (versions 5.2.7 through 5.7.11) to visit a malicious remote web page.",
+        "postcondition": "Attacker injects arbitrary HTML into the Oculus Browser UI, spoofs UI elements, and gains local unprivileged code execution within the user's session."
+      },
+      "target_node": {
+        "id": "node_oculus_ovrredir_lpe",
+        "label": "Oculus Desktop OVRRedir.exe Hardlink Arbitrary File Write Privilege Escalation (< 1.44.0.32849)",
+        "precondition": "Attacker possesses local unprivileged code execution on a Windows host running Oculus Desktop before version 1.44.0.32849.",
+        "postcondition": "Attacker creates a hard link pointing an unprivileged log file to a critical target file, causing the privileged OVRRedir.exe process to write to arbitrary files and elevating privileges to SYSTEM."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2019-3562",
+          "description": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code. This affects the Oculus Browser starting from version 5.2.7 until 5.7.11.",
+          "affected": [
+            {
+              "product": "Oculus Browser",
+              "vendor": "Oculus",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "5.7.11"
+                },
+                {
+                  "lessThan": "unspecified",
+                  "status": "affected",
+                  "version": "5.2.7",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThan": "5.2.7",
+                  "status": "unaffected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2019-3562",
+            "path": "CVE-2019-3562.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/3xxx/CVE-2019-3562.json",
+            "sha256": "137bef4174fd3eb53c861e390718ce09e1aebb49aaae7f3efd4af426723b9bd3",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "html_injection": {
+                "quote": "inject arbitrary HTML code",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              },
+              "possible_code_execution": {
+                "quote": "potentially execute code",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "victim_page_visit": {
+                "quote": "A remote web page",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {}
+          },
+          "applicability_rule": {
+            "service": "oculus_browser",
+            "access": "network",
+            "note": "'potentially execute code': user-level foothold is the generous reading. Requires the victim to open an attacker-controlled page (inferred from 'remote web page').",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2020-1885",
+          "description": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.",
+          "affected": [
+            {
+              "product": "Oculus Desktop",
+              "vendor": "Facebook",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "1.44.0.328549"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-1885",
+            "path": "CVE-2020-1885.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/1xxx/CVE-2020-1885.json",
+            "sha256": "d0a5ad39427223f0a713a0f159a9d257f0a6f8635e16cb7a680efb304b979bc0",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "file_write": {
+                "quote": "write to arbitrary files",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              },
+              "privilege_escalation": {
+                "quote": "gain privileges",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "local_user": {
+                "quote": "allows local users",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              },
+              "windows": {
+                "quote": "on Windows",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "windows": {
+                "quote": "on Windows",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "oculus_desktop",
+            "access": "local",
+            "note": "The CVE record's version field has a typo (1.44.0.328549); the description is used. 'gain privileges' is read as admin.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0002",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_oculus_browser_inject",
+        "to": "node_oculus_ovrservice_lpe",
+        "label": "Provides local unprivileged process execution required to capture privileged handles exposed by OVRServiceLauncher.exe"
+      },
+      "source_node": {
+        "id": "node_oculus_browser_inject",
+        "label": "Oculus Browser Remote HTML Injection and Code Execution (5.2.7 - 5.7.11)",
+        "precondition": "Attacker lures victim using Oculus Browser (versions 5.2.7 through 5.7.11) to visit a malicious remote web page.",
+        "postcondition": "Attacker injects arbitrary HTML into the Oculus Browser UI, spoofs UI elements, and gains local unprivileged code execution within the user's session."
+      },
+      "target_node": {
+        "id": "node_oculus_ovrservice_lpe",
+        "label": "Oculus Desktop OVRServiceLauncher.exe Handle Exposure Privilege Escalation (1.39 - 31.1.0.67.507)",
+        "precondition": "Attacker has local unprivileged code execution on a Windows host running Oculus Desktop (versions > 1.39 and < 31.1.0.67.507).",
+        "postcondition": "Privileged process handle is leaked to the attacker's unprivileged process, permitting local privilege escalation to high-integrity/SYSTEM."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2019-3562",
+          "description": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code. This affects the Oculus Browser starting from version 5.2.7 until 5.7.11.",
+          "affected": [
+            {
+              "product": "Oculus Browser",
+              "vendor": "Oculus",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "5.7.11"
+                },
+                {
+                  "lessThan": "unspecified",
+                  "status": "affected",
+                  "version": "5.2.7",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThan": "5.2.7",
+                  "status": "unaffected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2019-3562",
+            "path": "CVE-2019-3562.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/3xxx/CVE-2019-3562.json",
+            "sha256": "137bef4174fd3eb53c861e390718ce09e1aebb49aaae7f3efd4af426723b9bd3",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "html_injection": {
+                "quote": "inject arbitrary HTML code",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              },
+              "possible_code_execution": {
+                "quote": "potentially execute code",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "victim_page_visit": {
+                "quote": "A remote web page",
+                "cve_id": "CVE-2019-3562",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {}
+          },
+          "applicability_rule": {
+            "service": "oculus_browser",
+            "access": "network",
+            "note": "'potentially execute code': user-level foothold is the generous reading. Requires the victim to open an attacker-controlled page (inferred from 'remote web page').",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2021-24038",
+          "description": "Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation. This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.",
+          "affected": [
+            {
+              "product": "Oculus Desktop",
+              "vendor": "Facebook",
+              "versions": [
+                {
+                  "lessThan": "unspecified",
+                  "status": "unaffected",
+                  "version": "31.1.0.67.507",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThan": "31.1.0.67.507",
+                  "status": "affected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThanOrEqual": "1.39",
+                  "status": "unaffected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2021-24038",
+            "path": "CVE-2021-24038.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/24xxx/CVE-2021-24038.json",
+            "sha256": "acb0748685128bcd238f4b070ec7f0231c2f8104cc878cef0105dfe556281a2c",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "privilege_escalation": {
+                "quote": "local privilege escalation",
+                "cve_id": "CVE-2021-24038",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "local_user": {
+                "quote": "an unprivileged process",
+                "cve_id": "CVE-2021-24038",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {}
+          },
+          "applicability_rule": {
+            "service": "oculus_desktop",
+            "access": "local",
+            "note": "",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0003",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_oculus_ovrredir_lpe",
+        "to": "node_oculus_system_compromise",
+        "label": "Escalates local privileges to SYSTEM via arbitrary file write overwrite of system binaries/DLLs"
+      },
+      "source_node": {
+        "id": "node_oculus_ovrredir_lpe",
+        "label": "Oculus Desktop OVRRedir.exe Hardlink Arbitrary File Write Privilege Escalation (< 1.44.0.32849)",
+        "precondition": "Attacker possesses local unprivileged code execution on a Windows host running Oculus Desktop before version 1.44.0.32849.",
+        "postcondition": "Attacker creates a hard link pointing an unprivileged log file to a critical target file, causing the privileged OVRRedir.exe process to write to arbitrary files and elevating privileges to SYSTEM."
+      },
+      "target_node": {
+        "id": "node_oculus_system_compromise",
+        "label": "Full Host Compromise via Oculus Windows Privilege Escalation",
+        "precondition": "Attacker obtains local privilege escalation via OVRRedir.exe arbitrary file write or OVRServiceLauncher.exe handle exposure.",
+        "postcondition": "Full administrative/SYSTEM access to the host operating system with complete control over data, processes, and configurations."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2020-1885",
+          "description": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.",
+          "affected": [
+            {
+              "product": "Oculus Desktop",
+              "vendor": "Facebook",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "1.44.0.328549"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-1885",
+            "path": "CVE-2020-1885.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/1xxx/CVE-2020-1885.json",
+            "sha256": "d0a5ad39427223f0a713a0f159a9d257f0a6f8635e16cb7a680efb304b979bc0",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "file_write": {
+                "quote": "write to arbitrary files",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              },
+              "privilege_escalation": {
+                "quote": "gain privileges",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "local_user": {
+                "quote": "allows local users",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              },
+              "windows": {
+                "quote": "on Windows",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "windows": {
+                "quote": "on Windows",
+                "cve_id": "CVE-2020-1885",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "oculus_desktop",
+            "access": "local",
+            "note": "The CVE record's version field has a typo (1.44.0.328549); the description is used. 'gain privileges' is read as admin.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0004",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_oculus_ovrservice_lpe",
+        "to": "node_oculus_system_compromise",
+        "label": "Escalates local privileges to SYSTEM via manipulation of leaked privileged process handle"
+      },
+      "source_node": {
+        "id": "node_oculus_ovrservice_lpe",
+        "label": "Oculus Desktop OVRServiceLauncher.exe Handle Exposure Privilege Escalation (1.39 - 31.1.0.67.507)",
+        "precondition": "Attacker has local unprivileged code execution on a Windows host running Oculus Desktop (versions > 1.39 and < 31.1.0.67.507).",
+        "postcondition": "Privileged process handle is leaked to the attacker's unprivileged process, permitting local privilege escalation to high-integrity/SYSTEM."
+      },
+      "target_node": {
+        "id": "node_oculus_system_compromise",
+        "label": "Full Host Compromise via Oculus Windows Privilege Escalation",
+        "precondition": "Attacker obtains local privilege escalation via OVRRedir.exe arbitrary file write or OVRServiceLauncher.exe handle exposure.",
+        "postcondition": "Full administrative/SYSTEM access to the host operating system with complete control over data, processes, and configurations."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2021-24038",
+          "description": "Due to a bug with management of handles in OVRServiceLauncher.exe, an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation. This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.",
+          "affected": [
+            {
+              "product": "Oculus Desktop",
+              "vendor": "Facebook",
+              "versions": [
+                {
+                  "lessThan": "unspecified",
+                  "status": "unaffected",
+                  "version": "31.1.0.67.507",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThan": "31.1.0.67.507",
+                  "status": "affected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                },
+                {
+                  "lessThanOrEqual": "1.39",
+                  "status": "unaffected",
+                  "version": "unspecified",
+                  "versionType": "custom"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2021-24038",
+            "path": "CVE-2021-24038.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/24xxx/CVE-2021-24038.json",
+            "sha256": "acb0748685128bcd238f4b070ec7f0231c2f8104cc878cef0105dfe556281a2c",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "privilege_escalation": {
+                "quote": "local privilege escalation",
+                "cve_id": "CVE-2021-24038",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "local_user": {
+                "quote": "an unprivileged process",
+                "cve_id": "CVE-2021-24038",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {}
+          },
+          "applicability_rule": {
+            "service": "oculus_desktop",
+            "access": "local",
+            "note": "",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0005",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_pisignage_path_traversal",
+        "to": "node_raspap_webconsole_rce",
+        "label": "Leaked credentials and session tokens from downloaded configuration files satisfy authentication requirements for RaspAP"
+      },
+      "source_node": {
+        "id": "node_pisignage_path_traversal",
+        "label": "piSignage Player API Path Traversal Arbitrary File Download (< 2.6.4)",
+        "precondition": "Attacker holds low-privilege authenticated user access to piSignage web application prior to version 2.6.4.",
+        "postcondition": "Attacker downloads arbitrary sensitive files (including system configs, shadow files, and service credentials) from the underlying Raspberry Pi via api/settings/log?file=../."
+      },
+      "target_node": {
+        "id": "node_raspap_webconsole_rce",
+        "label": "RaspAP 2.5 Web Console Remote Command Execution (includes/webconsole.php)",
+        "precondition": "Attacker possesses valid authenticated web access to RaspAP 2.5 (e.g., via default credentials or credentials extracted from arbitrary file download).",
+        "postcondition": "Attacker uses the misconfigured, unrestricted web console to execute arbitrary OS commands, upload malicious files, and execute code on the Raspberry Pi."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2019-20354",
+          "description": "The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal. In other words, this issue is in the player API for log download.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2019-20354",
+            "path": "CVE-2019-20354.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2019/20xxx/CVE-2019-20354.json",
+            "sha256": "788efb357a4566d9181068aad5a01347ad249307300d9618cdf72aba7dd966dc",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "file_read": {
+                "quote": "download arbitrary files",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "authenticated as a low-privilege user",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "from the Raspberry Pi",
+                "cve_id": "CVE-2019-20354",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "pisignage",
+            "access": "network",
+            "note": "Arbitrary file read only; the record does not say what the files contain, so no foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2020-24572",
+          "description": "An issue was discovered in includes/webconsole.php in RaspAP 2.5. With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "code_execution": {
+                "quote": "execute commands on the system",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "With authenticated access",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "underlying OS (Raspberry Pi)",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspap",
+            "access": "network",
+            "note": "Privilege of the executed commands is not stated in the record, so only a user-level foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0006",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_raspi_default_creds",
+        "to": "node_raspap_webconsole_rce",
+        "label": "Default administrative credentials allow access to local web interfaces and services including RaspAP"
+      },
+      "source_node": {
+        "id": "node_raspi_default_creds",
+        "label": "Raspberry Pi OS Default Credentials Exploitation (<= 5.10)",
+        "precondition": "Raspberry Pi running Raspberry Pi OS through version 5.10 is accessible over the network or console with unmodified default credentials ('pi':'raspberry').",
+        "postcondition": "Attacker gains authenticated shell and administrator/sudo access on the Raspberry Pi system."
+      },
+      "target_node": {
+        "id": "node_raspap_webconsole_rce",
+        "label": "RaspAP 2.5 Web Console Remote Command Execution (includes/webconsole.php)",
+        "precondition": "Attacker possesses valid authenticated web access to RaspAP 2.5 (e.g., via default credentials or credentials extracted from arbitrary file download).",
+        "postcondition": "Attacker uses the misconfigured, unrestricted web console to execute arbitrary OS commands, upload malicious files, and execute code on the Raspberry Pi."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2021-38759",
+          "description": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2021-38759",
+            "path": "CVE-2021-38759.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38759.json",
+            "sha256": "eaca8d8cb870dfccf552ba3019b6cfb98f615103ada4af3578f86358bb496a19",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "admin": {
+                "quote": "gain administrator privileges",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "default_password_unchanged": {
+                "quote": "If not changed",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "Raspberry Pi OS",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspberry_pi_os",
+            "access": "network",
+            "note": "The record does not name a remote service (e.g. SSH); network reachability of the host is assumed.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2020-24572",
+          "description": "An issue was discovered in includes/webconsole.php in RaspAP 2.5. With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "code_execution": {
+                "quote": "execute commands on the system",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "With authenticated access",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "underlying OS (Raspberry Pi)",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspap",
+            "access": "network",
+            "note": "Privilege of the executed commands is not stated in the record, so only a user-level foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0007",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_raspi_default_creds",
+        "to": "node_raspi_os_control_audio",
+        "label": "Provides root/sudo shell access directly controlling OS services and hardware interfaces"
+      },
+      "source_node": {
+        "id": "node_raspi_default_creds",
+        "label": "Raspberry Pi OS Default Credentials Exploitation (<= 5.10)",
+        "precondition": "Raspberry Pi running Raspberry Pi OS through version 5.10 is accessible over the network or console with unmodified default credentials ('pi':'raspberry').",
+        "postcondition": "Attacker gains authenticated shell and administrator/sudo access on the Raspberry Pi system."
+      },
+      "target_node": {
+        "id": "node_raspi_os_control_audio",
+        "label": "Raspberry Pi OS Command and Audio Hardware Control",
+        "precondition": "Attacker attains OS command execution or administrator access on the Raspberry Pi via RaspAP web console or default credentials.",
+        "postcondition": "Attacker controls processes, drives audio output through connected peripheral equipment, and alters power consumption states."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2021-38759",
+          "description": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2021-38759",
+            "path": "CVE-2021-38759.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38759.json",
+            "sha256": "eaca8d8cb870dfccf552ba3019b6cfb98f615103ada4af3578f86358bb496a19",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "admin": {
+                "quote": "gain administrator privileges",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "default_password_unchanged": {
+                "quote": "If not changed",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "Raspberry Pi OS",
+                "cve_id": "CVE-2021-38759",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspberry_pi_os",
+            "access": "network",
+            "note": "The record does not name a remote service (e.g. SSH); network reachability of the host is assumed.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0008",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_raspap_webconsole_rce",
+        "to": "node_raspi_os_control_audio",
+        "label": "Executes shell commands on Raspberry Pi OS to manipulate audio playback software and power draw"
+      },
+      "source_node": {
+        "id": "node_raspap_webconsole_rce",
+        "label": "RaspAP 2.5 Web Console Remote Command Execution (includes/webconsole.php)",
+        "precondition": "Attacker possesses valid authenticated web access to RaspAP 2.5 (e.g., via default credentials or credentials extracted from arbitrary file download).",
+        "postcondition": "Attacker uses the misconfigured, unrestricted web console to execute arbitrary OS commands, upload malicious files, and execute code on the Raspberry Pi."
+      },
+      "target_node": {
+        "id": "node_raspi_os_control_audio",
+        "label": "Raspberry Pi OS Command and Audio Hardware Control",
+        "precondition": "Attacker attains OS command execution or administrator access on the Raspberry Pi via RaspAP web console or default credentials.",
+        "postcondition": "Attacker controls processes, drives audio output through connected peripheral equipment, and alters power consumption states."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2020-24572",
+          "description": "An issue was discovered in includes/webconsole.php in RaspAP 2.5. With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system (including ones for uploading of files and execution of code).",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2020-24572",
+            "path": "CVE-2020-24572.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2020/24xxx/CVE-2020-24572.json",
+            "sha256": "f90c12a425631f73dd029a0ea3ff3f2becfc872c4fbc035b4e21bcd854b10995",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "code_execution": {
+                "quote": "execute commands on the system",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "authentication": {
+                "quote": "With authenticated access",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "underlying OS (Raspberry Pi)",
+                "cve_id": "CVE-2020-24572",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspap",
+            "access": "network",
+            "note": "Privilege of the executed commands is not stated in the record, so only a user-level foothold is granted.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0009",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_raspi_os_control_audio",
+        "to": "node_raspi_glowworm_sidechannel",
+        "label": "Directs playback of sensitive speech or victim communication through connected audio-output equipment powered by the Raspberry Pi"
+      },
+      "source_node": {
+        "id": "node_raspi_os_control_audio",
+        "label": "Raspberry Pi OS Command and Audio Hardware Control",
+        "precondition": "Attacker attains OS command execution or administrator access on the Raspberry Pi via RaspAP web console or default credentials.",
+        "postcondition": "Attacker controls processes, drives audio output through connected peripheral equipment, and alters power consumption states."
+      },
+      "target_node": {
+        "id": "node_raspi_glowworm_sidechannel",
+        "label": "Raspberry Pi Power LED Glowworm Optical Acoustic Eavesdropping",
+        "precondition": "Raspberry Pi 3 B+ or 4 B (through 2021-08-09) supplies power to audio-output speakers playing speech, and attacker has optical line-of-sight to the power indicator LED using a telescope and electro-optical sensor.",
+        "postcondition": "Attacker recovers sensitive speech and sound signals played through the speakers by measuring and analyzing optical fluctuations corresponding to power consumption."
+      },
+      "evidence": {
+        "target": {
+          "cve_id": "CVE-2021-38545",
+          "description": "Raspberry Pi 3 B+ and 4 B devices through 2021-08-09, in certain specific use cases in which the device supplies power to audio-output equipment, allow remote attackers to recover speech signals from an LED on the device, via a telescope and an electro-optical sensor, aka a \"Glowworm\" attack. We assume that the Raspberry Pi supplies power to some speakers. The power indicator LED of the Raspberry Pi is connected directly to the power line, as a result, the intensity of a device's power indicator LED is correlative to the power consumption. The sound played by the speakers affects the Raspberry Pi's power consumption and as a result is also correlative to the light intensity of the LED. By analyzing measurements obtained from an electro-optical sensor directed at the power indicator LED of the Raspberry Pi, we can recover the sound played by the speakers.",
+          "affected": [
+            {
+              "product": "n/a",
+              "vendor": "n/a",
+              "versions": [
+                {
+                  "status": "affected",
+                  "version": "n/a"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2021-38545",
+            "path": "CVE-2021-38545.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2021/38xxx/CVE-2021-38545.json",
+            "sha256": "c6021534cd7b89a6fad011ef0a3b24093d006c60b0a503bde7327a7686b325c6",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "audio_recovery": {
+                "quote": "recover speech signals",
+                "cve_id": "CVE-2021-38545",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "audio_equipment": {
+                "quote": "supplies power to audio-output equipment",
+                "cve_id": "CVE-2021-38545",
+                "kind": "description_evidence"
+              },
+              "optical_access": {
+                "quote": "via a telescope and an electro-optical sensor",
+                "cve_id": "CVE-2021-38545",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "raspberry_pi": {
+                "quote": "Raspberry Pi 3 B+ and 4 B devices",
+                "cve_id": "CVE-2021-38545",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "raspberry_pi_hw",
+            "access": "line_of_sight",
+            "note": "Needs optical line of sight to the device; modelled as the host flag-based access type 'line_of_sight'.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    },
+    {
+      "edge_id": "edge-0010",
+      "original_edge_id": null,
+      "edge": {
+        "from": "node_jetson_iommu_dma",
+        "to": "node_jetson_system_takeover",
+        "label": "Leverages unconstrained physical memory access to overwrite kernel data, execute code, and compromise adjacent hardware components"
+      },
+      "source_node": {
+        "id": "node_jetson_iommu_dma",
+        "label": "NVIDIA Jetson Linux IOMMU Misconfiguration DMA Exploitation",
+        "precondition": "Unprivileged attacker possesses physical access to an NVIDIA Jetson board running vulnerable Jetson Linux and interfaces directly with the PCI bus.",
+        "postcondition": "Attacker bypasses IOMMU restrictions to obtain direct read/write Direct Memory Access (DMA) to the entire system address space."
+      },
+      "target_node": {
+        "id": "node_jetson_system_takeover",
+        "label": "NVIDIA Jetson Total System Takeover and Scope Extension",
+        "precondition": "Attacker achieves direct read/write access across the entire system address space via PCI bus DMA.",
+        "postcondition": "Attacker achieves complete denial of service, arbitrary kernel/system code execution, privilege escalation to highest execution levels, and cross-component integrity/confidentiality breach."
+      },
+      "evidence": {
+        "source": {
+          "cve_id": "CVE-2022-21819",
+          "description": "NVIDIA distributions of Jetson Linux contain a vulnerability where an error in the IOMMU configuration may allow an unprivileged attacker with physical access to the board direct read/write access to the entire system address space through the PCI bus. Such an attack could result in denial of service, code execution, escalation of privileges, and impact to data integrity and confidentiality. The scope impact may extend to other components.",
+          "affected": [
+            {
+              "vendor": "NVIDIA",
+              "product": "Jetson Nano, Jetson Nano 2GB",
+              "versions": [
+                {
+                  "version": "All 32.x versions prior to 32.7.1",
+                  "status": "affected"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2022-21819",
+            "path": "CVE-2022-21819.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2022/21xxx/CVE-2022-21819.json",
+            "sha256": "1405d5cd34bfdbdb2b47a79aee4df629c6be2a67750e724736b8a9e16cbe7d79",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "memory_read_write": {
+                "quote": "direct read/write access to the entire system address space",
+                "cve_id": "CVE-2022-21819",
+                "kind": "description_evidence"
+              },
+              "possible_code_execution": {
+                "quote": "could result in denial of service, code execution",
+                "cve_id": "CVE-2022-21819",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "physical_access": {
+                "quote": "physical access to the board",
+                "cve_id": "CVE-2022-21819",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "jetson": {
+                "quote": "Jetson Linux",
+                "cve_id": "CVE-2022-21819",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "jetson_linux",
+            "access": "physical",
+            "note": "The record lists Jetson Nano / Nano 2GB, so the service is Jetson Linux on such a board; nothing is claimed for Jetson TX1.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        },
+        "target": {
+          "cve_id": "CVE-2022-21819",
+          "description": "NVIDIA distributions of Jetson Linux contain a vulnerability where an error in the IOMMU configuration may allow an unprivileged attacker with physical access to the board direct read/write access to the entire system address space through the PCI bus. Such an attack could result in denial of service, code execution, escalation of privileges, and impact to data integrity and confidentiality. The scope impact may extend to other components.",
+          "affected": [
+            {
+              "vendor": "NVIDIA",
+              "product": "Jetson Nano, Jetson Nano 2GB",
+              "versions": [
+                {
+                  "version": "All 32.x versions prior to 32.7.1",
+                  "status": "affected"
+                }
+              ]
+            }
+          ],
+          "provenance": {
+            "cve_id": "CVE-2022-21819",
+            "path": "CVE-2022-21819.json",
+            "source_url": "https://raw.githubusercontent.com/CVEProject/cvelistV5/73ca210d8ac127ab434175fe2a8a050d3c8844d0/cves/2022/21xxx/CVE-2022-21819.json",
+            "sha256": "1405d5cd34bfdbdb2b47a79aee4df629c6be2a67750e724736b8a9e16cbe7d79",
+            "field": "containers.cna.descriptions[en]"
+          },
+          "facts": {
+            "effects": {
+              "memory_read_write": {
+                "quote": "direct read/write access to the entire system address space",
+                "cve_id": "CVE-2022-21819",
+                "kind": "description_evidence"
+              },
+              "possible_code_execution": {
+                "quote": "could result in denial of service, code execution",
+                "cve_id": "CVE-2022-21819",
+                "kind": "description_evidence"
+              }
+            },
+            "requirements": {
+              "physical_access": {
+                "quote": "physical access to the board",
+                "cve_id": "CVE-2022-21819",
+                "kind": "description_evidence"
+              }
+            },
+            "platforms": {
+              "jetson": {
+                "quote": "Jetson Linux",
+                "cve_id": "CVE-2022-21819",
+                "kind": "description_evidence"
+              }
+            }
+          },
+          "applicability_rule": {
+            "service": "jetson_linux",
+            "access": "physical",
+            "note": "The record lists Jetson Nano / Nano 2GB, so the service is Jetson Linux on such a board; nothing is claimed for Jetson TX1.",
+            "kind": "curated_description_interpretation",
+            "warning": "E1 effect levels are not guaranteed CVE postconditions"
+          }
+        }
+      }
+    }
+  ]
+}

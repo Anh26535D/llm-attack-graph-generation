@@ -1,0 +1,129 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:58:41.949599+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The source path traversal would expose files containing usable OS user credentials, not just application logs or non-credential configuration.",
+        "The piSignage web application host and the Raspberry Pi OS host subject to CVE-2021-38759 are the same or otherwise share a filesystem/authentication boundary.",
+        "Any credentials obtained from files would be usable against the authentication path needed for CVE-2021-38759.",
+        "The target pi account default password remains unchanged and an authentication service or interface is reachable."
+      ],
+      "confidence": 0.84,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "Source: authenticated low-privilege piSignage web user credentials are available.",
+        "Source: the piSignage web application process can read OS credential files such as /etc/shadow.",
+        "Source: downloaded arbitrary files actually contain usable OS user credential material.",
+        "Source-target: there is a verified same-host or shared filesystem/authentication relationship between the piSignage host and the Raspberry Pi OS target.",
+        "Target: Raspberry Pi OS through 5.10 is running with the default pi account and raspberry password unchanged.",
+        "Target: a reachable authentication service, local console, or other access path exists to use the credentials; the target description does not name a remote service.",
+        "Target: any extracted credentials correspond to the unchanged-default-password condition rather than being independent credentials."
+      ],
+      "reason": "Source CVE-2019-20354 actually describes an authenticated low-privilege remote attacker being able to download arbitrary files from the Raspberry Pi via path traversal. It does not state that /etc/shadow or other credential-bearing files are readable, nor that the web application process has permission to read them. Target CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the pi account's raspberry default password unchanged; if unchanged, attackers can gain administrator privileges. The edge's asserted bridge, downloading system files to extract OS user credentials, is overbroad: arbitrary file read may potentially expose credential material, but the descriptions do not establish that it does, that the same target/OS environment is involved, or that extracted credentials satisfy or lead to the unchanged-default-password condition. It should not enter a strict graph as a supported edge; it is at most conditional unless the missing prerequisites are independently verified.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 6125,
+      "prompt_tokens": 2025,
+      "total_tokens": 8150,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 5484,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.004285,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.004285,
+        "upstream_inference_prompt_cost": 0.00030375,
+        "upstream_inference_completions_cost": 0.00398125
+      }
+    },
+    "latency_seconds": 37.24327639999865,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "2c78490f288b7a9afb512dc0b73118929cc7164b20b8b07dbbd0c8d468ea71c6",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6125,
+        "prompt_tokens": 2025,
+        "total_tokens": 8150,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5484,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.004285,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004285,
+          "upstream_inference_prompt_cost": 0.00030375,
+          "upstream_inference_completions_cost": 0.00398125
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The source path traversal would expose files containing usable OS user credentials, not just application logs or non-credential configuration.\",\"The piSignage web application host and the Raspberry Pi OS host subject to CVE-2021-38759 are the same or otherwise share a filesystem/authentication boundary.\",\"Any credentials obtained from files would be usable against the authentication path needed for CVE-2021-38759.\",\"The target pi account default password remains unchanged and an authentication service or interface is reachable.\"],\"confidence\":0.84,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"}],\"missing_conditions\":[\"Source: authenticated low-privilege piSignage web user credentials are available.\",\"Source: the piSignage web application process can read OS credential files such as /etc/shadow.\",\"Source: downloaded arbitrary files actually contain usable OS user credential material.\",\"Source-target: there is a verified same-host or shared filesystem/authentication relationship between the piSignage host and the Raspberry Pi OS target.\",\"Target: Raspberry Pi OS through 5.10 is running with the default pi account and raspberry password unchanged.\",\"Target: a reachable authentication service, local console, or other access path exists to use the credentials; the target description does not name a remote service.\",\"Target: any extracted credentials correspond to the unchanged-default-password condition rather than being independent credentials.\"],\"reason\":\"Source CVE-2019-20354 actually describes an authenticated low-privilege remote attacker being able to download arbitrary files from the Raspberry Pi via path traversal. It does not state that /etc/shadow or other credential-bearing files are readable, nor that the web application process has permission to read them. Target CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the pi account's raspberry default password unchanged; if unchanged, attackers can gain administrator privileges. The edge's asserted bridge, downloading system files to extract OS user credentials, is overbroad: arbitrary file read may potentially expose credential material, but the descriptions do not establish that it does, that the same target/OS environment is involved, or that extracted credentials satisfy or lead to the unchanged-default-password condition. It should not enter a strict graph as a supported edge; it is at most conditional unless the missing prerequisites are independently verified.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-38759\"}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:59:19.196600+00:00"
+}

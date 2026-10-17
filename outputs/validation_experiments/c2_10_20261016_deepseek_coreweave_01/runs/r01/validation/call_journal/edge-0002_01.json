@@ -1,0 +1,124 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:51:58.017547+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Administrative host access can expose or reset RaspAP web console authentication credentials.",
+        "The default-credentialed Raspberry Pi host is the same host running RaspAP or otherwise has access to RaspAP credential storage.",
+        "RaspAP credential storage or authentication configuration is readable or writable with the source postcondition's 'pi' user privileges and sudo/administrative control.",
+        "The target RaspAP web interface is reachable over the network from the attacker."
+      ],
+      "confidence": 0.2,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        }
+      ],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping",
+        "A mapped source CVE with evidence that administrative host access allows extracting or resetting RaspAP web console credentials",
+        "Confirmation that RaspAP is deployed on the same host as the default-credentialed Raspberry Pi account",
+        "Evidence that RaspAP credential storage or authentication configuration is accessible or resettable from administrative host access",
+        "Network access from the attacker to the RaspAP web interface",
+        "Knowledge of valid or default RaspAP credentials, or a verified credential-reset path"
+      ],
+      "reason": "The source node asserts authenticated access to a Raspberry Pi system with 'pi' user privileges and sudo/administrative control, but it has no mapped source CVE in the supplied evidence. The target CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5 and then describes post-authentication command execution on the underlying Raspberry Pi OS: an attacker can 'execute commands on the system' on the 'underlying OS (Raspberry Pi)'. The edge's bridge, that administrative host access allows extracting or resetting RaspAP web console authentication credentials, is not stated in CVE-2020-24572 or any supplied source CVE description. That bridge would require additional unverified assumptions about same-host deployment and accessible credential storage or reset paths. Therefore the edge is unsupported and cannot enter a strict evidence graph.",
+      "source_cve_id": null,
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 3384,
+      "prompt_tokens": 1373,
+      "total_tokens": 4757,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2884,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00240555,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00240555,
+        "upstream_inference_prompt_cost": 0.00020595,
+        "upstream_inference_completions_cost": 0.0021996
+      }
+    },
+    "latency_seconds": 18.02264340000147,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "56e04359027ef320880834a63d1291e983756b0094de335bd2883b4d44ef738f",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 3384,
+        "prompt_tokens": 1373,
+        "total_tokens": 4757,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2884,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00240555,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00240555,
+          "upstream_inference_prompt_cost": 0.00020595,
+          "upstream_inference_completions_cost": 0.0021996
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Administrative host access can expose or reset RaspAP web console authentication credentials.\",\"The default-credentialed Raspberry Pi host is the same host running RaspAP or otherwise has access to RaspAP credential storage.\",\"RaspAP credential storage or authentication configuration is readable or writable with the source postcondition's 'pi' user privileges and sudo/administrative control.\",\"The target RaspAP web interface is reachable over the network from the attacker.\"],\"confidence\":0.2,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"}],\"missing_conditions\":[\"unique_source_and_target_CVE_mapping\",\"A mapped source CVE with evidence that administrative host access allows extracting or resetting RaspAP web console credentials\",\"Confirmation that RaspAP is deployed on the same host as the default-credentialed Raspberry Pi account\",\"Evidence that RaspAP credential storage or authentication configuration is accessible or resettable from administrative host access\",\"Network access from the attacker to the RaspAP web interface\",\"Knowledge of valid or default RaspAP credentials, or a verified credential-reset path\"],\"reason\":\"The source node asserts authenticated access to a Raspberry Pi system with 'pi' user privileges and sudo/administrative control, but it has no mapped source CVE in the supplied evidence. The target CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5 and then describes post-authentication command execution on the underlying Raspberry Pi OS: an attacker can 'execute commands on the system' on the 'underlying OS (Raspberry Pi)'. The edge's bridge, that administrative host access allows extracting or resetting RaspAP web console authentication credentials, is not stated in CVE-2020-24572 or any supplied source CVE description. That bridge would require additional unverified assumptions about same-host deployment and accessible credential storage or reset paths. Therefore the edge is unsupported and cannot enter a strict evidence graph.\",\"source_cve_id\":null,\"suggested_status\":\"unsupported\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:52:16.041985+00:00"
+}

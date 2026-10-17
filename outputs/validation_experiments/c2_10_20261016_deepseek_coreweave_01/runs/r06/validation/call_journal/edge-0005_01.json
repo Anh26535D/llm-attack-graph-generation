@@ -1,0 +1,137 @@
+{
+  "edge_id": "edge-0005",
+  "started_at": "2026-10-16T14:55:11.743460+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The source's 'potentially execute code' may be realized as unprivileged browser-process code execution, but this is not confirmed by the CVE description.",
+        "Oculus Browser and Oculus Desktop/OVRServiceLauncher.exe may coexist on the same accessible host, but no environment observation confirms this.",
+        "A browser code-execution primitive could interact with or trigger the OVRServiceLauncher.exe handle-management bug, but neither supplied description states this causal bridge.",
+        "The target's 'unprivileged process' could be the browser process, but that requires unverified same-host and local-process assumptions."
+      ],
+      "confidence": 0.7,
+      "edge_id": "edge-0005",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "allowing an attacker to spoof UI and potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "This affects the Oculus Browser starting from version 5.2.7 until 5.7.11."
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "Due to a bug with management of handles in OVRServiceLauncher.exe"
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation"
+        },
+        {
+          "cve_id": "CVE-2021-24038",
+          "quote": "This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507."
+        }
+      ],
+      "missing_conditions": [
+        "source code execution is actually achieved, rather than only HTML injection or 'potentially execute code'",
+        "source and target products/services are co-located on the same host or device under attacker-relevant access",
+        "source execution context is an unprivileged local process able to interact with OVRServiceLauncher.exe",
+        "target host runs an affected Oculus Desktop version between 1.39 and 31.1.0.67.507",
+        "target prerequisite of local unprivileged process execution on that host is satisfied",
+        "attacker can cause OVRServiceLauncher.exe to expose a privileged process handle to that unprivileged process and can capture or use it",
+        "no explicit environment observations verify deployment, version, access, or process adjacency"
+      ],
+      "reason": "The source CVE-2019-3562 effect is remote web-page HTML injection into the Oculus Browser UI, UI spoofing, and only 'potentially execute code'. The target CVE-2021-24038 requires an unprivileged local process on an affected Oculus Desktop host and describes a handle-management bug in OVRServiceLauncher.exe that 'could expose a privileged process handle to an unprivileged process, leading to local privilege escalation.' The edge claim bridges from unprivileged browser payload execution to capturing leaked privileged handles from OVRServiceLauncher.exe. That bridge is an inference and overreaches because no supplied description states that code execution is achieved, that Oculus Browser and Oculus Desktop run on the same host, or that the browser process can reach OVRServiceLauncher.exe. Environment observations are absent, so the strict graph cannot rely on this edge as supplied; it is at most conditional if those missing prerequisites are independently verified.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-24038"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 4743,
+      "prompt_tokens": 2196,
+      "total_tokens": 6939,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3994,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 384,
+        "video_tokens": 0
+      },
+      "cost": 0.003355518,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003355518,
+        "upstream_inference_prompt_cost": 0.000272568,
+        "upstream_inference_completions_cost": 0.00308295
+      }
+    },
+    "latency_seconds": 23.882202800001323,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "8dbe360ee08c3f03e6ec6b7dc0588cb575e5842b1dd85147a5b93423c51a09e1",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4743,
+        "prompt_tokens": 2196,
+        "total_tokens": 6939,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3994,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384,
+          "video_tokens": 0
+        },
+        "cost": 0.003355518,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003355518,
+          "upstream_inference_prompt_cost": 0.000272568,
+          "upstream_inference_completions_cost": 0.00308295
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The source's 'potentially execute code' may be realized as unprivileged browser-process code execution, but this is not confirmed by the CVE description.\",\"Oculus Browser and Oculus Desktop/OVRServiceLauncher.exe may coexist on the same accessible host, but no environment observation confirms this.\",\"A browser code-execution primitive could interact with or trigger the OVRServiceLauncher.exe handle-management bug, but neither supplied description states this causal bridge.\",\"The target's 'unprivileged process' could be the browser process, but that requires unverified same-host and local-process assumptions.\"],\"confidence\":0.7,\"edge_id\":\"edge-0005\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"A remote web page could inject arbitrary HTML code into the Oculus Browser UI\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"allowing an attacker to spoof UI and potentially execute code\"},{\"cve_id\":\"CVE-2019-3562\",\"quote\":\"This affects the Oculus Browser starting from version 5.2.7 until 5.7.11.\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"Due to a bug with management of handles in OVRServiceLauncher.exe\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation\"},{\"cve_id\":\"CVE-2021-24038\",\"quote\":\"This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507.\"}],\"missing_conditions\":[\"source code execution is actually achieved, rather than only HTML injection or 'potentially execute code'\",\"source and target products/services are co-located on the same host or device under attacker-relevant access\",\"source execution context is an unprivileged local process able to interact with OVRServiceLauncher.exe\",\"target host runs an affected Oculus Desktop version between 1.39 and 31.1.0.67.507\",\"target prerequisite of local unprivileged process execution on that host is satisfied\",\"attacker can cause OVRServiceLauncher.exe to expose a privileged process handle to that unprivileged process and can capture or use it\",\"no explicit environment observations verify deployment, version, access, or process adjacency\"],\"reason\":\"The source CVE-2019-3562 effect is remote web-page HTML injection into the Oculus Browser UI, UI spoofing, and only 'potentially execute code'. The target CVE-2021-24038 requires an unprivileged local process on an affected Oculus Desktop host and describes a handle-management bug in OVRServiceLauncher.exe that 'could expose a privileged process handle to an unprivileged process, leading to local privilege escalation.' The edge claim bridges from unprivileged browser payload execution to capturing leaked privileged handles from OVRServiceLauncher.exe. That bridge is an inference and overreaches because no supplied description states that code execution is achieved, that Oculus Browser and Oculus Desktop run on the same host, or that the browser process can reach OVRServiceLauncher.exe. Environment observations are absent, so the strict graph cannot rely on this edge as supplied; it is at most conditional if those missing prerequisites are independently verified.\",\"source_cve_id\":\"CVE-2019-3562\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-24038\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:55:35.629123+00:00"
+}

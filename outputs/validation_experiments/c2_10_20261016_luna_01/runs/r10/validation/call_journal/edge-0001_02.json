@@ -1,0 +1,106 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:40:16.343267+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The candidate CVE identifiers shown in the validator output are intended mappings, but that mapping remains unverified."
+      ],
+      "confidence": 0.98,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [],
+      "missing_conditions": [
+        "Authoritative descriptions uniquely mapping both nodes to CVEs",
+        "Evidence that the source vulnerability can read the specific RaspAP configuration, session, or credential files",
+        "Evidence that piSignage and RaspAP are deployed on the same host or otherwise have an established reachable relationship",
+        "Evidence that disclosed data contains valid, usable RaspAP authentication material",
+        "Evidence that the target RaspAP 2.5 web interface is deployed and reachable",
+        "Evidence that the obtained authentication satisfies the target vulnerability's prerequisites",
+        "Environment observations establishing the relevant versions, access paths, and deployment context"
+      ],
+      "reason": "No supplied CVE descriptions or environment observations establish the source's actual effect. The source node claims piSignage path-traversal file disclosure, but that claim does not establish disclosure of RaspAP files or usable administrator authentication. The target node claims authenticated RaspAP web-console command execution, whose stated prerequisite is valid authenticated access to the RaspAP 2.5 interface; that access and target applicability are not evidenced. The causal bridge from source disclosure to usable target authentication is therefore unverified, and the edge cannot enter a strict graph as presented; it is at most conditional pending the missing evidence.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1859,
+      "prompt_tokens": 889,
+      "total_tokens": 2748,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1547,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0024086,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0024086,
+        "upstream_inference_prompt_cost": 0.0001778,
+        "upstream_inference_completions_cost": 0.0022308
+      }
+    },
+    "latency_seconds": 17.712766499998907,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "cca54a23f16522875bf685d00a5341af2f4365e56a732b96beadcdc7bd9e3e63",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1859,
+        "prompt_tokens": 889,
+        "total_tokens": 2748,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1547,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0024086,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0024086,
+          "upstream_inference_prompt_cost": 0.0001778,
+          "upstream_inference_completions_cost": 0.0022308
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The candidate CVE identifiers shown in the validator output are intended mappings, but that mapping remains unverified.\"],\"confidence\":0.98,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[],\"missing_conditions\":[\"Authoritative descriptions uniquely mapping both nodes to CVEs\",\"Evidence that the source vulnerability can read the specific RaspAP configuration, session, or credential files\",\"Evidence that piSignage and RaspAP are deployed on the same host or otherwise have an established reachable relationship\",\"Evidence that disclosed data contains valid, usable RaspAP authentication material\",\"Evidence that the target RaspAP 2.5 web interface is deployed and reachable\",\"Evidence that the obtained authentication satisfies the target vulnerability's prerequisites\",\"Environment observations establishing the relevant versions, access paths, and deployment context\"],\"reason\":\"No supplied CVE descriptions or environment observations establish the source's actual effect. The source node claims piSignage path-traversal file disclosure, but that claim does not establish disclosure of RaspAP files or usable administrator authentication. The target node claims authenticated RaspAP web-console command execution, whose stated prerequisite is valid authenticated access to the RaspAP 2.5 interface; that access and target applicability are not evidenced. The causal bridge from source disclosure to usable target authentication is therefore unverified, and the edge cannot enter a strict graph as presented; it is at most conditional pending the missing evidence.\",\"source_cve_id\":null,\"suggested_status\":\"unknown\",\"target_cve_id\":null}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:40:34.077382+00:00"
+}

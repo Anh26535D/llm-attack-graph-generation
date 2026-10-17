@@ -1,0 +1,343 @@
+```json
+{
+  "graph": {
+    "nodes": [
+      {
+        "id": "unc2452_actor",
+        "label": "Threat Actor UNC2452"
+      },
+      {
+        "id": "solarwinds_supply_chain",
+        "label": "Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+      },
+      {
+        "id": "trojanized_patch",
+        "label": "Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)"
+      },
+      {
+        "id": "sunburst_dll",
+        "label": "SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)"
+      },
+      {
+        "id": "victim_host_install",
+        "label": "Victim Host / Admin Update Installation"
+      },
+      {
+        "id": "businesslayerhost_exe",
+        "label": "Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)"
+      },
+      {
+        "id": "inventory_manager_trigger",
+        "label": "Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)"
+      },
+      {
+        "id": "initial_dormant_period",
+        "label": "Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)"
+      },
+      {
+        "id": "anti_analysis_defense_evasion",
+        "label": "Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+      },
+      {
+        "id": "dga_resolution",
+        "label": "DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)"
+      },
+      {
+        "id": "c2_domain_cname",
+        "label": "C2 Domain CNAME Resolution & IP Check Validation"
+      },
+      {
+        "id": "http_c2_communication",
+        "label": "HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+      },
+      {
+        "id": "steganography_jobs",
+        "label": "Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+      },
+      {
+        "id": "teardrop_dropper",
+        "label": "TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)"
+      },
+      {
+        "id": "cobalt_strike_beacon",
+        "label": "Customized Cobalt Strike BEACON Payload Execution"
+      },
+      {
+        "id": "c2_infrastructure_masquerading",
+        "label": "C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)"
+      },
+      {
+        "id": "credential_abuse",
+        "label": "Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)"
+      },
+      {
+        "id": "temporary_file_task_mod",
+        "label": "Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)"
+      },
+      {
+        "id": "data_theft_impact",
+        "label": "Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks"
+      }
+    ],
+    "edges": [
+      {
+        "from": "unc2452_actor",
+        "label": "Trojanizes SolarWinds Orion business software updates to distribute SUNBURST via supply chain compromise",
+        "to": "solarwinds_supply_chain"
+      },
+      {
+        "from": "solarwinds_supply_chain",
+        "label": "Signs and publishes digitally signed installer patch (March-May 2020)",
+        "to": "trojanized_patch"
+      },
+      {
+        "from": "trojanized_patch",
+        "label": "Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll",
+        "to": "sunburst_dll"
+      },
+      {
+        "from": "trojanized_patch",
+        "label": "Downloaded and installed by administrators from updates website",
+        "to": "victim_host_install"
+      },
+      {
+        "from": "victim_host_install",
+        "label": "Triggers execution of Orion software host framework",
+        "to": "businesslayerhost_exe"
+      },
+      {
+        "from": "businesslayerhost_exe",
+        "label": "Loads digitally signed DLL into host process",
+        "to": "sunburst_dll"
+      },
+      {
+        "from": "sunburst_dll",
+        "label": "Calls OrionImprovementBusinessLayer.Initialize via InventoryManager",
+        "to": "inventory_manager_trigger"
+      },
+      {
+        "from": "inventory_manager_trigger",
+        "label": "Checks process name hash, assembly age threshold (12-14 days), and named pipe guard",
+        "to": "initial_dormant_period"
+      },
+      {
+        "from": "initial_dormant_period",
+        "label": "Discovers analysis/AV processes, sets registry to disable services, checks drivers",
+        "to": "anti_analysis_defense_evasion"
+      },
+      {
+        "from": "anti_analysis_defense_evasion",
+        "label": "Generates DGA subdomains encoding local domain name and userId",
+        "to": "dga_resolution"
+      },
+      {
+        "from": "dga_resolution",
+        "label": "Queries DNS, checks A-records against IP blocklists, retrieves CNAME record",
+        "to": "c2_domain_cname"
+      },
+      {
+        "from": "c2_domain_cname",
+        "label": "Initializes HttpHelper C2 thread mimicking Orion Improvement Program (OIP)",
+        "to": "http_c2_communication"
+      },
+      {
+        "from": "http_c2_communication",
+        "label": "Extracts steganographic commands from GUID/HEX strings to execute Jobs",
+        "to": "steganography_jobs"
+      },
+      {
+        "from": "steganography_jobs",
+        "label": "Deploys TEARDROP memory-only dropper in at least one instance (samples delivered different payloads)",
+        "to": "teardrop_dropper"
+      },
+      {
+        "from": "teardrop_dropper",
+        "label": "Decodes rolling XOR payload from fake JPG file; believed to execute customized Cobalt Strike BEACON",
+        "to": "cobalt_strike_beacon"
+      },
+      {
+        "from": "unc2452_actor",
+        "label": "Sets C2 hostnames matching victim environment and uses victim-country VPS IPs to evade detection",
+        "to": "c2_infrastructure_masquerading"
+      },
+      {
+        "from": "unc2452_actor",
+        "label": "Maintains light malware footprint, using compromised credentials for remote access and distinct credentials for lateral movement",
+        "to": "credential_abuse"
+      },
+      {
+        "from": "unc2452_actor",
+        "label": "Uses temporary file replacement and scheduled task modification to remotely execute utilities and evades detection by removing tools",
+        "to": "temporary_file_task_mod"
+      },
+      {
+        "from": "credential_abuse",
+        "label": "Facilitates lateral movement across victim networks leading to data theft",
+        "to": "data_theft_impact"
+      }
+    ]
+  },
+  "changes": [
+    {
+      "action": "revise",
+      "citations": [
+        {
+          "paragraph_id": "P002",
+          "quote": "FireEye discovered a supply chain attack trojanizing SolarWinds Orion business software updates in order to distribute malware we call SUNBURST."
+        },
+        {
+          "paragraph_id": "P004",
+          "quote": "They gained access to victims via trojanized updates to SolarWind's Orion IT monitoring and management software."
+        }
+      ],
+      "id": "edge-0001",
+      "kind": "edge",
+      "reason": "The report specifies trojanizing SolarWinds Orion business software updates to distribute SUNBURST, but does not state that source code specifically was injected."
+    },
+    {
+      "action": "revise",
+      "citations": [
+        {
+          "paragraph_id": "P012",
+          "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON."
+        }
+      ],
+      "id": "edge-0014",
+      "kind": "edge",
+      "reason": "Preserves scope and alternative payload delivery: TEARDROP was deployed in at least one instance rather than as a universal step across all SUNBURST compromise samples."
+    },
+    {
+      "action": "revise",
+      "citations": [
+        {
+          "paragraph_id": "P012",
+          "quote": "TEARDROP is a memory only dropper that runs as a service, spawns a thread and reads from the file \"gracious_truth.jpg\", which likely has a fake JPG header."
+        },
+        {
+          "paragraph_id": "P012",
+          "quote": "We believe that this was used to execute a customized Cobalt Strike BEACON."
+        }
+      ],
+      "id": "edge-0015",
+      "kind": "edge",
+      "reason": "Preserves the text's explicit epistemic qualification ('We believe') regarding TEARDROP executing customized Cobalt Strike BEACON."
+    },
+    {
+      "action": "remove",
+      "citations": [
+        {
+          "paragraph_id": "P018",
+          "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment."
+        },
+        {
+          "paragraph_id": "P024",
+          "quote": "The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers."
+        }
+      ],
+      "id": "edge-0016",
+      "kind": "edge",
+      "reason": "Masquerading C2 hostnames and victim-country VPS IPs is an attacker infrastructure evasion practice, not a step produced or executed by Cobalt Strike BEACON."
+    },
+    {
+      "action": "remove",
+      "citations": [
+        {
+          "paragraph_id": "P010",
+          "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment."
+        },
+        {
+          "paragraph_id": "P028",
+          "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials."
+        }
+      ],
+      "id": "edge-0017",
+      "kind": "edge",
+      "reason": "C2 masquerading does not causally produce or leverage credentials; credential usage is a separate post-compromise technique leveraged by UNC2452."
+    },
+    {
+      "action": "remove",
+      "citations": [
+        {
+          "paragraph_id": "P032",
+          "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file."
+        }
+      ],
+      "id": "edge-0018",
+      "kind": "edge",
+      "reason": "Temporary file replacement and task modification represent remote utility execution techniques used by the attacker, not a direct sequential consequence of credential abuse."
+    },
+    {
+      "action": "remove",
+      "citations": [
+        {
+          "paragraph_id": "P004",
+          "quote": "Post compromise activity following this supply chain compromise has included lateral movement and data theft."
+        }
+      ],
+      "id": "edge-0019",
+      "kind": "edge",
+      "reason": "Temporary file replacement was an execution and anti-forensic evasion technique rather than the singular prerequisite to enterprise-wide data theft."
+    },
+    {
+      "action": "add",
+      "citations": [
+        {
+          "paragraph_id": "P018",
+          "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment."
+        },
+        {
+          "paragraph_id": "P024",
+          "quote": "The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers."
+        }
+      ],
+      "id": "new:unc2452_actor->c2_infrastructure_masquerading",
+      "kind": "edge",
+      "reason": "Directly links C2 infrastructure masquerading to the threat actor as an independent evasion technique branching from actor capabilities."
+    },
+    {
+      "action": "add",
+      "citations": [
+        {
+          "paragraph_id": "P010",
+          "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment."
+        },
+        {
+          "paragraph_id": "P028",
+          "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials. The credentials used for lateral movement were always different from those used for remote access."
+        }
+      ],
+      "id": "new:unc2452_actor->credential_abuse",
+      "kind": "edge",
+      "reason": "Captures the actor's post-compromise operational preference for light malware footprints and distinct credentials for initial remote access versus lateral movement."
+    },
+    {
+      "action": "add",
+      "citations": [
+        {
+          "paragraph_id": "P032",
+          "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file. They similarly manipulated scheduled tasks by updating an existing legitimate task to execute their tools"
+        }
+      ],
+      "id": "new:unc2452_actor->temporary_file_task_mod",
+      "kind": "edge",
+      "reason": "Connects the attacker directly to their utility execution and defense evasion techniques via temporary file replacement and scheduled task modification."
+    },
+    {
+      "action": "add",
+      "citations": [
+        {
+          "paragraph_id": "P004",
+          "quote": "Post compromise activity following this supply chain compromise has included lateral movement and data theft."
+        },
+        {
+          "paragraph_id": "P028",
+          "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials."
+        }
+      ],
+      "id": "new:credential_abuse->data_theft_impact",
+      "kind": "edge",
+      "reason": "Captures that lateral movement conducted via compromised credentials enabled the campaign's ultimate impact of widespread data theft."
+    }
+  ]
+}
+```

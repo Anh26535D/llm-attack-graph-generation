@@ -1,0 +1,124 @@
+{
+  "edge_id": "edge-0006",
+  "started_at": "2026-10-16T14:38:01.611222+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference only: the source's pi password could potentially be reused for authentication to RaspAP.",
+        "Inference only: both CVE conditions apply to the same Raspberry Pi deployment.",
+        "Inference only: an attacker can reach an installed RaspAP web console."
+      ],
+      "confidence": 0.92,
+      "edge_id": "edge-0006",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "An issue was discovered in includes/webconsole.php in RaspAP 2.5."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system (including ones for uploading of files and execution of code)."
+        }
+      ],
+      "missing_conditions": [
+        "The Raspberry Pi OS deployment is through version 5.10 and still has the default pi password unchanged.",
+        "RaspAP 2.5 is installed on the same host as the affected Raspberry Pi OS account.",
+        "The pi default credentials are accepted by RaspAP or otherwise provide valid authenticated web-console access.",
+        "The RaspAP web console is present and reachable by the attacker.",
+        "The RaspAP web console has the misconfiguration described by CVE-2020-24572.",
+        "A verified source-to-target host and application relationship exists."
+      ],
+      "reason": "CVE-2021-38759 describes a default password for the pi account and conditionally says attackers can gain administrator privileges if it is not changed; it does not state that those OS credentials authenticate to web applications or RaspAP. CVE-2020-24572 requires authenticated access to a misconfigured RaspAP 2.5 web console and describes subsequent command execution. A potential causal bridge exists only if the source credentials are accepted by the target application and both conditions apply to the same reachable deployment. Therefore, the claim that the source credentials allow access to local web interfaces including RaspAP overstates the source effect. The edge is conditional and cannot enter a strict graph as an unconditional supported edge without the missing conditions being verified.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2414,
+      "prompt_tokens": 1947,
+      "total_tokens": 4361,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1874,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1944,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0033834,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0033834,
+        "upstream_inference_prompt_cost": 0.0004866,
+        "upstream_inference_completions_cost": 0.0028968
+      }
+    },
+    "latency_seconds": 21.499898899999607,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "3d0fdc38fc486427974fa51154f49125e5976ff1dbe4116669382c28c3c84433",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2414,
+        "prompt_tokens": 1947,
+        "total_tokens": 4361,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1874,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1944,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0033834,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0033834,
+          "upstream_inference_prompt_cost": 0.0004866,
+          "upstream_inference_completions_cost": 0.0028968
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inference only: the source's pi password could potentially be reused for authentication to RaspAP.\",\"Inference only: both CVE conditions apply to the same Raspberry Pi deployment.\",\"Inference only: an attacker can reach an installed RaspAP web console.\"],\"confidence\":0.92,\"edge_id\":\"edge-0006\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"An issue was discovered in includes/webconsole.php in RaspAP 2.5.\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system (including ones for uploading of files and execution of code).\"}],\"missing_conditions\":[\"The Raspberry Pi OS deployment is through version 5.10 and still has the default pi password unchanged.\",\"RaspAP 2.5 is installed on the same host as the affected Raspberry Pi OS account.\",\"The pi default credentials are accepted by RaspAP or otherwise provide valid authenticated web-console access.\",\"The RaspAP web console is present and reachable by the attacker.\",\"The RaspAP web console has the misconfiguration described by CVE-2020-24572.\",\"A verified source-to-target host and application relationship exists.\"],\"reason\":\"CVE-2021-38759 describes a default password for the pi account and conditionally says attackers can gain administrator privileges if it is not changed; it does not state that those OS credentials authenticate to web applications or RaspAP. CVE-2020-24572 requires authenticated access to a misconfigured RaspAP 2.5 web console and describes subsequent command execution. A potential causal bridge exists only if the source credentials are accepted by the target application and both conditions apply to the same reachable deployment. Therefore, the claim that the source credentials allow access to local web interfaces including RaspAP overstates the source effect. The edge is conditional and cannot enter a strict graph as an unconditional supported edge without the missing conditions being verified.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:38:23.112845+00:00"
+}

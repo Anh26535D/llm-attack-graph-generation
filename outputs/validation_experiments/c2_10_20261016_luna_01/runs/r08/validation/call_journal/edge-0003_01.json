@@ -1,0 +1,121 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:35:34.041099+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inferring that files reachable through the traversal could contain credentials is not evidence that configuration or shadow files are retrievable.",
+        "Inferring that piSignage and RaspAP share a host or reachable deployment is unsupported because the supplied environment is absent.",
+        "Inferring that any disclosed credential would be valid for and accepted by RaspAP is unverified."
+      ],
+      "confidence": 0.94,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "Verified low-privilege authentication to the affected piSignage service",
+        "Applicable piSignage version, service exposure, and path-traversal reachability",
+        "Confirmation that configuration or shadow files are readable through the traversal",
+        "Confirmation that retrieved files contain valid credentials",
+        "Confirmation that those credentials authenticate to the affected RaspAP interface",
+        "Verified source-target host relationship or network reachability",
+        "Applicable RaspAP version and deployment prerequisites"
+      ],
+      "reason": "CVE-2019-20354 actually describes arbitrary file download through piSignage path traversal by a remote attacker already authenticated as a low-privilege user. It does not state that configuration or shadow files are exposed, that they contain credentials, or that any disclosed credentials enable RaspAP access. CVE-2020-24572 requires authenticated access to RaspAP and describes command execution on the underlying system. The bounded causal bridge is therefore only potentially valid if readable credential material is obtained, is valid for RaspAP, and the source and target services are verified to be deployed on related or reachable hosts with applicable versions. The supplied environment is absent, so the edge claim overreaches the descriptions and cannot enter a strict graph as an unconditional supported edge; it may enter only as conditional.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1502,
+      "prompt_tokens": 1964,
+      "total_tokens": 3466,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1034,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1961,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00229325,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00229325,
+        "upstream_inference_prompt_cost": 0.00049085,
+        "upstream_inference_completions_cost": 0.0018024
+      }
+    },
+    "latency_seconds": 14.142327600000499,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "c2600eb510ac11e31af4ffaf50391633248110fa1c8925f7bccf060dfc3449ed",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1502,
+        "prompt_tokens": 1964,
+        "total_tokens": 3466,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1034,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1961,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00229325,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00229325,
+          "upstream_inference_prompt_cost": 0.00049085,
+          "upstream_inference_completions_cost": 0.0018024
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inferring that files reachable through the traversal could contain credentials is not evidence that configuration or shadow files are retrievable.\",\"Inferring that piSignage and RaspAP share a host or reachable deployment is unsupported because the supplied environment is absent.\",\"Inferring that any disclosed credential would be valid for and accepted by RaspAP is unverified.\"],\"confidence\":0.94,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"}],\"missing_conditions\":[\"Verified low-privilege authentication to the affected piSignage service\",\"Applicable piSignage version, service exposure, and path-traversal reachability\",\"Confirmation that configuration or shadow files are readable through the traversal\",\"Confirmation that retrieved files contain valid credentials\",\"Confirmation that those credentials authenticate to the affected RaspAP interface\",\"Verified source-target host relationship or network reachability\",\"Applicable RaspAP version and deployment prerequisites\"],\"reason\":\"CVE-2019-20354 actually describes arbitrary file download through piSignage path traversal by a remote attacker already authenticated as a low-privilege user. It does not state that configuration or shadow files are exposed, that they contain credentials, or that any disclosed credentials enable RaspAP access. CVE-2020-24572 requires authenticated access to RaspAP and describes command execution on the underlying system. The bounded causal bridge is therefore only potentially valid if readable credential material is obtained, is valid for RaspAP, and the source and target services are verified to be deployed on related or reachable hosts with applicable versions. The supplied environment is absent, so the edge claim overreaches the descriptions and cannot enter a strict graph as an unconditional supported edge; it may enter only as conditional.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:35:48.184973+00:00"
+}

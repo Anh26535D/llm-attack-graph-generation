@@ -1,0 +1,86 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T13:47:32.159089+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "piSignage and RaspAP are deployed on the same host or share an environment where configuration files can be correlated",
+        "Arbitrary file download allows reading files containing valid credentials for RaspAP"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        }
+      ],
+      "missing_conditions": [
+        "Verification of co-location or shared infrastructure between piSignage and RaspAP",
+        "Verification that readable files contain valid RaspAP credentials",
+        "Verification of target application version and service accessibility"
+      ],
+      "reason": "The source CVE-2019-20354 provides arbitrary file read via path traversal, while the target CVE-2020-24572 requires authenticated access. The proposed bridge assumes that sensitive credentials can potentially be recovered from files on the host to authenticate to RaspAP. Because neither the existence of accessible credentials nor shared-host deployment is confirmed by the CVE descriptions or environment data, this causal link cannot enter a strict graph without external verification, rendering the edge conditional.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 345,
+      "prompt_token_count": 2182,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2182
+        }
+      ],
+      "thoughts_token_count": 2369,
+      "total_token_count": 4896
+    },
+    "latency_seconds": 22.50578669999959,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "44044658350eac0365bebcb08f8d76c6347a9b18a1ebe2a07a54dc30b6426f51",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 345,
+        "prompt_token_count": 2182,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2182
+          }
+        ],
+        "thoughts_token_count": 2369,
+        "total_token_count": 4896
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"piSignage and RaspAP are deployed on the same host or share an environment where configuration files can be correlated\", \"Arbitrary file download allows reading files containing valid credentials for RaspAP\"], \"confidence\": 0.85, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-20354\", \"quote\": \"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}], \"missing_conditions\": [\"Verification of co-location or shared infrastructure between piSignage and RaspAP\", \"Verification that readable files contain valid RaspAP credentials\", \"Verification of target application version and service accessibility\"], \"reason\": \"The source CVE-2019-20354 provides arbitrary file read via path traversal, while the target CVE-2020-24572 requires authenticated access. The proposed bridge assumes that sensitive credentials can potentially be recovered from files on the host to authenticate to RaspAP. Because neither the existence of accessible credentials nor shared-host deployment is confirmed by the CVE descriptions or environment data, this causal link cannot enter a strict graph without external verification, rendering the edge conditional.\", \"source_cve_id\": \"CVE-2019-20354\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:47:54.666726+00:00"
+}

@@ -1,0 +1,127 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:56:38.585471+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Administrative OS access might permit reading or modifying RaspAP configuration if such configuration exists and is accessible.",
+        "RaspAP web administrative credentials might be stored on the Raspberry Pi OS filesystem in a form usable by an administrative shell.",
+        "Recovered or modified RaspAP web credentials might satisfy the target's authenticated-access requirement."
+      ],
+      "confidence": 0.91,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        }
+      ],
+      "missing_conditions": [
+        "Mapped source CVE and source description evidence for default-credential authentication.",
+        "Evidence that RaspAP web administrative credentials exist and are stored on the Raspberry Pi OS.",
+        "Evidence that administrative system access can retrieve or manipulate RaspAP web administrative credentials.",
+        "Evidence that retrieved or manipulated credentials grant authenticated access to the RaspAP web interface.",
+        "Explicit environment observation that RaspAP is installed, reachable, and colocated with the source host.",
+        "Unique source and target CVE mapping."
+      ],
+      "reason": "The source node claims authenticated shell access with administrative (sudo) privileges on Raspberry Pi OS, but no source CVE is mapped, so that effect is not CVE-backed evidence. CVE-2020-24572 requires 'With authenticated access' to a RaspAP web console and supports command execution via that console. The edge asserts an additional bridge: administrative system access facilitates retrieval or manipulation of RaspAP web administrative credentials. The supplied CVE description does not mention RaspAP credential storage, retrieval, or manipulation, nor does it connect OS administrative access to web-interface authentication. Thus the causal bridge is potentially plausible only under unverified assumptions and cannot enter a strict graph as supported; suggested unsupported.",
+      "source_cve_id": null,
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 5057,
+      "prompt_tokens": 1353,
+      "total_tokens": 6410,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4592,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.003452112,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003452112,
+        "upstream_inference_prompt_cost": 0.000165062,
+        "upstream_inference_completions_cost": 0.00328705
+      }
+    },
+    "latency_seconds": 27.668556000000535,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "e6d2b66c8adf05e5d2ed2bf80986a0b78a73c605dc8a96f54b89cd6e67b909da",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 5057,
+        "prompt_tokens": 1353,
+        "total_tokens": 6410,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4592,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.003452112,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003452112,
+          "upstream_inference_prompt_cost": 0.000165062,
+          "upstream_inference_completions_cost": 0.00328705
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Administrative OS access might permit reading or modifying RaspAP configuration if such configuration exists and is accessible.\",\"RaspAP web administrative credentials might be stored on the Raspberry Pi OS filesystem in a form usable by an administrative shell.\",\"Recovered or modified RaspAP web credentials might satisfy the target's authenticated-access requirement.\"],\"confidence\":0.91,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"misconfigured (and virtually unrestricted) web console\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"}],\"missing_conditions\":[\"Mapped source CVE and source description evidence for default-credential authentication.\",\"Evidence that RaspAP web administrative credentials exist and are stored on the Raspberry Pi OS.\",\"Evidence that administrative system access can retrieve or manipulate RaspAP web administrative credentials.\",\"Evidence that retrieved or manipulated credentials grant authenticated access to the RaspAP web interface.\",\"Explicit environment observation that RaspAP is installed, reachable, and colocated with the source host.\",\"Unique source and target CVE mapping.\"],\"reason\":\"The source node claims authenticated shell access with administrative (sudo) privileges on Raspberry Pi OS, but no source CVE is mapped, so that effect is not CVE-backed evidence. CVE-2020-24572 requires 'With authenticated access' to a RaspAP web console and supports command execution via that console. The edge asserts an additional bridge: administrative system access facilitates retrieval or manipulation of RaspAP web administrative credentials. The supplied CVE description does not mention RaspAP credential storage, retrieval, or manipulation, nor does it connect OS administrative access to web-interface authentication. Thus the causal bridge is potentially plausible only under unverified assumptions and cannot enter a strict graph as supported; suggested unsupported.\",\"source_cve_id\":null,\"suggested_status\":\"unsupported\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:57:06.256396+00:00"
+}

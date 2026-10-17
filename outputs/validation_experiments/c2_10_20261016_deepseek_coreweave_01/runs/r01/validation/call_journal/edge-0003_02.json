@@ -1,0 +1,142 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:53:49.289753+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Generated node pre/postconditions are treated as claims, not confirming evidence.",
+        "The source mapping to CVE-2020-24572 is a label-hint association and does not prove that the CVE grants or recovers authentication.",
+        "The absence of environment observations means deployment, reachability, credentials, roles, and privilege are unverified.",
+        "Target postcondition terms such as 'Arbitrary' and 'persistent' are interpreted as possible overreach unless directly stated in the CVE description."
+      ],
+      "confidence": 0.78,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "includes/webconsole.php in RaspAP 2.5"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "an attacker can use a misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "attack the underlying OS (Raspberry Pi) running this software"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "including ones for uploading of files and execution of code"
+        }
+      ],
+      "missing_conditions": [
+        "Externally verified source-to-target host/deployment relationship, not inferred from absence of data.",
+        "Verified RaspAP 2.5 version and reachable includes/webconsole.php endpoint.",
+        "Verified authenticated session that actually grants access to includes/webconsole.php.",
+        "Verified misconfigured/virtually unrestricted web console state.",
+        "Verified privilege level of executed commands; description does not state command privilege.",
+        "Verified source of authentication (recovered/default credentials) independent of CVE-2020-24572.",
+        "Verified absence of mitigations or access controls preventing web console use.",
+        "Verified network exposure of the RaspAP service in the target environment."
+      ],
+      "reason": "The supplied CVE's actual stated effect is that, with authenticated access, a misconfigured web console in includes/webconsole.php in RaspAP 2.5 can be used to attack the underlying Raspberry Pi OS and execute commands, potentially including file upload and code execution. Thus the target requirement is authenticated access plus the vulnerable/misconfigured web console endpoint, not authentication generation. The edge claims an authenticated session enables navigation to the vulnerable endpoint and then RCE; this is a bounded causal bridge only if the source session independently exists and the target endpoint is reachable and misconfigured. The source node's authentication acquisition via recovered/default credentials is not supported by the quoted CVE description, which only says 'With authenticated access', so the source mapping appears to represent a prerequisite rather than the CVE's effect. The target postcondition's 'Arbitrary' and 'persistent' code execution is broader than the description's 'execute commands on the system' and 'including ones for uploading of files and execution of code'. Because key prerequisites and environment facts are unverified, the edge should be conditional and cannot enter a strict evidence-backed graph without those verifications.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 7597,
+      "prompt_tokens": 2031,
+      "total_tokens": 9628,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 6901,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 1792,
+        "video_tokens": 0
+      },
+      "cost": 0.004977484,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.004977484,
+        "upstream_inference_prompt_cost": 3.9434e-05,
+        "upstream_inference_completions_cost": 0.00493805
+      }
+    },
+    "latency_seconds": 74.41157600000042,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "e5ec588ad3cf59b517887f427ee9ba5def1a08d65bb2f2226d5ef742bbb65baf",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 7597,
+        "prompt_tokens": 2031,
+        "total_tokens": 9628,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6901,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 1792,
+          "video_tokens": 0
+        },
+        "cost": 0.004977484,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004977484,
+          "upstream_inference_prompt_cost": 3.9434e-05,
+          "upstream_inference_completions_cost": 0.00493805
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Generated node pre/postconditions are treated as claims, not confirming evidence.\",\"The source mapping to CVE-2020-24572 is a label-hint association and does not prove that the CVE grants or recovers authentication.\",\"The absence of environment observations means deployment, reachability, credentials, roles, and privilege are unverified.\",\"Target postcondition terms such as 'Arbitrary' and 'persistent' are interpreted as possible overreach unless directly stated in the CVE description.\"],\"confidence\":0.78,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"includes/webconsole.php in RaspAP 2.5\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"an attacker can use a misconfigured (and virtually unrestricted) web console\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"attack the underlying OS (Raspberry Pi) running this software\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"including ones for uploading of files and execution of code\"}],\"missing_conditions\":[\"Externally verified source-to-target host/deployment relationship, not inferred from absence of data.\",\"Verified RaspAP 2.5 version and reachable includes/webconsole.php endpoint.\",\"Verified authenticated session that actually grants access to includes/webconsole.php.\",\"Verified misconfigured/virtually unrestricted web console state.\",\"Verified privilege level of executed commands; description does not state command privilege.\",\"Verified source of authentication (recovered/default credentials) independent of CVE-2020-24572.\",\"Verified absence of mitigations or access controls preventing web console use.\",\"Verified network exposure of the RaspAP service in the target environment.\"],\"reason\":\"The supplied CVE's actual stated effect is that, with authenticated access, a misconfigured web console in includes/webconsole.php in RaspAP 2.5 can be used to attack the underlying Raspberry Pi OS and execute commands, potentially including file upload and code execution. Thus the target requirement is authenticated access plus the vulnerable/misconfigured web console endpoint, not authentication generation. The edge claims an authenticated session enables navigation to the vulnerable endpoint and then RCE; this is a bounded causal bridge only if the source session independently exists and the target endpoint is reachable and misconfigured. The source node's authentication acquisition via recovered/default credentials is not supported by the quoted CVE description, which only says 'With authenticated access', so the source mapping appears to represent a prerequisite rather than the CVE's effect. The target postcondition's 'Arbitrary' and 'persistent' code execution is broader than the description's 'execute commands on the system' and 'including ones for uploading of files and execution of code'. Because key prerequisites and environment facts are unverified, the edge should be conditional and cannot enter a strict evidence-backed graph without those verifications.\",\"source_cve_id\":\"CVE-2020-24572\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:55:04.551081+00:00"
+}

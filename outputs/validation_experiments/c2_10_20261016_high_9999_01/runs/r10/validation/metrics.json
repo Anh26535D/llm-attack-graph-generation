@@ -1,0 +1,166 @@
+{
+  "A_original": {
+    "mapped_edges": 3,
+    "edge_mapping_coverage": 0.5,
+    "incident_nodes": 7,
+    "incident_node_mapping_coverage": 0.7142857142857143,
+    "nodes": 8,
+    "mapped_nodes": 6,
+    "node_mapping_coverage": 0.75,
+    "edges": 6,
+    "label_distribution": {
+      "supported": 0,
+      "conditional": 0,
+      "unsupported": 0,
+      "contradicted": 0,
+      "unknown": 0,
+      "unvalidated": 6
+    },
+    "unknown_rate": null,
+    "retained_edge_fraction": 1.0,
+    "strict_retained_edge_fraction": 1.0,
+    "retained_policy": "all original candidates",
+    "strict_policy": "original unvalidated candidates",
+    "edge_metrics": {
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "false_removals": null,
+      "false_retentions": null,
+      "gold_annotated_edges": 0,
+      "scope": "independently labeled edge instances in the original candidate graph",
+      "reason": "No independent gold labels; N/A. LLM review labels are not ground truth."
+    },
+    "strict_edge_metrics": {
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "false_removals": null,
+      "false_retentions": null,
+      "gold_annotated_edges": 0,
+      "scope": "independently labeled edge instances in the original candidate graph",
+      "reason": "No independent gold labels; N/A. LLM review labels are not ground truth."
+    },
+    "processing_seconds": 0.0,
+    "additional_api_calls": 0,
+    "token_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "requests_with_usage": 0,
+      "requests_missing_usage": 0,
+      "totals_are_partial": false
+    }
+  },
+  "B_offline": {
+    "mapped_edges": 3,
+    "edge_mapping_coverage": 0.5,
+    "incident_nodes": 7,
+    "incident_node_mapping_coverage": 0.7142857142857143,
+    "nodes": 8,
+    "mapped_nodes": 6,
+    "node_mapping_coverage": 0.75,
+    "edges": 6,
+    "label_distribution": {
+      "supported": 0,
+      "conditional": 3,
+      "unsupported": 0,
+      "contradicted": 0,
+      "unknown": 3
+    },
+    "unknown_rate": 0.5,
+    "retained_edge_fraction": 1.0,
+    "strict_retained_edge_fraction": 0.0,
+    "retained_policy": "exclude only unsupported/contradicted",
+    "strict_policy": "supported only",
+    "edge_metrics": {
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "false_removals": null,
+      "false_retentions": null,
+      "gold_annotated_edges": 0,
+      "scope": "independently labeled edge instances in the original candidate graph",
+      "reason": "No independent gold labels; N/A. LLM review labels are not ground truth."
+    },
+    "strict_edge_metrics": {
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "false_removals": null,
+      "false_retentions": null,
+      "gold_annotated_edges": 0,
+      "scope": "independently labeled edge instances in the original candidate graph",
+      "reason": "No independent gold labels; N/A. LLM review labels are not ground truth."
+    },
+    "processing_seconds": 0.0006445999988500262,
+    "additional_api_calls": 0,
+    "token_usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "total_tokens": 0,
+      "requests_with_usage": 0,
+      "requests_missing_usage": 0,
+      "totals_are_partial": false
+    }
+  },
+  "C_hybrid": {
+    "mapped_edges": 3,
+    "edge_mapping_coverage": 0.5,
+    "incident_nodes": 7,
+    "incident_node_mapping_coverage": 0.7142857142857143,
+    "nodes": 8,
+    "mapped_nodes": 6,
+    "node_mapping_coverage": 0.75,
+    "edges": 6,
+    "label_distribution": {
+      "supported": 0,
+      "conditional": 3,
+      "unsupported": 0,
+      "contradicted": 0,
+      "unknown": 3
+    },
+    "unknown_rate": 0.5,
+    "retained_edge_fraction": 1.0,
+    "strict_retained_edge_fraction": 0.0,
+    "retained_policy": "exclude only unsupported/contradicted",
+    "strict_policy": "supported only",
+    "edge_metrics": {
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "false_removals": null,
+      "false_retentions": null,
+      "gold_annotated_edges": 0,
+      "scope": "independently labeled edge instances in the original candidate graph",
+      "reason": "No independent gold labels; N/A. LLM review labels are not ground truth."
+    },
+    "strict_edge_metrics": {
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "false_removals": null,
+      "false_retentions": null,
+      "gold_annotated_edges": 0,
+      "scope": "independently labeled edge instances in the original candidate graph",
+      "reason": "No independent gold labels; N/A. LLM review labels are not ground truth."
+    },
+    "processing_seconds": 131.19995969999945,
+    "additional_api_calls": 3,
+    "token_usage": {
+      "input_tokens": 4115,
+      "output_tokens": 1039,
+      "total_tokens": 21270,
+      "requests_with_usage": 3,
+      "requests_missing_usage": 0,
+      "totals_are_partial": false
+    },
+    "review_states": {
+      "completed": 3,
+      "cache_hit": 3
+    },
+    "disagreements": 1,
+    "llm_review_enabled": true,
+    "ablation_state": "review_requested"
+  }
+}

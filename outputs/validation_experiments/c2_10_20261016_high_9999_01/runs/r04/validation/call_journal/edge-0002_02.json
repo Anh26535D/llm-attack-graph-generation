@@ -1,0 +1,95 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T13:59:32.188864+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "piSignage and RaspAP are co-located on the same Raspberry Pi host or share the same local filesystem",
+        "RaspAP configuration, session databases, or cleartext credentials are stored on the filesystem",
+        "The piSignage process has permissions to read files containing RaspAP credentials"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "includes/webconsole.php in RaspAP 2.5"
+        }
+      ],
+      "missing_conditions": [
+        "Verification that piSignage and RaspAP are deployed on the same host or share accessible storage",
+        "Verification that RaspAP stores valid credentials or session data on the local filesystem",
+        "Verification that the file path and read permissions allow piSignage to access RaspAP credential files"
+      ],
+      "reason": "The source CVE-2019-20354 provides an arbitrary file read effect allowing an attacker to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', while the target CVE-2020-24572 requires 'With authenticated access' to 'includes/webconsole.php in RaspAP 2.5'. The candidate capability bridge relies on the assumption that file read access could potentially extract credentials or active sessions to satisfy the target's authentication requirement. However, this claim overreaches by inferring same-host deployment and the presence of accessible cleartext credentials without supporting evidence. Because credentials and same-host deployment cannot be inferred, the edge cannot enter a strict graph and is conditional upon these missing prerequisites.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "8ce43f2bc1bd25bd3c04c867b0cb8781dac7f67c9cebe47344c2e6060eb18674",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "candidates_token_count": 513,
+      "prompt_token_count": 2311,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2311
+        }
+      ],
+      "thoughts_token_count": 4081,
+      "total_token_count": 6905
+    },
+    "cached_response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 513,
+        "prompt_token_count": 2311,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2311
+          }
+        ],
+        "thoughts_token_count": 4081,
+        "total_token_count": 6905
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:59:32.209751+00:00"
+}

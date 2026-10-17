@@ -1,0 +1,152 @@
+{
+  "edge_id": "edge-0005",
+  "started_at": "2026-10-16T14:59:02.023785+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The source CVE's command execution is treated as a claimed attacker capability on the RaspAP host, not as confirmed audio-playback control.",
+        "The target CVE's Glowworm attack is treated as a physical optical side-channel requiring speaker power, sound, and line-of-sight, not as a software exploit primitive.",
+        "Any same-host or connected-equipment relationship between the source and target is an inference not stated in the supplied CVE descriptions or environment observations.",
+        "Generated node pre/postconditions and the edge label are claims, not confirming evidence.",
+        "Missing prerequisites remain unverified unless explicitly observed in the environment; the environment state supplied is absent."
+      ],
+      "confidence": 0.88,
+      "edge_id": "edge-0005",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "Raspberry Pi 3 B+ and 4 B devices through 2021-08-09"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "in certain specific use cases in which the device supplies power to audio-output equipment"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "recover speech signals from an LED on the device"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "via a telescope and an electro-optical sensor"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "We assume that the Raspberry Pi supplies power to some speakers."
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "The sound played by the speakers affects the Raspberry Pi's power consumption"
+        }
+      ],
+      "missing_conditions": [
+        "Authenticated access to the RaspAP web interface is required by the source but is not observed.",
+        "Source and target are the same Raspberry Pi host; this relationship is not established by the descriptions.",
+        "Target hardware/version is within the Glowworm-affected set (Raspberry Pi 3 B+ or 4 B through 2021-08-09); the source host model/version is not established.",
+        "Command-execution privilege is sufficient to deploy audio playback commands through connected equipment.",
+        "Raspberry Pi supplies power to connected audio-output equipment, and speakers are present.",
+        "Speech-bearing audio is played by those speakers and is the signal to be recovered.",
+        "Optical line-of-sight to the power indicator LED and availability of a telescope/electro-optical sensor are verified.",
+        "The target side-channel observation can be causally reached by the source's command execution rather than being a separate physical measurement scenario.",
+        "No explicit environment observation confirms any of these prerequisites."
+      ],
+      "reason": "Source CVE-2020-24572 supports an authenticated command-execution capability on a RaspAP Raspberry Pi host ('With authenticated access', 'execute commands on the system', 'underlying OS (Raspberry Pi)'). Target CVE-2021-38545 requires a Raspberry Pi 3 B+ or 4 B through 2021-08-09, 'in certain specific use cases in which the device supplies power to audio-output equipment', with sound played by speakers observable via 'a telescope and an electro-optical sensor' to 'recover speech signals from an LED on the device'. The proposed bridge claims command execution allows deploying audio playback through connected equipment, but the source description does not state audio playback control, connected speakers, or attacker-deployed audio, and the target description assumes speakers and sound already exist. The causal bridge is therefore an inference: it could potentially hold only if same-host deployment, audio-playback permissions/hardware, powered speakers, played speech, and optical line-of-sight are all verified. It also conflates a software RCE capability with a physical side-channel attack procedure, so the edge is at most conditional and cannot enter a strict graph as a supported causal edge without those externally verified prerequisites.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-38545"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 8349,
+      "prompt_tokens": 2284,
+      "total_tokens": 10633,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 7450,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.005731562,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005731562,
+        "upstream_inference_prompt_cost": 0.000304712,
+        "upstream_inference_completions_cost": 0.00542685
+      }
+    },
+    "latency_seconds": 40.4889863999997,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "c8e213fff26b163c39760d5ee382baa6b2ad37a8113110d17216d717f354fc83",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 8349,
+        "prompt_tokens": 2284,
+        "total_tokens": 10633,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7450,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.005731562,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005731562,
+          "upstream_inference_prompt_cost": 0.000304712,
+          "upstream_inference_completions_cost": 0.00542685
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The source CVE's command execution is treated as a claimed attacker capability on the RaspAP host, not as confirmed audio-playback control.\",\"The target CVE's Glowworm attack is treated as a physical optical side-channel requiring speaker power, sound, and line-of-sight, not as a software exploit primitive.\",\"Any same-host or connected-equipment relationship between the source and target is an inference not stated in the supplied CVE descriptions or environment observations.\",\"Generated node pre/postconditions and the edge label are claims, not confirming evidence.\",\"Missing prerequisites remain unverified unless explicitly observed in the environment; the environment state supplied is absent.\"],\"confidence\":0.88,\"edge_id\":\"edge-0005\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"underlying OS (Raspberry Pi)\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"Raspberry Pi 3 B+ and 4 B devices through 2021-08-09\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"in certain specific use cases in which the device supplies power to audio-output equipment\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"recover speech signals from an LED on the device\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"via a telescope and an electro-optical sensor\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"We assume that the Raspberry Pi supplies power to some speakers.\"},{\"cve_id\":\"CVE-2021-38545\",\"quote\":\"The sound played by the speakers affects the Raspberry Pi's power consumption\"}],\"missing_conditions\":[\"Authenticated access to the RaspAP web interface is required by the source but is not observed.\",\"Source and target are the same Raspberry Pi host; this relationship is not established by the descriptions.\",\"Target hardware/version is within the Glowworm-affected set (Raspberry Pi 3 B+ or 4 B through 2021-08-09); the source host model/version is not established.\",\"Command-execution privilege is sufficient to deploy audio playback commands through connected equipment.\",\"Raspberry Pi supplies power to connected audio-output equipment, and speakers are present.\",\"Speech-bearing audio is played by those speakers and is the signal to be recovered.\",\"Optical line-of-sight to the power indicator LED and availability of a telescope/electro-optical sensor are verified.\",\"The target side-channel observation can be causally reached by the source's command execution rather than being a separate physical measurement scenario.\",\"No explicit environment observation confirms any of these prerequisites.\"],\"reason\":\"Source CVE-2020-24572 supports an authenticated command-execution capability on a RaspAP Raspberry Pi host ('With authenticated access', 'execute commands on the system', 'underlying OS (Raspberry Pi)'). Target CVE-2021-38545 requires a Raspberry Pi 3 B+ or 4 B through 2021-08-09, 'in certain specific use cases in which the device supplies power to audio-output equipment', with sound played by speakers observable via 'a telescope and an electro-optical sensor' to 'recover speech signals from an LED on the device'. The proposed bridge claims command execution allows deploying audio playback through connected equipment, but the source description does not state audio playback control, connected speakers, or attacker-deployed audio, and the target description assumes speakers and sound already exist. The causal bridge is therefore an inference: it could potentially hold only if same-host deployment, audio-playback permissions/hardware, powered speakers, played speech, and optical line-of-sight are all verified. It also conflates a software RCE capability with a physical side-channel attack procedure, so the edge is at most conditional and cannot enter a strict graph as a supported causal edge without those externally verified prerequisites.\",\"source_cve_id\":\"CVE-2020-24572\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-38545\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:59:42.535002+00:00"
+}

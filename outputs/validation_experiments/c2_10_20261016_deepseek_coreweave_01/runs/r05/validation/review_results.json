@@ -1,0 +1,1178 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "The source's 'potentially execute code' could, if realized, yield local unprivileged code execution within the victim's user session; this is an inference, not a fact.",
+          "Oculus Browser and Oculus Desktop are deployed on the same Windows host; this same-host relationship is not established by the supplied descriptions or environment observations.",
+          "Any source code execution occurs at an OS/user level sufficient to create hardlinks against log files, not merely within browser UI or a sandbox.",
+          "The target Oculus Desktop installation is before 1.44.0.32849 on that same host and OVRRedir.exe will write to the hardlinked log file."
+        ],
+        "confidence": 0.72,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "inject arbitrary HTML code into the Oculus Browser UI"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "A remote web page"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "allows local users"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "write to arbitrary files"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "gain privileges"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "via vectors involving a hard link to a log file"
+          }
+        ],
+        "missing_conditions": [
+          "Confirmed reliable code execution from CVE-2019-3562, not merely 'potentially execute code'.",
+          "Execution context is local user-level OS access on the target Windows host, not only Oculus Browser UI/script context.",
+          "Explicit evidence that the Oculus Browser instance and the Oculus Desktop/OVRRedir.exe instance are on the same host.",
+          "Source Oculus Browser version is within the affected range and the victim visits the attacker-controlled remote web page.",
+          "Target host runs Windows and Oculus Desktop before version 1.44.0.32849.",
+          "Attacker can create the required hard link to an unprivileged log file.",
+          "OVRRedir.exe actually writes to the hardlinked log file and the write leads to privilege gain."
+        ],
+        "reason": "CVE-2019-3562's described effect is remote HTML injection into the Oculus Browser UI, spoofing UI, and only 'potentially execute code'; the edge treats that potential browser-side effect as confirmed local unprivileged OS-level code execution. CVE-2020-1885 requires local users on Windows with Oculus Desktop before 1.44.0.32849 and a hard link to a log file so privileged OVRRedir.exe writes to arbitrary files and gains privileges. The bounded bridge would need the potential source execution to occur on the same Windows host with filesystem permissions sufficient to create that hardlink and trigger OVRRedir.exe, but those prerequisites are not in the supplied descriptions and environment observations are absent. Thus the edge is at most conditional/plausible and cannot enter a strict graph without verifying the missing conditions; it is not contradicted, but the claim overreaches by asserting provided local unprivileged code execution.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-1885"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "5644edcfe77fa61320811dcf10339e8d32947000b5297f5d8690b6f37d4a28b6",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 4912,
+        "prompt_tokens": 2273,
+        "total_tokens": 7185,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4145,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00353375,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00353375,
+          "upstream_inference_prompt_cost": 0.00034095,
+          "upstream_inference_completions_cost": 0.0031928
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 4912,
+          "prompt_tokens": 2273,
+          "total_tokens": 7185,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 4145,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00353375,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00353375,
+            "upstream_inference_prompt_cost": 0.00034095,
+            "upstream_inference_completions_cost": 0.0031928
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "The bridge from browser code execution to an OS local unprivileged process is an inference, not a supplied fact.",
+          "Same-host deployment and same-user-session interaction between Oculus Browser and Oculus Desktop/OVRServiceLauncher.exe are not established by the supplied descriptions or environment.",
+          "Generated node labels and pre/postconditions are claims, not confirming evidence.",
+          "The target's 'local unprivileged code execution' prerequisite is a derived reading of the target description's 'an unprivileged process'."
+        ],
+        "confidence": 0.9,
+        "edge_id": "edge-0002",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "allowing an attacker to spoof UI and potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "This affects the Oculus Browser starting from version 5.2.7 until 5.7.11."
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "Due to a bug with management of handles in OVRServiceLauncher.exe"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "an attacker could expose a privileged process handle to an unprivileged process"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "leading to local privilege escalation"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "This issue affects Oculus Desktop versions after 1.39 and prior to 31.1.0.67.507."
+          }
+        ],
+        "missing_conditions": [
+          "source: actual code execution, rather than only 'potentially execute code'",
+          "source: code execution provides a local unprivileged OS process outside the Oculus Browser UI context",
+          "source: Oculus Browser and Oculus Desktop/OVRServiceLauncher.exe are present on the same host and reachable from the same attacker-controlled process",
+          "target: affected Oculus Desktop version after 1.39 and prior to 31.1.0.67.507 is installed and running",
+          "target: the attacker-controlled unprivileged process can trigger the handle-management bug in OVRServiceLauncher.exe",
+          "environment: explicit observation of host/process relationship; environment_state is empty"
+        ],
+        "reason": "CVE-2019-3562's supplied effect is remote HTML injection into the Oculus Browser UI, allowing UI spoofing and only 'potentially execute code'; it does not itself establish actual code execution or a local unprivileged OS process. CVE-2021-24038's target requirement is an unprivileged process on a host with the affected OVRServiceLauncher.exe, where a handle-management bug can expose a privileged process handle and lead to local privilege escalation. The edge's bounded bridge is conditional: if the source's 'potentially execute code' is realized as a local unprivileged process on the same host running affected Oculus Desktop, it could satisfy the target's local-process prerequisite. However, the supplied descriptions and empty environment do not verify actual code execution, same-host/same-session coexistence, affected target version, or ability to trigger the handle exposure. The edge label overreaches by treating 'potentially execute code' as providing the required local unprivileged process execution. It cannot enter a strict graph as supported; at most it is conditional on those missing prerequisites.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2021-24038"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "f3a8d1590f4b94acd46aa24d15c17bea3de216b649efa2e26bbbf7907c9f0190",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 7087,
+        "prompt_tokens": 2217,
+        "total_tokens": 9304,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6185,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384,
+          "video_tokens": 0
+        },
+        "cost": 0.004882268,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004882268,
+          "upstream_inference_prompt_cost": 0.000275718,
+          "upstream_inference_completions_cost": 0.00460655
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 7087,
+          "prompt_tokens": 2217,
+          "total_tokens": 9304,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 6185,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 384,
+            "video_tokens": 0
+          },
+          "cost": 0.004882268,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.004882268,
+            "upstream_inference_prompt_cost": 0.000275718,
+            "upstream_inference_completions_cost": 0.00460655
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "The edge assumes the arbitrary-file-write primitive can target system binaries or DLLs; CVE-2020-1885 does not state those target file types.",
+          "The edge assumes the resulting privilege level is SYSTEM/full host compromise; CVE-2020-1885 only says the user can 'gain privileges'.",
+          "The edge assumes the target node is causally reachable from this source without additional vulnerabilities or environment conditions; this is not confirmed by the supplied description or environment."
+        ],
+        "confidence": 0.82,
+        "edge_id": "edge-0003",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "allows local users to write to arbitrary files and consequently gain privileges"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "via vectors involving a hard link to a log file"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "on Windows"
+          }
+        ],
+        "missing_conditions": [
+          "Unique target CVE mapping; target_mapping.status is 'missing' with no candidates.",
+          "Confirmation that arbitrary file write can target system binaries or DLLs rather than only arbitrary files generally.",
+          "Confirmation that the resulting privilege escalation reaches SYSTEM/full host compromise rather than a non-specific 'gain privileges' or potentially administrative level.",
+          "Confirmation that the hard-link-to-log-file vector can be used for the claimed system-binary/DLL overwrite.",
+          "Explicit environment observation that source and target apply to the same host, since environment_state is empty.",
+          "Confirmation that no additional local access, credentials, service state, or other preconditions beyond those in CVE-2020-1885 are required."
+        ],
+        "reason": "CVE-2020-1885 supports a privileged OVRRedir.exe process writing to an unprivileged file, local users writing to arbitrary files, and consequently gaining privileges via a hard link to a log file on Windows. The edge claims escalation to SYSTEM by overwriting system binaries/DLLs. The description does not state SYSTEM, system binaries/DLLs, or that arbitrary file write is used for that specific escalation; it only says 'gain privileges'. The target node is not CVE-mapped, and its generated precondition mentions OVRRedir.exe arbitrary file write or OVRServiceLauncher.exe handle exposure, but that is a claim, not confirming evidence. Therefore the bounded bridge is potentially plausible only if arbitrary file write can overwrite a privileged executable/DLL and yield SYSTEM; as written the edge overreaches and cannot enter a strict graph. It may be conditional if those missing conditions are verified.",
+        "source_cve_id": "CVE-2020-1885",
+        "suggested_status": "conditional",
+        "target_cve_id": null
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "fd9be90303d32cfdc30b0a83874fb859e9216a99cfc437a1b0acbf51f4662455",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 6984,
+        "prompt_tokens": 1521,
+        "total_tokens": 8505,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6381,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00476775,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00476775,
+          "upstream_inference_prompt_cost": 0.00022815,
+          "upstream_inference_completions_cost": 0.0045396
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 6984,
+          "prompt_tokens": 1521,
+          "total_tokens": 8505,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 6381,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00476775,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00476775,
+            "upstream_inference_prompt_cost": 0.00022815,
+            "upstream_inference_completions_cost": 0.0045396
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "budget_exhausted",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "a00a67b3de95983a1c9196e77dbc3accbefd49c8fec89a8115bc74058af3f0d3",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "request_overrides": {
+        "max_output_tokens": 16384,
+        "reasoning_level": "high"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "Assuming piSignage and RaspAP are co-located on the same Raspberry Pi filesystem, and that the piSignage path traversal can read RaspAP credential or session files, is an inference not supported by the supplied CVE descriptions or environment observations.",
+          "Assuming any downloaded file contains valid RaspAP credentials or usable session tokens is an inference not confirmed by the CVE descriptions.",
+          "Assuming such credentials or tokens satisfy RaspAP 2.5 authentication is an inference, not an observed causal transition.",
+          "No explicit environment observations are supplied; environment_state is empty."
+        ],
+        "confidence": 0.8,
+        "edge_id": "edge-0005",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "An issue was discovered in includes/webconsole.php in RaspAP 2.5."
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system"
+          }
+        ],
+        "missing_conditions": [
+          "Explicit observation that piSignage and RaspAP are deployed on the same Raspberry Pi or share an accessible filesystem.",
+          "Explicit evidence that the piSignage arbitrary-file-download path can read RaspAP configuration, credential, or session-token files.",
+          "Explicit evidence that downloaded artifacts contain valid RaspAP credentials or session tokens.",
+          "Explicit evidence that such credentials or tokens satisfy RaspAP 2.5 authenticated access.",
+          "Explicit observation that RaspAP 2.5 is present and reachable in the environment.",
+          "Source-side low-privilege piSignage authentication is described, but no evidence it grants or bypasses RaspAP authentication."
+        ],
+        "reason": "The source CVE-2019-20354 describes an authenticated low-privilege piSignage user who can download arbitrary files from the Raspberry Pi via a path traversal. The target CVE-2020-24572 requires authenticated access to RaspAP 2.5 before the misconfigured web console can be used to attack the underlying OS. The edge claim overreaches by asserting that downloaded configuration files leak credentials and session tokens that satisfy RaspAP authentication; the supplied descriptions do not mention RaspAP credentials, session tokens, configuration-file contents, or a same-host relationship. The bounded bridge is only potentially possible if unobserved environment conditions hold. Therefore the edge cannot enter a strict graph as supported; it is at most conditional pending explicit environment verification.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "8d98910e833550d3ee853bb37b5ad0236db7006ab01871c579d0c188f4e136f3",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 7943,
+        "prompt_tokens": 2091,
+        "total_tokens": 10034,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7321,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 384,
+          "video_tokens": 0
+        },
+        "cost": 0.005419768,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005419768,
+          "upstream_inference_prompt_cost": 0.000256818,
+          "upstream_inference_completions_cost": 0.00516295
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 7943,
+          "prompt_tokens": 2091,
+          "total_tokens": 10034,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 7321,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 384,
+            "video_tokens": 0
+          },
+          "cost": 0.005419768,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.005419768,
+            "upstream_inference_prompt_cost": 0.000256818,
+            "upstream_inference_completions_cost": 0.00516295
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0006",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "Generated node pre/postconditions and edge text are treated as claims, not confirming evidence.",
+          "The candidate bridge is treated as an inference, not an observed causal transition.",
+          "Strict graph admission is assumed to require supplied evidence for the target's authenticated-access prerequisite.",
+          "No credential relationship between the Raspberry Pi OS pi account and RaspAP authentication is assumed without explicit evidence."
+        ],
+        "confidence": 0.82,
+        "edge_id": "edge-0006",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "If not changed, attackers can gain administrator privileges."
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "includes/webconsole.php in RaspAP 2.5"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "execute commands on the system"
+          }
+        ],
+        "missing_conditions": [
+          "Explicit evidence that RaspAP 2.5 is installed and reachable on the affected or connected host.",
+          "Explicit evidence that RaspAP web-console authentication accepts the Raspberry Pi OS pi default credentials, or that the source otherwise yields valid RaspAP credentials.",
+          "Default pi password remains unchanged.",
+          "Network or local access to the RaspAP web interface is available to the attacker.",
+          "Source and target product/platform/version relationships are explicitly verified.",
+          "The source's administrator-privilege effect is causally connected to satisfying the target's authenticated-access prerequisite."
+        ],
+        "reason": "CVE-2021-38759 states that Raspberry Pi OS through 5.10 has a default password for the pi account and that, if it is not changed, attackers can gain administrator privileges. That is at most an OS-account/admin effect; the supplied description does not state that those credentials authenticate to RaspAP or any web console. CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5, after which an attacker can use the web console to execute OS commands. The edge label 'Default administrative credentials allow access to local web interfaces and services including RaspAP' overreaches: it asserts a credential-to-RaspAP authentication bridge not present in either CVE description. The bridge is therefore only potentially conditional if the missing conditions are independently evidenced, and it cannot enter a strict graph as supported on the supplied evidence.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "3339d7c84ee669c5c3d8a4b5a8a0e4a2ace28d4ef147efbc95a2019147353a7d",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 5599,
+        "prompt_tokens": 2036,
+        "total_tokens": 7635,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5032,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00394475,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00394475,
+          "upstream_inference_prompt_cost": 0.0003054,
+          "upstream_inference_completions_cost": 0.00363935
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 5599,
+          "prompt_tokens": 2036,
+          "total_tokens": 7635,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 5032,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00394475,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00394475,
+            "upstream_inference_prompt_cost": 0.0003054,
+            "upstream_inference_completions_cost": 0.00363935
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0007",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "Administrator privileges may potentially include sudo/root capabilities on Raspberry Pi OS, but this is an inference and is not stated in CVE-2021-38759.",
+          "The target node precondition referencing RaspAP web console or default credentials is a generated graph claim, not confirming evidence.",
+          "The exact credential pair 'pi':'raspberry' and network reachability are derived from node preconditions or applicability rules, not from the supplied CVE description.",
+          "The target postcondition about audio output and power consumption assumes accessible hardware/peripheral interfaces and OS-level control beyond the CVE description.",
+          "Any causal bridge from default credentials to OS service or audio hardware control is an inference, not an explicit environment observation."
+        ],
+        "confidence": 0.82,
+        "edge_id": "edge-0007",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "If not changed, attackers can gain administrator privileges."
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "gain administrator privileges"
+          }
+        ],
+        "missing_conditions": [
+          "Default password for the pi account remains unchanged.",
+          "Attacker can reach and authenticate to the affected Raspberry Pi OS account over network or console.",
+          "Administrator privileges would actually yield root/sudo shell access or OS command execution.",
+          "Administrator access would permit direct control of OS services and hardware interfaces.",
+          "A target-side CVE or description supports command/audio hardware control and power-state alteration.",
+          "A connected audio peripheral and controllable power-state interfaces exist.",
+          "Unique source and target CVE mapping is established; the target CVE is currently missing."
+        ],
+        "reason": "CVE-2021-38759 supports at most that Raspberry Pi OS through 5.10 has a default password for the pi account and that, if not changed, attackers can gain administrator privileges. The source effect is therefore a conditional potential for administrator privileges, not demonstrated root/sudo shell access or direct OS/hardware control. The target node requires OS command execution or administrator access and asserts control of processes, audio output, and power consumption states. The edge label overreaches by asserting root/sudo shell access and direct control of OS services and hardware interfaces. No supplied description or explicit environment observation bridges administrator privileges to the target's audio/power-control postcondition, and the target CVE mapping is missing. The edge cannot enter a strict evidence graph as stated; at most it could be conditionally relevant if additional unverified assumptions about sudo, OS service control, and accessible hardware are established.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "unsupported",
+        "target_cve_id": null
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "8c0ea18e05f5daeb6e491743bf8549f659a42af687c5ecc653ae7ba10536065c",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 7628,
+        "prompt_tokens": 1355,
+        "total_tokens": 8983,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7047,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00516145,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00516145,
+          "upstream_inference_prompt_cost": 0.00020325,
+          "upstream_inference_completions_cost": 0.0049582
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 7628,
+          "prompt_tokens": 1355,
+          "total_tokens": 8983,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 7047,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.00516145,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.00516145,
+            "upstream_inference_prompt_cost": 0.00020325,
+            "upstream_inference_completions_cost": 0.0049582
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0008",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "The target node corresponds to the same Raspberry Pi OS instance described in CVE-2020-24572 as 'underlying OS (Raspberry Pi)'.",
+          "An OS command-execution foothold can potentially be used to manipulate audio playback software and power draw.",
+          "Executed commands have sufficient privileges to control audio and power subsystems.",
+          "Required audio software, peripheral equipment, and power-control interfaces are present and reachable."
+        ],
+        "confidence": 0.7,
+        "edge_id": "edge-0008",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "misconfigured (and virtually unrestricted) web console"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "underlying OS (Raspberry Pi)"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "execute commands on the system"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "including ones for uploading of files and execution of code"
+          }
+        ],
+        "missing_conditions": [
+          "unique_source_and_target_CVE_mapping",
+          "target_cve_mapping",
+          "privilege level of executed commands sufficient for audio/power control",
+          "presence and reachability of audio playback software, audio hardware/peripherals, and power-control interfaces",
+          "ability of available commands to alter power consumption states",
+          "explicit environment observations confirming target node capabilities"
+        ],
+        "reason": "CVE-2020-24572 supports an authenticated attacker using a 'misconfigured (and virtually unrestricted) web console' against the 'underlying OS (Raspberry Pi)' to 'execute commands on the system', including uploads and 'execution of code'. That supports a general OS command-execution foothold, which could potentially satisfy the target node's stated precondition of OS command execution or administrator access. However, the edge label further claims execution of 'shell commands' and manipulation of audio playback software and power draw; those specific effects are not stated in the CVE. The target has no mapped CVE, the environment is absent, and the privilege level of the executed commands is not stated. Thus the bounded causal bridge is general command execution only; audio/power control requires additional unverified privileges, software/hardware, and command capabilities. The edge should not enter a strict graph as supported; it is at most conditional pending verification of those conditions.",
+        "source_cve_id": "CVE-2020-24572",
+        "suggested_status": "conditional",
+        "target_cve_id": null
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "9cd5f7af0f1fa441adfdb4a608dbd80f6ca182e297b4a277d66cd1c0e8f65424",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 4906,
+        "prompt_tokens": 1416,
+        "total_tokens": 6322,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4336,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0034013,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0034013,
+          "upstream_inference_prompt_cost": 0.0002124,
+          "upstream_inference_completions_cost": 0.0031889
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 4906,
+          "prompt_tokens": 1416,
+          "total_tokens": 6322,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 4336,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 0,
+            "video_tokens": 0
+          },
+          "cost": 0.0034013,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.0034013,
+            "upstream_inference_prompt_cost": 0.0002124,
+            "upstream_inference_completions_cost": 0.0031889
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0009",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "The source node's OS command/audio-control effect is inferred from generated node text, not confirmed by a mapped CVE.",
+          "If the source could drive audio playback through Pi-powered speakers, the Glowworm correlation could potentially be used by a separate optical attacker to recover sound.",
+          "The edge label's mention of 'sensitive speech or victim communication' is broader than the CVE's references to 'speech signals' and 'sound played by the speakers'."
+        ],
+        "confidence": 0.82,
+        "edge_id": "edge-0009",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "Raspberry Pi 3 B+ and 4 B devices through 2021-08-09"
+          },
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "supplies power to audio-output equipment"
+          },
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "recover speech signals from an LED on the device"
+          },
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "via a telescope and an electro-optical sensor"
+          },
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "The sound played by the speakers affects the Raspberry Pi's power consumption"
+          },
+          {
+            "cve_id": "CVE-2021-38545",
+            "quote": "recover the sound played by the speakers"
+          }
+        ],
+        "missing_conditions": [
+          "Source CVE mapping is missing, so the source OS/audio-control effect is not CVE-evidenced.",
+          "The Raspberry Pi model must be 3 B+ or 4 B through 2021-08-09.",
+          "The Raspberry Pi must supply power to the audio-output equipment or speakers.",
+          "Speakers must be playing speech/sound, and for the claimed impact the audio must be sensitive speech or victim communication.",
+          "The attacker must have optical line-of-sight to the power indicator LED and use a telescope and electro-optical sensor.",
+          "Measurement and analysis capability to recover sound from LED fluctuations is required.",
+          "The source must actually be able to drive audio output through connected peripheral equipment; the source node pre/postconditions are claims, not confirming evidence.",
+          "No supplied evidence shows that directing playback causes or is required for the Glowworm recovery; an independent optical attacker is needed."
+        ],
+        "reason": "The target CVE-2021-38545 is an optical side-channel: it describes remote attackers recovering speech signals from the power indicator LED when the device supplies power to audio-output equipment, with optical access via a telescope and electro-optical sensor. The source CVE is unmapped, and the source node's audio-control postcondition is only generated claim text. The edge asserts that the source directs playback of sensitive speech/victim communication through connected Pi-powered audio equipment; at most, that could potentially satisfy part of the audio-playing prerequisite if the same Pi also supplies power to the speakers. However, the CVE does not evidence playback control, sensitive/victim content, line-of-sight, or measurement capability. Because the source effect is unverified and multiple target prerequisites are absent, the edge cannot enter a strict graph as supported; it is conditional at best.",
+        "source_cve_id": null,
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2021-38545"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "c059f1971496d349ea6ecc0d78b00a4a817c598781915ee41884f5fc016d101a",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 6009,
+        "prompt_tokens": 1615,
+        "total_tokens": 7624,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5326,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.004110212,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004110212,
+          "upstream_inference_prompt_cost": 0.000204362,
+          "upstream_inference_completions_cost": 0.00390585
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 6009,
+          "prompt_tokens": 1615,
+          "total_tokens": 7624,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 5326,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 256,
+            "video_tokens": 0
+          },
+          "cost": 0.004110212,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.004110212,
+            "upstream_inference_prompt_cost": 0.000204362,
+            "upstream_inference_completions_cost": 0.00390585
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0010",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "Generated node pre/postconditions and edge label are claims, not confirming evidence.",
+          "The source and target nodes are treated as referencing CVE-2022-21819 on Jetson Linux because both mappings show that CVE; this is metadata inference, not an observed environment fact.",
+          "The edge is an intra-CVE escalation narrative, not an observed exploit path or execution trace.",
+          "No explicit environment observations are supplied, so deployment, host relationships, and attacker capabilities remain unverified.",
+          "The terms 'unconstrained physical memory access', 'overwrite kernel data', 'adjacent hardware components', and 'total system takeover' are interpreted as stronger than the quoted description allows."
+        ],
+        "confidence": 0.86,
+        "edge_id": "edge-0010",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2022-21819",
+            "quote": "an error in the IOMMU configuration may allow an unprivileged attacker with physical access to the board direct read/write access to the entire system address space through the PCI bus"
+          },
+          {
+            "cve_id": "CVE-2022-21819",
+            "quote": "Such an attack could result in denial of service, code execution, escalation of privileges, and impact to data integrity and confidentiality."
+          },
+          {
+            "cve_id": "CVE-2022-21819",
+            "quote": "The scope impact may extend to other components."
+          }
+        ],
+        "missing_conditions": [
+          "Explicit environment observation that the affected Jetson Linux version and IOMMU misconfiguration are present.",
+          "Explicit confirmation of an unprivileged attacker with physical access to the board and a PCI bus path.",
+          "Evidence that direct read/write access to the entire system address space is actually used to overwrite kernel data, rather than merely permitting read/write.",
+          "Evidence that code execution occurs, not only that it 'could result'.",
+          "Evidence that privilege escalation reaches highest execution levels, not merely that escalation of privileges is possible.",
+          "Evidence that impact extends to adjacent hardware components, rather than the description's generic 'other components'.",
+          "Externally verified source-target host/component relationship for a strict graph edge.",
+          "A description-grounded capability bridge for 'unconstrained physical memory access' and 'total system takeover'."
+        ],
+        "reason": "The source CVE's actual effect is an IOMMU configuration error that may let an unprivileged attacker with physical access gain direct read/write access to the entire system address space through the PCI bus; the same description says such an attack could result in denial of service, code execution, escalation of privileges, and integrity/confidentiality impact, and that scope impact may extend to other components. The target node requires that direct read/write access via PCI bus DMA, and its postcondition claims complete DoS, arbitrary kernel/system code execution, highest-level privilege escalation, and cross-component breach. The edge label is partially aligned: it preserves write access and possible code execution and other-component impact, but it overreaches by asserting 'unconstrained physical memory access', 'overwrite kernel data', 'compromise adjacent hardware components', and a 'system takeover' consequence without the description stating those specifics or guaranteeing them. The bridge is bounded to modal possibilities ('may allow', 'could result', 'may extend') and lacks environment confirmation, so the edge cannot enter a strict graph as supported; it is at most conditional if the missing prerequisites and overbroad target claims are independently resolved.",
+        "source_cve_id": "CVE-2022-21819",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2022-21819"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "738d06f9b4003de7415ec74f710f5d900358457b9c0e7cff23de3c88b407064d",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 4938,
+        "prompt_tokens": 2246,
+        "total_tokens": 7184,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4209,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.003508712,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003508712,
+          "upstream_inference_prompt_cost": 0.000299012,
+          "upstream_inference_completions_cost": 0.0032097
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 4938,
+          "prompt_tokens": 2246,
+          "total_tokens": 7184,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 4209,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 256,
+            "video_tokens": 0
+          },
+          "cost": 0.003508712,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.003508712,
+            "upstream_inference_prompt_cost": 0.000299012,
+            "upstream_inference_completions_cost": 0.0032097
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "coreweave/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "CoreWeave"
+      }
+    }
+  }
+]

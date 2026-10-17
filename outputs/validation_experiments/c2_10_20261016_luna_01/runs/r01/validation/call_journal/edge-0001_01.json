@@ -1,0 +1,117 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:30:05.888482+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The read files contain default 'pi' credentials or usable system hashes is an inference, not evidence.",
+        "The source and target nodes refer to the same Raspberry Pi host is an inference, not evidence.",
+        "A disclosed hash can be converted into usable authentication is an inference, not evidence."
+      ],
+      "confidence": 0.95,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "via api/settings/log?file=../ path traversal"
+        }
+      ],
+      "missing_conditions": [
+        "An authenticated low-privilege piSignage account and a piSignage version before 2.6.4 are present in the environment.",
+        "The arbitrary-file read actually retrieves /etc/shadow or configuration data containing the unchanged default pi credential; the CVE only establishes arbitrary file download.",
+        "Any disclosed credential or hash is usable to authenticate, including any required password recovery from a hash.",
+        "The source-accessible Raspberry Pi is the same host as the target system represented by node_rpi_default_creds.",
+        "The target system satisfies the claimed Raspberry Pi OS and unchanged default-credential prerequisites.",
+        "The 'pi' account provides the claimed sudo or administrative control.",
+        "A unique target CVE mapping or other target evidence supports the credential-exploitation node."
+      ],
+      "reason": "CVE-2019-20354 describes a path-traversal file-download capability available to a remote attacker authenticated as a low-privilege user. It does not establish that the downloaded files contain default pi credentials or usable system hashes. The target node's preconditions and postconditions are generated claims, not confirming evidence, and require unchanged default credentials, access to the target system, and administrative capability. A bounded causal bridge is possible only if relevant credential material is retrieved, is usable for authentication, and applies to the target host. Those conditions and a unique target CVE mapping are absent, so the edge cannot enter a strict graph.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "unknown",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2537,
+      "prompt_tokens": 1341,
+      "total_tokens": 3878,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2070,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1338,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0033795,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0033795,
+        "upstream_inference_prompt_cost": 0.0003351,
+        "upstream_inference_completions_cost": 0.0030444
+      }
+    },
+    "latency_seconds": 26.399742399999013,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "af538a1014a2e523761ceaa0eda8d5b4ecbd5f4194897d342a302d52db0f5438",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2537,
+        "prompt_tokens": 1341,
+        "total_tokens": 3878,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2070,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1338,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0033795,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0033795,
+          "upstream_inference_prompt_cost": 0.0003351,
+          "upstream_inference_completions_cost": 0.0030444
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The read files contain default 'pi' credentials or usable system hashes is an inference, not evidence.\",\"The source and target nodes refer to the same Raspberry Pi host is an inference, not evidence.\",\"A disclosed hash can be converted into usable authentication is an inference, not evidence.\"],\"confidence\":0.95,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files from the Raspberry Pi\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"via api/settings/log?file=../ path traversal\"}],\"missing_conditions\":[\"An authenticated low-privilege piSignage account and a piSignage version before 2.6.4 are present in the environment.\",\"The arbitrary-file read actually retrieves /etc/shadow or configuration data containing the unchanged default pi credential; the CVE only establishes arbitrary file download.\",\"Any disclosed credential or hash is usable to authenticate, including any required password recovery from a hash.\",\"The source-accessible Raspberry Pi is the same host as the target system represented by node_rpi_default_creds.\",\"The target system satisfies the claimed Raspberry Pi OS and unchanged default-credential prerequisites.\",\"The 'pi' account provides the claimed sudo or administrative control.\",\"A unique target CVE mapping or other target evidence supports the credential-exploitation node.\"],\"reason\":\"CVE-2019-20354 describes a path-traversal file-download capability available to a remote attacker authenticated as a low-privilege user. It does not establish that the downloaded files contain default pi credentials or usable system hashes. The target node's preconditions and postconditions are generated claims, not confirming evidence, and require unchanged default credentials, access to the target system, and administrative capability. A bounded causal bridge is possible only if relevant credential material is retrieved, is usable for authentication, and applies to the target host. Those conditions and a unique target CVE mapping are absent, so the edge cannot enter a strict graph.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"unknown\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:30:32.290246+00:00"
+}

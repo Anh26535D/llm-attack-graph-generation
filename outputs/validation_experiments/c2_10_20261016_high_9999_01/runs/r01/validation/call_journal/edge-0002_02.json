@@ -1,0 +1,64 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T13:53:26.042289+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 442,
+      "prompt_token_count": 1454,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1454
+        }
+      ],
+      "thoughts_token_count": 15727,
+      "total_token_count": 17623
+    },
+    "latency_seconds": 133.9011064999995,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "4c3ef456be3e7ef5f629c60878f8e040232271cd27f87a0db33ce3f781b70b6d",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 442,
+        "prompt_token_count": 1454,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1454
+          }
+        ],
+        "thoughts_token_count": 15727,
+        "total_token_count": 17623
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "```json\n{\n  \"assumptions\": [\n    \"RaspAP 2.5 is co-located and actively running on the same Raspberry Pi host accessed via default credentials\",\n    \"Administrative host access potentially allows reading, extracting, or resetting RaspAP web console credentials from the local filesystem or configuration files\"\n  ],\n  \"confidence\": 0.85,\n  \"edge_id\": \"edge-0002\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"With authenticated access\"\n    },\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"underlying OS (Raspberry Pi) running this software\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Verification of a valid source CVE mapping for default credential exploitation\",\n    \"Explicit environment observation confirming same-host deployment of RaspAP on the compromised Raspberry Pi\",\n    \"Evidence demonstrating that RaspAP web console credentials can be recovered or reset via local administrative privileges\"\n  ],\n  \"reason\": \"The source node claims administrative OS access via default credentials, while the target CVE-2020-24572 explicitly requires 'With authenticated access' to the RaspAP web console running on the 'underlying OS (Raspberry Pi) running this software'. The causal bridge asserts that host administrative control enables extracting or resetting web console credentials. While this could potentially satisfy the target prerequisite if RaspAP is co-located on the same host and stores credentials locally without external protection, these dependencies are unverified assumptions. Same-host deployment and credential extraction cannot be inferred from absence of data, so this edge cannot enter a strict graph.\",\n  \"source_cve_id\": null,\n  \"suggested_status\": \"conditional\",\n  \"target_cve_id\": \"CVE-2020-24572\"\n}\n```",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T13:55:39.944796+00:00"
+}

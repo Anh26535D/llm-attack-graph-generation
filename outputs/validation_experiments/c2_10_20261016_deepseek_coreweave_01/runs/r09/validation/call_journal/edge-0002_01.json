@@ -1,0 +1,128 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T15:02:02.642386+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The piSignage source host and the Raspberry Pi OS target are the same device or share credential state.",
+        "The arbitrary file download can reach credential-bearing files such as /etc/shadow or configuration files containing the pi account credential.",
+        "The readable files actually contain or verify the 'pi' account credential.",
+        "The Raspberry Pi OS 'pi' account still uses the default 'raspberry' password.",
+        "A reachable service or access path allows the extracted or verified 'pi' credential to yield administrator privileges."
+      ],
+      "confidence": 0.86,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "has the raspberry default password for the pi account"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "source and target are the same host or otherwise share credential state",
+        "the path traversal can read credential-bearing files, not merely logs or application files",
+        "the readable files contain or verify the 'pi' account credential",
+        "Raspberry Pi OS is version <= 5.10 and the default 'raspberry' password for 'pi' has not been changed",
+        "a reachable access method can use the extracted or verified 'pi' credential to gain administrator privileges"
+      ],
+      "reason": "CVE-2019-20354's actual described effect is that an authenticated low-privilege remote attacker can download arbitrary files from the Raspberry Pi via path traversal; it does not assert extraction of password hashes or configuration credentials. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the raspberry default password for the pi account unchanged, and then attackers can gain administrator privileges. The edge claims extracted password hashes or configuration files verify or expose pi credentials, but the descriptions do not establish that arbitrary file read reaches such files, that those files contain or verify the pi credential, that source and target are the same host, or that the extracted material is usable for authentication. The causal bridge is therefore at most a potential conditional inference; it cannot enter a strict graph as a supported edge.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 8890,
+      "prompt_tokens": 1992,
+      "total_tokens": 10882,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 8352,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.006039412,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.006039412,
+        "upstream_inference_prompt_cost": 0.000260912,
+        "upstream_inference_completions_cost": 0.0057785
+      }
+    },
+    "latency_seconds": 53.43608140000106,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "a9923910b2260fb379856c54789721bd795827c467c88c43f2773fe8d3e188bf",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 8890,
+        "prompt_tokens": 1992,
+        "total_tokens": 10882,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 8352,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.006039412,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.006039412,
+          "upstream_inference_prompt_cost": 0.000260912,
+          "upstream_inference_completions_cost": 0.0057785
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The piSignage source host and the Raspberry Pi OS target are the same device or share credential state.\",\"The arbitrary file download can reach credential-bearing files such as /etc/shadow or configuration files containing the pi account credential.\",\"The readable files actually contain or verify the 'pi' account credential.\",\"The Raspberry Pi OS 'pi' account still uses the default 'raspberry' password.\",\"A reachable service or access path allows the extracted or verified 'pi' credential to yield administrator privileges.\"],\"confidence\":0.86,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files from the Raspberry Pi\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"has the raspberry default password for the pi account\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"}],\"missing_conditions\":[\"source and target are the same host or otherwise share credential state\",\"the path traversal can read credential-bearing files, not merely logs or application files\",\"the readable files contain or verify the 'pi' account credential\",\"Raspberry Pi OS is version <= 5.10 and the default 'raspberry' password for 'pi' has not been changed\",\"a reachable access method can use the extracted or verified 'pi' credential to gain administrator privileges\"],\"reason\":\"CVE-2019-20354's actual described effect is that an authenticated low-privilege remote attacker can download arbitrary files from the Raspberry Pi via path traversal; it does not assert extraction of password hashes or configuration credentials. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the raspberry default password for the pi account unchanged, and then attackers can gain administrator privileges. The edge claims extracted password hashes or configuration files verify or expose pi credentials, but the descriptions do not establish that arbitrary file read reaches such files, that those files contain or verify the pi credential, that source and target are the same host, or that the extracted material is usable for authentication. The causal bridge is therefore at most a potential conditional inference; it cannot enter a strict graph as a supported edge.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:02:56.079829+00:00"
+}

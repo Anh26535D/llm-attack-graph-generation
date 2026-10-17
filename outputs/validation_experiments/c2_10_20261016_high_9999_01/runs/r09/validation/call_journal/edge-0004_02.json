@@ -1,0 +1,90 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T14:00:42.774206+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "Assuming Oculus Browser is deployed on the same Windows host running Oculus Desktop",
+        "Assuming potential code execution in Oculus Browser yields an unprivileged local user execution context"
+      ],
+      "confidence": 0.8,
+      "edge_id": "edge-0004",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows"
+        }
+      ],
+      "missing_conditions": [
+        "Same-host deployment of Oculus Browser and Oculus Desktop",
+        "Verification that Oculus Browser is running on Windows",
+        "Confirmation that potential code execution in Oculus Browser results in local user command execution"
+      ],
+      "reason": "CVE-2019-3562 allows an attacker to 'potentially execute code' via HTML injection in the browser UI, while CVE-2020-1885 requires an attacker to be among 'local users' 'on Windows'. The edge is conditional because same-host deployment cannot be inferred from absence of data, the operating system for Oculus Browser is unspecified, and the source CVE provides only modal code execution ('potentially execute code') rather than guaranteed local execution.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "326cfe660ae94c3e808a9498da88729099afdba1dd2d99628fd0cb2219fcdee6",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "candidates_token_count": 341,
+      "prompt_token_count": 2379,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2379
+        }
+      ],
+      "thoughts_token_count": 2209,
+      "total_token_count": 4929
+    },
+    "cached_response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 341,
+        "prompt_token_count": 2379,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2379
+          }
+        ],
+        "thoughts_token_count": 2209,
+        "total_token_count": 4929
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:00:42.776661+00:00"
+}

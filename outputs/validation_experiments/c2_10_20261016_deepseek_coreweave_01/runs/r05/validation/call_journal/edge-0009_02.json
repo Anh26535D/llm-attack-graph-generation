@@ -1,0 +1,137 @@
+{
+  "edge_id": "edge-0009",
+  "started_at": "2026-10-16T15:13:05.190087+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The source node's OS command/audio-control effect is inferred from generated node text, not confirmed by a mapped CVE.",
+        "If the source could drive audio playback through Pi-powered speakers, the Glowworm correlation could potentially be used by a separate optical attacker to recover sound.",
+        "The edge label's mention of 'sensitive speech or victim communication' is broader than the CVE's references to 'speech signals' and 'sound played by the speakers'."
+      ],
+      "confidence": 0.82,
+      "edge_id": "edge-0009",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "Raspberry Pi 3 B+ and 4 B devices through 2021-08-09"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "supplies power to audio-output equipment"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "recover speech signals from an LED on the device"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "via a telescope and an electro-optical sensor"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "The sound played by the speakers affects the Raspberry Pi's power consumption"
+        },
+        {
+          "cve_id": "CVE-2021-38545",
+          "quote": "recover the sound played by the speakers"
+        }
+      ],
+      "missing_conditions": [
+        "Source CVE mapping is missing, so the source OS/audio-control effect is not CVE-evidenced.",
+        "The Raspberry Pi model must be 3 B+ or 4 B through 2021-08-09.",
+        "The Raspberry Pi must supply power to the audio-output equipment or speakers.",
+        "Speakers must be playing speech/sound, and for the claimed impact the audio must be sensitive speech or victim communication.",
+        "The attacker must have optical line-of-sight to the power indicator LED and use a telescope and electro-optical sensor.",
+        "Measurement and analysis capability to recover sound from LED fluctuations is required.",
+        "The source must actually be able to drive audio output through connected peripheral equipment; the source node pre/postconditions are claims, not confirming evidence.",
+        "No supplied evidence shows that directing playback causes or is required for the Glowworm recovery; an independent optical attacker is needed."
+      ],
+      "reason": "The target CVE-2021-38545 is an optical side-channel: it describes remote attackers recovering speech signals from the power indicator LED when the device supplies power to audio-output equipment, with optical access via a telescope and electro-optical sensor. The source CVE is unmapped, and the source node's audio-control postcondition is only generated claim text. The edge asserts that the source directs playback of sensitive speech/victim communication through connected Pi-powered audio equipment; at most, that could potentially satisfy part of the audio-playing prerequisite if the same Pi also supplies power to the speakers. However, the CVE does not evidence playback control, sensitive/victim content, line-of-sight, or measurement capability. Because the source effect is unverified and multiple target prerequisites are absent, the edge cannot enter a strict graph as supported; it is conditional at best.",
+      "source_cve_id": null,
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2021-38545"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "c059f1971496d349ea6ecc0d78b00a4a817c598781915ee41884f5fc016d101a",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 6009,
+      "prompt_tokens": 1615,
+      "total_tokens": 7624,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 5326,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.004110212,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.004110212,
+        "upstream_inference_prompt_cost": 0.000204362,
+        "upstream_inference_completions_cost": 0.00390585
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6009,
+        "prompt_tokens": 1615,
+        "total_tokens": 7624,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5326,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.004110212,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004110212,
+          "upstream_inference_prompt_cost": 0.000204362,
+          "upstream_inference_completions_cost": 0.00390585
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:13:05.191287+00:00"
+}

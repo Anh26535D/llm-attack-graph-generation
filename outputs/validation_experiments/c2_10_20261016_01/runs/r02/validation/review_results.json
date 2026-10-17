@@ -1,0 +1,322 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Assuming the default OS credentials for the 'pi' account grant access to the separate piSignage web application component or that piSignage shares credentials with the host OS",
+          "Assuming both services run on the same Raspberry Pi instance"
+        ],
+        "confidence": 0.3,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges."
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          }
+        ],
+        "missing_conditions": [
+          "Proof that host OS 'pi' credentials authenticate to the piSignage web application",
+          "Verification of co-location on the same host",
+          "piSignage version < 2.6.4 running and exposed"
+        ],
+        "reason": "CVE-2021-38759 describes default OS credentials ('raspberry' for 'pi') allowing attackers to 'gain administrator privileges' on Raspberry Pi OS. CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user' on the piSignage web application component. Gaining OS admin privileges does not inherently entail possessing valid web application user credentials without explicit co-deployment evidence or credential reuse.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2019-20354"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 369,
+        "prompt_token_count": 2219,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2219
+          }
+        ],
+        "total_token_count": 2588
+      },
+      "latency_seconds": 11.009083999999348,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "a6c0f690f58949618fe86fc2200ba96ba2565aada48e0779e77859da7b49ce76",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 369,
+          "prompt_token_count": 2219,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2219
+            }
+          ],
+          "total_token_count": 2588
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "low"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"Assuming the default OS credentials for the 'pi' account grant access to the separate piSignage web application component or that piSignage shares credentials with the host OS\", \"Assuming both services run on the same Raspberry Pi instance\"], \"confidence\": 0.3, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.\"}, {\"cve_id\": \"CVE-2019-20354\", \"quote\": \"authenticated as a low-privilege user\"}], \"missing_conditions\": [\"Proof that host OS 'pi' credentials authenticate to the piSignage web application\", \"Verification of co-location on the same host\", \"piSignage version < 2.6.4 running and exposed\"], \"reason\": \"CVE-2021-38759 describes default OS credentials ('raspberry' for 'pi') allowing attackers to 'gain administrator privileges' on Raspberry Pi OS. CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user' on the piSignage web application component. Gaining OS admin privileges does not inherently entail possessing valid web application user credentials without explicit co-deployment evidence or credential reuse.\", \"source_cve_id\": \"CVE-2021-38759\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2019-20354\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "invalid_response",
+      "response": null,
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 434,
+        "prompt_token_count": 2200,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2200
+          }
+        ],
+        "total_token_count": 2634
+      },
+      "latency_seconds": 6.225922600000558,
+      "error_type": "ReviewSchemaError",
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "283327d65382b35d29ea44dcd804e56ef4e046bd97496979d5bfddb3867419fe",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 434,
+          "prompt_token_count": 2200,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2200
+            }
+          ],
+          "total_token_count": 2634
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "low"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "```json\n{\n  \"assumptions\": [\n    \"RaspAP web interface shares credentials with the underlying Raspberry Pi OS 'pi' account\",\n    \"Source OS credentials grant authenticated access to RaspAP webconsole.php\",\n    \"Source and target software reside on the same host\"\n  ],\n  \"confidence\": 0.3,\n  \"edge_id\": \"edge-0002\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2021-38759\",\n      \"quote\": \"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.\"\n    },\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Evidence that default OS credentials authenticate to the RaspAP web interface\",\n    \"Confirmation that RaspAP 2.5 is deployed on the same instance running affected Raspberry Pi OS\",\n    \"Network accessibility of RaspAP web interface\"\n  ],\n  \"reason\": \"CVE-2021-38759 yields administrative privileges via the default OS 'pi' account, whereas CVE-2020-24572 requires 'authenticated access' to RaspAP's web console. Default OS credentials cannot be inferred to satisfy RaspAP application authentication without unverified assumptions.\",\n  \"source_cve_id\": \"CVE-2021-38759\",\n  \"suggested_status\": \"conditional\",\n  \"target_cve_id\": \"CVE-2020-24572\"\n}\n```"
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "invalid_response",
+      "response": null,
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 411,
+        "prompt_token_count": 2207,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2207
+          }
+        ],
+        "total_token_count": 2618
+      },
+      "latency_seconds": 7.373078599999644,
+      "error_type": "ReviewSchemaError",
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "b90d5fdf72af4ce3cff60be785f20551ed07e4506da7161790298c022e3ebf94",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 411,
+          "prompt_token_count": 2207,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2207
+            }
+          ],
+          "total_token_count": 2618
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "low"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "```json\n{\n  \"assumptions\": [\n    \"Arbitrary file download allows reading sensitive OS files like /etc/shadow or credentials\",\n    \"Target host has default credentials unchanged and a service accepting them\"\n  ],\n  \"confidence\": 0.3,\n  \"edge_id\": \"edge-0003\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"\n    },\n    {\n      \"cve_id\": \"CVE-2021-38759\",\n      \"quote\": \"has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Verification of file read permissions (e.g. read access to /etc/shadow or plaintext credential stores)\",\n    \"Presence of an accessible service accepting the pi account default password (CVE-2021-38759 requires default password unchanged, not credential extraction via file read)\"\n  ],\n  \"reason\": \"CVE-2019-20354 provides an arbitrary file read capability via path traversal, whereas CVE-2021-38759 relies on a known default password ('raspberry' for 'pi') if unchanged. Extracting credentials via directory traversal is not a prerequisite for exploiting known default credentials, rendering the causal bridge unsupported.\",\n  \"source_cve_id\": \"CVE-2019-20354\",\n  \"suggested_status\": \"unsupported\",\n  \"target_cve_id\": \"CVE-2021-38759\"\n}\n```"
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Assuming Oculus Browser runs on the same Windows host as Oculus Desktop",
+          "Assuming that injecting HTML code and potentially executing code yields a local user context capable of creating hard links on Windows"
+        ],
+        "confidence": 0.5,
+        "edge_id": "edge-0004",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "allowing an attacker to spoof UI and potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "on Windows"
+          }
+        ],
+        "missing_conditions": [
+          "Verification that Oculus Browser and Oculus Desktop share the same Windows operating system host",
+          "Verification that the potential code execution from CVE-2019-3562 translates into unprivileged local user execution with file system access"
+        ],
+        "reason": "CVE-2019-3562 states that an attacker can 'spoof UI and potentially execute code', while CVE-2020-1885 requires a 'local users' context 'on Windows'. The bridge requires that the potential execution from the browser vulnerability actually provides arbitrary local execution on the specific Windows host running the vulnerable Oculus Desktop software.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-1885"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 357,
+        "prompt_token_count": 2438,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2438
+          }
+        ],
+        "total_token_count": 2795
+      },
+      "latency_seconds": 5.1382897999992565,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "99675485e3a73b9a68e36c6d7bd7b2cf730899092b909b5a4a770a33511b8905",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 357,
+          "prompt_token_count": 2438,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2438
+            }
+          ],
+          "total_token_count": 2795
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "low"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"Assuming Oculus Browser runs on the same Windows host as Oculus Desktop\", \"Assuming that injecting HTML code and potentially executing code yields a local user context capable of creating hard links on Windows\"], \"confidence\": 0.5, \"edge_id\": \"edge-0004\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-3562\", \"quote\": \"allowing an attacker to spoof UI and potentially execute code\"}, {\"cve_id\": \"CVE-2020-1885\", \"quote\": \"allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file\"}, {\"cve_id\": \"CVE-2020-1885\", \"quote\": \"on Windows\"}], \"missing_conditions\": [\"Verification that Oculus Browser and Oculus Desktop share the same Windows operating system host\", \"Verification that the potential code execution from CVE-2019-3562 translates into unprivileged local user execution with file system access\"], \"reason\": \"CVE-2019-3562 states that an attacker can 'spoof UI and potentially execute code', while CVE-2020-1885 requires a 'local users' context 'on Windows'. The bridge requires that the potential execution from the browser vulnerability actually provides arbitrary local execution on the specific Windows host running the vulnerable Oculus Desktop software.\", \"source_cve_id\": \"CVE-2019-3562\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-1885\"}"
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "review": {
+      "state": "invalid_response",
+      "response": null,
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 443,
+        "prompt_token_count": 2373,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2373
+          }
+        ],
+        "total_token_count": 2816
+      },
+      "latency_seconds": 9.257377699999779,
+      "error_type": "ReviewSchemaError",
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "b64bb87755d169971fc7b6614a7ff510d77e6a1ef33a9dd133921a9922cabab5",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 443,
+          "prompt_token_count": 2373,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2373
+            }
+          ],
+          "total_token_count": 2816
+        },
+        "generation_config": {
+          "max_output_tokens": 4096,
+          "thinking_level": "low"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "```json\n{\n  \"assumptions\": [\n    \"Assumes that Oculus Browser (an Android-based Oculus Quest/Go component typically) and Oculus Desktop (Windows-based) run on the same host or environment, which is not stated\",\n    \"Assumes the potential code execution in the browser yields an unprivileged process capable of interacting with OVRServiceLauncher.exe\"\n  ],\n  \"confidence\": 0.5,\n  \"edge_id\": \"edge-0005\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-3562\",\n      \"quote\": \"inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code\"\n    },\n    {\n      \"cve_id\": \"CVE-2021-24038\",\n      \"quote\": \"an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Verification that Oculus Browser and Oculus Desktop run on the same platform/host\",\n    \"Verification that 'potentially execute code' manifests as a local unprivileged process\"\n  ],\n  \"reason\": \"CVE-2019-3562 allows an attacker to 'inject arbitrary HTML code into the Oculus Browser UI' and 'potentially execute code'. CVE-2021-24038 requires access to 'an unprivileged process' on the local system running Oculus Desktop/OVRServiceLauncher.exe. Transitioning from potential browser code execution to a local unprivileged process to escalate privileges is conditionally plausible, but same-host deployment and actual execution capability are unverified.\",\n  \"source_cve_id\": \"CVE-2019-3562\",\n  \"suggested_status\": \"conditional\",\n  \"target_cve_id\": \"CVE-2021-24038\"\n}\n```"
+    }
+  }
+]

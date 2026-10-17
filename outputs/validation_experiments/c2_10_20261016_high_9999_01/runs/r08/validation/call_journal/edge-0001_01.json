@@ -1,0 +1,60 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T13:49:49.223785+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 397,
+      "prompt_token_count": 1503,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1503
+        }
+      ],
+      "thoughts_token_count": 9598,
+      "total_token_count": 11498
+    },
+    "latency_seconds": 86.84848280000006,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "0af578bac4505ba8da1b35ac9489955e948b113f7898a74d2e135707cbefb8a6",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "MAX_TOKENS",
+      "usage": {
+        "candidates_token_count": 397,
+        "prompt_token_count": 1503,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1503
+          }
+        ],
+        "thoughts_token_count": 9598,
+        "total_token_count": 11498
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "MAX_TOKENS"
+      ]
+    },
+    "raw_response": "```json\n{\n  \"assumptions\": [\n    \"Raspberry Pi OS default credentials or unspecified administrative credentials grant authenticated access to RaspAP 2.5 web interface\",\n    \"RaspAP 2.5 is deployed and accessible on the target system\"\n  ],\n  \"confidence\": 0.95,\n  \"edge_id\": \"edge-0001\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"With authenticated access\"\n    },\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"includes/webconsole.php in RaspAP 2.5\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Supplied description evidence and verified mapping for the source CVE\",\n    \"Evidence that RaspAP 2.5 web interface uses or accepts Raspberry Pi OS default credentials\",\n    \"Verification of RaspAP 2.5 deployment on the target host\"\n  ],\n  \"reason\": \"The source CVE is unmapped and lacks supplied description evidence, so its actual postconditions cannot be verified. Target CVE-2020-24572 explicitly requires 'With authenticated access' to 'includes/webconsole.php in RaspAP 2.5'. The edge claims default administrative credentials satisfy this requirement, but inferring shared or valid web interface credentials from missing data is strictly prohibited. Because the source effect is unverified and the credential bridge is unsubstantiated, the edge cannot enter a strict graph.\",\n  \"source_cve_id\": null,\n  \"suggested_status\": \"unknown\",\n  \"target_cve_id\": \"CVE-20"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T13:51:16.074180+00:00"
+}

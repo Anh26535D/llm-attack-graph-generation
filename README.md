@@ -4,13 +4,15 @@ Repo tái hiện phương pháp và các nhóm thí nghiệm §5.1–5.4 của P
 
 **Hybrid Evidence-grounded Validator:** đã có module hậu xử lý độc lập gồm rule checking, selective LLM edge review, deterministic evidence recheck, so sánh A/B/C và ảnh Before/After PNG/SVG. Chạy `python -m crystalball.validation --mode offline` để tạo [ảnh Figure 7](outputs/validator/figure_07_offline/comparison.png) hoàn toàn offline. Xem [hướng dẫn Validator, smoke test opt-in và giới hạn đánh giá](docs/HYBRID_VALIDATOR.md). Pipeline generation hiện tại được giữ nguyên.
 
+**Pilot validation lặp 10 lần:** [hướng dẫn chạy và thang đo](docs/VALIDATION_REPEAT_PILOT.md) dùng một prompt C2 cố định, lưu từng graph gốc rồi so A original/B offline/C hybrid với cùng renderer và layout. Runner hỗ trợ dùng lại generation khi đổi cấu hình reviewer, journal từng request và chấm lại offline khi có gold độc lập; không tự xem nhãn LLM là accuracy.
+
 **Phạm vi hiện tại:** demo và chuẩn bị thí nghiệm bằng **ba mô hình độc lập**, để đối chiếu các nhóm so sánh ba mô hình của bài báo:
 
-| Mô hình | Model ID | Backend để chạy demo |
-|---|---|---|
-| Gemini | `gemini-3.8-flash` | `gemini` |
-| GPT-5.6 Luna | `openai/gpt-5.6-luna` | `openrouter` |
-| DeepSeek | `deepseek/deepseek-v4.1-flash` | `openrouter_v2` |
+| Mô hình    | Model ID                         | Backend để chạy demo |
+| ------------ | -------------------------------- | ----------------------- |
+| Gemini       | `gemini-3.8-flash`             | `gemini`              |
+| GPT-5.6 Luna | `openai/gpt-5.6-luna`          | `openrouter`          |
+| DeepSeek     | `deepseek/deepseek-v4.1-flash` | `openrouter_v2`       |
 
 DeepSeek là mô hình thứ ba. Tên backend `openrouter_v2` và các biến `_V2` chỉ phân biệt cấu hình OpenRouter thứ hai đã có, không phải phiên bản của dự án. **Runner chín hình đã hỗ trợ ba mô hình**, mỗi hình một request mặc định; runner đầy đủ §5.1–5.4 vẫn là bộ lịch sử hai mô hình. Xem [runner chín hình và demo online](docs/THI_NGHIEM_BA_MO_HINH.md).
 
@@ -22,17 +24,17 @@ DeepSeek là mô hình thứ ba. Tên backend `openrouter_v2` và các biến `_
 
 ## 1. Đọc gì, ở đâu?
 
-| Tài liệu / thư mục                                                                                               | Mục đích                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| [README này](README.md)                                                                                              | Cài đặt, vận hành, phân biệt lệnh offline/API, cách đọc và đánh giá output    |
-| [Thí nghiệm ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md) | Cấu hình Gemini/Luna/DeepSeek, runner chín hình, demo và cách chạy trên máy mới |
-| [Demo và trình bày](docs/HUONG_DAN_DEMO_VA_TRINH_BAY.md) | Lệnh chạy, luồng tạo ảnh, file đưa vào báo cáo và dàn ý slide |
-| [Đối chiếu chín graph](docs/DOI_CHIEU_9_DO_THI_VA_PHAM_VI_TAI_HIEN.md) | Mapping hình gốc → năm kịch bản, nguồn prompt và hình tái hiện |
-| [REPRODUCTION_REPORT.md](REPRODUCTION_REPORT.md)                                                                      | Báo cáo run hai mô hình: thiết kế, số liệu đã sửa, kết luận và giới hạn |
+| Tài liệu / thư mục                                                       | Mục đích                                                                                  |
+| ---------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| [README này](README.md)                                                      | Cài đặt, vận hành, phân biệt lệnh offline/API, cách đọc và đánh giá output    |
+| [Thí nghiệm ba mô hình](docs/THI_NGHIEM_BA_MO_HINH.md)                    | Cấu hình Gemini/Luna/DeepSeek, runner chín hình, demo và cách chạy trên máy mới    |
+| [Demo và trình bày](docs/HUONG_DAN_DEMO_VA_TRINH_BAY.md)                   | Lệnh chạy, luồng tạo ảnh, file đưa vào báo cáo và dàn ý slide                   |
+| [Đối chiếu chín graph](docs/DOI_CHIEU_9_DO_THI_VA_PHAM_VI_TAI_HIEN.md)    | Mapping hình gốc → năm kịch bản, nguồn prompt và hình tái hiện                    |
+| [REPRODUCTION_REPORT.md](REPRODUCTION_REPORT.md)                              | Báo cáo run hai mô hình: thiết kế, số liệu đã sửa, kết luận và giới hạn      |
 | [E1 — nhất quán với môi trường](experiments/env_consistency/README.md) | Thí nghiệm phụ về thay đổi phiên bản/cấu hình và CVE còn xuất hiện trong graph |
-| [H1 — cạnh bám nguồn](experiments/h1_edge_support/README.md) | Thí nghiệm phụ trích cạnh CVE→CVE và chấm mức độ được nguồn hỗ trợ |
-| [data/cve_official/manifest.json](data/cve_official/manifest.json)                                                    | Tám CVE chính thức: ID, URL, commit nguồn và SHA-256                                    |
-| [data/reproduction/manifest.json](data/reproduction/manifest.json)                                                    | Nguồn Appendix A/B/C, trang PDF, chuẩn hóa văn bản và hash                             |
+| [H1 — cạnh bám nguồn](experiments/h1_edge_support/README.md)              | Thí nghiệm phụ trích cạnh CVE→CVE và chấm mức độ được nguồn hỗ trợ          |
+| [data/cve_official/manifest.json](data/cve_official/manifest.json)            | Tám CVE chính thức: ID, URL, commit nguồn và SHA-256                                    |
+| [data/reproduction/manifest.json](data/reproduction/manifest.json)            | Nguồn Appendix A/B/C, trang PDF, chuẩn hóa văn bản và hash                             |
 
 **Phạm vi chia sẻ:** code vận hành, các file `.bat`, tests, dependency lock, tám CVE chính thức, prompt nguồn Appendix và tài liệu hướng dẫn. Ba bộ `outputs/paper_nine/` đã chọn và hai sơ đồ `outputs/demo_presentation/` cũng có trong Git, gồm prompt/response/metadata và ảnh tham chiếu. DB/vector/cache, archive và bộ 130 response lịch sử giữ cục bộ. Không cần các artifact lịch sử để chạy runner chín hình hoặc tạo run mới; API key nằm trong `.env` riêng của từng người.
 
@@ -303,14 +305,14 @@ Runner lưu journal trước/sau từng request, response và usage; kiểm tra 
 
 Sau khi chạy bộ thí nghiệm mới, đọc `outputs/experiments/<run_id>/`. Thư mục này được tạo trên máy chạy, không có sẵn trong bản clone:
 
-| Đường dẫn | Cách dùng |
-|---|---|
-| `manifest.json` | Dataset, cấu hình, prompt hash, kế hoạch và trạng thái run |
-| `prompts/`, `call_prompts/` | Prompt cố định và prompt phụ thuộc output ở từng request |
-| `calls/` | Journal theo `call_id`: status, usage, finish reason, chi phí |
-| `raw_responses/` | Response nguyên bản để đối chiếu parser |
-| `graphs/`, `derived/` | Graph đã parse và các graph gộp |
-| `metrics.json`, `metrics.csv`, `summary.json` | Kết quả tự động; đối chiếu raw trước khi diễn giải |
+| Đường dẫn                                                     | Cách dùng                                                               |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `manifest.json`                                                 | Dataset, cấu hình, prompt hash, kế hoạch và trạng thái run         |
+| `prompts/`, `call_prompts/`                                   | Prompt cố định và prompt phụ thuộc output ở từng request          |
+| `calls/`                                                        | Journal theo `call_id`: status, usage, finish reason, chi phí          |
+| `raw_responses/`                                                | Response nguyên bản để đối chiếu parser                            |
+| `graphs/`, `derived/`                                         | Graph đã parse và các graph gộp                                      |
+| `metrics.json`, `metrics.csv`, `summary.json`               | Kết quả tự động; đối chiếu raw trước khi diễn giải            |
 | `coverage.*`, `evidence_table.md`, `REPRODUCTION_REPORT.md` | Chỉ báo và báo cáo tự sinh sơ bộ, cần người đọc bằng chứng |
 
 Ví dụ `graph.gemini.C1.r01.a01` là stage graph, Gemini, C1, repeat 1, attempt 1. Đối chiếu cùng ID giữa journal, raw response và hàng metrics. Riêng run lịch sử `20260927_full_reproduction`, bộ đánh giá đã sửa nằm trong `offline_reevaluation/` cục bộ; báo cáo tổng hợp đi kèm repo đã dùng bộ số liệu mới đó.
@@ -325,6 +327,17 @@ Ví dụ `graph.gemini.C1.r01.a01` là stage graph, Gemini, C1, repeat 1, attemp
 Mẫu của run lịch sử: census 20 nhánh T0; 24 stratum CVE; 56 quan sát event-output SolarWinds. Quy tắc chọn mẫu được mô tả trong [báo cáo hiện hành](REPRODUCTION_REPORT.md). Không suy rộng các tỷ lệ này thành accuracy toàn bộ graph hoặc xếp hạng model. Số node/edge chỉ mô tả kích thước, không đo chất lượng.
 
 Với run mới, ghi riêng bảng chấm gồm `call_id`, sự kiện/quan hệ, locator node/edge, trích nguồn, prerequisite, nhãn sơ bộ và quyết định của người duyệt. Duyệt tiêu chí và cách lấy mẫu trước khi chấm. Báo cáo runner tự sinh không thay thế bước đọc bằng chứng này.
+
+## Thử nghiệm multi-agent ở bước sinh graph
+
+Với **SolarWinds trong bài gốc**, dùng [runner T1/T2 và hướng dẫn](docs/SOLARWINDS_DEBATE.md):
+baseline giữ prompt Appendix C, model tự sinh node/cạnh, rồi tự sửa/debate
+trên cùng graph và báo cáo nguồn. Không dùng dữ liệu C2 mô phỏng cho phép đo này.
+
+Runner riêng hỗ trợ `grounded`, `self_refine`, và `debate` (bảo vệ cạnh → phản
+biện → tổng hợp), dùng chung graph nháp và có kiểm tra trích dẫn/ID CVE.
+Xem [luồng, cách chạy và cách đo](docs/GENERATION_DEBATE.md). `prepare` không
+gọi API; `execute` mới gửi request. Chưa có số liệu chứng minh tăng accuracy.
 
 ## 8. Kiểm thử và quy tắc bàn giao
 

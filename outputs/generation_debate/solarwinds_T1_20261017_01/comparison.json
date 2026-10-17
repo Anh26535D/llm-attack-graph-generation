@@ -1,0 +1,259 @@
+{
+  "case": "T1",
+  "rows": [
+    {
+      "repeat": 1,
+      "strategy": "single",
+      "status": "completed",
+      "accuracy": null,
+      "calls_including_shared_draft": 1,
+      "usage": {
+        "input_tokens": 5478,
+        "output_tokens": 1846,
+        "total_tokens": 7324,
+        "requests_with_usage": 1,
+        "requests_missing_usage": 0,
+        "totals_are_partial": false
+      },
+      "seconds": 15.361398400000326,
+      "nodes": 19,
+      "edges": 19,
+      "diff": {
+        "added_node_ids": [],
+        "removed_node_ids": [],
+        "changed_nodes": [],
+        "added_pairs": [],
+        "removed_pairs": [],
+        "changed_retained_pairs": [],
+        "id_based_alignment_only": true,
+        "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+      },
+      "change_records": 0,
+      "change_records_with_verified_quote": 0
+    },
+    {
+      "repeat": 1,
+      "strategy": "self_refine",
+      "status": "completed",
+      "accuracy": null,
+      "calls_including_shared_draft": 4,
+      "usage": {
+        "input_tokens": 36551,
+        "output_tokens": 9497,
+        "total_tokens": 74152,
+        "requests_with_usage": 4,
+        "requests_missing_usage": 0,
+        "totals_are_partial": false
+      },
+      "seconds": 238.48536149999927,
+      "nodes": 20,
+      "edges": 20,
+      "diff": {
+        "added_node_ids": [
+          "api_connectivity_check"
+        ],
+        "removed_node_ids": [],
+        "changed_nodes": [],
+        "added_pairs": [
+          [
+            "anti_analysis_defense_evasion",
+            "api_connectivity_check"
+          ],
+          [
+            "api_connectivity_check",
+            "dga_resolution"
+          ],
+          [
+            "credential_abuse",
+            "data_theft_impact"
+          ],
+          [
+            "unc2452_actor",
+            "c2_infrastructure_masquerading"
+          ],
+          [
+            "unc2452_actor",
+            "credential_abuse"
+          ],
+          [
+            "unc2452_actor",
+            "teardrop_dropper"
+          ],
+          [
+            "unc2452_actor",
+            "temporary_file_task_mod"
+          ]
+        ],
+        "removed_pairs": [
+          [
+            "anti_analysis_defense_evasion",
+            "dga_resolution"
+          ],
+          [
+            "c2_infrastructure_masquerading",
+            "credential_abuse"
+          ],
+          [
+            "cobalt_strike_beacon",
+            "c2_infrastructure_masquerading"
+          ],
+          [
+            "credential_abuse",
+            "temporary_file_task_mod"
+          ],
+          [
+            "steganography_jobs",
+            "teardrop_dropper"
+          ],
+          [
+            "temporary_file_task_mod",
+            "data_theft_impact"
+          ]
+        ],
+        "changed_retained_pairs": [
+          [
+            "teardrop_dropper",
+            "cobalt_strike_beacon"
+          ],
+          [
+            "unc2452_actor",
+            "solarwinds_supply_chain"
+          ]
+        ],
+        "id_based_alignment_only": true,
+        "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+      },
+      "change_records": 4,
+      "change_records_with_verified_quote": 4
+    },
+    {
+      "repeat": 1,
+      "strategy": "debate",
+      "status": "completed",
+      "accuracy": null,
+      "calls_including_shared_draft": 4,
+      "usage": {
+        "input_tokens": 40704,
+        "output_tokens": 11011,
+        "total_tokens": 65171,
+        "requests_with_usage": 4,
+        "requests_missing_usage": 0,
+        "totals_are_partial": false
+      },
+      "seconds": 174.57157220000227,
+      "nodes": 23,
+      "edges": 23,
+      "diff": {
+        "added_node_ids": [
+          "ip_blocklist_termination",
+          "network_connectivity_check",
+          "recon_storage_in_plugin_config",
+          "tool_and_backdoor_removal"
+        ],
+        "removed_node_ids": [],
+        "changed_nodes": [],
+        "added_pairs": [
+          [
+            "anti_analysis_defense_evasion",
+            "network_connectivity_check"
+          ],
+          [
+            "anti_analysis_defense_evasion",
+            "recon_storage_in_plugin_config"
+          ],
+          [
+            "credential_abuse",
+            "data_theft_impact"
+          ],
+          [
+            "credential_abuse",
+            "tool_and_backdoor_removal"
+          ],
+          [
+            "dga_resolution",
+            "ip_blocklist_termination"
+          ],
+          [
+            "network_connectivity_check",
+            "dga_resolution"
+          ],
+          [
+            "unc2452_actor",
+            "c2_infrastructure_masquerading"
+          ],
+          [
+            "unc2452_actor",
+            "credential_abuse"
+          ],
+          [
+            "unc2452_actor",
+            "temporary_file_task_mod"
+          ]
+        ],
+        "removed_pairs": [
+          [
+            "anti_analysis_defense_evasion",
+            "dga_resolution"
+          ],
+          [
+            "c2_infrastructure_masquerading",
+            "credential_abuse"
+          ],
+          [
+            "cobalt_strike_beacon",
+            "c2_infrastructure_masquerading"
+          ],
+          [
+            "credential_abuse",
+            "temporary_file_task_mod"
+          ],
+          [
+            "temporary_file_task_mod",
+            "data_theft_impact"
+          ]
+        ],
+        "changed_retained_pairs": [
+          [
+            "c2_domain_cname",
+            "http_c2_communication"
+          ],
+          [
+            "dga_resolution",
+            "c2_domain_cname"
+          ],
+          [
+            "initial_dormant_period",
+            "anti_analysis_defense_evasion"
+          ],
+          [
+            "steganography_jobs",
+            "teardrop_dropper"
+          ],
+          [
+            "teardrop_dropper",
+            "cobalt_strike_beacon"
+          ],
+          [
+            "unc2452_actor",
+            "solarwinds_supply_chain"
+          ]
+        ],
+        "id_based_alignment_only": true,
+        "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+      },
+      "change_records": 21,
+      "change_records_with_verified_quote": 21
+    }
+  ],
+  "unique_api_calls": 7,
+  "unique_usage": {
+    "input_tokens": 71777,
+    "output_tokens": 18662,
+    "total_tokens": 131999,
+    "requests_with_usage": 7,
+    "requests_missing_usage": 0,
+    "totals_are_partial": false
+  },
+  "gold_available": false,
+  "accuracy": null
+}

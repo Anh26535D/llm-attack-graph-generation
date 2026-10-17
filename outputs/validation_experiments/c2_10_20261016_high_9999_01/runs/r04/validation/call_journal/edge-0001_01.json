@@ -1,0 +1,60 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T13:54:42.024651+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 400,
+      "prompt_token_count": 2273,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2273
+        }
+      ],
+      "thoughts_token_count": 9595,
+      "total_token_count": 12268
+    },
+    "latency_seconds": 83.62387839999974,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "5cbd74d3d7d7d135db22c710cd982685e010c573d7e26ed93e10a1a5600a142c",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "MAX_TOKENS",
+      "usage": {
+        "candidates_token_count": 400,
+        "prompt_token_count": 2273,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2273
+          }
+        ],
+        "thoughts_token_count": 9595,
+        "total_token_count": 12268
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "MAX_TOKENS"
+      ]
+    },
+    "raw_response": "```json\n{\n  \"assumptions\": [\n    \"piSignage and Raspberry Pi OS are deployed on the same host\",\n    \"The piSignage web application process runs with elevated privileges capable of reading restricted credential files like /etc/shadow\",\n    \"An accessible service or interface exists that accepts authentication using the pi account credentials\",\n    \"Exfiltrating password hashes allows verifying or obtaining plaintext default credentials\"\n  ],\n  \"confidence\": 0.85,\n  \"edge_id\": \"edge-0001\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"authenticated as a low-privilege user\"\n    },\n    {\n      \"cve_id\": \"CVE-2021-38759\",\n      \"quote\": \"has the raspberry default password for the pi account\"\n    },\n    {\n      \"cve_id\": \"CVE-2021-38759\",\n      \"quote\": \"If not changed, attackers can gain administrator privileges\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Verification of co-location/same-host deployment between the piSignage web application and the vulnerable Raspberry Pi OS instance\",\n    \"Proof that the piSignage web service runs with sufficient OS permissions to read privileged system credential stores\",\n    \"Presence and network reachability of a service (such as SSH or local console) accepting pi:raspberry authentication\",\n    \""
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T13:56:05.650330+00:00"
+}

@@ -1,0 +1,109 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:40:17.794068+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The source node's RCE and shell-access postconditions are unverified claims, not observed access.",
+        "Any same-host or network relationship between the source context and the Raspberry Pi target is only a hypothesis.",
+        "An authentication service such as SSH is only a possible interpretation, not an observed service."
+      ],
+      "confidence": 0.96,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "A unique source-CVE mapping and a supplied description establishing the source CVE's actual effect.",
+        "Evidence that the source compromise actually provides shell access.",
+        "Evidence that the source context and target are the same host or that a route to the target exists.",
+        "Verification that the target runs Raspberry Pi OS through version 5.10.",
+        "Verification that the pi account exists and its default raspberry password remains unchanged.",
+        "An available authentication path or service to the target, or separately verified local-console access.",
+        "Evidence that the source context can use those credentials against this target."
+      ],
+      "reason": "The supplied CVE description for CVE-2021-38759 supports only a conditional effect: on Raspberry Pi OS through 5.10, if the default pi password is unchanged, attackers can potentially gain administrator privileges. It does not establish shell access, a reachable authentication service, network reachability, same-host deployment, or a relationship to the source node. The source mapping is missing; CVE-2021-33357 appears only as a candidate or node-label reference, with no supplied source CVE description, so the source's actual effect cannot be verified. The edge label overreaches by treating shell access and reachability to the target as available and by asserting a causal bridge to credential use. The target node's more specific claims of authenticated local access and sudo/root privileges are also not directly stated by the supplied description. The edge is therefore not admissible in a strict graph currently, but it is not contradicted if all listed conditions are later verified.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "99c0608fcb27e7f866d5a99a1d53b1557a06a756acc3f4ebe0b01d90bcc2f9a1",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "completion_tokens": 3480,
+      "prompt_tokens": 1326,
+      "total_tokens": 4806,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 3010,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1323,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00450735,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00450735,
+        "upstream_inference_prompt_cost": 0.00033135,
+        "upstream_inference_completions_cost": 0.004176
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 3480,
+        "prompt_tokens": 1326,
+        "total_tokens": 4806,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3010,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1323,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00450735,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00450735,
+          "upstream_inference_prompt_cost": 0.00033135,
+          "upstream_inference_completions_cost": 0.004176
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:40:17.795873+00:00"
+}

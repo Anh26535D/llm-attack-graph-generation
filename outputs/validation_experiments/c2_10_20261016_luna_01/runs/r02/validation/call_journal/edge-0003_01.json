@@ -1,0 +1,130 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:31:26.231839+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference only: the piSignage instance and Raspberry Pi OS target are deployed on the same host.",
+        "Inference only: an arbitrary downloaded file could contain usable OS credential material.",
+        "Inference only: the target's default-password condition may independently hold."
+      ],
+      "confidence": 0.97,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "raspberry default password for the pi account"
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges"
+        }
+      ],
+      "missing_conditions": [
+        "Verified piSignage version before 2.6.4 and deployment on the relevant Raspberry Pi",
+        "Authenticated low-privilege piSignage web-application access",
+        "Verified Raspberry Pi OS version through 5.10 on the target host",
+        "Verified that the pi account's default password is unchanged",
+        "Verified source and target host/deployment relationship",
+        "Evidence that the arbitrary files include usable OS credential material or the target default password",
+        "A demonstrated capability bridge showing that the source file-read effect enables exploitation of the target default-credential condition",
+        "Verified network or other access path to the target"
+      ],
+      "reason": "CVE-2019-20354's actual effect is remote, authenticated low-privilege access to download arbitrary files from a Raspberry Pi through the piSignage path traversal. Its description does not identify /etc/shadow, configuration files, credential contents, password recovery, or administrative access. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the pi account's default password not changed, and states that this condition can yield administrator privileges. The descriptions do not establish that the source and target affect the same host, that downloaded files contain usable credentials, or that the source effect enables the target condition. The edge therefore cannot enter a strict graph as supported; absence of the bridge is not a contradiction, so the status is unknown.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2058,
+      "prompt_tokens": 1929,
+      "total_tokens": 3987,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1532,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1926,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0029517,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0029517,
+        "upstream_inference_prompt_cost": 0.0004821,
+        "upstream_inference_completions_cost": 0.0024696
+      }
+    },
+    "latency_seconds": 18.237713799999256,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "ce34bf5dc8b8fe018d46b59343ac416ad470e2834a7ad5e2f2fe688644cae241",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2058,
+        "prompt_tokens": 1929,
+        "total_tokens": 3987,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1532,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1926,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0029517,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0029517,
+          "upstream_inference_prompt_cost": 0.0004821,
+          "upstream_inference_completions_cost": 0.0024696
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inference only: the piSignage instance and Raspberry Pi OS target are deployed on the same host.\",\"Inference only: an arbitrary downloaded file could contain usable OS credential material.\",\"Inference only: the target's default-password condition may independently hold.\"],\"confidence\":0.97,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"from the Raspberry Pi\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"raspberry default password for the pi account\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges\"}],\"missing_conditions\":[\"Verified piSignage version before 2.6.4 and deployment on the relevant Raspberry Pi\",\"Authenticated low-privilege piSignage web-application access\",\"Verified Raspberry Pi OS version through 5.10 on the target host\",\"Verified that the pi account's default password is unchanged\",\"Verified source and target host/deployment relationship\",\"Evidence that the arbitrary files include usable OS credential material or the target default password\",\"A demonstrated capability bridge showing that the source file-read effect enables exploitation of the target default-credential condition\",\"Verified network or other access path to the target\"],\"reason\":\"CVE-2019-20354's actual effect is remote, authenticated low-privilege access to download arbitrary files from a Raspberry Pi through the piSignage path traversal. Its description does not identify /etc/shadow, configuration files, credential contents, password recovery, or administrative access. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the pi account's default password not changed, and states that this condition can yield administrator privileges. The descriptions do not establish that the source and target affect the same host, that downloaded files contain usable credentials, or that the source effect enables the target condition. The edge therefore cannot enter a strict graph as supported; absence of the bridge is not a contradiction, so the status is unknown.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"unknown\",\"target_cve_id\":\"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:31:44.472882+00:00"
+}

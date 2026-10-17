@@ -1,0 +1,419 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "piSignage and RaspAP are deployed on the same Raspberry Pi host or share a filesystem",
+          "Arbitrary file retrieval via piSignage exposes valid credentials or configuration data usable to authenticate to RaspAP"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access"
+          }
+        ],
+        "missing_conditions": [
+          "Verification that piSignage and RaspAP reside on the same host or filesystem",
+          "Presence of readable RaspAP credentials or session tokens within the accessible files",
+          "Target host runs RaspAP 2.5 with network reachability",
+          "Attacker possesses low-privilege authentication required by the piSignage API"
+        ],
+        "reason": "CVE-2019-20354 allows a remote attacker to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', whereas CVE-2020-24572 requires 'With authenticated access'. The claim that arbitrary file read yields credentials providing authenticated access to RaspAP is a bounded causal bridge that potentially works, but it overreaches by inferring same-host deployment and credential exposure from file read capability alone. Because these prerequisites are unverified, the edge cannot enter a strict attack graph.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "95d614aa93877a164bc9711d0aeb04f9166bd90aefdf66eaa7968e31359a35ec",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "cached_usage": {
+        "candidates_token_count": 389,
+        "prompt_token_count": 2215,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2215
+          }
+        ],
+        "thoughts_token_count": 2188,
+        "total_token_count": 4792
+      },
+      "cached_response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 389,
+          "prompt_token_count": 2215,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2215
+            }
+          ],
+          "thoughts_token_count": 2188,
+          "total_token_count": 4792
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "The piSignage application runs on the same Raspberry Pi OS host as the targeted pi account",
+          "The piSignage process runs with permissions enabling it to read sensitive credential files such as /etc/shadow or configuration files",
+          "The default password for the pi account has not been changed or the extracted file contains readable credential material",
+          "A service such as SSH or a local login prompt is reachable to authenticate with the pi account"
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0002",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges."
+          }
+        ],
+        "missing_conditions": [
+          "Verification of same-host deployment between piSignage and Raspberry Pi OS",
+          "Verification of process read permissions allowing the web application to read privileged credential files",
+          "Verification that the default password for the pi account is unchanged on the target host",
+          "Verification of network or local reachability of an authentication service accepting the pi account credentials"
+        ],
+        "reason": "The source CVE-2019-20354 provides the capability to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', while the target CVE-2021-38759 notes that Raspberry Pi OS 'has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.' The edge claim exhibits overreach by asserting that extracted files verify or expose credentials for the 'pi' account; arbitrary file read does not guarantee access to privileged credential files (like /etc/shadow), same-host deployment cannot be inferred, and default credentials can be known or attempted independently of file reads. Because credential exposure and same-host deployment are unverified assumptions, this edge cannot enter a strict graph and is conditionally plausible only if specific host co-location and file permission prerequisites are met.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2021-38759"
+      },
+      "api_calls": 1,
+      "usage": {
+        "candidates_token_count": 515,
+        "prompt_token_count": 2168,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2168
+          }
+        ],
+        "thoughts_token_count": 4512,
+        "total_token_count": 7195
+      },
+      "latency_seconds": 34.22679760000028,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "cdace8fb7a9c00aedc32d6313d1116238b357de60bf1021b4cd789e01edd055f",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 515,
+          "prompt_token_count": 2168,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2168
+            }
+          ],
+          "thoughts_token_count": 4512,
+          "total_token_count": 7195
+        },
+        "generation_config": {
+          "max_output_tokens": 16384,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      },
+      "raw_response": "{\"assumptions\": [\"The piSignage application runs on the same Raspberry Pi OS host as the targeted pi account\", \"The piSignage process runs with permissions enabling it to read sensitive credential files such as /etc/shadow or configuration files\", \"The default password for the pi account has not been changed or the extracted file contains readable credential material\", \"A service such as SSH or a local login prompt is reachable to authenticate with the pi account\"], \"confidence\": 0.85, \"edge_id\": \"edge-0002\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-20354\", \"quote\": \"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"}, {\"cve_id\": \"CVE-2021-38759\", \"quote\": \"has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.\"}], \"missing_conditions\": [\"Verification of same-host deployment between piSignage and Raspberry Pi OS\", \"Verification of process read permissions allowing the web application to read privileged credential files\", \"Verification that the default password for the pi account is unchanged on the target host\", \"Verification of network or local reachability of an authentication service accepting the pi account credentials\"], \"reason\": \"The source CVE-2019-20354 provides the capability to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', while the target CVE-2021-38759 notes that Raspberry Pi OS 'has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.' The edge claim exhibits overreach by asserting that extracted files verify or expose credentials for the 'pi' account; arbitrary file read does not guarantee access to privileged credential files (like /etc/shadow), same-host deployment cannot be inferred, and default credentials can be known or attempted independently of file reads. Because credential exposure and same-host deployment are unverified assumptions, this edge cannot enter a strict graph and is conditionally plausible only if specific host co-location and file permission prerequisites are met.\", \"source_cve_id\": \"CVE-2019-20354\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2021-38759\"}",
+      "request_overrides": {
+        "max_output_tokens": 16384,
+        "reasoning_level": "high"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "Assuming RaspAP 2.5 is co-located on the same host running Raspberry Pi OS.",
+          "Assuming OS administrator access allows extracting, resetting, or reusing credentials to achieve authenticated access to RaspAP."
+        ],
+        "confidence": 0.85,
+        "edge_id": "edge-0003",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "If not changed, attackers can gain administrator privileges."
+          },
+          {
+            "cve_id": "CVE-2020-24572",
+            "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console to attack the underlying OS (Raspberry Pi) running this software, and execute commands on the system"
+          }
+        ],
+        "missing_conditions": [
+          "Proof of same-host deployment linking the Raspberry Pi OS instance to the RaspAP web interface",
+          "Valid RaspAP web interface credentials or a verified mechanism enabling OS administrator access to obtain authenticated web session access",
+          "Verification that the default pi account credentials remain unchanged"
+        ],
+        "reason": "The source CVE-2021-38759 allows an attacker to 'gain administrator privileges' if default credentials are not changed. The target CVE-2020-24572 requires 'With authenticated access' to execute commands via the web console. The edge overreaches by inferring same-host deployment and assuming that OS-level administrative credentials directly translate to web console authenticated access. Consequently, this edge cannot enter a strict graph without explicit verification of co-location and credential accessibility.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-24572"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "49d8950cacb641081204f6748548493bbb0f91f114ee0e3bb4c1c41f0807db74",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "cached_usage": {
+        "candidates_token_count": 392,
+        "prompt_token_count": 2172,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2172
+          }
+        ],
+        "thoughts_token_count": 2306,
+        "total_token_count": 4870
+      },
+      "cached_response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 392,
+          "prompt_token_count": 2172,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2172
+            }
+          ],
+          "thoughts_token_count": 2306,
+          "total_token_count": 4870
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "Assuming Oculus Browser is deployed on the same Windows host running Oculus Desktop",
+          "Assuming potential code execution in Oculus Browser yields an unprivileged local user execution context"
+        ],
+        "confidence": 0.8,
+        "edge_id": "edge-0004",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "allows local users"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "on Windows"
+          }
+        ],
+        "missing_conditions": [
+          "Same-host deployment of Oculus Browser and Oculus Desktop",
+          "Verification that Oculus Browser is running on Windows",
+          "Confirmation that potential code execution in Oculus Browser results in local user command execution"
+        ],
+        "reason": "CVE-2019-3562 allows an attacker to 'potentially execute code' via HTML injection in the browser UI, while CVE-2020-1885 requires an attacker to be among 'local users' 'on Windows'. The edge is conditional because same-host deployment cannot be inferred from absence of data, the operating system for Oculus Browser is unspecified, and the source CVE provides only modal code execution ('potentially execute code') rather than guaranteed local execution.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-1885"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "326cfe660ae94c3e808a9498da88729099afdba1dd2d99628fd0cb2219fcdee6",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "cached_usage": {
+        "candidates_token_count": 341,
+        "prompt_token_count": 2379,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2379
+          }
+        ],
+        "thoughts_token_count": 2209,
+        "total_token_count": 4929
+      },
+      "cached_response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 341,
+          "prompt_token_count": 2379,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2379
+            }
+          ],
+          "thoughts_token_count": 2209,
+          "total_token_count": 4929
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "Oculus Browser and Oculus Desktop (OVRServiceLauncher.exe) reside on the same Windows host",
+          "HTML injection in Oculus Browser achieves arbitrary local code execution in an unprivileged process context rather than remaining confined to UI spoofing or browser context"
+        ],
+        "confidence": 0.8,
+        "edge_id": "edge-0005",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2021-24038",
+            "quote": "expose a privileged process handle to an unprivileged process, leading to local privilege escalation"
+          }
+        ],
+        "missing_conditions": [
+          "Verification of same-host co-location of Oculus Browser and Oculus Desktop",
+          "Verification that the source vulnerability's potential code execution actually yields an unprivileged OS process context on Windows",
+          "Verification of matching vulnerable versions deployed concurrently in the target environment"
+        ],
+        "reason": "The source vulnerability (CVE-2019-3562) allows a remote web page to inject HTML into the Oculus Browser UI to spoof UI and 'potentially execute code'. The target vulnerability (CVE-2021-24038) requires an attacker to already have an 'unprivileged process' on the local host to interact with handles exposed by OVRServiceLauncher.exe. The causal bridge between browser injection and a local unprivileged process is conditional because source code execution is only modal ('potentially') and same-host deployment on Windows cannot be inferred from the data. Consequently, this edge cannot enter a strict graph without confirming co-location and actual process execution.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2021-24038"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "c4d60f845c1a10a5327e00db0479ed35f754fcd38fdff34bc098d80e3f020aa7",
+      "model_identity": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash",
+        "client_name": "gemini",
+        "provider_config": null
+      },
+      "cached_usage": {
+        "candidates_token_count": 420,
+        "prompt_token_count": 2330,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2330
+          }
+        ],
+        "thoughts_token_count": 2555,
+        "total_token_count": 5305
+      },
+      "cached_response_metadata": {
+        "requested_model": "gemini-3.8-flash",
+        "actual_model": "gemini-3.8-flash",
+        "finish_reason": "STOP",
+        "usage": {
+          "candidates_token_count": 420,
+          "prompt_token_count": 2330,
+          "prompt_tokens_details": [
+            {
+              "modality": "TEXT",
+              "token_count": 2330
+            }
+          ],
+          "thoughts_token_count": 2555,
+          "total_token_count": 5305
+        },
+        "generation_config": {
+          "max_output_tokens": 9999,
+          "thinking_level": "high"
+        },
+        "finish_reasons": [
+          "STOP"
+        ]
+      }
+    }
+  }
+]

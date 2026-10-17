@@ -1,0 +1,88 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T13:57:59.956236+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "piSignage player API potentially accepts or shares default Raspberry Pi OS credentials for low-privilege user authentication"
+      ],
+      "confidence": 0.95,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal."
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        }
+      ],
+      "missing_conditions": [
+        "unique source CVE mapping and verifiable description in the evidence corpus",
+        "verification that default OS credentials grant an authenticated low-privilege session to the piSignage web application player API"
+      ],
+      "reason": "The source node is unmapped (source CVE ID is null) and lacks a supplied description, so its actual effect cannot be confirmed from the evidence corpus. Target CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user' on the piSignage web application component. The edge claims default credentials provide this authenticated session, but inferring web application credentials from OS-level default credentials without evidence represents claim overreach. Because the source CVE identity is missing and the causal bridge is unverified, this edge cannot enter a strict graph.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2019-20354"
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 427,
+      "prompt_token_count": 1534,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1534
+        }
+      ],
+      "thoughts_token_count": 15727,
+      "total_token_count": 17688
+    },
+    "latency_seconds": 126.45406809999986,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "b14aa82ad5484a8541cc87a14112c5840ee59a8b335af58da6ceceb1ee2a5678",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 427,
+        "prompt_token_count": 1534,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1534
+          }
+        ],
+        "thoughts_token_count": 15727,
+        "total_token_count": 17688
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\n  \"assumptions\": [\n    \"piSignage player API potentially accepts or shares default Raspberry Pi OS credentials for low-privilege user authentication\"\n  ],\n  \"confidence\": 0.95,\n  \"edge_id\": \"edge-0002\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"The web application component of piSignage before 2.6.4 allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal.\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"authenticated as a low-privilege user\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"unique source CVE mapping and verifiable description in the evidence corpus\",\n    \"verification that default OS credentials grant an authenticated low-privilege session to the piSignage web application player API\"\n  ],\n  \"reason\": \"The source node is unmapped (source CVE ID is null) and lacks a supplied description, so its actual effect cannot be confirmed from the evidence corpus. Target CVE-2019-20354 requires an attacker to be 'authenticated as a low-privilege user' on the piSignage web application component. The edge claims default credentials provide this authenticated session, but inferring web application credentials from OS-level default credentials without evidence represents claim overreach. Because the source CVE identity is missing and the causal bridge is unverified, this edge cannot enter a strict graph.\",\n  \"source_cve_id\": null,\n  \"suggested_status\": \"unknown\",\n  \"target_cve_id\": \"CVE-2019-20354\"\n}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:00:06.412575+00:00"
+}

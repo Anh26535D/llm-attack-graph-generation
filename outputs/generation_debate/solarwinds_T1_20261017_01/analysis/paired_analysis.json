@@ -1,0 +1,2306 @@
+{
+  "manifest": {
+    "scope": "paper_SolarWinds_paired_debate",
+    "case": "T1",
+    "paper_figure": 2,
+    "created_at": "2026-10-16T17:40:28.842699+00:00",
+    "repeats": 1,
+    "strategies": [
+      "single",
+      "self_refine",
+      "debate"
+    ],
+    "config": {
+      "rounds": 1,
+      "max_output_tokens": 32768,
+      "reasoning_level": "medium",
+      "argument_words": 80
+    },
+    "roles": {
+      "generator": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash"
+      },
+      "defender": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash"
+      },
+      "skeptic": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash"
+      },
+      "judge": {
+        "backend": "gemini",
+        "model": "gemini-3.8-flash"
+      }
+    },
+    "prompt_sha256": "2a84c0a9579144a58d2cd1e0b6085bda1ac9d05190593776f50fd8809d8842af",
+    "paragraphs_sha256": "a6b8f4dbfcecd571f55f23297af8c4d555c95b28adc0da2af7d286293c96f213",
+    "report_sha256": "854aa2119d96708be153e57e2adc20d4f9ec4ac8d0ae4072351bb07e4de2cb2e",
+    "code_sha256": {
+      "src\\crystalball\\report_debate.py": "fe5ee44f4a21b09597d0cc78e0b12723395234d4c0403171801d805106d4a8a0",
+      "src\\crystalball\\generation_debate.py": "782ec3eca409837d121578702606a94c018b8e003716f89f1414cc20af7562bf",
+      "src\\crystalball\\generation_debate_runner.py": "20ee5592c25d049034bcea8861ab83d5998e8d60f4f1217bce9141aaf26c1f07",
+      "src\\crystalball\\experiment.py": "dfa1368db6df982d8b450ee66ebb5d5ce3e2ef5772e494d9b85794592f29fc1a",
+      "src\\crystalball\\paper_cases.py": "de83cfbe162bef0737ee85d0693cacb81e3439b8439c45e46c077f0f9e0da90d",
+      "src\\crystalball\\llm\\base.py": "65a17b1f87bec77d025d013d43c3513cecd542388381840e837a7e82d549dc25",
+      "src\\crystalball\\llm\\factory.py": "8c2ed8fecf2075d2b2a613eced5e5545915672177d551ab9f17fe6207929d263",
+      "src\\crystalball\\llm\\gemini_client.py": "1d12c3359da04b08d945e2ec7e42cd60bdbce88a805a675ce302e03bede4f8a9",
+      "src\\crystalball\\llm\\openai_client.py": "3ae8f63ab874158b6a2257e43575577937d4a33f09ab5bb19356edd08e060483",
+      "src\\crystalball\\llm\\openrouter_client.py": "e31d3004610654eb44b8f23a7c3e864d427053b7e12c4e060484ade218467e4e"
+    },
+    "max_api_calls_per_repeat": 7,
+    "max_api_calls_total": 7,
+    "baseline_prompt": "unchanged_pinned_paper_prompt",
+    "synthetic_data": false,
+    "fixed_node_inventory": false,
+    "automatic_retries": false,
+    "independent_gold": false,
+    "accuracy": null,
+    "parser_policy": "one whole-response Markdown fence allowed; strict JSON, no repair"
+  },
+  "metrics": {
+    "case": "T1",
+    "rows": [
+      {
+        "repeat": 1,
+        "strategy": "single",
+        "status": "completed",
+        "accuracy": null,
+        "calls_including_shared_draft": 1,
+        "usage": {
+          "input_tokens": 5478,
+          "output_tokens": 1846,
+          "total_tokens": 7324,
+          "requests_with_usage": 1,
+          "requests_missing_usage": 0,
+          "totals_are_partial": false
+        },
+        "seconds": 15.361398400000326,
+        "nodes": 19,
+        "edges": 19,
+        "diff": {
+          "added_node_ids": [],
+          "removed_node_ids": [],
+          "changed_nodes": [],
+          "added_pairs": [],
+          "removed_pairs": [],
+          "changed_retained_pairs": [],
+          "id_based_alignment_only": true,
+          "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+        },
+        "change_records": 0,
+        "change_records_with_verified_quote": 0
+      },
+      {
+        "repeat": 1,
+        "strategy": "self_refine",
+        "status": "completed",
+        "accuracy": null,
+        "calls_including_shared_draft": 4,
+        "usage": {
+          "input_tokens": 36551,
+          "output_tokens": 9497,
+          "total_tokens": 74152,
+          "requests_with_usage": 4,
+          "requests_missing_usage": 0,
+          "totals_are_partial": false
+        },
+        "seconds": 238.48536149999927,
+        "nodes": 20,
+        "edges": 20,
+        "diff": {
+          "added_node_ids": [
+            "api_connectivity_check"
+          ],
+          "removed_node_ids": [],
+          "changed_nodes": [],
+          "added_pairs": [
+            [
+              "anti_analysis_defense_evasion",
+              "api_connectivity_check"
+            ],
+            [
+              "api_connectivity_check",
+              "dga_resolution"
+            ],
+            [
+              "credential_abuse",
+              "data_theft_impact"
+            ],
+            [
+              "unc2452_actor",
+              "c2_infrastructure_masquerading"
+            ],
+            [
+              "unc2452_actor",
+              "credential_abuse"
+            ],
+            [
+              "unc2452_actor",
+              "teardrop_dropper"
+            ],
+            [
+              "unc2452_actor",
+              "temporary_file_task_mod"
+            ]
+          ],
+          "removed_pairs": [
+            [
+              "anti_analysis_defense_evasion",
+              "dga_resolution"
+            ],
+            [
+              "c2_infrastructure_masquerading",
+              "credential_abuse"
+            ],
+            [
+              "cobalt_strike_beacon",
+              "c2_infrastructure_masquerading"
+            ],
+            [
+              "credential_abuse",
+              "temporary_file_task_mod"
+            ],
+            [
+              "steganography_jobs",
+              "teardrop_dropper"
+            ],
+            [
+              "temporary_file_task_mod",
+              "data_theft_impact"
+            ]
+          ],
+          "changed_retained_pairs": [
+            [
+              "teardrop_dropper",
+              "cobalt_strike_beacon"
+            ],
+            [
+              "unc2452_actor",
+              "solarwinds_supply_chain"
+            ]
+          ],
+          "id_based_alignment_only": true,
+          "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+        },
+        "change_records": 4,
+        "change_records_with_verified_quote": 4
+      },
+      {
+        "repeat": 1,
+        "strategy": "debate",
+        "status": "completed",
+        "accuracy": null,
+        "calls_including_shared_draft": 4,
+        "usage": {
+          "input_tokens": 40704,
+          "output_tokens": 11011,
+          "total_tokens": 65171,
+          "requests_with_usage": 4,
+          "requests_missing_usage": 0,
+          "totals_are_partial": false
+        },
+        "seconds": 174.57157220000227,
+        "nodes": 23,
+        "edges": 23,
+        "diff": {
+          "added_node_ids": [
+            "ip_blocklist_termination",
+            "network_connectivity_check",
+            "recon_storage_in_plugin_config",
+            "tool_and_backdoor_removal"
+          ],
+          "removed_node_ids": [],
+          "changed_nodes": [],
+          "added_pairs": [
+            [
+              "anti_analysis_defense_evasion",
+              "network_connectivity_check"
+            ],
+            [
+              "anti_analysis_defense_evasion",
+              "recon_storage_in_plugin_config"
+            ],
+            [
+              "credential_abuse",
+              "data_theft_impact"
+            ],
+            [
+              "credential_abuse",
+              "tool_and_backdoor_removal"
+            ],
+            [
+              "dga_resolution",
+              "ip_blocklist_termination"
+            ],
+            [
+              "network_connectivity_check",
+              "dga_resolution"
+            ],
+            [
+              "unc2452_actor",
+              "c2_infrastructure_masquerading"
+            ],
+            [
+              "unc2452_actor",
+              "credential_abuse"
+            ],
+            [
+              "unc2452_actor",
+              "temporary_file_task_mod"
+            ]
+          ],
+          "removed_pairs": [
+            [
+              "anti_analysis_defense_evasion",
+              "dga_resolution"
+            ],
+            [
+              "c2_infrastructure_masquerading",
+              "credential_abuse"
+            ],
+            [
+              "cobalt_strike_beacon",
+              "c2_infrastructure_masquerading"
+            ],
+            [
+              "credential_abuse",
+              "temporary_file_task_mod"
+            ],
+            [
+              "temporary_file_task_mod",
+              "data_theft_impact"
+            ]
+          ],
+          "changed_retained_pairs": [
+            [
+              "c2_domain_cname",
+              "http_c2_communication"
+            ],
+            [
+              "dga_resolution",
+              "c2_domain_cname"
+            ],
+            [
+              "initial_dormant_period",
+              "anti_analysis_defense_evasion"
+            ],
+            [
+              "steganography_jobs",
+              "teardrop_dropper"
+            ],
+            [
+              "teardrop_dropper",
+              "cobalt_strike_beacon"
+            ],
+            [
+              "unc2452_actor",
+              "solarwinds_supply_chain"
+            ]
+          ],
+          "id_based_alignment_only": true,
+          "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+        },
+        "change_records": 21,
+        "change_records_with_verified_quote": 21
+      }
+    ],
+    "unique_api_calls": 7,
+    "unique_usage": {
+      "input_tokens": 71777,
+      "output_tokens": 18662,
+      "total_tokens": 131999,
+      "requests_with_usage": 7,
+      "requests_missing_usage": 0,
+      "totals_are_partial": false
+    },
+    "gold_available": false,
+    "accuracy": null
+  },
+  "records": [
+    {
+      "repeat": 1,
+      "figure": "r01_comparison.png",
+      "candidates": {
+        "single": {
+          "graph": {
+            "nodes": [
+              {
+                "id": "unc2452_actor",
+                "label": "Threat Actor UNC2452"
+              },
+              {
+                "id": "solarwinds_supply_chain",
+                "label": "Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+              },
+              {
+                "id": "trojanized_patch",
+                "label": "Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)"
+              },
+              {
+                "id": "sunburst_dll",
+                "label": "SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)"
+              },
+              {
+                "id": "victim_host_install",
+                "label": "Victim Host / Admin Update Installation"
+              },
+              {
+                "id": "businesslayerhost_exe",
+                "label": "Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)"
+              },
+              {
+                "id": "inventory_manager_trigger",
+                "label": "Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)"
+              },
+              {
+                "id": "initial_dormant_period",
+                "label": "Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)"
+              },
+              {
+                "id": "anti_analysis_defense_evasion",
+                "label": "Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+              },
+              {
+                "id": "dga_resolution",
+                "label": "DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)"
+              },
+              {
+                "id": "c2_domain_cname",
+                "label": "C2 Domain CNAME Resolution & IP Check Validation"
+              },
+              {
+                "id": "http_c2_communication",
+                "label": "HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+              },
+              {
+                "id": "steganography_jobs",
+                "label": "Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+              },
+              {
+                "id": "teardrop_dropper",
+                "label": "TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)"
+              },
+              {
+                "id": "cobalt_strike_beacon",
+                "label": "Customized Cobalt Strike BEACON Payload Execution"
+              },
+              {
+                "id": "c2_infrastructure_masquerading",
+                "label": "C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)"
+              },
+              {
+                "id": "credential_abuse",
+                "label": "Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)"
+              },
+              {
+                "id": "temporary_file_task_mod",
+                "label": "Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)"
+              },
+              {
+                "id": "data_theft_impact",
+                "label": "Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks"
+              }
+            ],
+            "edges": [
+              {
+                "from": "unc2452_actor",
+                "to": "solarwinds_supply_chain",
+                "label": "Injects malicious backdoor code into legitimate source code"
+              },
+              {
+                "from": "solarwinds_supply_chain",
+                "to": "trojanized_patch",
+                "label": "Signs and publishes digitally signed installer patch (March-May 2020)"
+              },
+              {
+                "from": "trojanized_patch",
+                "to": "sunburst_dll",
+                "label": "Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll"
+              },
+              {
+                "from": "trojanized_patch",
+                "to": "victim_host_install",
+                "label": "Downloaded and installed by administrators from updates website"
+              },
+              {
+                "from": "victim_host_install",
+                "to": "businesslayerhost_exe",
+                "label": "Triggers execution of Orion software host framework"
+              },
+              {
+                "from": "businesslayerhost_exe",
+                "to": "sunburst_dll",
+                "label": "Loads digitally signed DLL into host process"
+              },
+              {
+                "from": "sunburst_dll",
+                "to": "inventory_manager_trigger",
+                "label": "Calls OrionImprovementBusinessLayer.Initialize via InventoryManager"
+              },
+              {
+                "from": "inventory_manager_trigger",
+                "to": "initial_dormant_period",
+                "label": "Checks process name hash, assembly age threshold (12-14 days), and named pipe guard"
+              },
+              {
+                "from": "initial_dormant_period",
+                "to": "anti_analysis_defense_evasion",
+                "label": "Discovers analysis/AV processes, sets registry to disable services, checks drivers"
+              },
+              {
+                "from": "anti_analysis_defense_evasion",
+                "to": "dga_resolution",
+                "label": "Generates DGA subdomains encoding local domain name and userId"
+              },
+              {
+                "from": "dga_resolution",
+                "to": "c2_domain_cname",
+                "label": "Queries DNS, checks A-records against IP blocklists, retrieves CNAME record"
+              },
+              {
+                "from": "c2_domain_cname",
+                "to": "http_c2_communication",
+                "label": "Initializes HttpHelper C2 thread mimicking Orion Improvement Program (OIP)"
+              },
+              {
+                "from": "http_c2_communication",
+                "to": "steganography_jobs",
+                "label": "Extracts steganographic commands from GUID/HEX strings to execute Jobs"
+              },
+              {
+                "from": "steganography_jobs",
+                "to": "teardrop_dropper",
+                "label": "Deploys memory-only service dropper (NetSetupSvc.dll) reading fake JPG file"
+              },
+              {
+                "from": "teardrop_dropper",
+                "to": "cobalt_strike_beacon",
+                "label": "Decodes custom rolling XOR payload and loads customized Cobalt Strike BEACON into memory"
+              },
+              {
+                "from": "cobalt_strike_beacon",
+                "to": "c2_infrastructure_masquerading",
+                "label": "Communicates through victim-located VPS IPs and certificates mimicking internal hostnames"
+              },
+              {
+                "from": "c2_infrastructure_masquerading",
+                "to": "credential_abuse",
+                "label": "Leverages legitimate remote access credentials and pivots using distinct secondary credentials"
+              },
+              {
+                "from": "credential_abuse",
+                "to": "temporary_file_task_mod",
+                "label": "Executes utilities via temporary file substitution and short-lived scheduled task modification"
+              },
+              {
+                "from": "temporary_file_task_mod",
+                "to": "data_theft_impact",
+                "label": "Facilitates wide-scale internal reconnaissance, lateral movement, and data theft"
+              }
+            ]
+          },
+          "changes": [],
+          "change_citations": [],
+          "diff": {
+            "added_node_ids": [],
+            "removed_node_ids": [],
+            "changed_nodes": [],
+            "added_pairs": [],
+            "removed_pairs": [],
+            "changed_retained_pairs": [],
+            "id_based_alignment_only": true,
+            "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+          }
+        },
+        "self_refine": {
+          "graph": {
+            "nodes": [
+              {
+                "id": "unc2452_actor",
+                "label": "Threat Actor UNC2452"
+              },
+              {
+                "id": "solarwinds_supply_chain",
+                "label": "Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+              },
+              {
+                "id": "trojanized_patch",
+                "label": "Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)"
+              },
+              {
+                "id": "sunburst_dll",
+                "label": "SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)"
+              },
+              {
+                "id": "victim_host_install",
+                "label": "Victim Host / Admin Update Installation"
+              },
+              {
+                "id": "businesslayerhost_exe",
+                "label": "Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)"
+              },
+              {
+                "id": "inventory_manager_trigger",
+                "label": "Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)"
+              },
+              {
+                "id": "initial_dormant_period",
+                "label": "Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)"
+              },
+              {
+                "id": "anti_analysis_defense_evasion",
+                "label": "Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+              },
+              {
+                "id": "api_connectivity_check",
+                "label": "Network Connectivity Check (api.solarwinds.com Resolution)"
+              },
+              {
+                "id": "dga_resolution",
+                "label": "DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)"
+              },
+              {
+                "id": "c2_domain_cname",
+                "label": "C2 Domain CNAME Resolution & IP Check Validation"
+              },
+              {
+                "id": "http_c2_communication",
+                "label": "HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+              },
+              {
+                "id": "steganography_jobs",
+                "label": "Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+              },
+              {
+                "id": "teardrop_dropper",
+                "label": "TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)"
+              },
+              {
+                "id": "cobalt_strike_beacon",
+                "label": "Customized Cobalt Strike BEACON Payload Execution"
+              },
+              {
+                "id": "c2_infrastructure_masquerading",
+                "label": "C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)"
+              },
+              {
+                "id": "credential_abuse",
+                "label": "Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)"
+              },
+              {
+                "id": "temporary_file_task_mod",
+                "label": "Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)"
+              },
+              {
+                "id": "data_theft_impact",
+                "label": "Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks"
+              }
+            ],
+            "edges": [
+              {
+                "from": "unc2452_actor",
+                "to": "solarwinds_supply_chain",
+                "label": "Trojanizes SolarWinds Orion business software updates to distribute SUNBURST via supply chain compromise"
+              },
+              {
+                "from": "solarwinds_supply_chain",
+                "to": "trojanized_patch",
+                "label": "Signs and publishes digitally signed installer patch (March-May 2020)"
+              },
+              {
+                "from": "trojanized_patch",
+                "to": "sunburst_dll",
+                "label": "Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll"
+              },
+              {
+                "from": "trojanized_patch",
+                "to": "victim_host_install",
+                "label": "Downloaded and installed by administrators from updates website"
+              },
+              {
+                "from": "victim_host_install",
+                "to": "businesslayerhost_exe",
+                "label": "Triggers execution of Orion software host framework"
+              },
+              {
+                "from": "businesslayerhost_exe",
+                "to": "sunburst_dll",
+                "label": "Loads digitally signed DLL into host process"
+              },
+              {
+                "from": "sunburst_dll",
+                "to": "inventory_manager_trigger",
+                "label": "Calls OrionImprovementBusinessLayer.Initialize via InventoryManager"
+              },
+              {
+                "from": "inventory_manager_trigger",
+                "to": "initial_dormant_period",
+                "label": "Checks process name hash, assembly age threshold (12-14 days), and named pipe guard"
+              },
+              {
+                "from": "initial_dormant_period",
+                "to": "anti_analysis_defense_evasion",
+                "label": "Discovers analysis/AV processes, sets registry to disable services, checks drivers"
+              },
+              {
+                "from": "anti_analysis_defense_evasion",
+                "to": "api_connectivity_check",
+                "label": "Attempts to resolve api.solarwinds.com to test network connectivity if blocklist tests pass"
+              },
+              {
+                "from": "api_connectivity_check",
+                "to": "dga_resolution",
+                "label": "Starts generating DGA subdomains in a while loop once connectivity and blocklist checks pass"
+              },
+              {
+                "from": "dga_resolution",
+                "to": "c2_domain_cname",
+                "label": "Queries DNS, checks A-records against IP blocklists, retrieves CNAME record"
+              },
+              {
+                "from": "c2_domain_cname",
+                "to": "http_c2_communication",
+                "label": "Initializes HttpHelper C2 thread mimicking Orion Improvement Program (OIP)"
+              },
+              {
+                "from": "http_c2_communication",
+                "to": "steganography_jobs",
+                "label": "Extracts steganographic commands from GUID/HEX strings to execute Jobs"
+              },
+              {
+                "from": "unc2452_actor",
+                "to": "teardrop_dropper",
+                "label": "Deploys TEARDROP memory-only dropper in at least one instance (samples delivered different payloads)"
+              },
+              {
+                "from": "teardrop_dropper",
+                "to": "cobalt_strike_beacon",
+                "label": "Decodes rolling XOR payload from fake JPG file; believed to execute customized Cobalt Strike BEACON"
+              },
+              {
+                "from": "unc2452_actor",
+                "to": "c2_infrastructure_masquerading",
+                "label": "Sets C2 hostnames matching victim environment and uses victim-country VPS IPs to evade detection"
+              },
+              {
+                "from": "unc2452_actor",
+                "to": "credential_abuse",
+                "label": "Maintains light malware footprint, using compromised credentials for remote access and distinct credentials for lateral movement"
+              },
+              {
+                "from": "unc2452_actor",
+                "to": "temporary_file_task_mod",
+                "label": "Uses temporary file replacement and scheduled task modification to remotely execute utilities and evades detection by removing tools"
+              },
+              {
+                "from": "credential_abuse",
+                "to": "data_theft_impact",
+                "label": "Facilitates lateral movement across victim networks leading to data theft"
+              }
+            ]
+          },
+          "changes": [
+            {
+              "kind": "node",
+              "action": "add",
+              "id": "api_connectivity_check",
+              "reason": "The report specifies that before DGA domain generation begins, the malware explicitly verifies network connectivity by attempting to resolve api.solarwinds.com once blocklists pass.",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."
+                }
+              ]
+            },
+            {
+              "kind": "edge",
+              "action": "remove",
+              "id": "edge-0010",
+              "reason": "Removes the direct edge from anti_analysis_defense_evasion to dga_resolution, as the connectivity check against api.solarwinds.com must succeed before DGA generation commences.",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA."
+                }
+              ]
+            },
+            {
+              "kind": "edge",
+              "action": "add",
+              "id": "anti_analysis_defense_evasion->api_connectivity_check",
+              "reason": "Captures the prerequisite check where the backdoor resolves api.solarwinds.com once all process, service, and driver blocklist tests pass.",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."
+                }
+              ]
+            },
+            {
+              "kind": "edge",
+              "action": "add",
+              "id": "api_connectivity_check->dga_resolution",
+              "reason": "Captures that DGA domain generation in a while loop is entered only after both blocklist and connectivity checks succeed.",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA."
+                }
+              ]
+            }
+          ],
+          "parsing": {
+            "strict_json_without_fence": false,
+            "markdown_fence_removed": true,
+            "json_repair": false,
+            "schema": {
+              "schema_valid": true,
+              "non_empty_graph": true,
+              "missing_node_required_fields_count": 0,
+              "invalid_node_ids_count": 0,
+              "duplicate_node_ids_count": 0,
+              "invalid_node_labels_count": 0,
+              "missing_node_condition_fields_count": 0,
+              "missing_edge_required_fields_count": 0,
+              "invalid_edge_labels_count": 0,
+              "edge_schema_compliance": 1.0,
+              "alternate_source_target_edges_count": 0,
+              "valid_edges": 20,
+              "invalid_edges": 0,
+              "edge_endpoint_integrity": 1.0
+            }
+          },
+          "change_citations": [
+            {
+              "kind": "node",
+              "action": "add",
+              "id": "api_connectivity_check",
+              "reason": "The report specifies that before DGA domain generation begins, the malware explicitly verifies network connectivity by attempting to resolve api.solarwinds.com once blocklists pass.",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "has_verified_citation": true
+            },
+            {
+              "kind": "edge",
+              "action": "remove",
+              "id": "edge-0010",
+              "reason": "Removes the direct edge from anti_analysis_defense_evasion to dga_resolution, as the connectivity check against api.solarwinds.com must succeed before DGA generation commences.",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "has_verified_citation": true
+            },
+            {
+              "kind": "edge",
+              "action": "add",
+              "id": "anti_analysis_defense_evasion->api_connectivity_check",
+              "reason": "Captures the prerequisite check where the backdoor resolves api.solarwinds.com once all process, service, and driver blocklist tests pass.",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "has_verified_citation": true
+            },
+            {
+              "kind": "edge",
+              "action": "add",
+              "id": "api_connectivity_check->dga_resolution",
+              "reason": "Captures that DGA domain generation in a while loop is entered only after both blocklist and connectivity checks succeed.",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "has_verified_citation": true
+            }
+          ],
+          "diff": {
+            "added_node_ids": [
+              "api_connectivity_check"
+            ],
+            "removed_node_ids": [],
+            "changed_nodes": [],
+            "added_pairs": [
+              [
+                "anti_analysis_defense_evasion",
+                "api_connectivity_check"
+              ],
+              [
+                "api_connectivity_check",
+                "dga_resolution"
+              ],
+              [
+                "credential_abuse",
+                "data_theft_impact"
+              ],
+              [
+                "unc2452_actor",
+                "c2_infrastructure_masquerading"
+              ],
+              [
+                "unc2452_actor",
+                "credential_abuse"
+              ],
+              [
+                "unc2452_actor",
+                "teardrop_dropper"
+              ],
+              [
+                "unc2452_actor",
+                "temporary_file_task_mod"
+              ]
+            ],
+            "removed_pairs": [
+              [
+                "anti_analysis_defense_evasion",
+                "dga_resolution"
+              ],
+              [
+                "c2_infrastructure_masquerading",
+                "credential_abuse"
+              ],
+              [
+                "cobalt_strike_beacon",
+                "c2_infrastructure_masquerading"
+              ],
+              [
+                "credential_abuse",
+                "temporary_file_task_mod"
+              ],
+              [
+                "steganography_jobs",
+                "teardrop_dropper"
+              ],
+              [
+                "temporary_file_task_mod",
+                "data_theft_impact"
+              ]
+            ],
+            "changed_retained_pairs": [
+              [
+                "teardrop_dropper",
+                "cobalt_strike_beacon"
+              ],
+              [
+                "unc2452_actor",
+                "solarwinds_supply_chain"
+              ]
+            ],
+            "id_based_alignment_only": true,
+            "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+          }
+        },
+        "debate": {
+          "graph": {
+            "nodes": [
+              {
+                "id": "unc2452_actor",
+                "label": "Threat Actor UNC2452"
+              },
+              {
+                "id": "solarwinds_supply_chain",
+                "label": "Compromised SolarWinds Supply Chain (T1195.002, T1553.002)"
+              },
+              {
+                "id": "trojanized_patch",
+                "label": "Trojanized Patch Installer (CORE-2019.4.5220.20574-SolarWinds-Core-v2019.4.5220-Hotfix5.msp)"
+              },
+              {
+                "id": "sunburst_dll",
+                "label": "SUNBURST Backdoor DLL (SolarWinds.Orion.Core.BusinessLayer.dll)"
+              },
+              {
+                "id": "victim_host_install",
+                "label": "Victim Host / Admin Update Installation"
+              },
+              {
+                "id": "businesslayerhost_exe",
+                "label": "Legitimate Host Process (SolarWinds.BusinessLayerHost.exe / x64)"
+              },
+              {
+                "id": "inventory_manager_trigger",
+                "label": "Plugin Invocation (InventoryManager.RefreshInternal -> OrionImprovementBusinessLayer)"
+              },
+              {
+                "id": "initial_dormant_period",
+                "label": "Execution Guard & Delay (12-14 Day File Age Check & Single Instance Named Pipe)"
+              },
+              {
+                "id": "anti_analysis_defense_evasion",
+                "label": "Process/Service/Driver Discovery & Defense Evasion (FNV-1a Hashes, Disable Services via Registry)"
+              },
+              {
+                "id": "recon_storage_in_plugin_config",
+                "label": "Reconnaissance Results Storage in Plugin Config (ReportWatcherPostpone)"
+              },
+              {
+                "id": "network_connectivity_check",
+                "label": "Network Connectivity Verification (Resolve api.solarwinds.com)"
+              },
+              {
+                "id": "dga_resolution",
+                "label": "DGA DNS Resolution (*.avsvmcloud.com / DGA Machine Domain Encoding)"
+              },
+              {
+                "id": "ip_blocklist_termination",
+                "label": "IP Blocklist Check & Execution Termination (ReportWatcherRetry)"
+              },
+              {
+                "id": "c2_domain_cname",
+                "label": "C2 Domain CNAME Resolution & IP Check Validation"
+              },
+              {
+                "id": "http_c2_communication",
+                "label": "HTTP C2 Communications (HttpHelper.Initialize, Masquerading as OIP EventManager)"
+              },
+              {
+                "id": "steganography_jobs",
+                "label": "Steganographic C2 Dispatching & Job Execution (RunTask, WriteFile, DeleteFile, System Profiling)"
+              },
+              {
+                "id": "teardrop_dropper",
+                "label": "TEARDROP Memory-Only Dropper (NetSetupSvc.dll / gracious_truth.jpg payload)"
+              },
+              {
+                "id": "cobalt_strike_beacon",
+                "label": "Customized Cobalt Strike BEACON Payload Execution"
+              },
+              {
+                "id": "c2_infrastructure_masquerading",
+                "label": "C2 Infrastructure Masquerading (Hostnames match victim environment via RDP SSL & Local VPS IPs)"
+              },
+              {
+                "id": "credential_abuse",
+                "label": "Credential Compromise & Lateral Movement (Distinct credentials for remote access vs internal movement)"
+              },
+              {
+                "id": "temporary_file_task_mod",
+                "label": "Temporary File Replacement & Scheduled Task Modification (Delete-Create-Execute-Delete-Create)"
+              },
+              {
+                "id": "tool_and_backdoor_removal",
+                "label": "Tool and Backdoor Removal upon Remote Access"
+              },
+              {
+                "id": "data_theft_impact",
+                "label": "Post-Compromise Lateral Movement & Data Theft across Worldwide Victim Networks"
+              }
+            ],
+            "edges": [
+              {
+                "from": "unc2452_actor",
+                "label": "Trojanizes SolarWinds Orion business software updates to distribute SUNBURST",
+                "to": "solarwinds_supply_chain"
+              },
+              {
+                "from": "solarwinds_supply_chain",
+                "label": "Signs and publishes digitally signed installer patch (March-May 2020)",
+                "to": "trojanized_patch"
+              },
+              {
+                "from": "trojanized_patch",
+                "label": "Packages trojanized component SolarWinds.Orion.Core.BusinessLayer.dll",
+                "to": "sunburst_dll"
+              },
+              {
+                "from": "trojanized_patch",
+                "label": "Downloaded and installed by administrators from updates website",
+                "to": "victim_host_install"
+              },
+              {
+                "from": "victim_host_install",
+                "label": "Triggers execution of Orion software host framework",
+                "to": "businesslayerhost_exe"
+              },
+              {
+                "from": "businesslayerhost_exe",
+                "label": "Loads digitally signed DLL into host process",
+                "to": "sunburst_dll"
+              },
+              {
+                "from": "sunburst_dll",
+                "label": "Calls OrionImprovementBusinessLayer.Initialize via InventoryManager",
+                "to": "inventory_manager_trigger"
+              },
+              {
+                "from": "inventory_manager_trigger",
+                "label": "Checks process name hash, assembly age threshold (12-14 days), and named pipe guard",
+                "to": "initial_dormant_period"
+              },
+              {
+                "from": "initial_dormant_period",
+                "label": "Verifies ReportWatcherRetry and domain membership, then scans and disables security processes/services/drivers",
+                "to": "anti_analysis_defense_evasion"
+              },
+              {
+                "from": "anti_analysis_defense_evasion",
+                "label": "Bit-packs stopped services and stores reconnaissance results in ReportWatcherPostpone config key",
+                "to": "recon_storage_in_plugin_config"
+              },
+              {
+                "from": "anti_analysis_defense_evasion",
+                "label": "If all blocklist tests pass, attempts resolution of api.solarwinds.com to test connectivity",
+                "to": "network_connectivity_check"
+              },
+              {
+                "from": "network_connectivity_check",
+                "label": "If all blocklist and connectivity checks pass, initiates DGA domain generation in while loop",
+                "to": "dga_resolution"
+              },
+              {
+                "from": "dga_resolution",
+                "label": "Terminates malware and updates ReportWatcherRetry if DNS A-record matches hardcoded IP blocklists",
+                "to": "ip_blocklist_termination"
+              },
+              {
+                "from": "dga_resolution",
+                "label": "Retrieves CNAME response pointing to Command and Control domain",
+                "to": "c2_domain_cname"
+              },
+              {
+                "from": "c2_domain_cname",
+                "label": "Spawns new thread executing HttpHelper.Initialize mimicking Orion Improvement Program",
+                "to": "http_c2_communication"
+              },
+              {
+                "from": "http_c2_communication",
+                "label": "Extracts steganographic commands from GUID/HEX strings to execute Jobs",
+                "to": "steganography_jobs"
+              },
+              {
+                "from": "steganography_jobs",
+                "label": "In at least one instance, deployed previously unseen memory-only dropper TEARDROP",
+                "to": "teardrop_dropper"
+              },
+              {
+                "from": "teardrop_dropper",
+                "label": "Verifies HKU CTF registry, decodes payload from gracious_truth.jpg, believed to execute customized Cobalt Strike BEACON",
+                "to": "cobalt_strike_beacon"
+              },
+              {
+                "from": "unc2452_actor",
+                "label": "Configures hostnames to match victim environments and uses victim-country VPS IPs",
+                "to": "c2_infrastructure_masquerading"
+              },
+              {
+                "from": "unc2452_actor",
+                "label": "Prefers legitimate remote access credentials and pivots using distinct secondary credentials",
+                "to": "credential_abuse"
+              },
+              {
+                "from": "unc2452_actor",
+                "label": "Remotely executes utilities via temporary file replacement and scheduled task modification",
+                "to": "temporary_file_task_mod"
+              },
+              {
+                "from": "credential_abuse",
+                "label": "Routinely removes backdoors and tools once legitimate remote access is achieved",
+                "to": "tool_and_backdoor_removal"
+              },
+              {
+                "from": "credential_abuse",
+                "label": "Enables lateral movement across victim networks and data theft",
+                "to": "data_theft_impact"
+              }
+            ]
+          },
+          "changes": [
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P002",
+                  "quote": "FireEye discovered a supply chain attack trojanizing SolarWinds Orion business software updates in order to distribute malware we call SUNBURST."
+                }
+              ],
+              "id": "edge-0001",
+              "kind": "edge",
+              "reason": "The report specifies that the actors trojanized Orion business software updates rather than describing source code repository injection."
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P042",
+                  "quote": "The key ReportWatcherRetry must be any value other than 3 for the sample to continue execution. The sample checks that the machine is domain joined and retrieves the domain name before execution continues."
+                }
+              ],
+              "id": "edge-0009",
+              "kind": "edge",
+              "reason": "Execution only proceeds to process/service discovery if the ReportWatcherRetry key is valid and domain membership is validated."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P006",
+                  "quote": "stores reconnaissance results within legitimate plugin configuration files allowing it to blend in with legitimate SolarWinds activity."
+                },
+                {
+                  "paragraph_id": "P044",
+                  "quote": "The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples' config file."
+                }
+              ],
+              "id": "recon_storage_in_plugin_config",
+              "kind": "node",
+              "reason": "Captures the backdoor's defense evasion technique of storing reconnaissance and stopped services into legitimate plugin config files."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples' config file."
+                }
+              ],
+              "id": "anti_analysis_defense_evasion->recon_storage_in_plugin_config",
+              "kind": "edge",
+              "reason": "Identifies that stopped service findings are written directly into the ReportWatcherPostpone config field."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."
+                }
+              ],
+              "id": "network_connectivity_check",
+              "kind": "node",
+              "reason": "The sample explicitly tests network connectivity before domain generation begins."
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity."
+                }
+              ],
+              "id": "edge-0010",
+              "kind": "edge",
+              "reason": "Passing anti-analysis blocklists directly transitions to the connectivity check rather than straight to DGA domain generation."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA."
+                }
+              ],
+              "id": "network_connectivity_check->dga_resolution",
+              "kind": "edge",
+              "reason": "DGA generation loop only initiates once both blocklists and network connectivity checks succeed."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry to a value that prevents further execution:"
+                }
+              ],
+              "id": "ip_blocklist_termination",
+              "kind": "node",
+              "reason": "Hardcoded IP blocklist hits cause malware termination and persistent execution disabling."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "The DNS A record of generated domains is checked against a hardcoded list of IP address blocks which control the malware's behavior. Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry"
+                }
+              ],
+              "id": "dga_resolution->ip_blocklist_termination",
+              "kind": "edge",
+              "reason": "DNS A-record resolution branches to termination if the resolved IP falls within blocklisted ranges."
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "Once a domain has been successfully retrieved in a CNAME DNS response the sample will spawn a new thread of execution invoking the method HttpHelper.Initialize which is responsible for all C2 communications and dispatching."
+                }
+              ],
+              "id": "edge-0011",
+              "kind": "edge",
+              "reason": "Clarifies that CNAME DNS retrieval directly leads to C2 domain assignment and HTTP helper spawning."
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P012",
+                  "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON."
+                }
+              ],
+              "id": "edge-0014",
+              "kind": "edge",
+              "reason": "TEARDROP was observed in 'at least one instance' among multiple different payloads, not as an inevitable universal next step."
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P012",
+                  "quote": "Next it checks that HKU SOFTWARE Microsoft CTF exists, decodes an embedded payload using a custom rolling XOR algorithm and manually loads into memory an embedded payload using a custom PE-like file format."
+                },
+                {
+                  "paragraph_id": "P012",
+                  "quote": "We believe that this was used to execute a customized Cobalt Strike BEACON."
+                }
+              ],
+              "id": "edge-0015",
+              "kind": "edge",
+              "reason": "Preserves the environmental check and the report's qualified assessment ('believe') that TEARDROP loaded customized Cobalt Strike BEACON."
+            },
+            {
+              "action": "remove",
+              "citations": [
+                {
+                  "paragraph_id": "P018",
+                  "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment."
+                },
+                {
+                  "paragraph_id": "P024",
+                  "quote": "The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers."
+                }
+              ],
+              "id": "edge-0016",
+              "kind": "edge",
+              "reason": "C2 infrastructure masquerading is an actor-level evasion practice, not a direct causal output of Cobalt Strike BEACON execution."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P018",
+                  "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment."
+                }
+              ],
+              "id": "unc2452_actor->c2_infrastructure_masquerading",
+              "kind": "edge",
+              "reason": "Roots C2 infrastructure configuration and masquerading directly with the threat actor."
+            },
+            {
+              "action": "remove",
+              "citations": [
+                {
+                  "paragraph_id": "P010",
+                  "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment."
+                }
+              ],
+              "id": "edge-0017",
+              "kind": "edge",
+              "reason": "Credential abuse is an overarching actor preference for access, not a downstream effect of C2 hostname masquerading."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P010",
+                  "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment."
+                },
+                {
+                  "paragraph_id": "P028",
+                  "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials."
+                }
+              ],
+              "id": "unc2452_actor->credential_abuse",
+              "kind": "edge",
+              "reason": "Directly links threat actor UNC2452 to credential abuse and distinct credential usage for lateral movement."
+            },
+            {
+              "action": "remove",
+              "citations": [
+                {
+                  "paragraph_id": "P032",
+                  "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file."
+                }
+              ],
+              "id": "edge-0018",
+              "kind": "edge",
+              "reason": "Temporary file replacement and task modification are execution evasion techniques employed by the actor, not downstream products of credential abuse."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P032",
+                  "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file."
+                }
+              ],
+              "id": "unc2452_actor->temporary_file_task_mod",
+              "kind": "edge",
+              "reason": "Directly links UNC2452 to remote execution via temporary file replacement and scheduled task modification."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P032",
+                  "quote": "They routinely removed their tools, including removing backdoors once legitimate remote access was achieved."
+                }
+              ],
+              "id": "tool_and_backdoor_removal",
+              "kind": "node",
+              "reason": "Captures the attacker's defining operational security habit of cleaning up backdoors once legitimate remote access was obtained."
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P032",
+                  "quote": "They routinely removed their tools, including removing backdoors once legitimate remote access was achieved."
+                }
+              ],
+              "id": "credential_abuse->tool_and_backdoor_removal",
+              "kind": "edge",
+              "reason": "Achieving legitimate remote access directly triggered routine removal of backdoors and tools."
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P004",
+                  "quote": "Post compromise activity following this supply chain compromise has included lateral movement and data theft."
+                },
+                {
+                  "paragraph_id": "P028",
+                  "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials."
+                }
+              ],
+              "id": "edge-0019",
+              "kind": "edge",
+              "reason": "Reroutes impact from credential-enabled network access and lateral movement directly to data theft and lateral movement."
+            }
+          ],
+          "parsing": {
+            "strict_json_without_fence": false,
+            "markdown_fence_removed": true,
+            "json_repair": false,
+            "schema": {
+              "schema_valid": true,
+              "non_empty_graph": true,
+              "missing_node_required_fields_count": 0,
+              "invalid_node_ids_count": 0,
+              "duplicate_node_ids_count": 0,
+              "invalid_node_labels_count": 0,
+              "missing_node_condition_fields_count": 0,
+              "missing_edge_required_fields_count": 0,
+              "invalid_edge_labels_count": 0,
+              "edge_schema_compliance": 1.0,
+              "alternate_source_target_edges_count": 0,
+              "valid_edges": 23,
+              "invalid_edges": 0,
+              "edge_endpoint_integrity": 1.0
+            }
+          },
+          "change_citations": [
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P002",
+                  "quote": "FireEye discovered a supply chain attack trojanizing SolarWinds Orion business software updates in order to distribute malware we call SUNBURST.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0001",
+              "kind": "edge",
+              "reason": "The report specifies that the actors trojanized Orion business software updates rather than describing source code repository injection.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P042",
+                  "quote": "The key ReportWatcherRetry must be any value other than 3 for the sample to continue execution. The sample checks that the machine is domain joined and retrieves the domain name before execution continues.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0009",
+              "kind": "edge",
+              "reason": "Execution only proceeds to process/service discovery if the ReportWatcherRetry key is valid and domain membership is validated.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P006",
+                  "quote": "stores reconnaissance results within legitimate plugin configuration files allowing it to blend in with legitimate SolarWinds activity.",
+                  "verification": "verified_text_only"
+                },
+                {
+                  "paragraph_id": "P044",
+                  "quote": "The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples' config file.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "recon_storage_in_plugin_config",
+              "kind": "node",
+              "reason": "Captures the backdoor's defense evasion technique of storing reconnaissance and stopped services into legitimate plugin config files.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples' config file.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "anti_analysis_defense_evasion->recon_storage_in_plugin_config",
+              "kind": "edge",
+              "reason": "Identifies that stopped service findings are written directly into the ReportWatcherPostpone config field.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "network_connectivity_check",
+              "kind": "node",
+              "reason": "The sample explicitly tests network connectivity before domain generation begins.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P044",
+                  "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0010",
+              "kind": "edge",
+              "reason": "Passing anti-analysis blocklists directly transitions to the connectivity check rather than straight to DGA domain generation.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "network_connectivity_check->dga_resolution",
+              "kind": "edge",
+              "reason": "DGA generation loop only initiates once both blocklists and network connectivity checks succeed.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry to a value that prevents further execution:",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "ip_blocklist_termination",
+              "kind": "node",
+              "reason": "Hardcoded IP blocklist hits cause malware termination and persistent execution disabling.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "The DNS A record of generated domains is checked against a hardcoded list of IP address blocks which control the malware's behavior. Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "dga_resolution->ip_blocklist_termination",
+              "kind": "edge",
+              "reason": "DNS A-record resolution branches to termination if the resolved IP falls within blocklisted ranges.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P046",
+                  "quote": "Once a domain has been successfully retrieved in a CNAME DNS response the sample will spawn a new thread of execution invoking the method HttpHelper.Initialize which is responsible for all C2 communications and dispatching.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0011",
+              "kind": "edge",
+              "reason": "Clarifies that CNAME DNS retrieval directly leads to C2 domain assignment and HTTP helper spawning.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P012",
+                  "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0014",
+              "kind": "edge",
+              "reason": "TEARDROP was observed in 'at least one instance' among multiple different payloads, not as an inevitable universal next step.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P012",
+                  "quote": "Next it checks that HKU SOFTWARE Microsoft CTF exists, decodes an embedded payload using a custom rolling XOR algorithm and manually loads into memory an embedded payload using a custom PE-like file format.",
+                  "verification": "verified_text_only"
+                },
+                {
+                  "paragraph_id": "P012",
+                  "quote": "We believe that this was used to execute a customized Cobalt Strike BEACON.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0015",
+              "kind": "edge",
+              "reason": "Preserves the environmental check and the report's qualified assessment ('believe') that TEARDROP loaded customized Cobalt Strike BEACON.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "remove",
+              "citations": [
+                {
+                  "paragraph_id": "P018",
+                  "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment.",
+                  "verification": "verified_text_only"
+                },
+                {
+                  "paragraph_id": "P024",
+                  "quote": "The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0016",
+              "kind": "edge",
+              "reason": "C2 infrastructure masquerading is an actor-level evasion practice, not a direct causal output of Cobalt Strike BEACON execution.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P018",
+                  "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "unc2452_actor->c2_infrastructure_masquerading",
+              "kind": "edge",
+              "reason": "Roots C2 infrastructure configuration and masquerading directly with the threat actor.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "remove",
+              "citations": [
+                {
+                  "paragraph_id": "P010",
+                  "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0017",
+              "kind": "edge",
+              "reason": "Credential abuse is an overarching actor preference for access, not a downstream effect of C2 hostname masquerading.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P010",
+                  "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment.",
+                  "verification": "verified_text_only"
+                },
+                {
+                  "paragraph_id": "P028",
+                  "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "unc2452_actor->credential_abuse",
+              "kind": "edge",
+              "reason": "Directly links threat actor UNC2452 to credential abuse and distinct credential usage for lateral movement.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "remove",
+              "citations": [
+                {
+                  "paragraph_id": "P032",
+                  "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0018",
+              "kind": "edge",
+              "reason": "Temporary file replacement and task modification are execution evasion techniques employed by the actor, not downstream products of credential abuse.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P032",
+                  "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "unc2452_actor->temporary_file_task_mod",
+              "kind": "edge",
+              "reason": "Directly links UNC2452 to remote execution via temporary file replacement and scheduled task modification.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P032",
+                  "quote": "They routinely removed their tools, including removing backdoors once legitimate remote access was achieved.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "tool_and_backdoor_removal",
+              "kind": "node",
+              "reason": "Captures the attacker's defining operational security habit of cleaning up backdoors once legitimate remote access was obtained.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "add",
+              "citations": [
+                {
+                  "paragraph_id": "P032",
+                  "quote": "They routinely removed their tools, including removing backdoors once legitimate remote access was achieved.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "credential_abuse->tool_and_backdoor_removal",
+              "kind": "edge",
+              "reason": "Achieving legitimate remote access directly triggered routine removal of backdoors and tools.",
+              "has_verified_citation": true
+            },
+            {
+              "action": "revise",
+              "citations": [
+                {
+                  "paragraph_id": "P004",
+                  "quote": "Post compromise activity following this supply chain compromise has included lateral movement and data theft.",
+                  "verification": "verified_text_only"
+                },
+                {
+                  "paragraph_id": "P028",
+                  "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials.",
+                  "verification": "verified_text_only"
+                }
+              ],
+              "id": "edge-0019",
+              "kind": "edge",
+              "reason": "Reroutes impact from credential-enabled network access and lateral movement directly to data theft and lateral movement.",
+              "has_verified_citation": true
+            }
+          ],
+          "diff": {
+            "added_node_ids": [
+              "ip_blocklist_termination",
+              "network_connectivity_check",
+              "recon_storage_in_plugin_config",
+              "tool_and_backdoor_removal"
+            ],
+            "removed_node_ids": [],
+            "changed_nodes": [],
+            "added_pairs": [
+              [
+                "anti_analysis_defense_evasion",
+                "network_connectivity_check"
+              ],
+              [
+                "anti_analysis_defense_evasion",
+                "recon_storage_in_plugin_config"
+              ],
+              [
+                "credential_abuse",
+                "data_theft_impact"
+              ],
+              [
+                "credential_abuse",
+                "tool_and_backdoor_removal"
+              ],
+              [
+                "dga_resolution",
+                "ip_blocklist_termination"
+              ],
+              [
+                "network_connectivity_check",
+                "dga_resolution"
+              ],
+              [
+                "unc2452_actor",
+                "c2_infrastructure_masquerading"
+              ],
+              [
+                "unc2452_actor",
+                "credential_abuse"
+              ],
+              [
+                "unc2452_actor",
+                "temporary_file_task_mod"
+              ]
+            ],
+            "removed_pairs": [
+              [
+                "anti_analysis_defense_evasion",
+                "dga_resolution"
+              ],
+              [
+                "c2_infrastructure_masquerading",
+                "credential_abuse"
+              ],
+              [
+                "cobalt_strike_beacon",
+                "c2_infrastructure_masquerading"
+              ],
+              [
+                "credential_abuse",
+                "temporary_file_task_mod"
+              ],
+              [
+                "temporary_file_task_mod",
+                "data_theft_impact"
+              ]
+            ],
+            "changed_retained_pairs": [
+              [
+                "c2_domain_cname",
+                "http_c2_communication"
+              ],
+              [
+                "dga_resolution",
+                "c2_domain_cname"
+              ],
+              [
+                "initial_dormant_period",
+                "anti_analysis_defense_evasion"
+              ],
+              [
+                "steganography_jobs",
+                "teardrop_dropper"
+              ],
+              [
+                "teardrop_dropper",
+                "cobalt_strike_beacon"
+              ],
+              [
+                "unc2452_actor",
+                "solarwinds_supply_chain"
+              ]
+            ],
+            "id_based_alignment_only": true,
+            "warning": "Renamed/split/merged concepts need human alignment; pair changes are not semantic errors."
+          },
+          "reviews": {
+            "defender": {
+              "findings": [
+                {
+                  "kind": "edge",
+                  "id": "edge-0014",
+                  "position": "revise",
+                  "reason": "The report notes that multiple SUNBURST samples delivered different payloads, and TEARDROP was observed in at least one instance, rather than being an inevitable universal outcome of steganography jobs.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P012",
+                      "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "edge",
+                  "id": "edge-0015",
+                  "position": "revise",
+                  "reason": "The deployment of customized Cobalt Strike BEACON by TEARDROP is explicitly qualified as an analytical belief rather than an absolute fact.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P012",
+                      "quote": "We believe that this was used to execute a customized Cobalt Strike BEACON.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "edge",
+                  "id": "edge-0016",
+                  "position": "revise",
+                  "reason": "The text does not state that Cobalt Strike BEACON itself communicates via VPS IPs masquerading as internal hosts. Rather, the actor broadly sets up C2 infrastructure and VPS IPs matching victim countries to evade detection.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P018",
+                      "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment.",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P024",
+                      "quote": "The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "edge",
+                  "id": "edge-0017",
+                  "position": "revise",
+                  "reason": "Masquerading C2 infrastructure does not directly leverage credentials; rather, the threat actor relies on compromised credentials to gain initial access and moves laterally using distinct credentials.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P010",
+                      "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment.",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P028",
+                      "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "edge",
+                  "id": "edge-0018",
+                  "position": "revise",
+                  "reason": "Credential compromise and temporary file/task modification are distinct techniques used by the actor during post-compromise activity, rather than temporary file execution strictly flowing out of credential abuse.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P010",
+                      "quote": "After gaining initial access, this group uses a variety of techniques to disguise their operations while they move laterally",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P032",
+                      "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "edge",
+                  "id": "edge-0009",
+                  "position": "revise",
+                  "reason": "Dormancy checks do not directly transition to DGA subdomain generation without passing network connectivity and blocklist evaluations; failing blocklists causes retry or termination.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P044",
+                      "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P046",
+                      "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "edge",
+                  "id": "edge-0011",
+                  "position": "revise",
+                  "reason": "The DGA DNS resolution checks A-record responses first against hardcoded IP blocklists to govern continuation/termination before resolving a CNAME record to identify the C2 domain.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P046",
+                      "quote": "The DNS A record of generated domains is checked against a hardcoded list of IP address blocks which control the malware's behavior. Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P046",
+                      "quote": "Once a domain has been successfully retrieved in a CNAME DNS response the sample will spawn a new thread of execution invoking the method HttpHelper.Initialize",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "node",
+                  "id": "initial_dormant_period",
+                  "position": "keep",
+                  "reason": "Preserving the execution guard and delay node is well-grounded; the malware strictly verifies process hash, assembly age threshold (12-14 days), and named pipe guard prior to proceeding.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P042",
+                      "quote": "The sample only executes if the filesystem write time of the assembly is at least 12 to 14 days prior to the current time; the exact threshold is selected randomly from an interval.",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P042",
+                      "quote": "Once the threshold is met, the sample creates the named pipe 583da945-62af-10e8-4902-a8f205c72b2e to act as a guard that only one instance is running",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "node",
+                  "id": "temporary_file_task_mod",
+                  "position": "keep",
+                  "reason": "Preserving this node captures an important post-compromise execution and operational security technique specifically detailed in the report.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P032",
+                      "quote": null,
+                      "verification": "unverified"
+                    }
+                  ],
+                  "has_verified_citation": false
+                }
+              ],
+              "omissions": [
+                {
+                  "kind": "missing",
+                  "id": "network_connectivity_check",
+                  "position": "add",
+                  "reason": "Before commencing DGA domain generation in its loop, the backdoor explicitly checks network connectivity by attempting to resolve api.solarwinds.com.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P044",
+                      "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P046",
+                      "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "missing",
+                  "id": "backdoor_removal_upon_access",
+                  "position": "add",
+                  "reason": "The report highlights that the actor actively removes backdoors once legitimate remote access is achieved to maintain a minimal malware footprint.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P032",
+                      "quote": "They routinely removed their tools, including removing backdoors once legitimate remote access was achieved.",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P010",
+                      "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                },
+                {
+                  "kind": "missing",
+                  "id": "recon_storage_in_plugin_config",
+                  "position": "add",
+                  "reason": "SUNBURST performs defense evasion by storing reconnaissance results directly within legitimate plugin configuration files to blend in with benign activity.",
+                  "citations": [
+                    {
+                      "paragraph_id": "P006",
+                      "quote": "stores reconnaissance results within legitimate plugin configuration files allowing it to blend in with legitimate SolarWinds activity.",
+                      "verification": "verified_text_only"
+                    },
+                    {
+                      "paragraph_id": "P044",
+                      "quote": "The list of stopped services is then bit-packed into the ReportWatcherPostpone key of the appSettings entry for the samples' config file.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "has_verified_citation": true
+                }
+              ]
+            },
+            "skeptic": {
+              "findings": [
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P002",
+                      "quote": "FireEye discovered a supply chain attack trojanizing SolarWinds Orion business software updates in order to distribute malware we call SUNBURST.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0001",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The candidate edge asserts that UNC2452 injected backdoor code into legitimate source code. The report specifically describes a supply chain attack trojanizing software updates without detailing the exact mechanism of developer repository tampering or source code access.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P042",
+                      "quote": "On execution of the malicious SolarWinds.Orion.Core.BusinessLayer. OrionImprovementBusinessLayer.Initialize method the sample verifies that its lower case process name hashes to the value 17291806236368054941.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0008",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The edge bundles distinct initialization stages together. The report details a sequential verification process: matching the process name FNV-1a hash, enforcing the 12-14 day assembly filesystem age threshold, creating the named pipe single-instance mutex, and validating configuration keys.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P042",
+                      "quote": "The key ReportWatcherRetry must be any value other than 3 for the sample to continue execution. The sample checks that the machine is domain joined and retrieves the domain name before execution continues.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0009",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The transition bypasses critical initialization logic. Before invoking the Update event loop that discovers processes and drivers, the malware verifies ReportWatcherRetry is not 3, checks domain membership, and constructs an encoded userId from the MAC address, domain, and MachineGuid.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P044",
+                      "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0010",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The edge bypasses the connectivity check. The report explicitly specifies that passing all process, service, and driver blocklists triggers a DNS resolution check against api.solarwinds.com to confirm internet connectivity before DGA subdomain generation begins.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P046",
+                      "quote": "Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry to a value that prevents further execution:",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0011",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The candidate edge depicts an unconditional transition to CNAME retrieval. In the report, DNS A-record responses are validated against specific blocklisted IP subnets; matching addresses terminate the malware and modify ReportWatcherRetry to permanently prevent subsequent execution.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P012",
+                      "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0014",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The candidate edge turns TEARDROP deployment into a universal pipeline step for all victims. The report explicitly clarifies that SUNBURST samples delivered different payloads and TEARDROP was observed in 'at least one instance'.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P012",
+                      "quote": "We believe that this was used to execute a customized Cobalt Strike BEACON.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0015",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The candidate edge states as a confirmed fact that TEARDROP loaded Cobalt Strike BEACON. The report frames this connection as an analytical belief rather than direct certainty ('We believe that this was used to execute a customized Cobalt Strike BEACON').",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P018",
+                      "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0016",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The edge models C2 masquerading as an action caused by Cobalt Strike BEACON. In the report, setting hostnames to match victim environments and using country-matched VPS IPs describe actor-level C2 infrastructure operational security, not a payload-level execution output.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P010",
+                      "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0017",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The candidate edge makes credential abuse a consequence of C2 infrastructure masquerading. The report presents the actor's preference for legitimate credentials and dedicated remote access as an overarching tactical preference to maintain a light malware footprint.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P032",
+                      "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "edge-0018",
+                  "kind": "edge",
+                  "position": "revise",
+                  "reason": "The edge directly links credential abuse to temporary file replacement in a strict linear sequence. In the text, temporary file substitution and task manipulation are distinct execution techniques used to run utilities while evading detection.",
+                  "has_verified_citation": true
+                }
+              ],
+              "omissions": [
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P044",
+                      "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "network_connectivity_check",
+                  "kind": "missing",
+                  "position": "add",
+                  "reason": "Before initiating DGA domain generation, SUNBURST conducts an explicit network connectivity test by attempting to resolve api.solarwinds.com.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P046",
+                      "quote": "Records within the following ranges will terminate the malware and update the configuration key ReportWatcherRetry to a value that prevents further execution:",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "ip_blocklist_termination",
+                  "kind": "missing",
+                  "position": "add",
+                  "reason": "Evaluating DNS A-records against hardcoded IP blocklists can trigger permanent malware termination and modify the ReportWatcherRetry configuration key to prevent execution.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P032",
+                      "quote": "They routinely removed their tools, including removing backdoors once legitimate remote access was achieved.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "tool_and_backdoor_removal",
+                  "kind": "missing",
+                  "position": "add",
+                  "reason": "A defining operational security technique of UNC2452 is routinely removing backdoors and utilities once legitimate remote access is achieved to minimize their footprint.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P042",
+                      "quote": "The sample checks that the machine is domain joined and retrieves the domain name before execution continues. A userID is generated by computing the MD5 of a network interface MAC address that is up and not a loopback device, the domain name, and the registry value HKEY_LOCAL_MACHINE SOFTWARE Microsoft Cryptography MachineGuid.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "domain_joined_check_and_userid_generation",
+                  "kind": "missing",
+                  "position": "add",
+                  "reason": "Prior to starting the C2 event loop, SUNBURST checks if the machine is domain joined and derives a unique userId from network MAC address, domain, and MachineGuid.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P012",
+                      "quote": "Next it checks that HKU SOFTWARE Microsoft CTF exists, decodes an embedded payload using a custom rolling XOR algorithm and manually loads into memory an embedded payload using a custom PE-like file format.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "teardrop_registry_check",
+                  "kind": "missing",
+                  "position": "add",
+                  "reason": "TEARDROP evaluates an environmental prerequisite by verifying the existence of HKU\\SOFTWARE\\Microsoft\\CTF before payload decoding and memory execution.",
+                  "has_verified_citation": true
+                },
+                {
+                  "citations": [
+                    {
+                      "paragraph_id": "P006",
+                      "quote": "The malware masquerades its network traffic as the Orion Improvement Program (OIP) protocol and stores reconnaissance results within legitimate plugin configuration files allowing it to blend in with legitimate SolarWinds activity.",
+                      "verification": "verified_text_only"
+                    }
+                  ],
+                  "id": "recon_results_config_storage",
+                  "kind": "missing",
+                  "position": "add",
+                  "reason": "SUNBURST performs defense evasion on the host by storing reconnaissance findings inside legitimate plugin configuration files to blend into normal Orion activity.",
+                  "has_verified_citation": true
+                }
+              ]
+            }
+          },
+          "review_audits": {
+            "defender": {
+              "markdown_fence_removed": true,
+              "verified_citations": 20,
+              "unverified_citations": 1
+            },
+            "skeptic": {
+              "markdown_fence_removed": true,
+              "verified_citations": 16,
+              "unverified_citations": 0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "independent_gold": false,
+  "accuracy": null
+}

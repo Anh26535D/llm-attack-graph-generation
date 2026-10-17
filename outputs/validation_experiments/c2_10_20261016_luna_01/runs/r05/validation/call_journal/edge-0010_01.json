@@ -1,0 +1,119 @@
+{
+  "edge_id": "edge-0010",
+  "started_at": "2026-10-16T14:39:35.391883+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "It is an inference that the source and target refer to the same vulnerable Jetson Linux instance and PCI-bus context.",
+        "It is an inference that successful memory access would produce any particular takeover consequence; the CVE description states possibilities rather than guaranteed outcomes."
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0010",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2022-21819",
+          "quote": "an unprivileged attacker with physical access to the board"
+        },
+        {
+          "cve_id": "CVE-2022-21819",
+          "quote": "direct read/write access to the entire system address space through the PCI bus"
+        },
+        {
+          "cve_id": "CVE-2022-21819",
+          "quote": "could result in denial of service, code execution, escalation of privileges, and impact to data integrity and confidentiality"
+        },
+        {
+          "cve_id": "CVE-2022-21819",
+          "quote": "The scope impact may extend to other components."
+        }
+      ],
+      "missing_conditions": [
+        "Verified physical access to the affected Jetson board",
+        "Affected Jetson Nano or Jetson Nano 2GB hardware running a vulnerable Jetson Linux 32.x version prior to 32.7.1",
+        "Ability to exercise the vulnerability through the PCI bus",
+        "Successful exploitation that actually obtains the described system-address-space read/write capability",
+        "Externally verified relationship between the source capability and the target system or state",
+        "Evidence that kernel-data overwrite, code execution, privilege escalation, complete denial of service, and compromise of other components occur rather than remain possible outcomes"
+      ],
+      "reason": "CVE-2022-21819 describes a potential source capability: an unprivileged attacker with physical access may obtain direct read/write access to the entire system address space through the PCI bus. That capability matches the target prerequisite at a high level, so a bounded causal bridge is plausible if the physical-access, affected-platform, PCI-bus, and successful-exploitation conditions are verified. However, the description says the consequences could result and that scope may extend to other components; it does not establish guaranteed kernel-data overwrite, arbitrary or highest-level code execution, complete system takeover, or compromise of adjacent hardware. The edge therefore should not enter a strict graph as an unconditional supported edge; it is conditional on those unverified prerequisites and outcomes.",
+      "source_cve_id": "CVE-2022-21819",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2022-21819"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2049,
+      "prompt_tokens": 2148,
+      "total_tokens": 4197,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1552,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 2145,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00299565,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00299565,
+        "upstream_inference_prompt_cost": 0.00053685,
+        "upstream_inference_completions_cost": 0.0024588
+      }
+    },
+    "latency_seconds": 16.27583340000092,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "f2dd0fe4328b0118e818ca257cb230d0d435c58a9ca08741f0668c7c3bd15b8d",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2049,
+        "prompt_tokens": 2148,
+        "total_tokens": 4197,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1552,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2145,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00299565,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00299565,
+          "upstream_inference_prompt_cost": 0.00053685,
+          "upstream_inference_completions_cost": 0.0024588
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"It is an inference that the source and target refer to the same vulnerable Jetson Linux instance and PCI-bus context.\",\"It is an inference that successful memory access would produce any particular takeover consequence; the CVE description states possibilities rather than guaranteed outcomes.\"],\"confidence\":0.9,\"edge_id\":\"edge-0010\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2022-21819\",\"quote\":\"an unprivileged attacker with physical access to the board\"},{\"cve_id\":\"CVE-2022-21819\",\"quote\":\"direct read/write access to the entire system address space through the PCI bus\"},{\"cve_id\":\"CVE-2022-21819\",\"quote\":\"could result in denial of service, code execution, escalation of privileges, and impact to data integrity and confidentiality\"},{\"cve_id\":\"CVE-2022-21819\",\"quote\":\"The scope impact may extend to other components.\"}],\"missing_conditions\":[\"Verified physical access to the affected Jetson board\",\"Affected Jetson Nano or Jetson Nano 2GB hardware running a vulnerable Jetson Linux 32.x version prior to 32.7.1\",\"Ability to exercise the vulnerability through the PCI bus\",\"Successful exploitation that actually obtains the described system-address-space read/write capability\",\"Externally verified relationship between the source capability and the target system or state\",\"Evidence that kernel-data overwrite, code execution, privilege escalation, complete denial of service, and compromise of other components occur rather than remain possible outcomes\"],\"reason\":\"CVE-2022-21819 describes a potential source capability: an unprivileged attacker with physical access may obtain direct read/write access to the entire system address space through the PCI bus. That capability matches the target prerequisite at a high level, so a bounded causal bridge is plausible if the physical-access, affected-platform, PCI-bus, and successful-exploitation conditions are verified. However, the description says the consequences could result and that scope may extend to other components; it does not establish guaranteed kernel-data overwrite, arbitrary or highest-level code execution, complete system takeover, or compromise of adjacent hardware. The edge therefore should not enter a strict graph as an unconditional supported edge; it is conditional on those unverified prerequisites and outcomes.\",\"source_cve_id\":\"CVE-2022-21819\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2022-21819\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:39:51.669870+00:00"
+}

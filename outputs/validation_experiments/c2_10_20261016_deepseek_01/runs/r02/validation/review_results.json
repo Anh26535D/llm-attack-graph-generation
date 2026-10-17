@@ -1,0 +1,418 @@
+[
+  {
+    "edge_id": "edge-0001",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "piSignage may be installed on the same Raspberry Pi OS host, but neither CVE description states this.",
+          "Raspberry Pi OS default or discovered credentials may map to piSignage web credentials, but neither CVE description states credential reuse.",
+          "Administrator OS access may allow discovery or creation of piSignage credentials, but no supplied description establishes such a method.",
+          "The source CVE's default-password condition may be true on the target, but the environment observations are absent."
+        ],
+        "confidence": 0.86,
+        "edge_id": "edge-0001",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges."
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "allows a remote attacker (authenticated as a low-privilege user) to download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+          }
+        ],
+        "missing_conditions": [
+          "verified unchanged default password on the target Raspberry Pi OS host",
+          "verified same-host deployment or explicit network/service relationship between the Raspberry Pi OS host and the piSignage web application",
+          "verified credential linkage or reuse between Raspberry Pi OS credentials and a piSignage low-privilege web user",
+          "attacker possession or acquisition of authenticated low-privilege piSignage credentials",
+          "verified piSignage version < 2.6.4 on the target",
+          "network reachability to the piSignage web application/API",
+          "explicit evidence that Raspberry Pi OS administrator access can obtain the required piSignage low-privilege web session"
+        ],
+        "reason": "CVE-2021-38759 describes a conditional OS-level effect: Raspberry Pi OS through 5.10 has a default password for the pi account, and if it is not changed, attackers can gain administrator privileges. CVE-2019-20354 requires an authenticated low-privilege piSignage user and piSignage before 2.6.4 to exploit the path traversal and download arbitrary files. The edge asserts that default system credentials or discovered credentials yield an authenticated low-privilege piSignage web session. The supplied descriptions do not establish piSignage deployment on the same host, credential reuse, or a method to obtain piSignage credentials from OS administrator access. The bridge is therefore conditional and potentially plausible only under unverified assumptions; as currently evidenced, it cannot enter a strict supported graph.",
+        "source_cve_id": "CVE-2021-38759",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2019-20354"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "57223d6827dcfb0a88596ac508ccd84db30cd871827182731308649521b964f4",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 4283,
+        "prompt_tokens": 2039,
+        "total_tokens": 6322,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 3718,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.000675448284,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.000675448284,
+          "upstream_inference_prompt_cost": 6.3835884e-05,
+          "upstream_inference_completions_cost": 0.0006116124
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 4283,
+          "prompt_tokens": 2039,
+          "total_tokens": 6322,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 3718,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 256,
+            "video_tokens": 0
+          },
+          "cost": 0.000675448284,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.000675448284,
+            "upstream_inference_prompt_cost": 6.3835884e-05,
+            "upstream_inference_completions_cost": 0.0006116124
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 16384,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "baidu/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "Baidu"
+      },
+      "request_overrides": {
+        "max_output_tokens": 16384,
+        "reasoning_level": "high"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0002",
+    "review": {
+      "state": "retry_limit_reached",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "6c8505ed60b3c0fdde1ebdd6562cd51f0cd14c1e20f17a4b649a28dfa31b6ec0",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "request_overrides": {
+        "max_output_tokens": 16384,
+        "reasoning_level": "high"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0003",
+    "review": {
+      "state": "cache_hit",
+      "response": {
+        "assumptions": [
+          "Generated node pre/postconditions and the edge label are claims, not confirming evidence.",
+          "No explicit environment observations are supplied beyond an empty environment_state.",
+          "The edge's '/etc/shadow' and 'configuration files' examples are treated as unverified claims, not as description facts."
+        ],
+        "confidence": 0.86,
+        "edge_id": "edge-0003",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+          },
+          {
+            "cve_id": "CVE-2019-20354",
+            "quote": "authenticated as a low-privilege user"
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account"
+          },
+          {
+            "cve_id": "CVE-2021-38759",
+            "quote": "If not changed, attackers can gain administrator privileges."
+          }
+        ],
+        "missing_conditions": [
+          "The path traversal can read credential-bearing files such as /etc/shadow or configuration files; the source description only states 'download arbitrary files' without specifying readable file contents or paths.",
+          "The piSignage process has sufficient filesystem permission to read credential-bearing files; not stated.",
+          "Downloaded files actually contain usable OS user credentials; not stated.",
+          "Any extracted credentials correspond to an account that grants administrative/sudo/root access; not stated.",
+          "The target Raspberry Pi OS has the default 'pi' account and 'raspberry' password unchanged; the target description is conditional: 'If not changed'.",
+          "The source piSignage instance and target Raspberry Pi OS are the same host or share the relevant filesystem/credentials; not established.",
+          "The target Raspberry Pi OS is reachable and usable for authentication; not established by the supplied descriptions."
+        ],
+        "reason": "CVE-2019-20354's actual described effect is that an authenticated low-privilege remote attacker can 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal.' That is a file-read/download primitive. CVE-2021-38759 requires Raspberry Pi OS through 5.10 with the 'raspberry default password for the pi account' unchanged; only then can attackers 'gain administrator privileges.' The edge asserts that downloaded system files, potentially including /etc/shadow or configuration files, yield OS user credentials that bridge to the default-credentials target. The supplied descriptions do not establish that bridge: they do not say which files are readable, that readable files contain credentials, that credentials are for the pi account, that the default password is unchanged, or that source and target are the same host. The edge is therefore overreaching and lacks description-grounded prerequisites; it cannot enter a strict graph as written.",
+        "source_cve_id": "CVE-2019-20354",
+        "suggested_status": "unsupported",
+        "target_cve_id": "CVE-2021-38759"
+      },
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "a3c8d4cc5edf923428d225614615d2cce0aa392609d9442b3a630074408e8ec4",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "cached_usage": {
+        "completion_tokens": 6754,
+        "prompt_tokens": 2025,
+        "total_tokens": 8779,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 6131,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.001027807284,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.001027807284,
+          "upstream_inference_prompt_cost": 6.3336084e-05,
+          "upstream_inference_completions_cost": 0.0009644712
+        }
+      },
+      "cached_response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 6754,
+          "prompt_tokens": 2025,
+          "total_tokens": 8779,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 6131,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 256,
+            "video_tokens": 0
+          },
+          "cost": 0.001027807284,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.001027807284,
+            "upstream_inference_prompt_cost": 6.3336084e-05,
+            "upstream_inference_completions_cost": 0.0009644712
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 16384,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "baidu/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "Baidu"
+      },
+      "request_overrides": {
+        "max_output_tokens": 16384,
+        "reasoning_level": "high"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0004",
+    "review": {
+      "state": "completed",
+      "response": {
+        "assumptions": [
+          "Generated node pre/postconditions and the edge label are claims, not confirming evidence.",
+          "The candidate bridge is an inferred possibility, not an observed causal transition.",
+          "For the edge to hold, CVE-2019-3562's 'potentially execute code' would need to become actual local unprivileged execution on the same Windows host as Oculus Desktop; this is not established.",
+          "For the edge to hold, that local context would need to be able to create hard links to a log file used by privileged OVRRedir.exe; this is not established."
+        ],
+        "confidence": 0.82,
+        "edge_id": "edge-0004",
+        "evidence_quotes": [
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code."
+          },
+          {
+            "cve_id": "CVE-2019-3562",
+            "quote": "potentially execute code"
+          },
+          {
+            "cve_id": "CVE-2020-1885",
+            "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file."
+          }
+        ],
+        "missing_conditions": [
+          "Same-host deployment of Oculus Browser and affected Oculus Desktop on Windows is not established.",
+          "CVE-2019-3562 only says 'potentially execute code'; actual code execution and a local unprivileged context are not confirmed.",
+          "The source does not state that exploitation provides file-system access or the ability to create hard links to a log file.",
+          "Oculus Desktop version before 1.44.0.32849 and a running privileged OVRRedir.exe process are not observed.",
+          "CVE-2020-1885's requirement for a local Windows user is not proven to be satisfied by the source.",
+          "No explicit environment observations confirm platform, version, or host relationship."
+        ],
+        "reason": "CVE-2019-3562's actual described effect is that a remote web page could inject arbitrary HTML into the Oculus Browser UI, spoof UI, and 'potentially execute code' in affected Oculus Browser versions. CVE-2020-1885 requires local users on Windows with affected Oculus Desktop before 1.44.0.32849, where a privileged OVRRedir.exe process writes to an unprivileged file and a hard link to a log file enables arbitrary file write and privilege gain. The edge claims a transition from remote code execution in Oculus Browser to local unprivileged execution and hard-link setup for OVRRedir.exe abuse. That bridge is only a bounded possibility if multiple unverified conditions hold; the source description does not confirm code execution, local execution context, same-host deployment, file-system capability, or target version. The edge label overreaches by asserting remote code execution and hard-link setup, so it should not enter a strict graph as stated and is at most conditional.",
+        "source_cve_id": "CVE-2019-3562",
+        "suggested_status": "conditional",
+        "target_cve_id": "CVE-2020-1885"
+      },
+      "api_calls": 1,
+      "usage": {
+        "completion_tokens": 9248,
+        "prompt_tokens": 2255,
+        "total_tokens": 11503,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 8511,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.001392161484,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.001392161484,
+          "upstream_inference_prompt_cost": 7.1547084e-05,
+          "upstream_inference_completions_cost": 0.0013206144
+        }
+      },
+      "latency_seconds": 40.81325949999882,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "f6caaef8da2d628b8c70d646be3f9f058a1052405b10fde635193e2fcd412eb3",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "response_metadata": {
+        "requested_model": "deepseek/deepseek-v4.1-flash",
+        "actual_model": "deepseek/deepseek-v4.1-flash",
+        "finish_reason": "stop",
+        "usage": {
+          "completion_tokens": 9248,
+          "prompt_tokens": 2255,
+          "total_tokens": 11503,
+          "completion_tokens_details": {
+            "audio_tokens": 0,
+            "reasoning_tokens": 8511,
+            "image_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "audio_tokens": 0,
+            "cache_write_tokens": 0,
+            "cached_tokens": 256,
+            "video_tokens": 0
+          },
+          "cost": 0.001392161484,
+          "is_byok": false,
+          "cost_details": {
+            "upstream_inference_cost": 0.001392161484,
+            "upstream_inference_prompt_cost": 7.1547084e-05,
+            "upstream_inference_completions_cost": 0.0013206144
+          }
+        },
+        "generation_config": {
+          "max_output_tokens": 16384,
+          "reasoning_effort": "high",
+          "provider": {
+            "only": [
+              "baidu/fp8"
+            ],
+            "allow_fallbacks": false
+          }
+        },
+        "finish_reasons": [
+          "stop"
+        ],
+        "actual_provider": "Baidu"
+      },
+      "raw_response": "{\n  \"assumptions\": [\n    \"Generated node pre/postconditions and the edge label are claims, not confirming evidence.\",\n    \"The candidate bridge is an inferred possibility, not an observed causal transition.\",\n    \"For the edge to hold, CVE-2019-3562's 'potentially execute code' would need to become actual local unprivileged execution on the same Windows host as Oculus Desktop; this is not established.\",\n    \"For the edge to hold, that local context would need to be able to create hard links to a log file used by privileged OVRRedir.exe; this is not established.\"\n  ],\n  \"confidence\": 0.82,\n  \"edge_id\": \"edge-0004\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-3562\",\n      \"quote\": \"A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code.\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-3562\",\n      \"quote\": \"potentially execute code\"\n    },\n    {\n      \"cve_id\": \"CVE-2020-1885\",\n      \"quote\": \"Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file.\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"Same-host deployment of Oculus Browser and affected Oculus Desktop on Windows is not established.\",\n    \"CVE-2019-3562 only says 'potentially execute code'; actual code execution and a local unprivileged context are not confirmed.\",\n    \"The source does not state that exploitation provides file-system access or the ability to create hard links to a log file.\",\n    \"Oculus Desktop version before 1.44.0.32849 and a running privileged OVRRedir.exe process are not observed.\",\n    \"CVE-2020-1885's requirement for a local Windows user is not proven to be satisfied by the source.\",\n    \"No explicit environment observations confirm platform, version, or host relationship.\"\n  ],\n  \"reason\": \"CVE-2019-3562's actual described effect is that a remote web page could inject arbitrary HTML into the Oculus Browser UI, spoof UI, and 'potentially execute code' in affected Oculus Browser versions. CVE-2020-1885 requires local users on Windows with affected Oculus Desktop before 1.44.0.32849, where a privileged OVRRedir.exe process writes to an unprivileged file and a hard link to a log file enables arbitrary file write and privilege gain. The edge claims a transition from remote code execution in Oculus Browser to local unprivileged execution and hard-link setup for OVRRedir.exe abuse. That bridge is only a bounded possibility if multiple unverified conditions hold; the source description does not confirm code execution, local execution context, same-host deployment, file-system capability, or target version. The edge label overreaches by asserting remote code execution and hard-link setup, so it should not enter a strict graph as stated and is at most conditional.\",\n  \"source_cve_id\": \"CVE-2019-3562\",\n  \"suggested_status\": \"conditional\",\n  \"target_cve_id\": \"CVE-2020-1885\"\n}",
+      "request_overrides": {
+        "max_output_tokens": 16384,
+        "reasoning_level": "high"
+      }
+    }
+  },
+  {
+    "edge_id": "edge-0005",
+    "review": {
+      "state": "budget_exhausted",
+      "response": null,
+      "api_calls": 0,
+      "usage": null,
+      "latency_seconds": 0.0,
+      "error_type": null,
+      "confidence_semantics": "self-assessed, not a calibrated probability",
+      "cache_key": "9ffb84a2fc5850015b1d99c616e47800788c0517e04df263cec37413331920a7",
+      "model_identity": {
+        "backend": "openrouter_v2",
+        "model": "deepseek/deepseek-v4.1-flash",
+        "client_name": "openrouter_v2",
+        "provider_config": "{\"only\":[\"baidu/fp8\"],\"allow_fallbacks\":false}"
+      },
+      "request_overrides": {
+        "max_output_tokens": 16384,
+        "reasoning_level": "high"
+      }
+    }
+  }
+]

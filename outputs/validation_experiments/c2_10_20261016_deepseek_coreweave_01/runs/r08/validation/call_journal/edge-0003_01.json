@@ -1,0 +1,144 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:59:25.308438+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "piSignage and RaspAP may be deployed on the same Raspberry Pi or otherwise reachable from the source foothold.",
+        "The arbitrary file download may expose files containing RaspAP credentials.",
+        "Any exposed credentials may be valid and sufficient for RaspAP authenticated access.",
+        "The target RaspAP service may be present, reachable, and affected."
+      ],
+      "confidence": 0.82,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "piSignage before 2.6.4"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "underlying OS (Raspberry Pi)"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "RaspAP 2.5"
+        }
+      ],
+      "missing_conditions": [
+        "externally verified source-target host relationship",
+        "readable valid target application credentials",
+        "evidence that path traversal can read files containing RaspAP credentials",
+        "source product, platform, version, and prerequisites confirmed",
+        "target product, platform, version, and prerequisites confirmed",
+        "confirmed environment observations of same-host deployment or credential reuse"
+      ],
+      "reason": "Source CVE-2019-20354 only shows an authenticated low-privilege attacker can 'download arbitrary files' from the Raspberry Pi via path traversal; it does not state that configuration, shadow files, or RaspAP credentials are exposed. Target CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5 and then permits an attacker to 'execute commands on the system'. The edge's assertion that the traversal reveals credentials enabling RaspAP authentication is an inference beyond the supplied descriptions. The bridge is at most a possible_credential_access condition: it would require the downloaded files to contain valid RaspAP credentials and the two services to be co-located or mutually reachable. Because those prerequisites are unverified, the edge cannot enter a strict graph as supported; it is conditional at best.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 9807,
+      "prompt_tokens": 2055,
+      "total_tokens": 11862,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 9136,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.006644912,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.006644912,
+        "upstream_inference_prompt_cost": 0.000270362,
+        "upstream_inference_completions_cost": 0.00637455
+      }
+    },
+    "latency_seconds": 49.933012400000734,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "c50eeb2c109a843bcb74105af8c36122172b39281f2635b4ae558c7bd6b6ab44",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 9807,
+        "prompt_tokens": 2055,
+        "total_tokens": 11862,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 9136,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.006644912,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.006644912,
+          "upstream_inference_prompt_cost": 0.000270362,
+          "upstream_inference_completions_cost": 0.00637455
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\n  \"assumptions\": [\n    \"piSignage and RaspAP may be deployed on the same Raspberry Pi or otherwise reachable from the source foothold.\",\n    \"The arbitrary file download may expose files containing RaspAP credentials.\",\n    \"Any exposed credentials may be valid and sufficient for RaspAP authenticated access.\",\n    \"The target RaspAP service may be present, reachable, and affected.\"\n  ],\n  \"confidence\": 0.82,\n  \"edge_id\": \"edge-0003\",\n  \"evidence_quotes\": [\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"download arbitrary files\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"authenticated as a low-privilege user\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"from the Raspberry Pi\"\n    },\n    {\n      \"cve_id\": \"CVE-2019-20354\",\n      \"quote\": \"piSignage before 2.6.4\"\n    },\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"With authenticated access\"\n    },\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"execute commands on the system\"\n    },\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"underlying OS (Raspberry Pi)\"\n    },\n    {\n      \"cve_id\": \"CVE-2020-24572\",\n      \"quote\": \"RaspAP 2.5\"\n    }\n  ],\n  \"missing_conditions\": [\n    \"externally verified source-target host relationship\",\n    \"readable valid target application credentials\",\n    \"evidence that path traversal can read files containing RaspAP credentials\",\n    \"source product, platform, version, and prerequisites confirmed\",\n    \"target product, platform, version, and prerequisites confirmed\",\n    \"confirmed environment observations of same-host deployment or credential reuse\"\n  ],\n  \"reason\": \"Source CVE-2019-20354 only shows an authenticated low-privilege attacker can 'download arbitrary files' from the Raspberry Pi via path traversal; it does not state that configuration, shadow files, or RaspAP credentials are exposed. Target CVE-2020-24572 requires 'With authenticated access' to RaspAP 2.5 and then permits an attacker to 'execute commands on the system'. The edge's assertion that the traversal reveals credentials enabling RaspAP authentication is an inference beyond the supplied descriptions. The bridge is at most a possible_credential_access condition: it would require the downloaded files to contain valid RaspAP credentials and the two services to be co-located or mutually reachable. Because those prerequisites are unverified, the edge cannot enter a strict graph as supported; it is conditional at best.\",\n  \"source_cve_id\": \"CVE-2019-20354\",\n  \"suggested_status\": \"conditional\",\n  \"target_cve_id\": \"CVE-2020-24572\"\n}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:00:15.244493+00:00"
+}

@@ -1,0 +1,689 @@
+{
+  "repeats": [
+    {
+      "repeat": "r01",
+      "strategies": {
+        "grounded": {
+          "status": "ready_for_independent_validation",
+          "calls_including_common_draft": 1,
+          "usage": {
+            "input_tokens": 1264,
+            "output_tokens": 877,
+            "total_tokens": 5048,
+            "requests_with_usage": 1,
+            "requests_missing_usage": 0,
+            "totals_are_partial": false,
+            "gemini_thoughts_tokens": 2907,
+            "note": "Gemini output_tokens here counts text candidates; provider total_tokens includes thoughts."
+          },
+          "request_seconds": 28.357266600000003,
+          "accuracy": null,
+          "nodes": 8,
+          "edges": 2,
+          "added": [],
+          "removed": [],
+          "changed_edge_claims": [],
+          "changed_nodes": [],
+          "evidence": [
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2020-1885",
+              "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+              "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+              "bridge": "Potential code execution achieved via the Oculus Browser vulnerability could establish an unprivileged local user execution context on Windows, enabling the attacker to act as a local user and exploit the hard-link log file write vulnerability in Oculus Desktop.",
+              "missing_conditions": [
+                "Oculus Browser is operating on the same Windows host where Oculus Desktop is installed.",
+                "Code execution is successfully achieved from the browser sandbox and yields an interactive or usable local user context."
+              ]
+            },
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2021-24038",
+              "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+              "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+              "bridge": "Potential code execution via the Oculus Browser vulnerability may spawn or control an unprivileged process on the host, fulfilling the prerequisite of having an unprivileged process available to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+              "missing_conditions": [
+                "Oculus Browser executes on the same system running OVRServiceLauncher.exe.",
+                "The potential code execution successfully produces a running unprivileged process capable of interacting with system handles."
+              ]
+            }
+          ],
+          "decisions": [],
+          "candidate": {
+            "graph": {
+              "nodes": [
+                {
+                  "id": "CVE-2019-20354",
+                  "label": "piSignage arbitrary file download via path traversal",
+                  "precondition": "Authenticated as a low-privilege user with remote network access to piSignage player API",
+                  "postcondition": "Arbitrary files downloaded from the Raspberry Pi"
+                },
+                {
+                  "id": "CVE-2019-3562",
+                  "label": "Oculus Browser HTML injection and potential code execution",
+                  "precondition": "Victim visits a remote web page using vulnerable Oculus Browser",
+                  "postcondition": "Attacker can spoof UI and potentially execute code"
+                },
+                {
+                  "id": "CVE-2020-1885",
+                  "label": "Oculus Desktop local privilege escalation via hard link log file",
+                  "precondition": "Local user access on Windows running vulnerable Oculus Desktop",
+                  "postcondition": "Ability to write to arbitrary files and gain elevated privileges"
+                },
+                {
+                  "id": "CVE-2020-24572",
+                  "label": "RaspAP web console arbitrary command execution",
+                  "precondition": "Authenticated access to RaspAP web console",
+                  "postcondition": "Command execution on the underlying Raspberry Pi OS, including file upload and code execution"
+                },
+                {
+                  "id": "CVE-2021-24038",
+                  "label": "Oculus Desktop local privilege escalation via exposed process handle",
+                  "precondition": "Unprivileged process on system running vulnerable Oculus Desktop",
+                  "postcondition": "Local privilege escalation via exposed privileged process handle"
+                },
+                {
+                  "id": "CVE-2021-38545",
+                  "label": "Raspberry Pi Glowworm acoustic eavesdropping via power LED",
+                  "precondition": "Raspberry Pi powers audio equipment playing sound; line of sight to power indicator LED via telescope and electro-optical sensor",
+                  "postcondition": "Remote attackers can recover speech signals/sound played by speakers"
+                },
+                {
+                  "id": "CVE-2021-38759",
+                  "label": "Raspberry Pi OS default credentials",
+                  "precondition": "Default password for the pi account has not been changed",
+                  "postcondition": "Attackers can gain administrator privileges"
+                },
+                {
+                  "id": "CVE-2022-21819",
+                  "label": "NVIDIA Jetson Linux IOMMU configuration memory access",
+                  "precondition": "Physical access to the board and PCI bus access as an unprivileged attacker",
+                  "postcondition": "Direct read/write access to the entire system address space, potential code execution, DoS, and privilege escalation"
+                }
+              ],
+              "edges": [
+                {
+                  "from": "CVE-2019-3562",
+                  "to": "CVE-2020-1885",
+                  "label": "Potential code execution provides local access to exploit file write"
+                },
+                {
+                  "from": "CVE-2019-3562",
+                  "to": "CVE-2021-24038",
+                  "label": "Potential code execution provides unprivileged process to obtain privileged handle"
+                }
+              ]
+            },
+            "edge_evidence": [
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+                "bridge": "Potential code execution achieved via the Oculus Browser vulnerability could establish an unprivileged local user execution context on Windows, enabling the attacker to act as a local user and exploit the hard-link log file write vulnerability in Oculus Desktop.",
+                "missing_conditions": [
+                  "Oculus Browser is operating on the same Windows host where Oculus Desktop is installed.",
+                  "Code execution is successfully achieved from the browser sandbox and yields an interactive or usable local user context."
+                ]
+              },
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+                "bridge": "Potential code execution via the Oculus Browser vulnerability may spawn or control an unprivileged process on the host, fulfilling the prerequisite of having an unprivileged process available to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+                "missing_conditions": [
+                  "Oculus Browser executes on the same system running OVRServiceLauncher.exe.",
+                  "The potential code execution successfully produces a running unprivileged process capable of interacting with system handles."
+                ]
+              }
+            ],
+            "decisions": []
+          },
+          "offline_tags": {
+            "conditional": 2
+          }
+        },
+        "self_refine": {
+          "status": "ready_for_independent_validation",
+          "calls_including_common_draft": 4,
+          "usage": {
+            "input_tokens": 8511,
+            "output_tokens": 3906,
+            "total_tokens": 30655,
+            "requests_with_usage": 4,
+            "requests_missing_usage": 0,
+            "totals_are_partial": false,
+            "gemini_thoughts_tokens": 18238,
+            "note": "Gemini output_tokens here counts text candidates; provider total_tokens includes thoughts."
+          },
+          "request_seconds": 138.33332669999436,
+          "accuracy": null,
+          "nodes": 8,
+          "edges": 2,
+          "added": [],
+          "removed": [],
+          "changed_edge_claims": [],
+          "changed_nodes": [
+            "CVE-2019-20354",
+            "CVE-2019-3562",
+            "CVE-2020-1885",
+            "CVE-2020-24572",
+            "CVE-2021-24038",
+            "CVE-2021-38545",
+            "CVE-2022-21819"
+          ],
+          "evidence": [
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2020-1885",
+              "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+              "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+              "bridge": "Potential code execution achieved via the Oculus Browser vulnerability could establish an unprivileged local user execution context on Windows, enabling the attacker to act as a local user and exploit the hard-link log file write vulnerability in Oculus Desktop.",
+              "missing_conditions": [
+                "Oculus Browser is operating on the same Windows host where Oculus Desktop is installed.",
+                "Code execution is successfully achieved from the browser sandbox and yields an interactive or usable local user context."
+              ]
+            },
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2021-24038",
+              "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+              "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+              "bridge": "Potential code execution via the Oculus Browser vulnerability may spawn or control an unprivileged process on the host, fulfilling the prerequisite of having an unprivileged process available to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+              "missing_conditions": [
+                "Oculus Browser executes on the same system running OVRServiceLauncher.exe.",
+                "The potential code execution successfully produces a running unprivileged process capable of interacting with system handles."
+              ]
+            }
+          ],
+          "decisions": [
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2020-1885",
+              "action": "keep",
+              "reason": "Potential code execution from Oculus Browser could establish local user access on Windows where Oculus Desktop is present, satisfying the precondition for local privilege escalation via hard-link log file writes."
+            },
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2021-24038",
+              "action": "keep",
+              "reason": "Potential code execution from Oculus Browser could provide an unprivileged process context to receive an exposed privileged process handle in Oculus Desktop."
+            }
+          ],
+          "candidate": {
+            "graph": {
+              "nodes": [
+                {
+                  "id": "CVE-2019-20354",
+                  "label": "piSignage arbitrary file download via path traversal",
+                  "precondition": "Remote attacker authenticated as a low-privilege user with access to piSignage player API",
+                  "postcondition": "Download arbitrary files from the Raspberry Pi"
+                },
+                {
+                  "id": "CVE-2019-3562",
+                  "label": "Oculus Browser HTML injection and potential code execution",
+                  "precondition": "Remote web page loaded in Oculus Browser UI",
+                  "postcondition": "Attacker could spoof UI and potentially execute code"
+                },
+                {
+                  "id": "CVE-2020-1885",
+                  "label": "Oculus Desktop local privilege escalation via hard link log file",
+                  "precondition": "Local user access on Windows running vulnerable Oculus Desktop",
+                  "postcondition": "Local users can write to arbitrary files and gain privileges"
+                },
+                {
+                  "id": "CVE-2020-24572",
+                  "label": "RaspAP web console arbitrary command execution",
+                  "precondition": "Authenticated access to RaspAP web console",
+                  "postcondition": "Execute commands on the underlying Raspberry Pi OS, including uploading files and execution of code"
+                },
+                {
+                  "id": "CVE-2021-24038",
+                  "label": "Oculus Desktop local privilege escalation via exposed process handle",
+                  "precondition": "Unprivileged process on system running vulnerable Oculus Desktop",
+                  "postcondition": "Privileged process handle exposed to an unprivileged process, leading to local privilege escalation"
+                },
+                {
+                  "id": "CVE-2021-38545",
+                  "label": "Raspberry Pi Glowworm acoustic eavesdropping via power LED",
+                  "precondition": "Raspberry Pi supplies power to audio equipment; line of sight to power indicator LED via telescope and electro-optical sensor",
+                  "postcondition": "Remote attackers can recover speech signals and sound played by speakers"
+                },
+                {
+                  "id": "CVE-2021-38759",
+                  "label": "Raspberry Pi OS default credentials",
+                  "precondition": "Default password for the pi account has not been changed",
+                  "postcondition": "Attackers can gain administrator privileges"
+                },
+                {
+                  "id": "CVE-2022-21819",
+                  "label": "NVIDIA Jetson Linux IOMMU configuration memory access",
+                  "precondition": "Unprivileged attacker with physical access to the board and PCI bus access",
+                  "postcondition": "Direct read/write access to entire system address space, with potential code execution, DoS, and privilege escalation"
+                }
+              ],
+              "edges": [
+                {
+                  "from": "CVE-2019-3562",
+                  "to": "CVE-2020-1885",
+                  "label": "Potential code execution provides local access to exploit file write"
+                },
+                {
+                  "from": "CVE-2019-3562",
+                  "to": "CVE-2021-24038",
+                  "label": "Potential code execution provides unprivileged process to obtain privileged handle"
+                }
+              ]
+            },
+            "edge_evidence": [
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+                "bridge": "Potential code execution achieved via the Oculus Browser vulnerability could establish an unprivileged local user execution context on Windows, enabling the attacker to act as a local user and exploit the hard-link log file write vulnerability in Oculus Desktop.",
+                "missing_conditions": [
+                  "Oculus Browser is operating on the same Windows host where Oculus Desktop is installed.",
+                  "Code execution is successfully achieved from the browser sandbox and yields an interactive or usable local user context."
+                ]
+              },
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+                "bridge": "Potential code execution via the Oculus Browser vulnerability may spawn or control an unprivileged process on the host, fulfilling the prerequisite of having an unprivileged process available to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+                "missing_conditions": [
+                  "Oculus Browser executes on the same system running OVRServiceLauncher.exe.",
+                  "The potential code execution successfully produces a running unprivileged process capable of interacting with system handles."
+                ]
+              }
+            ],
+            "decisions": [
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "action": "keep",
+                "reason": "Potential code execution from Oculus Browser could establish local user access on Windows where Oculus Desktop is present, satisfying the precondition for local privilege escalation via hard-link log file writes."
+              },
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "action": "keep",
+                "reason": "Potential code execution from Oculus Browser could provide an unprivileged process context to receive an exposed privileged process handle in Oculus Desktop."
+              }
+            ]
+          },
+          "offline_tags": {
+            "conditional": 2
+          }
+        },
+        "debate": {
+          "status": "ready_for_independent_validation",
+          "calls_including_common_draft": 4,
+          "usage": {
+            "input_tokens": 9650,
+            "output_tokens": 2525,
+            "total_tokens": 20684,
+            "requests_with_usage": 4,
+            "requests_missing_usage": 0,
+            "totals_are_partial": false,
+            "gemini_thoughts_tokens": 8509,
+            "note": "Gemini output_tokens here counts text candidates; provider total_tokens includes thoughts."
+          },
+          "request_seconds": 81.34307640000043,
+          "accuracy": null,
+          "nodes": 8,
+          "edges": 2,
+          "added": [],
+          "removed": [],
+          "changed_edge_claims": [
+            [
+              "CVE-2019-3562",
+              "CVE-2020-1885"
+            ],
+            [
+              "CVE-2019-3562",
+              "CVE-2021-24038"
+            ]
+          ],
+          "changed_nodes": [
+            "CVE-2019-20354",
+            "CVE-2020-1885",
+            "CVE-2020-24572",
+            "CVE-2021-24038",
+            "CVE-2022-21819"
+          ],
+          "evidence": [
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2020-1885",
+              "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+              "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+              "bridge": "Potential code execution achieved through the Oculus Browser vulnerability could establish an unprivileged local user execution context, enabling the attacker to act as a local user on Windows and exploit the hard link vulnerability in Oculus Desktop.",
+              "missing_conditions": [
+                "Oculus Browser executes on the same Windows host where Oculus Desktop is installed.",
+                "Potential code execution successfully breaks out or operates in a context that permits local file operations and hard link creation."
+              ]
+            },
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2021-24038",
+              "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+              "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+              "bridge": "Potential code execution through Oculus Browser may instantiate an unprivileged local process on the host, fulfilling the prerequisite of having an unprivileged process present to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+              "missing_conditions": [
+                "Oculus Browser is co-deployed on the same system running OVRServiceLauncher.exe.",
+                "The code execution results in a running unprivileged process capable of receiving or interacting with Windows process handles."
+              ]
+            }
+          ],
+          "decisions": [
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2020-1885",
+              "action": "keep",
+              "reason": "Potential code execution plausibly provides a local user context capable of exploiting the local file write vulnerability in Oculus Desktop, conditional on co-location and execution capabilities."
+            },
+            {
+              "from": "CVE-2019-3562",
+              "to": "CVE-2021-24038",
+              "action": "keep",
+              "reason": "Potential code execution provides a plausible unprivileged process context to receive the privileged handle exposed by OVRServiceLauncher.exe, conditional on shared host execution."
+            }
+          ],
+          "candidate": {
+            "graph": {
+              "nodes": [
+                {
+                  "id": "CVE-2019-20354",
+                  "label": "piSignage arbitrary file download via path traversal",
+                  "precondition": "Authenticated as a low-privilege user with remote access to the player API",
+                  "postcondition": "Arbitrary files downloaded from the Raspberry Pi"
+                },
+                {
+                  "id": "CVE-2019-3562",
+                  "label": "Oculus Browser HTML injection and potential code execution",
+                  "precondition": "Victim visits a remote web page using vulnerable Oculus Browser",
+                  "postcondition": "Attacker can spoof UI and potentially execute code"
+                },
+                {
+                  "id": "CVE-2020-1885",
+                  "label": "Oculus Desktop arbitrary file write via hard link",
+                  "precondition": "Local user access on Windows running vulnerable Oculus Desktop",
+                  "postcondition": "Ability to write to arbitrary files and gain elevated privileges"
+                },
+                {
+                  "id": "CVE-2020-24572",
+                  "label": "RaspAP web console command execution",
+                  "precondition": "Authenticated access to RaspAP web console",
+                  "postcondition": "Execution of commands, file uploading, and code execution on the underlying Raspberry Pi OS"
+                },
+                {
+                  "id": "CVE-2021-24038",
+                  "label": "Oculus Desktop local privilege escalation via exposed handle",
+                  "precondition": "Unprivileged process on system running vulnerable Oculus Desktop",
+                  "postcondition": "Privileged process handle exposed to an unprivileged process, leading to local privilege escalation"
+                },
+                {
+                  "id": "CVE-2021-38545",
+                  "label": "Raspberry Pi Glowworm acoustic eavesdropping via power LED",
+                  "precondition": "Raspberry Pi powers audio equipment playing sound; line of sight to power indicator LED via telescope and electro-optical sensor",
+                  "postcondition": "Remote attackers can recover speech signals/sound played by speakers"
+                },
+                {
+                  "id": "CVE-2021-38759",
+                  "label": "Raspberry Pi OS default credentials",
+                  "precondition": "Default password for the pi account has not been changed",
+                  "postcondition": "Attackers can gain administrator privileges"
+                },
+                {
+                  "id": "CVE-2022-21819",
+                  "label": "NVIDIA Jetson Linux IOMMU memory access via PCI bus",
+                  "precondition": "Physical access to the board and PCI bus access as an unprivileged attacker",
+                  "postcondition": "Direct read/write access to system address space, potential code execution, DoS, and privilege escalation"
+                }
+              ],
+              "edges": [
+                {
+                  "from": "CVE-2019-3562",
+                  "to": "CVE-2020-1885",
+                  "label": "Potential code execution provides local user execution context to exploit hard-link file write"
+                },
+                {
+                  "from": "CVE-2019-3562",
+                  "to": "CVE-2021-24038",
+                  "label": "Potential code execution creates an unprivileged process capable of receiving exposed privileged handle"
+                }
+              ]
+            },
+            "edge_evidence": [
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+                "bridge": "Potential code execution achieved through the Oculus Browser vulnerability could establish an unprivileged local user execution context, enabling the attacker to act as a local user on Windows and exploit the hard link vulnerability in Oculus Desktop.",
+                "missing_conditions": [
+                  "Oculus Browser executes on the same Windows host where Oculus Desktop is installed.",
+                  "Potential code execution successfully breaks out or operates in a context that permits local file operations and hard link creation."
+                ]
+              },
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+                "bridge": "Potential code execution through Oculus Browser may instantiate an unprivileged local process on the host, fulfilling the prerequisite of having an unprivileged process present to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+                "missing_conditions": [
+                  "Oculus Browser is co-deployed on the same system running OVRServiceLauncher.exe.",
+                  "The code execution results in a running unprivileged process capable of receiving or interacting with Windows process handles."
+                ]
+              }
+            ],
+            "decisions": [
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "action": "keep",
+                "reason": "Potential code execution plausibly provides a local user context capable of exploiting the local file write vulnerability in Oculus Desktop, conditional on co-location and execution capabilities."
+              },
+              {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "action": "keep",
+                "reason": "Potential code execution provides a plausible unprivileged process context to receive the privileged handle exposed by OVRServiceLauncher.exe, conditional on shared host execution."
+              }
+            ]
+          },
+          "offline_tags": {
+            "conditional": 2
+          }
+        }
+      },
+      "pairs": [
+        {
+          "from": "CVE-2019-3562",
+          "to": "CVE-2020-1885",
+          "in_draft": true,
+          "strategies": {
+            "grounded": {
+              "present": true,
+              "claim": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "label": "Potential code execution provides local access to exploit file write"
+              },
+              "evidence": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+                "bridge": "Potential code execution achieved via the Oculus Browser vulnerability could establish an unprivileged local user execution context on Windows, enabling the attacker to act as a local user and exploit the hard-link log file write vulnerability in Oculus Desktop.",
+                "missing_conditions": [
+                  "Oculus Browser is operating on the same Windows host where Oculus Desktop is installed.",
+                  "Code execution is successfully achieved from the browser sandbox and yields an interactive or usable local user context."
+                ]
+              }
+            },
+            "self_refine": {
+              "present": true,
+              "claim": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "label": "Potential code execution provides local access to exploit file write"
+              },
+              "evidence": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+                "bridge": "Potential code execution achieved via the Oculus Browser vulnerability could establish an unprivileged local user execution context on Windows, enabling the attacker to act as a local user and exploit the hard-link log file write vulnerability in Oculus Desktop.",
+                "missing_conditions": [
+                  "Oculus Browser is operating on the same Windows host where Oculus Desktop is installed.",
+                  "Code execution is successfully achieved from the browser sandbox and yields an interactive or usable local user context."
+                ]
+              }
+            },
+            "debate": {
+              "present": true,
+              "claim": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "label": "Potential code execution provides local user execution context to exploit hard-link file write"
+              },
+              "evidence": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2020-1885",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "allows local users to write to arbitrary files and consequently gain privileges",
+                "bridge": "Potential code execution achieved through the Oculus Browser vulnerability could establish an unprivileged local user execution context, enabling the attacker to act as a local user on Windows and exploit the hard link vulnerability in Oculus Desktop.",
+                "missing_conditions": [
+                  "Oculus Browser executes on the same Windows host where Oculus Desktop is installed.",
+                  "Potential code execution successfully breaks out or operates in a context that permits local file operations and hard link creation."
+                ]
+              }
+            }
+          }
+        },
+        {
+          "from": "CVE-2019-3562",
+          "to": "CVE-2021-24038",
+          "in_draft": true,
+          "strategies": {
+            "grounded": {
+              "present": true,
+              "claim": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "label": "Potential code execution provides unprivileged process to obtain privileged handle"
+              },
+              "evidence": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+                "bridge": "Potential code execution via the Oculus Browser vulnerability may spawn or control an unprivileged process on the host, fulfilling the prerequisite of having an unprivileged process available to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+                "missing_conditions": [
+                  "Oculus Browser executes on the same system running OVRServiceLauncher.exe.",
+                  "The potential code execution successfully produces a running unprivileged process capable of interacting with system handles."
+                ]
+              }
+            },
+            "self_refine": {
+              "present": true,
+              "claim": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "label": "Potential code execution provides unprivileged process to obtain privileged handle"
+              },
+              "evidence": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+                "bridge": "Potential code execution via the Oculus Browser vulnerability may spawn or control an unprivileged process on the host, fulfilling the prerequisite of having an unprivileged process available to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+                "missing_conditions": [
+                  "Oculus Browser executes on the same system running OVRServiceLauncher.exe.",
+                  "The potential code execution successfully produces a running unprivileged process capable of interacting with system handles."
+                ]
+              }
+            },
+            "debate": {
+              "present": true,
+              "claim": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "label": "Potential code execution creates an unprivileged process capable of receiving exposed privileged handle"
+              },
+              "evidence": {
+                "from": "CVE-2019-3562",
+                "to": "CVE-2021-24038",
+                "source_quote": "allowing an attacker to spoof UI and potentially execute code",
+                "target_quote": "an attacker could expose a privileged process handle to an unprivileged process, leading to local privilege escalation",
+                "bridge": "Potential code execution through Oculus Browser may instantiate an unprivileged local process on the host, fulfilling the prerequisite of having an unprivileged process present to receive the exposed privileged handle from OVRServiceLauncher.exe.",
+                "missing_conditions": [
+                  "Oculus Browser is co-deployed on the same system running OVRServiceLauncher.exe.",
+                  "The code execution results in a running unprivileged process capable of receiving or interacting with Windows process handles."
+                ]
+              }
+            }
+          }
+        }
+      ],
+      "figure": "r01_comparison.png"
+    }
+  ],
+  "totals": {
+    "grounded": {
+      "scheduled_repeats": 1,
+      "ready_repeats": 1,
+      "candidate_edges_in_ready_repeats": 2,
+      "added_in_ready_repeats": 0,
+      "removed_in_ready_repeats": 0,
+      "changed_claims_in_ready_repeats": 0,
+      "offline_tags": {
+        "conditional": 2
+      },
+      "accuracy": null
+    },
+    "self_refine": {
+      "scheduled_repeats": 1,
+      "ready_repeats": 1,
+      "candidate_edges_in_ready_repeats": 2,
+      "added_in_ready_repeats": 0,
+      "removed_in_ready_repeats": 0,
+      "changed_claims_in_ready_repeats": 0,
+      "offline_tags": {
+        "conditional": 2
+      },
+      "accuracy": null
+    },
+    "debate": {
+      "scheduled_repeats": 1,
+      "ready_repeats": 1,
+      "candidate_edges_in_ready_repeats": 2,
+      "added_in_ready_repeats": 0,
+      "removed_in_ready_repeats": 0,
+      "changed_claims_in_ready_repeats": 2,
+      "offline_tags": {
+        "conditional": 2
+      },
+      "accuracy": null
+    }
+  },
+  "unique_api_calls": 7,
+  "unique_usage": {
+    "input_tokens": 16897,
+    "output_tokens": 5554,
+    "total_tokens": 46291,
+    "requests_with_usage": 7,
+    "requests_missing_usage": 0,
+    "totals_are_partial": false,
+    "gemini_thoughts_tokens": 23840,
+    "note": "Gemini output_tokens here counts text candidates; provider total_tokens includes thoughts."
+  },
+  "independent_gold": "absent",
+  "accuracy": null
+}

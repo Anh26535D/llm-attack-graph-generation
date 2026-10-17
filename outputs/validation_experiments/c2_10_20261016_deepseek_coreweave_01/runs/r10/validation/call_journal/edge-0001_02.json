@@ -1,0 +1,124 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T15:10:24.439815+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The edge assumes piSignage and RaspAP are co-located or share a filesystem so the piSignage file-read primitive can reach RaspAP files.",
+        "The edge assumes RaspAP configuration or session files contain a reusable admin credential or session token.",
+        "The edge assumes any extracted credential/session remains valid for RaspAP 2.5 and grants access to includes/webconsole.php."
+      ],
+      "confidence": 0.8,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-34336",
+          "quote": "piSignage Arbitrary File Read via Path Traversal (CVE-2021-34336)"
+        },
+        {
+          "cve_id": "CVE-2021-33357",
+          "quote": "RaspAP Authenticated Remote Command Execution via Web Console (CVE-2021-33357)"
+        }
+      ],
+      "missing_conditions": [
+        "unique_source_and_target_CVE_mapping",
+        "same-host or shared-filesystem deployment of piSignage and RaspAP",
+        "specific RaspAP configuration/session file paths readable via the path traversal",
+        "presence of admin credentials or a valid session token in those files",
+        "validity of leaked credentials/session for RaspAP 2.5 authentication",
+        "network reachability of the RaspAP web interface and includes/webconsole.php",
+        "source-side low-privilege authenticated access to piSignage player API, if required by the source precondition"
+      ],
+      "reason": "The source CVE-2021-34336 is described as piSignage arbitrary file read via path traversal, so its bounded effect is unauthorized file disclosure on the Raspberry Pi filesystem. The target CVE-2021-33357 requires authenticated access to the RaspAP 2.5 web interface before web-console command execution. The edge claim bridges these by asserting that the source path traversal can extract RaspAP configuration files and admin session/credentials and thereby gain authenticated access to includes/webconsole.php. That bridge is overreaching: no supplied description or environment observation confirms same-host deployment, readability of RaspAP-specific files, presence/validity of reusable credentials or sessions, or target authentication. The edge is only potentially plausible under those unverified conditions and should not enter a strict graph as stated.",
+      "source_cve_id": "CVE-2021-34336",
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2021-33357"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 9917,
+      "prompt_tokens": 936,
+      "total_tokens": 10853,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 9424,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.006548562,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.006548562,
+        "upstream_inference_prompt_cost": 0.000102512,
+        "upstream_inference_completions_cost": 0.00644605
+      }
+    },
+    "latency_seconds": 96.06964830000106,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "90a20157bdca6768af4ceff03a9033c9008ea43ea095d044419614a1d54d28f4",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 9917,
+        "prompt_tokens": 936,
+        "total_tokens": 10853,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 9424,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.006548562,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.006548562,
+          "upstream_inference_prompt_cost": 0.000102512,
+          "upstream_inference_completions_cost": 0.00644605
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The edge assumes piSignage and RaspAP are co-located or share a filesystem so the piSignage file-read primitive can reach RaspAP files.\",\"The edge assumes RaspAP configuration or session files contain a reusable admin credential or session token.\",\"The edge assumes any extracted credential/session remains valid for RaspAP 2.5 and grants access to includes/webconsole.php.\"],\"confidence\":0.8,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-34336\",\"quote\":\"piSignage Arbitrary File Read via Path Traversal (CVE-2021-34336)\"},{\"cve_id\":\"CVE-2021-33357\",\"quote\":\"RaspAP Authenticated Remote Command Execution via Web Console (CVE-2021-33357)\"}],\"missing_conditions\":[\"unique_source_and_target_CVE_mapping\",\"same-host or shared-filesystem deployment of piSignage and RaspAP\",\"specific RaspAP configuration/session file paths readable via the path traversal\",\"presence of admin credentials or a valid session token in those files\",\"validity of leaked credentials/session for RaspAP 2.5 authentication\",\"network reachability of the RaspAP web interface and includes/webconsole.php\",\"source-side low-privilege authenticated access to piSignage player API, if required by the source precondition\"],\"reason\":\"The source CVE-2021-34336 is described as piSignage arbitrary file read via path traversal, so its bounded effect is unauthorized file disclosure on the Raspberry Pi filesystem. The target CVE-2021-33357 requires authenticated access to the RaspAP 2.5 web interface before web-console command execution. The edge claim bridges these by asserting that the source path traversal can extract RaspAP configuration files and admin session/credentials and thereby gain authenticated access to includes/webconsole.php. That bridge is overreaching: no supplied description or environment observation confirms same-host deployment, readability of RaspAP-specific files, presence/validity of reusable credentials or sessions, or target authentication. The edge is only potentially plausible under those unverified conditions and should not enter a strict graph as stated.\",\"source_cve_id\":\"CVE-2021-34336\",\"suggested_status\":\"unsupported\",\"target_cve_id\":\"CVE-2021-33357\"}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T15:12:01.075203+00:00"
+}

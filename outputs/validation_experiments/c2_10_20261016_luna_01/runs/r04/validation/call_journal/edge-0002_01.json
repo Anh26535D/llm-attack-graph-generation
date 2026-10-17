@@ -1,0 +1,120 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:35:08.877905+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The readable files may potentially contain valid RaspAP credentials; this is an inference, not a fact.",
+        "piSignage and RaspAP may potentially be deployed on the same Raspberry Pi; this is unverified, not a fact.",
+        "Any credentials obtained from a readable file may potentially be accepted by the target RaspAP console; this is unverified, not a fact."
+      ],
+      "confidence": 0.94,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "Verified piSignage deployment on an affected version before 2.6.4 and the required low-privilege source credentials",
+        "Verified RaspAP deployment on version 2.5 with the affected web console",
+        "Externally verified source-target host relationship or another mechanism giving the source file-read access to target-relevant files",
+        "Evidence that readable files contain RaspAP configuration, session data, or cleartext credentials",
+        "Evidence that any extracted credential is valid, target-accepted, and sufficient for authenticated RaspAP access",
+        "Verified network reachability to the relevant source and target services"
+      ],
+      "reason": "CVE-2019-20354 establishes arbitrary file download by a remote attacker already authenticated as a low-privilege piSignage user. CVE-2020-24572 establishes command execution only with authenticated access to the RaspAP web console. The proposed bridge is therefore potentially possible if the file read reaches target-relevant data and yields valid RaspAP credentials, but the supplied source description does not identify file contents or credentials, and no environment observation establishes co-location, credential validity, or target acceptance. The claims about extracting RaspAP configuration, session databases, or cleartext credentials and thereby fulfilling the target prerequisite overreach the evidence. The edge is conditional and should not enter a strict graph as a supported causal transition without those conditions being verified.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1533,
+      "prompt_tokens": 2045,
+      "total_tokens": 3578,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1034,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 2042,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0023507,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0023507,
+        "upstream_inference_prompt_cost": 0.0005111,
+        "upstream_inference_completions_cost": 0.0018396
+      }
+    },
+    "latency_seconds": 14.709431799999948,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "7b065934a86d2d38411fb9fe7db66e51a186c557a3a572e6e442b25f821ab0f7",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1533,
+        "prompt_tokens": 2045,
+        "total_tokens": 3578,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1034,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2042,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0023507,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0023507,
+          "upstream_inference_prompt_cost": 0.0005111,
+          "upstream_inference_completions_cost": 0.0018396
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The readable files may potentially contain valid RaspAP credentials; this is an inference, not a fact.\",\"piSignage and RaspAP may potentially be deployed on the same Raspberry Pi; this is unverified, not a fact.\",\"Any credentials obtained from a readable file may potentially be accepted by the target RaspAP console; this is unverified, not a fact.\"],\"confidence\":0.94,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"}],\"missing_conditions\":[\"Verified piSignage deployment on an affected version before 2.6.4 and the required low-privilege source credentials\",\"Verified RaspAP deployment on version 2.5 with the affected web console\",\"Externally verified source-target host relationship or another mechanism giving the source file-read access to target-relevant files\",\"Evidence that readable files contain RaspAP configuration, session data, or cleartext credentials\",\"Evidence that any extracted credential is valid, target-accepted, and sufficient for authenticated RaspAP access\",\"Verified network reachability to the relevant source and target services\"],\"reason\":\"CVE-2019-20354 establishes arbitrary file download by a remote attacker already authenticated as a low-privilege piSignage user. CVE-2020-24572 establishes command execution only with authenticated access to the RaspAP web console. The proposed bridge is therefore potentially possible if the file read reaches target-relevant data and yields valid RaspAP credentials, but the supplied source description does not identify file contents or credentials, and no environment observation establishes co-location, credential validity, or target acceptance. The claims about extracting RaspAP configuration, session databases, or cleartext credentials and thereby fulfilling the target prerequisite overreach the evidence. The edge is conditional and should not enter a strict graph as a supported causal transition without those conditions being verified.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:35:23.589736+00:00"
+}

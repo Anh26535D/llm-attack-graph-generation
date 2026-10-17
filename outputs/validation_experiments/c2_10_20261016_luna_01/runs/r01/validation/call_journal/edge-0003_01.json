@@ -1,0 +1,119 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:30:55.436497+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The authenticated-session source node, recovered/default credentials, and same-instance relationship are inferences, never facts.",
+        "The CVE description supports potentially executing commands after authentication but does not by itself confirm arbitrary privileges, persistence, or successful exploitation."
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "An issue was discovered in includes/webconsole.php in RaspAP 2.5."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "including ones for uploading of files and execution of code"
+        }
+      ],
+      "missing_conditions": [
+        "Verified deployment of RaspAP 2.5 at the target",
+        "A valid authenticated session to the same RaspAP instance",
+        "Network reachability and authorization to access includes/webconsole.php",
+        "Confirmation that the web console is misconfigured and virtually unrestricted in the relevant deployment",
+        "An externally verified relationship between the source and target hosts or application instance",
+        "Evidence supporting the target node's stronger claims of arbitrary privileges, persistence, and successful code execution"
+      ],
+      "reason": "CVE-2020-24572 describes a vulnerable RaspAP web console, not credential recovery or authentication acquisition. Its stated effect is that, with authenticated access, an attacker can potentially use the misconfigured console in includes/webconsole.php to attack the underlying Raspberry Pi OS and execute commands, including file uploads and code execution. Thus an authenticated session is a plausible prerequisite bridge to the vulnerable endpoint, but navigation, endpoint reachability, the required deployment and configuration, and the same-instance relationship are not confirmed by the supplied environment, which is absent. The target node also overstates the description by asserting arbitrary OS command execution and persistence; the record only states command execution and related capabilities without confirming privilege or persistence. The edge is therefore conditional rather than strictly supported.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1491,
+      "prompt_tokens": 1936,
+      "total_tokens": 3427,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1034,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1933,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00227305,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00227305,
+        "upstream_inference_prompt_cost": 0.00048385,
+        "upstream_inference_completions_cost": 0.0017892
+      }
+    },
+    "latency_seconds": 15.038757099999202,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "5a2e21acb8e18aace292c6f324ee03452a87069f4f158bcdc38cfe744925a0fc",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1491,
+        "prompt_tokens": 1936,
+        "total_tokens": 3427,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1034,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1933,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00227305,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00227305,
+          "upstream_inference_prompt_cost": 0.00048385,
+          "upstream_inference_completions_cost": 0.0017892
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"The authenticated-session source node, recovered/default credentials, and same-instance relationship are inferences, never facts.\",\"The CVE description supports potentially executing commands after authentication but does not by itself confirm arbitrary privileges, persistence, or successful exploitation.\"],\"confidence\":0.9,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"An issue was discovered in includes/webconsole.php in RaspAP 2.5.\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"including ones for uploading of files and execution of code\"}],\"missing_conditions\":[\"Verified deployment of RaspAP 2.5 at the target\",\"A valid authenticated session to the same RaspAP instance\",\"Network reachability and authorization to access includes/webconsole.php\",\"Confirmation that the web console is misconfigured and virtually unrestricted in the relevant deployment\",\"An externally verified relationship between the source and target hosts or application instance\",\"Evidence supporting the target node's stronger claims of arbitrary privileges, persistence, and successful code execution\"],\"reason\":\"CVE-2020-24572 describes a vulnerable RaspAP web console, not credential recovery or authentication acquisition. Its stated effect is that, with authenticated access, an attacker can potentially use the misconfigured console in includes/webconsole.php to attack the underlying Raspberry Pi OS and execute commands, including file uploads and code execution. Thus an authenticated session is a plausible prerequisite bridge to the vulnerable endpoint, but navigation, endpoint reachability, the required deployment and configuration, and the same-instance relationship are not confirmed by the supplied environment, which is absent. The target node also overstates the description by asserting arbitrary OS command execution and persistence; the record only states command execution and related capabilities without confirming privilege or persistence. The edge is therefore conditional rather than strictly supported.\",\"source_cve_id\":\"CVE-2020-24572\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:31:10.476801+00:00"
+}

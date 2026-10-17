@@ -1,0 +1,121 @@
+{
+  "edge_id": "edge-0005",
+  "started_at": "2026-10-16T14:40:34.109081+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The source and target vulnerabilities are deployed on the same relevant Windows host; this is an inference, not an established fact.",
+        "If CVE-2019-3562 produces the described potential code-execution outcome with sufficient local-user capability, that outcome could satisfy a prerequisite for CVE-2020-1885; this is an inference, not evidence.",
+        "The generated node preconditions, postconditions, and edge text are claims rather than confirming evidence."
+      ],
+      "confidence": 0.93,
+      "edge_id": "edge-0005",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI, allowing an attacker to spoof UI and potentially execute code."
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file."
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users to write to arbitrary files and consequently gain privileges via vectors involving a hard link to a log file"
+        }
+      ],
+      "missing_conditions": [
+        "A victim must open or visit the attacker-controlled remote web page in Oculus Browser.",
+        "CVE-2019-3562 must actually yield code execution rather than only HTML injection or UI spoofing; the description says execution is only potentially possible.",
+        "The resulting capability must be usable as a local user on the relevant host; the source description does not establish local execution or cross-application access.",
+        "The browser execution context and Oculus Desktop with the vulnerable privileged OVRRedir.exe process must coexist on the same relevant Windows host.",
+        "The target must be running on Windows with Oculus Desktop before version 1.44.0.32849.",
+        "The hard-link-to-log-file vector must be usable and cause the privileged OVRRedir.exe process to write to the attacker-selected file.",
+        "The environment provides no observation confirming the source-target host relationship, product deployment, platform, or versions."
+      ],
+      "reason": "CVE-2019-3562 directly describes arbitrary HTML injection and UI spoofing, with code execution stated only as potentially possible; it does not establish guaranteed local unprivileged execution. CVE-2020-1885 describes arbitrary file writes and privilege gain by local users through a hard link to a log file involving a privileged OVRRedir.exe process on Windows. A bounded causal bridge is therefore plausible only if the source's potential execution becomes a local-user capability on the same Windows host where the vulnerable Oculus Desktop process and hard-link conditions exist. The generated claim of execution leading to NT AUTHORITY/SYSTEM overstates the descriptions: SYSTEM is not stated, and the environment confirms none of the required co-deployment or version conditions. The edge may enter a strict graph only as a conditional edge, not as an unconditional supported transition.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "2cc0d9c420440abeb0df1b1bd71ea162f53de1330363af171ba4e5c50e24aa96",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "completion_tokens": 2608,
+      "prompt_tokens": 2103,
+      "total_tokens": 4711,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1934,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 2100,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0036552,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0036552,
+        "upstream_inference_prompt_cost": 0.0005256,
+        "upstream_inference_completions_cost": 0.0031296
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2608,
+        "prompt_tokens": 2103,
+        "total_tokens": 4711,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1934,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 2100,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0036552,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0036552,
+          "upstream_inference_prompt_cost": 0.0005256,
+          "upstream_inference_completions_cost": 0.0031296
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:40:34.110810+00:00"
+}

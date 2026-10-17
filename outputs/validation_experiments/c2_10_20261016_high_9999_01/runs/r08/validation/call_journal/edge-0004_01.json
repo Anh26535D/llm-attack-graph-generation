@@ -1,0 +1,94 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T13:52:46.997792+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Oculus Browser and Oculus Desktop are deployed on the same Windows host",
+        "The potential code execution from the browser vulnerability yields a local unprivileged user execution context"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0004",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "inject arbitrary HTML code into the Oculus Browser UI"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows"
+        }
+      ],
+      "missing_conditions": [
+        "Verification that Oculus Browser runs on the same Windows host where Oculus Desktop is installed",
+        "Verification that HTML injection can reliably achieve arbitrary code execution rather than merely potentially execute code",
+        "Verification that the resulting execution environment provides local user capabilities sufficient to stage hard links"
+      ],
+      "reason": "CVE-2019-3562 allows an attacker to 'inject arbitrary HTML code into the Oculus Browser UI' and 'potentially execute code'. CVE-2020-1885 requires a prerequisite of 'allows local users' 'on Windows' to exploit a hard link vector. The edge claim overreaches by asserting that code execution is established rather than modal ('potentially execute code'), and presumes same-host deployment between Oculus Browser and Oculus Desktop on Windows without supporting environment data. Therefore, the transition cannot enter a strict graph without satisfying these conditional prerequisites.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 409,
+      "prompt_token_count": 2410,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2410
+        }
+      ],
+      "thoughts_token_count": 2460,
+      "total_token_count": 5279
+    },
+    "latency_seconds": 21.80490760000066,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "f38991af2d6c1bd67ae5fdeb8315f9f8f553fe206d890d3171716e9b9c945d49",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 409,
+        "prompt_token_count": 2410,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2410
+          }
+        ],
+        "thoughts_token_count": 2460,
+        "total_token_count": 5279
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"Oculus Browser and Oculus Desktop are deployed on the same Windows host\", \"The potential code execution from the browser vulnerability yields a local unprivileged user execution context\"], \"confidence\": 0.85, \"edge_id\": \"edge-0004\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-3562\", \"quote\": \"inject arbitrary HTML code into the Oculus Browser UI\"}, {\"cve_id\": \"CVE-2019-3562\", \"quote\": \"potentially execute code\"}, {\"cve_id\": \"CVE-2020-1885\", \"quote\": \"allows local users\"}, {\"cve_id\": \"CVE-2020-1885\", \"quote\": \"on Windows\"}], \"missing_conditions\": [\"Verification that Oculus Browser runs on the same Windows host where Oculus Desktop is installed\", \"Verification that HTML injection can reliably achieve arbitrary code execution rather than merely potentially execute code\", \"Verification that the resulting execution environment provides local user capabilities sufficient to stage hard links\"], \"reason\": \"CVE-2019-3562 allows an attacker to 'inject arbitrary HTML code into the Oculus Browser UI' and 'potentially execute code'. CVE-2020-1885 requires a prerequisite of 'allows local users' 'on Windows' to exploit a hard link vector. The edge claim overreaches by asserting that code execution is established rather than modal ('potentially execute code'), and presumes same-host deployment between Oculus Browser and Oculus Desktop on Windows without supporting environment data. Therefore, the transition cannot enter a strict graph without satisfying these conditional prerequisites.\", \"source_cve_id\": \"CVE-2019-3562\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-1885\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:53:08.804895+00:00"
+}

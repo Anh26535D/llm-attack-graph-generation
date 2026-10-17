@@ -1,0 +1,525 @@
+{
+  "scope": "synthetic_C2_extended_state_action",
+  "results": [
+    {
+      "repeat": 1,
+      "strategies": {
+        "grounded": {
+          "audit": {
+            "mechanical_checks_passed": true,
+            "issues": [],
+            "edge_count": 23,
+            "semantic_accuracy": null,
+            "warning": "Inventory/quote checks do not prove a causal relation."
+          },
+          "status": "ready_for_independent_validation",
+          "api_calls_including_common_draft": 1,
+          "usage": {
+            "input_tokens": 6183,
+            "output_tokens": 4492,
+            "total_tokens": 14836,
+            "requests_with_usage": 1,
+            "requests_missing_usage": 0,
+            "totals_are_partial": false,
+            "gemini_thoughts_tokens": 4161
+          },
+          "request_seconds": 55.82060899999851,
+          "nodes": 27,
+          "edges": 23,
+          "synthetic_evaluation": {
+            "metric": "agreement_with_synthetic_typed_relation_reference",
+            "independent_gold": false,
+            "real_world_accuracy": null,
+            "matched_edges": 23,
+            "extra_or_wrong_edges": 0,
+            "missing_edges": 0,
+            "reference_precision": 1.0,
+            "reference_recall": 1.0,
+            "reference_f1": 1.0,
+            "extra_relations": [],
+            "omitted_relations": [],
+            "and_groups_complete": {
+              "A05": true,
+              "A09": true
+            },
+            "control_incident_edges": 0
+          },
+          "decisions": [],
+          "added_relations": [],
+          "removed_relations": [],
+          "changed_node_bodies": [],
+          "changed_retained_edge_bodies": []
+        },
+        "self_refine": {
+          "audit": {
+            "mechanical_checks_passed": true,
+            "issues": [],
+            "edge_count": 23,
+            "semantic_accuracy": null,
+            "warning": "Inventory/quote checks do not prove a causal relation."
+          },
+          "status": "ready_for_independent_validation",
+          "api_calls_including_common_draft": 4,
+          "usage": {
+            "input_tokens": 42926,
+            "output_tokens": 22715,
+            "total_tokens": 79231,
+            "requests_with_usage": 4,
+            "requests_missing_usage": 0,
+            "totals_are_partial": false,
+            "gemini_thoughts_tokens": 13590
+          },
+          "request_seconds": 196.24665269999605,
+          "nodes": 27,
+          "edges": 23,
+          "synthetic_evaluation": {
+            "metric": "agreement_with_synthetic_typed_relation_reference",
+            "independent_gold": false,
+            "real_world_accuracy": null,
+            "matched_edges": 23,
+            "extra_or_wrong_edges": 0,
+            "missing_edges": 0,
+            "reference_precision": 1.0,
+            "reference_recall": 1.0,
+            "reference_f1": 1.0,
+            "extra_relations": [],
+            "omitted_relations": [],
+            "and_groups_complete": {
+              "A05": true,
+              "A09": true
+            },
+            "control_incident_edges": 0
+          },
+          "decisions": [
+            {
+              "action": "keep",
+              "from": "S01",
+              "reason": "Valid prerequisite link: S01 supplies the low-privilege API login required by A01.",
+              "to": "A01"
+            },
+            {
+              "action": "keep",
+              "from": "A01",
+              "reason": "Valid effect link: A01 produces arbitrary file read capability S02.",
+              "to": "S02"
+            },
+            {
+              "action": "keep",
+              "from": "S02",
+              "reason": "Valid prerequisite link: S02 provides the file-read capability needed to execute A02.",
+              "to": "A02"
+            },
+            {
+              "action": "keep",
+              "from": "A02",
+              "reason": "Valid effect link: A02 discovers the credentials represented in S03.",
+              "to": "S03"
+            },
+            {
+              "action": "keep",
+              "from": "S03",
+              "reason": "Valid prerequisite link: S03 authenticates access required by A03.",
+              "to": "A03"
+            },
+            {
+              "action": "keep",
+              "from": "A03",
+              "reason": "Valid effect link: A03 executes commands yielding ordinary OS process S04.",
+              "to": "S04"
+            },
+            {
+              "action": "keep",
+              "from": "S04",
+              "reason": "Valid prerequisite link: S04 provides the local OS process needed for A04.",
+              "to": "A04"
+            },
+            {
+              "action": "keep",
+              "from": "A04",
+              "reason": "Valid effect link: A04 reads connector secret yielding win-a credential S05.",
+              "to": "S05"
+            },
+            {
+              "action": "keep",
+              "from": "S05",
+              "reason": "Valid prerequisite link: S05 provides the credential needed for remote login A05.",
+              "to": "A05"
+            },
+            {
+              "action": "keep",
+              "from": "S06",
+              "reason": "Valid prerequisite link: S06 provides the reachability required for remote login A05.",
+              "to": "A05"
+            },
+            {
+              "action": "keep",
+              "from": "A05",
+              "reason": "Valid effect link: A05 logs into win-a yielding ordinary local user process S07.",
+              "to": "S07"
+            },
+            {
+              "action": "keep",
+              "from": "S07",
+              "reason": "Valid prerequisite link: S07 provides the local unprivileged process needed for A06.",
+              "to": "A06"
+            },
+            {
+              "action": "keep",
+              "from": "A06",
+              "reason": "Valid effect link: A06 elevates privilege to administrator session S08 on win-a.",
+              "to": "S08"
+            },
+            {
+              "action": "keep",
+              "from": "S07",
+              "reason": "Valid prerequisite link: S07 provides the local unprivileged process needed for A07.",
+              "to": "A07"
+            },
+            {
+              "action": "keep",
+              "from": "A07",
+              "reason": "Valid effect link: A07 elevates privilege to administrator session S08 on win-a.",
+              "to": "S08"
+            },
+            {
+              "action": "keep",
+              "from": "S08",
+              "reason": "Valid prerequisite link: S08 provides the administrator session required to read protected secret A08.",
+              "to": "A08"
+            },
+            {
+              "action": "keep",
+              "from": "A08",
+              "reason": "Valid effect link: A08 obtains the win-b remote-login credential S09.",
+              "to": "S09"
+            },
+            {
+              "action": "keep",
+              "from": "S08",
+              "reason": "Valid prerequisite link: S08 provides the win-a administrator session required by A09 policy.",
+              "to": "A09"
+            },
+            {
+              "action": "keep",
+              "from": "S09",
+              "reason": "Valid prerequisite link: S09 provides the win-b credentials required for A09.",
+              "to": "A09"
+            },
+            {
+              "action": "keep",
+              "from": "S10",
+              "reason": "Valid prerequisite link: S10 provides the routing reachability required for A09.",
+              "to": "A09"
+            },
+            {
+              "action": "keep",
+              "from": "A09",
+              "reason": "Valid effect link: A09 logs into win-b yielding ordinary local user process S11.",
+              "to": "S11"
+            },
+            {
+              "action": "keep",
+              "from": "S11",
+              "reason": "Valid prerequisite link: S11 provides the local unprivileged process needed for A10.",
+              "to": "A10"
+            },
+            {
+              "action": "keep",
+              "from": "A10",
+              "reason": "Valid effect link: A10 elevates privilege to administrator control S12 on win-b.",
+              "to": "S12"
+            }
+          ],
+          "added_relations": [],
+          "removed_relations": [],
+          "changed_node_bodies": [
+            "S01",
+            "S02",
+            "A02",
+            "S03",
+            "S04",
+            "A04",
+            "S05",
+            "S06",
+            "A05",
+            "S07",
+            "S08",
+            "A08",
+            "S09",
+            "S10",
+            "A09",
+            "S11",
+            "S12"
+          ],
+          "changed_retained_edge_bodies": []
+        },
+        "debate": {
+          "audit": {
+            "mechanical_checks_passed": true,
+            "issues": [],
+            "edge_count": 23,
+            "semantic_accuracy": null,
+            "warning": "Inventory/quote checks do not prove a causal relation."
+          },
+          "status": "ready_for_independent_validation",
+          "api_calls_including_common_draft": 4,
+          "usage": {
+            "input_tokens": 50265,
+            "output_tokens": 15991,
+            "total_tokens": 75130,
+            "requests_with_usage": 4,
+            "requests_missing_usage": 0,
+            "totals_are_partial": false,
+            "gemini_thoughts_tokens": null
+          },
+          "request_seconds": 150.64300319999893,
+          "nodes": 27,
+          "edges": 23,
+          "synthetic_evaluation": {
+            "metric": "agreement_with_synthetic_typed_relation_reference",
+            "independent_gold": false,
+            "real_world_accuracy": null,
+            "matched_edges": 23,
+            "extra_or_wrong_edges": 0,
+            "missing_edges": 0,
+            "reference_precision": 1.0,
+            "reference_recall": 1.0,
+            "reference_f1": 1.0,
+            "extra_relations": [],
+            "omitted_relations": [],
+            "and_groups_complete": {
+              "A05": true,
+              "A09": true
+            },
+            "control_incident_edges": 0
+          },
+          "decisions": [
+            {
+              "action": "keep",
+              "from": "S01",
+              "reason": "S01 provides the valid low-privilege piSignage API login and API reachability required by A01.",
+              "to": "A01"
+            },
+            {
+              "action": "keep",
+              "from": "A01",
+              "reason": "A01 grants arbitrary file download capability, directly producing S02.",
+              "to": "S02"
+            },
+            {
+              "action": "keep",
+              "from": "S02",
+              "reason": "S02 supplies the file-read capability required by A02 to download the configuration file.",
+              "to": "A02"
+            },
+            {
+              "action": "keep",
+              "from": "A02",
+              "reason": "A02 extracts the configuration file containing valid RaspAP credentials, producing S03.",
+              "to": "S03"
+            },
+            {
+              "action": "keep",
+              "from": "S03",
+              "reason": "S03 supplies valid RaspAP login credentials and console reachability required by A03.",
+              "to": "A03"
+            },
+            {
+              "action": "keep",
+              "from": "A03",
+              "reason": "A03 command execution yields an ordinary local OS user process on pi-lab, producing S04.",
+              "to": "S04"
+            },
+            {
+              "action": "keep",
+              "from": "S04",
+              "reason": "S04 provides the local user execution needed to read the ordinary-user connector file in A04.",
+              "to": "A04"
+            },
+            {
+              "action": "keep",
+              "from": "A04",
+              "reason": "A04 reads the connector file containing remote-login credentials for win-a, producing S05.",
+              "to": "S05"
+            },
+            {
+              "action": "keep",
+              "from": "S05",
+              "reason": "S05 provides the valid win-a remote-login credential conjunctively required by A05.",
+              "to": "A05"
+            },
+            {
+              "action": "keep",
+              "from": "S06",
+              "reason": "S06 provides network reachability to win-a, the second conjunctive requirement for A05.",
+              "to": "A05"
+            },
+            {
+              "action": "keep",
+              "from": "A05",
+              "reason": "A05 establishes an ordinary local user process on win-a, producing S07.",
+              "to": "S07"
+            },
+            {
+              "action": "keep",
+              "from": "S07",
+              "reason": "S07 provides the local Windows user process required to exploit the hard-link flaw in A06.",
+              "to": "A06"
+            },
+            {
+              "action": "keep",
+              "from": "A06",
+              "reason": "A06 achieves local privilege escalation to administrator on win-a, producing S08.",
+              "to": "S08"
+            },
+            {
+              "action": "keep",
+              "from": "S07",
+              "reason": "S07 provides the local unprivileged process required to exploit handle exposure in A07.",
+              "to": "A07"
+            },
+            {
+              "action": "keep",
+              "from": "A07",
+              "reason": "A07 achieves local privilege escalation to administrator on win-a, producing S08.",
+              "to": "S08"
+            },
+            {
+              "action": "keep",
+              "from": "S08",
+              "reason": "S08 provides the administrator session required to read the administrator-only connector secret in A08.",
+              "to": "A08"
+            },
+            {
+              "action": "keep",
+              "from": "A08",
+              "reason": "A08 reads the connector secret containing win-b remote-login credentials, producing S09.",
+              "to": "S09"
+            },
+            {
+              "action": "keep",
+              "from": "S08",
+              "reason": "S08 provides control of the administrator session on win-a, a conjunctive requirement for A09.",
+              "to": "A09"
+            },
+            {
+              "action": "keep",
+              "from": "S09",
+              "reason": "S09 provides the valid win-b remote credential conjunctively required by A09.",
+              "to": "A09"
+            },
+            {
+              "action": "keep",
+              "from": "S10",
+              "reason": "S10 provides network reachability from win-a to win-b, a conjunctive requirement for A09.",
+              "to": "A09"
+            },
+            {
+              "action": "keep",
+              "from": "A09",
+              "reason": "A09 remote login establishes an ordinary local process on win-b, producing S11.",
+              "to": "S11"
+            },
+            {
+              "action": "keep",
+              "from": "S11",
+              "reason": "S11 provides the ordinary local process on win-b required to exploit handle exposure in A10.",
+              "to": "A10"
+            },
+            {
+              "action": "keep",
+              "from": "A10",
+              "reason": "A10 achieves administrator elevation on win-b, producing S12.",
+              "to": "S12"
+            }
+          ],
+          "added_relations": [],
+          "removed_relations": [],
+          "changed_node_bodies": [],
+          "changed_retained_edge_bodies": []
+        }
+      },
+      "figure": "r01_comparison.png"
+    }
+  ],
+  "unique_api_calls": 7,
+  "unique_usage": {
+    "input_tokens": 87008,
+    "output_tokens": 34214,
+    "total_tokens": 139525,
+    "requests_with_usage": 7,
+    "requests_missing_usage": 0,
+    "totals_are_partial": false,
+    "gemini_thoughts_tokens": null
+  },
+  "request_states": {
+    "received": 7
+  },
+  "actual_models": {
+    "gemini-3.8-flash": 7
+  },
+  "continuation": {
+    "reason": "User explicitly requested continuation after session usage limit interrupted execution.",
+    "resumes": "c2_extended_20261017_02",
+    "process_alive": false,
+    "old_draft_request_state": "started_without_saved_response",
+    "old_request_cost": "unknown",
+    "retry_policy": "New run, same frozen inputs/config; interrupted request not counted as a successful result. No existing journal altered.",
+    "historical_attempts": [
+      {
+        "run": "c2_extended_20261017_01",
+        "requests": 1,
+        "result": "invalid JSON duplicate host key",
+        "reported_total_tokens": 12130
+      },
+      {
+        "run": "c2_extended_20261017_02",
+        "requests": 1,
+        "result": "interrupted request with no response",
+        "reported_total_tokens": null
+      }
+    ],
+    "new_max_requests": 7,
+    "cumulative_possible_requests_including_history": 9
+  },
+  "format_recovery": {
+    "source_run": "D:\\AHUST\\An ninh mạng\\llm-attack-graph-generation\\outputs\\generation_debate\\c2_extended_20261017_03",
+    "original_protocol_result": "strict-format failure; retained in original directory",
+    "amendment": "Accept exactly one whole-response Markdown JSON fence at every stage, then use unchanged strict JSON/schema/quote/decision checks.",
+    "semantic_edits": false,
+    "requests_reused": 5,
+    "requests_retried": 0,
+    "remaining_budget": 2,
+    "copied_input_sha256": {
+      "manifest.json": "88884aec7c775f97081afd169da4b28b10232db6788baf24c456c893a8b59749",
+      "frozen_hashes.json": "38cdf66b4c0b27802e9139748e7b134654e31da17bec01ee552211b5e6b16cc0",
+      "scenario.json": "11ee24a5adaf3cb1014a83db9504ba5e25e12720957cd1eb79e1e9710db23020",
+      "reference.synthetic.json": "18b167f2f04fd476828dd5e012530951344244048d31982f2215a48d227832c9",
+      "task.txt": "95eb5923efd18a302e1bfe4271bd1d121f53ec62d0a527652317447d6e6baa0e",
+      "draft_prompt.txt": "24eb4fc08c8759992150d29e7c3dd15eb02683f4fb3397758cbc0d6b0d65514b",
+      "raw_scenario.txt": "c9e9dcd45cdfce67b40c2dd14430e8a301b4fa7b37df0dc22e5174fdd19200aa",
+      "CONTINUATION.json": "eff036680b7c9425a1ffceb8e3f955c8ec19dc698e995bb8df30ca7de137b346",
+      "runs\\r01\\calls\\debate.r1.defender.json": "e050b63981528952f9156fd6d3acc66fe30fd3460bef4f92302290ffd82ea2f2",
+      "runs\\r01\\calls\\debate.r1.defender.prompt.txt": "6dfe2dfb1508bddebd031ed022dd4a3d5d187024d6adc846cc7ea755784a5fb3",
+      "runs\\r01\\calls\\debate.r1.defender.response.txt": "cf2cbc6b3b41cdea9990f17afc241da35d0f49ca171f09a090ac17fc9fa0bafa",
+      "runs\\r01\\calls\\draft.json": "23f88db2936794be912d2244caac2575d8b1ee821ff363dfd5ec314edc8dba11",
+      "runs\\r01\\calls\\draft.prompt.txt": "24eb4fc08c8759992150d29e7c3dd15eb02683f4fb3397758cbc0d6b0d65514b",
+      "runs\\r01\\calls\\draft.response.txt": "94fb4ebb1ad0f3eaf885c0505244694f13c4590f07029eaed987ad39184772c8",
+      "runs\\r01\\calls\\self_refine.revision1.json": "c514cf389129dca20aef2c4d7732e006fbf3b38546f4067b20cbf1a2b8f0b247",
+      "runs\\r01\\calls\\self_refine.revision1.prompt.txt": "c53a05aae520647ffb41e3b59bbaff681fcd8e3d41749e2733501ad0fcb50548",
+      "runs\\r01\\calls\\self_refine.revision1.response.txt": "fae66bcfd8b08d07ecf5447c20b7697c0e50c03ef5bb29e95c69932ed1b44e63",
+      "runs\\r01\\calls\\self_refine.revision2.json": "541bfe0b06d0cef1bd1bdb2312e445b4db8f4d8eb21a37414309159a2d4c3aa7",
+      "runs\\r01\\calls\\self_refine.revision2.prompt.txt": "ac835e4e680a5b3cc611a6d3640f647003b0e2682f51a838c4eaed553e873542",
+      "runs\\r01\\calls\\self_refine.revision2.response.txt": "6f44c7ffae0a545c41d5f4feb0b841209e1e8730b1802f52db92dd46d224b19b",
+      "runs\\r01\\calls\\self_refine.revision3.json": "474a495d4b258e15786d32ed520f9d691ae5ea203f2bc94cce510a4659e3fd94",
+      "runs\\r01\\calls\\self_refine.revision3.prompt.txt": "ac835e4e680a5b3cc611a6d3640f647003b0e2682f51a838c4eaed553e873542",
+      "runs\\r01\\calls\\self_refine.revision3.response.txt": "6f44c7ffae0a545c41d5f4feb0b841209e1e8730b1802f52db92dd46d224b19b"
+    },
+    "wrapper_script_sha256": "aa46331dca3117c1e3131fc8c572557dd85b601ec78c873051fb6d3850d4bc46"
+  },
+  "normalized_stages": [
+    "runs\\r01\\format_normalization\\debate.r1.defender.audit.json"
+  ],
+  "independent_human_gold": false,
+  "real_world_accuracy": null
+}

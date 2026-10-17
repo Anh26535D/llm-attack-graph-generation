@@ -1,0 +1,124 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:53:13.417456+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The source node's claimed OS command execution may yield shell access on the underlying Raspberry Pi OS, but that is only a generated claim unless a source CVE description is supplied.",
+        "The source shell, if present, might be able to invoke a local authentication or escalation path, but this is an inference.",
+        "The source and target nodes might refer to the same Raspberry Pi OS host, but same-host deployment is not observed.",
+        "The target authentication path might be SSH, local console, or another mechanism, but the CVE description does not name one.",
+        "The pi account might yield administrator privileges through a sudo/root mechanism, but the CVE description only says 'gain administrator privileges'."
+      ],
+      "confidence": 0.35,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "unique source and target CVE mapping",
+        "source CVE description confirming CVE-2021-33357's actual effect and shell access",
+        "source and target on the same Raspberry Pi OS host",
+        "source shell privilege level sufficient to invoke su, login, SSH, or another authentication/escalation path",
+        "target running Raspberry Pi OS through 5.10",
+        "active pi account with unchanged default password",
+        "accessible authentication service or local login prompt; CVE-2021-38759 does not name SSH, network, or console",
+        "pi account can yield administrator privileges via a specified mechanism",
+        "no account lockout, password change, or other restriction blocking the default-credential path"
+      ],
+      "reason": "The edge is from an unmapped source node labeled as RaspAP webconsole RCE, with candidate CVE-2021-33357, to target CVE-2021-38759. The supplied target description says Raspberry Pi OS through 5.10 has the raspberry default password for the pi account, and 'If not changed, attackers can gain administrator privileges.' That supports a default-credential prerequisite only if the pi account is active, the password is unchanged, and an authentication path exists. The source node's generated postcondition claims arbitrary OS command execution on the underlying Raspberry Pi OS, but generated pre/postconditions are claims, not confirming evidence, and no source CVE description is supplied; source_mapping.cve_id is null and status is missing. Therefore the edge's bridge, 'Leverage shell access to authenticate against or escalate through unchanged default pi account credentials,' potentially assumes shell access, same-host reachability, an unprivileged shell, and a usable local or remote authentication/escalation path; none is established by the supplied description. The target CVE description does not mention shell access, SSH, local console, network access, or sudo/root, so the node's extra details and edge claim overreach. In a strict graph, this edge cannot enter as supported; it would be at best conditional or unknown pending source CVE mapping and verification of those prerequisites.",
+      "source_cve_id": null,
+      "suggested_status": "unknown",
+      "target_cve_id": "CVE-2021-38759"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 8679,
+      "prompt_tokens": 1397,
+      "total_tokens": 10076,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 7995,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.005813012,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005813012,
+        "upstream_inference_prompt_cost": 0.000171662,
+        "upstream_inference_completions_cost": 0.00564135
+      }
+    },
+    "latency_seconds": 41.56338800000049,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "84233172756cef6ec2d5645111681383f55a5a3fb2cd6f6cef95a0a341e82597",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 8679,
+        "prompt_tokens": 1397,
+        "total_tokens": 10076,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 7995,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.005813012,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005813012,
+          "upstream_inference_prompt_cost": 0.000171662,
+          "upstream_inference_completions_cost": 0.00564135
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"The source node's claimed OS command execution may yield shell access on the underlying Raspberry Pi OS, but that is only a generated claim unless a source CVE description is supplied.\",\"The source shell, if present, might be able to invoke a local authentication or escalation path, but this is an inference.\",\"The source and target nodes might refer to the same Raspberry Pi OS host, but same-host deployment is not observed.\",\"The target authentication path might be SSH, local console, or another mechanism, but the CVE description does not name one.\",\"The pi account might yield administrator privileges through a sudo/root mechanism, but the CVE description only says 'gain administrator privileges'.\"],\"confidence\":0.35,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"}],\"missing_conditions\":[\"unique source and target CVE mapping\",\"source CVE description confirming CVE-2021-33357's actual effect and shell access\",\"source and target on the same Raspberry Pi OS host\",\"source shell privilege level sufficient to invoke su, login, SSH, or another authentication/escalation path\",\"target running Raspberry Pi OS through 5.10\",\"active pi account with unchanged default password\",\"accessible authentication service or local login prompt; CVE-2021-38759 does not name SSH, network, or console\",\"pi account can yield administrator privileges via a specified mechanism\",\"no account lockout, password change, or other restriction blocking the default-credential path\"],\"reason\":\"The edge is from an unmapped source node labeled as RaspAP webconsole RCE, with candidate CVE-2021-33357, to target CVE-2021-38759. The supplied target description says Raspberry Pi OS through 5.10 has the raspberry default password for the pi account, and 'If not changed, attackers can gain administrator privileges.' That supports a default-credential prerequisite only if the pi account is active, the password is unchanged, and an authentication path exists. The source node's generated postcondition claims arbitrary OS command execution on the underlying Raspberry Pi OS, but generated pre/postconditions are claims, not confirming evidence, and no source CVE description is supplied; source_mapping.cve_id is null and status is missing. Therefore the edge's bridge, 'Leverage shell access to authenticate against or escalate through unchanged default pi account credentials,' potentially assumes shell access, same-host reachability, an unprivileged shell, and a usable local or remote authentication/escalation path; none is established by the supplied description. The target CVE description does not mention shell access, SSH, local console, network access, or sudo/root, so the node's extra details and edge claim overreach. In a strict graph, this edge cannot enter as supported; it would be at best conditional or unknown pending source CVE mapping and verification of those prerequisites.\",\"source_cve_id\":null,\"suggested_status\":\"unknown\",\"target_cve_id\":\"CVE-2021-38759\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:53:54.983676+00:00"
+}

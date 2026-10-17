@@ -1,0 +1,83 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T13:48:14.539368+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "RaspAP is deployed locally on the same host where administrative access is obtained",
+        "Administrative OS access inherently permits the attacker to locate, extract, or overwrite RaspAP web credentials"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        }
+      ],
+      "missing_conditions": [
+        "Proof of co-location of RaspAP on the compromised Raspberry Pi system",
+        "Evidence that RaspAP web credentials or sessions can be retrieved or modified from local OS administrative privileges",
+        "Establishment of authenticated access to the RaspAP web interface",
+        "Verification of the unmapped source vulnerability and its actual postconditions"
+      ],
+      "reason": "The source node represents unmapped administrative shell access on Raspberry Pi OS. The target, CVE-2020-24572, explicitly requires 'With authenticated access' to RaspAP. The edge posits that OS administrative access enables retrieving or manipulating RaspAP credentials. However, neither the CVE description nor the environment provides evidence regarding RaspAP credential storage, and instructions prohibit inferring credentials or same-host deployment from absence of data. The edge potentially holds only under specific unverified conditions and cannot enter a strict attack graph.",
+      "source_cve_id": null,
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 316,
+      "prompt_token_count": 1433,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1433
+        }
+      ],
+      "thoughts_token_count": 5991,
+      "total_token_count": 7740
+    },
+    "latency_seconds": 54.091368800000055,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "948c9e14dc49a494dc7c2a532893907d751d6500a15c84885260231cfbe3e5b3",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 316,
+        "prompt_token_count": 1433,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1433
+          }
+        ],
+        "thoughts_token_count": 5991,
+        "total_token_count": 7740
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"RaspAP is deployed locally on the same host where administrative access is obtained\", \"Administrative OS access inherently permits the attacker to locate, extract, or overwrite RaspAP web credentials\"], \"confidence\": 0.85, \"edge_id\": \"edge-0003\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}], \"missing_conditions\": [\"Proof of co-location of RaspAP on the compromised Raspberry Pi system\", \"Evidence that RaspAP web credentials or sessions can be retrieved or modified from local OS administrative privileges\", \"Establishment of authenticated access to the RaspAP web interface\", \"Verification of the unmapped source vulnerability and its actual postconditions\"], \"reason\": \"The source node represents unmapped administrative shell access on Raspberry Pi OS. The target, CVE-2020-24572, explicitly requires 'With authenticated access' to RaspAP. The edge posits that OS administrative access enables retrieving or manipulating RaspAP credentials. However, neither the CVE description nor the environment provides evidence regarding RaspAP credential storage, and instructions prohibit inferring credentials or same-host deployment from absence of data. The edge potentially holds only under specific unverified conditions and cannot enter a strict attack graph.\", \"source_cve_id\": null, \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:49:08.632485+00:00"
+}

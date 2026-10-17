@@ -1,0 +1,87 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:00:08.500335+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "piSignage and RaspAP are deployed on the same Raspberry Pi host or share a filesystem",
+        "Arbitrary file retrieval via piSignage exposes valid credentials or configuration data usable to authenticate to RaspAP"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        }
+      ],
+      "missing_conditions": [
+        "Verification that piSignage and RaspAP reside on the same host or filesystem",
+        "Presence of readable RaspAP credentials or session tokens within the accessible files",
+        "Target host runs RaspAP 2.5 with network reachability",
+        "Attacker possesses low-privilege authentication required by the piSignage API"
+      ],
+      "reason": "CVE-2019-20354 allows a remote attacker to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal', whereas CVE-2020-24572 requires 'With authenticated access'. The claim that arbitrary file read yields credentials providing authenticated access to RaspAP is a bounded causal bridge that potentially works, but it overreaches by inferring same-host deployment and credential exposure from file read capability alone. Because these prerequisites are unverified, the edge cannot enter a strict attack graph.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "95d614aa93877a164bc9711d0aeb04f9166bd90aefdf66eaa7968e31359a35ec",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "candidates_token_count": 389,
+      "prompt_token_count": 2215,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2215
+        }
+      ],
+      "thoughts_token_count": 2188,
+      "total_token_count": 4792
+    },
+    "cached_response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 389,
+        "prompt_token_count": 2215,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2215
+          }
+        ],
+        "thoughts_token_count": 2188,
+        "total_token_count": 4792
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:00:08.520225+00:00"
+}

@@ -1,0 +1,82 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T13:47:54.668758+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "The piSignage process runs with elevated privileges allowing it to read /etc/shadow or sensitive system configuration files",
+        "Password hashes obtained from the system can be cracked or reveal default credentials"
+      ],
+      "confidence": 0.8,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal"
+        }
+      ],
+      "missing_conditions": [
+        "Verification that the web application process has filesystem permissions to read /etc/shadow or credential files",
+        "Verification that the system hashes correspond to crackable default credentials",
+        "A valid target CVE mapping"
+      ],
+      "reason": "CVE-2019-20354 allows a low-privilege user to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal'. The target requires valid credentials for authentication. While file exfiltration could potentially expose sensitive files, reading protected shadow files depends on the web application's execution privileges, and recovering credentials from hashes requires offline cracking, making this bridge conditional.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 291,
+      "prompt_token_count": 1453,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1453
+        }
+      ],
+      "thoughts_token_count": 2460,
+      "total_token_count": 4204
+    },
+    "latency_seconds": 19.846813300000576,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "5ddac96ee60e278a05b5f9565980511e3051dceb0a318bcd2d9d6dca7f506e21",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 291,
+        "prompt_token_count": 1453,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1453
+          }
+        ],
+        "thoughts_token_count": 2460,
+        "total_token_count": 4204
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"The piSignage process runs with elevated privileges allowing it to read /etc/shadow or sensitive system configuration files\", \"Password hashes obtained from the system can be cracked or reveal default credentials\"], \"confidence\": 0.8, \"edge_id\": \"edge-0002\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2019-20354\", \"quote\": \"download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal\"}], \"missing_conditions\": [\"Verification that the web application process has filesystem permissions to read /etc/shadow or credential files\", \"Verification that the system hashes correspond to crackable default credentials\", \"A valid target CVE mapping\"], \"reason\": \"CVE-2019-20354 allows a low-privilege user to 'download arbitrary files from the Raspberry Pi via api/settings/log?file=../ path traversal'. The target requires valid credentials for authentication. While file exfiltration could potentially expose sensitive files, reading protected shadow files depends on the web application's execution privileges, and recovering credentials from hashes requires offline cracking, making this bridge conditional.\", \"source_cve_id\": \"CVE-2019-20354\", \"suggested_status\": \"conditional\", \"target_cve_id\": null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:48:14.517059+00:00"
+}

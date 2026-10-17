@@ -1,0 +1,339 @@
+[
+  {
+    "revision": 1,
+    "parsing": {
+      "strict_json_without_fence": false,
+      "markdown_fence_removed": true,
+      "json_repair": false,
+      "schema": {
+        "schema_valid": true,
+        "non_empty_graph": true,
+        "missing_node_required_fields_count": 0,
+        "invalid_node_ids_count": 0,
+        "duplicate_node_ids_count": 0,
+        "invalid_node_labels_count": 0,
+        "missing_node_condition_fields_count": 0,
+        "missing_edge_required_fields_count": 0,
+        "invalid_edge_labels_count": 0,
+        "edge_schema_compliance": 1.0,
+        "alternate_source_target_edges_count": 0,
+        "valid_edges": 19,
+        "invalid_edges": 0,
+        "edge_endpoint_integrity": 1.0
+      }
+    },
+    "changes": [
+      {
+        "action": "revise",
+        "citations": [
+          {
+            "paragraph_id": "P002",
+            "quote": "FireEye discovered a supply chain attack trojanizing SolarWinds Orion business software updates in order to distribute malware we call SUNBURST.",
+            "verification": "verified_text_only"
+          },
+          {
+            "paragraph_id": "P004",
+            "quote": "They gained access to victims via trojanized updates to SolarWind's Orion IT monitoring and management software.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "edge-0001",
+        "kind": "edge",
+        "reason": "The report specifies trojanizing SolarWinds Orion business software updates to distribute SUNBURST, but does not state that source code specifically was injected.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "revise",
+        "citations": [
+          {
+            "paragraph_id": "P012",
+            "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "edge-0014",
+        "kind": "edge",
+        "reason": "Preserves scope and alternative payload delivery: TEARDROP was deployed in at least one instance rather than as a universal step across all SUNBURST compromise samples.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "revise",
+        "citations": [
+          {
+            "paragraph_id": "P012",
+            "quote": "TEARDROP is a memory only dropper that runs as a service, spawns a thread and reads from the file \"gracious_truth.jpg\", which likely has a fake JPG header.",
+            "verification": "verified_text_only"
+          },
+          {
+            "paragraph_id": "P012",
+            "quote": "We believe that this was used to execute a customized Cobalt Strike BEACON.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "edge-0015",
+        "kind": "edge",
+        "reason": "Preserves the text's explicit epistemic qualification ('We believe') regarding TEARDROP executing customized Cobalt Strike BEACON.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "remove",
+        "citations": [
+          {
+            "paragraph_id": "P018",
+            "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment.",
+            "verification": "verified_text_only"
+          },
+          {
+            "paragraph_id": "P024",
+            "quote": "The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "edge-0016",
+        "kind": "edge",
+        "reason": "Masquerading C2 hostnames and victim-country VPS IPs is an attacker infrastructure evasion practice, not a step produced or executed by Cobalt Strike BEACON.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "remove",
+        "citations": [
+          {
+            "paragraph_id": "P010",
+            "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment.",
+            "verification": "verified_text_only"
+          },
+          {
+            "paragraph_id": "P028",
+            "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "edge-0017",
+        "kind": "edge",
+        "reason": "C2 masquerading does not causally produce or leverage credentials; credential usage is a separate post-compromise technique leveraged by UNC2452.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "remove",
+        "citations": [
+          {
+            "paragraph_id": "P032",
+            "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "edge-0018",
+        "kind": "edge",
+        "reason": "Temporary file replacement and task modification represent remote utility execution techniques used by the attacker, not a direct sequential consequence of credential abuse.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "remove",
+        "citations": [
+          {
+            "paragraph_id": "P004",
+            "quote": "Post compromise activity following this supply chain compromise has included lateral movement and data theft.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "edge-0019",
+        "kind": "edge",
+        "reason": "Temporary file replacement was an execution and anti-forensic evasion technique rather than the singular prerequisite to enterprise-wide data theft.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "add",
+        "citations": [
+          {
+            "paragraph_id": "P018",
+            "quote": "The actor sets the hostnames on their command and control infrastructure to match a legitimate hostname found within the victim's environment.",
+            "verification": "verified_text_only"
+          },
+          {
+            "paragraph_id": "P024",
+            "quote": "The attacker primarily used only IP addresses originating from the same country as the victim, leveraging Virtual Private Servers.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "new:unc2452_actor->c2_infrastructure_masquerading",
+        "kind": "edge",
+        "reason": "Directly links C2 infrastructure masquerading to the threat actor as an independent evasion technique branching from actor capabilities.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "add",
+        "citations": [
+          {
+            "paragraph_id": "P010",
+            "quote": "This actor prefers to maintain a light malware footprint, instead preferring legitimate credentials and remote access for access into a victim's environment.",
+            "verification": "verified_text_only"
+          },
+          {
+            "paragraph_id": "P028",
+            "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials. The credentials used for lateral movement were always different from those used for remote access.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "new:unc2452_actor->credential_abuse",
+        "kind": "edge",
+        "reason": "Captures the actor's post-compromise operational preference for light malware footprints and distinct credentials for initial remote access versus lateral movement.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "add",
+        "citations": [
+          {
+            "paragraph_id": "P032",
+            "quote": "The attacker used a temporary file replacement technique to remotely execute utilities: they replaced a legitimate utility with theirs, executed their payload, and then restored the legitimate original file. They similarly manipulated scheduled tasks by updating an existing legitimate task to execute their tools",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "new:unc2452_actor->temporary_file_task_mod",
+        "kind": "edge",
+        "reason": "Connects the attacker directly to their utility execution and defense evasion techniques via temporary file replacement and scheduled task modification.",
+        "has_verified_citation": true
+      },
+      {
+        "action": "add",
+        "citations": [
+          {
+            "paragraph_id": "P004",
+            "quote": "Post compromise activity following this supply chain compromise has included lateral movement and data theft.",
+            "verification": "verified_text_only"
+          },
+          {
+            "paragraph_id": "P028",
+            "quote": "Once the attacker gained access to the network with compromised credentials, they moved laterally using multiple different credentials.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "new:credential_abuse->data_theft_impact",
+        "kind": "edge",
+        "reason": "Captures that lateral movement conducted via compromised credentials enabled the campaign's ultimate impact of widespread data theft.",
+        "has_verified_citation": true
+      }
+    ]
+  },
+  {
+    "revision": 2,
+    "parsing": {
+      "strict_json_without_fence": false,
+      "markdown_fence_removed": true,
+      "json_repair": false,
+      "schema": {
+        "schema_valid": true,
+        "non_empty_graph": true,
+        "missing_node_required_fields_count": 0,
+        "invalid_node_ids_count": 0,
+        "duplicate_node_ids_count": 0,
+        "invalid_node_labels_count": 0,
+        "missing_node_condition_fields_count": 0,
+        "missing_edge_required_fields_count": 0,
+        "invalid_edge_labels_count": 0,
+        "edge_schema_compliance": 1.0,
+        "alternate_source_target_edges_count": 0,
+        "valid_edges": 19,
+        "invalid_edges": 0,
+        "edge_endpoint_integrity": 1.0
+      }
+    },
+    "changes": [
+      {
+        "action": "revise",
+        "citations": [
+          {
+            "paragraph_id": "P012",
+            "quote": "Multiple SUNBURST samples have been recovered, delivering different payloads. In at least one instance the attackers deployed a previously unseen memory-only dropper we've dubbed TEARDROP to deploy Cobalt Strike BEACON.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "id": "edge-0014",
+        "kind": "edge",
+        "reason": "Revising edge-0014 to branch from 'unc2452_actor' to 'teardrop_dropper' rather than directly from 'steganography_jobs'. The text explicitly notes that multiple samples delivered different payloads and 'the attackers deployed... TEARDROP', representing actor-driven deployment in at least one instance rather than a universal execution of steganographic jobs across all victims.",
+        "has_verified_citation": true
+      }
+    ]
+  },
+  {
+    "revision": 3,
+    "parsing": {
+      "strict_json_without_fence": false,
+      "markdown_fence_removed": true,
+      "json_repair": false,
+      "schema": {
+        "schema_valid": true,
+        "non_empty_graph": true,
+        "missing_node_required_fields_count": 0,
+        "invalid_node_ids_count": 0,
+        "duplicate_node_ids_count": 0,
+        "invalid_node_labels_count": 0,
+        "missing_node_condition_fields_count": 0,
+        "missing_edge_required_fields_count": 0,
+        "invalid_edge_labels_count": 0,
+        "edge_schema_compliance": 1.0,
+        "alternate_source_target_edges_count": 0,
+        "valid_edges": 20,
+        "invalid_edges": 0,
+        "edge_endpoint_integrity": 1.0
+      }
+    },
+    "changes": [
+      {
+        "kind": "node",
+        "action": "add",
+        "id": "api_connectivity_check",
+        "reason": "The report specifies that before DGA domain generation begins, the malware explicitly verifies network connectivity by attempting to resolve api.solarwinds.com once blocklists pass.",
+        "citations": [
+          {
+            "paragraph_id": "P044",
+            "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "has_verified_citation": true
+      },
+      {
+        "kind": "edge",
+        "action": "remove",
+        "id": "edge-0010",
+        "reason": "Removes the direct edge from anti_analysis_defense_evasion to dga_resolution, as the connectivity check against api.solarwinds.com must succeed before DGA generation commences.",
+        "citations": [
+          {
+            "paragraph_id": "P046",
+            "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "has_verified_citation": true
+      },
+      {
+        "kind": "edge",
+        "action": "add",
+        "id": "anti_analysis_defense_evasion->api_connectivity_check",
+        "reason": "Captures the prerequisite check where the backdoor resolves api.solarwinds.com once all process, service, and driver blocklist tests pass.",
+        "citations": [
+          {
+            "paragraph_id": "P044",
+            "quote": "If all blocklist tests pass, the sample tries to resolve api.solarwinds.com to test the network for connectivity.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "has_verified_citation": true
+      },
+      {
+        "kind": "edge",
+        "action": "add",
+        "id": "api_connectivity_check->dga_resolution",
+        "reason": "Captures that DGA domain generation in a while loop is entered only after both blocklist and connectivity checks succeed.",
+        "citations": [
+          {
+            "paragraph_id": "P046",
+            "quote": "If all blocklist and connectivity checks pass, the sample starts generating domains in a while loop via its DGA.",
+            "verification": "verified_text_only"
+          }
+        ],
+        "has_verified_citation": true
+      }
+    ]
+  }
+]

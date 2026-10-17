@@ -1,0 +1,127 @@
+{
+  "edge_id": "edge-0010",
+  "started_at": "2026-10-16T15:13:05.192400+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "Generated node pre/postconditions and edge label are claims, not confirming evidence.",
+        "The source and target nodes are treated as referencing CVE-2022-21819 on Jetson Linux because both mappings show that CVE; this is metadata inference, not an observed environment fact.",
+        "The edge is an intra-CVE escalation narrative, not an observed exploit path or execution trace.",
+        "No explicit environment observations are supplied, so deployment, host relationships, and attacker capabilities remain unverified.",
+        "The terms 'unconstrained physical memory access', 'overwrite kernel data', 'adjacent hardware components', and 'total system takeover' are interpreted as stronger than the quoted description allows."
+      ],
+      "confidence": 0.86,
+      "edge_id": "edge-0010",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2022-21819",
+          "quote": "an error in the IOMMU configuration may allow an unprivileged attacker with physical access to the board direct read/write access to the entire system address space through the PCI bus"
+        },
+        {
+          "cve_id": "CVE-2022-21819",
+          "quote": "Such an attack could result in denial of service, code execution, escalation of privileges, and impact to data integrity and confidentiality."
+        },
+        {
+          "cve_id": "CVE-2022-21819",
+          "quote": "The scope impact may extend to other components."
+        }
+      ],
+      "missing_conditions": [
+        "Explicit environment observation that the affected Jetson Linux version and IOMMU misconfiguration are present.",
+        "Explicit confirmation of an unprivileged attacker with physical access to the board and a PCI bus path.",
+        "Evidence that direct read/write access to the entire system address space is actually used to overwrite kernel data, rather than merely permitting read/write.",
+        "Evidence that code execution occurs, not only that it 'could result'.",
+        "Evidence that privilege escalation reaches highest execution levels, not merely that escalation of privileges is possible.",
+        "Evidence that impact extends to adjacent hardware components, rather than the description's generic 'other components'.",
+        "Externally verified source-target host/component relationship for a strict graph edge.",
+        "A description-grounded capability bridge for 'unconstrained physical memory access' and 'total system takeover'."
+      ],
+      "reason": "The source CVE's actual effect is an IOMMU configuration error that may let an unprivileged attacker with physical access gain direct read/write access to the entire system address space through the PCI bus; the same description says such an attack could result in denial of service, code execution, escalation of privileges, and integrity/confidentiality impact, and that scope impact may extend to other components. The target node requires that direct read/write access via PCI bus DMA, and its postcondition claims complete DoS, arbitrary kernel/system code execution, highest-level privilege escalation, and cross-component breach. The edge label is partially aligned: it preserves write access and possible code execution and other-component impact, but it overreaches by asserting 'unconstrained physical memory access', 'overwrite kernel data', 'compromise adjacent hardware components', and a 'system takeover' consequence without the description stating those specifics or guaranteeing them. The bridge is bounded to modal possibilities ('may allow', 'could result', 'may extend') and lacks environment confirmation, so the edge cannot enter a strict graph as supported; it is at most conditional if the missing prerequisites and overbroad target claims are independently resolved.",
+      "source_cve_id": "CVE-2022-21819",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2022-21819"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "738d06f9b4003de7415ec74f710f5d900358457b9c0e7cff23de3c88b407064d",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 4938,
+      "prompt_tokens": 2246,
+      "total_tokens": 7184,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4209,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.003508712,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.003508712,
+        "upstream_inference_prompt_cost": 0.000299012,
+        "upstream_inference_completions_cost": 0.0032097
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4938,
+        "prompt_tokens": 2246,
+        "total_tokens": 7184,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4209,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.003508712,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.003508712,
+          "upstream_inference_prompt_cost": 0.000299012,
+          "upstream_inference_completions_cost": 0.0032097
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:13:05.193747+00:00"
+}

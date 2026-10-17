@@ -1,0 +1,145 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T15:13:04.575337+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "The source's 'potentially execute code' could, if realized, yield local unprivileged code execution within the victim's user session; this is an inference, not a fact.",
+        "Oculus Browser and Oculus Desktop are deployed on the same Windows host; this same-host relationship is not established by the supplied descriptions or environment observations.",
+        "Any source code execution occurs at an OS/user level sufficient to create hardlinks against log files, not merely within browser UI or a sandbox.",
+        "The target Oculus Desktop installation is before 1.44.0.32849 on that same host and OVRRedir.exe will write to the hardlinked log file."
+      ],
+      "confidence": 0.72,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "inject arbitrary HTML code into the Oculus Browser UI"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "Writing to an unprivileged file from a privileged OVRRedir.exe process in Oculus Desktop before 1.44.0.32849 on Windows"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "write to arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "gain privileges"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "via vectors involving a hard link to a log file"
+        }
+      ],
+      "missing_conditions": [
+        "Confirmed reliable code execution from CVE-2019-3562, not merely 'potentially execute code'.",
+        "Execution context is local user-level OS access on the target Windows host, not only Oculus Browser UI/script context.",
+        "Explicit evidence that the Oculus Browser instance and the Oculus Desktop/OVRRedir.exe instance are on the same host.",
+        "Source Oculus Browser version is within the affected range and the victim visits the attacker-controlled remote web page.",
+        "Target host runs Windows and Oculus Desktop before version 1.44.0.32849.",
+        "Attacker can create the required hard link to an unprivileged log file.",
+        "OVRRedir.exe actually writes to the hardlinked log file and the write leads to privilege gain."
+      ],
+      "reason": "CVE-2019-3562's described effect is remote HTML injection into the Oculus Browser UI, spoofing UI, and only 'potentially execute code'; the edge treats that potential browser-side effect as confirmed local unprivileged OS-level code execution. CVE-2020-1885 requires local users on Windows with Oculus Desktop before 1.44.0.32849 and a hard link to a log file so privileged OVRRedir.exe writes to arbitrary files and gains privileges. The bounded bridge would need the potential source execution to occur on the same Windows host with filesystem permissions sufficient to create that hardlink and trigger OVRRedir.exe, but those prerequisites are not in the supplied descriptions and environment observations are absent. Thus the edge is at most conditional/plausible and cannot enter a strict graph without verifying the missing conditions; it is not contradicted, but the claim overreaches by asserting provided local unprivileged code execution.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "5644edcfe77fa61320811dcf10339e8d32947000b5297f5d8690b6f37d4a28b6",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 4912,
+      "prompt_tokens": 2273,
+      "total_tokens": 7185,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 4145,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00353375,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00353375,
+        "upstream_inference_prompt_cost": 0.00034095,
+        "upstream_inference_completions_cost": 0.0031928
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 4912,
+        "prompt_tokens": 2273,
+        "total_tokens": 7185,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 4145,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00353375,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00353375,
+          "upstream_inference_prompt_cost": 0.00034095,
+          "upstream_inference_completions_cost": 0.0031928
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:13:04.577538+00:00"
+}

@@ -1,0 +1,60 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T13:47:11.905115+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 423,
+      "prompt_token_count": 2208,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2208
+        }
+      ],
+      "thoughts_token_count": 9572,
+      "total_token_count": 12203
+    },
+    "latency_seconds": 64.23598669999956,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "78100507802ed5053018f07e771f358484eeddaa7e402f26a846409d68f30c38",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "MAX_TOKENS",
+      "usage": {
+        "candidates_token_count": 423,
+        "prompt_token_count": 2208,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2208
+          }
+        ],
+        "thoughts_token_count": 9572,
+        "total_token_count": 12203
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "MAX_TOKENS"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"Valid or default credentials for RaspAP 2.5 are known or recoverable by the attacker\", \"The target environment is running RaspAP 2.5 on a Raspberry Pi OS\", \"The includes/webconsole.php endpoint is reachable over the network\"], \"confidence\": 0.85, \"edge_id\": \"edge-0003\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2020-24572\", \"quote\": \"includes/webconsole.php in RaspAP 2.5\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system (including ones for uploading of files and execution of code)\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"underlying OS (Raspberry Pi)\"}], \"missing_conditions\": [\"Verification of valid authentication credentials for RaspAP\", \"Verification of target deployment running RaspAP 2.5 on Raspberry Pi\", \"Verification of network reachability to includes/webconsole.php\", \"Evidence that the source vulnerability provides authenticated session access rather than requiring it\"], \"reason\": \"The source node claims an authenticated session, but CVE-2020-24572 actually describes command execution on the 'underlying OS (Raspberry Pi)' ('execute commands on the system (including ones for uploading of files and execution of code)') and does not grant or recover credentials. The target vulnerability in CVE-2020-24572 strictly requires 'With authenticated access' to 'includes/webconsole.php in RaspAP 2.5'. While an authenticated session could potentially serve as a bounded causal bridge to satisfy the target's authentication prerequisite, the claim that authentication is obtained via CVE-202"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T13:48:16.142959+00:00"
+}

@@ -1,0 +1,90 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T13:57:40.718331+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Assuming default Raspberry Pi OS credentials grant authenticated access to the RaspAP web interface",
+        "Assuming RaspAP is configured with default administrative credentials"
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "includes/webconsole.php in RaspAP 2.5"
+        }
+      ],
+      "missing_conditions": [
+        "Proof that default administrative credentials are valid for RaspAP 2.5 web interface",
+        "Verification that source OS-level credentials satisfy target web application authentication",
+        "Source CVE description and evidence"
+      ],
+      "reason": "Target CVE-2020-24572 requires 'With authenticated access' to 'includes/webconsole.php in RaspAP 2.5'. The source node describes default Raspberry Pi credentials or OS-level shell access, which does not inherently grant authenticated access to the RaspAP web console. Because credentials cannot be inferred from absence of data, the claimed causal bridge is unverified and unsupported.",
+      "source_cve_id": null,
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 299,
+      "prompt_token_count": 1503,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1503
+        }
+      ],
+      "thoughts_token_count": 1773,
+      "total_token_count": 3575
+    },
+    "latency_seconds": 19.215527099999235,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "17288609636502daf82be0993f87e0ba25d7c054ca607834d3de9dd2b9d1f792",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 299,
+        "prompt_token_count": 1503,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1503
+          }
+        ],
+        "thoughts_token_count": 1773,
+        "total_token_count": 3575
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"Assuming default Raspberry Pi OS credentials grant authenticated access to the RaspAP web interface\", \"Assuming RaspAP is configured with default administrative credentials\"], \"confidence\": 0.9, \"edge_id\": \"edge-0001\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"includes/webconsole.php in RaspAP 2.5\"}], \"missing_conditions\": [\"Proof that default administrative credentials are valid for RaspAP 2.5 web interface\", \"Verification that source OS-level credentials satisfy target web application authentication\", \"Source CVE description and evidence\"], \"reason\": \"Target CVE-2020-24572 requires 'With authenticated access' to 'includes/webconsole.php in RaspAP 2.5'. The source node describes default Raspberry Pi credentials or OS-level shell access, which does not inherently grant authenticated access to the RaspAP web console. Because credentials cannot be inferred from absence of data, the claimed causal bridge is unverified and unsupported.\", \"source_cve_id\": null, \"suggested_status\": \"unsupported\", \"target_cve_id\": \"CVE-2020-24572\"}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:57:59.954495+00:00"
+}

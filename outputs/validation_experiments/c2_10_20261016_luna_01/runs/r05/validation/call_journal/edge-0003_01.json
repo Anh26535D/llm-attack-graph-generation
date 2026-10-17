@@ -1,0 +1,119 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:36:47.500696+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Treating the target prerequisite's local privilege escalation as equivalent to the source description's unspecified ability to \"gain privileges\" is an inference, not evidence.",
+        "Treating any resulting privilege as sufficient for SYSTEM-level access and complete host control is an inference, not evidence."
+      ],
+      "confidence": 0.96,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "a privileged OVRRedir.exe process"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users to write to arbitrary files"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "consequently gain privileges via vectors involving a hard link to a log file"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows"
+        }
+      ],
+      "missing_conditions": [
+        "A Windows host running the vulnerable Oculus Desktop version is unverified; the supplied environment is absent.",
+        "A local user able to exercise the hard-link-to-log-file vector is required; the description does not establish the source node's asserted local unprivileged code execution.",
+        "The privilege level achieved by CVE-2020-1885 is unverified; \"gain privileges\" does not establish administrator or SYSTEM access.",
+        "A write to a system binary or DLL is unverified; the description supports arbitrary-file writing but does not identify that specific target.",
+        "Complete control over host data, processes, and configurations is unverified.",
+        "A unique target CVE identity and target-specific description are missing."
+      ],
+      "reason": "CVE-2020-1885 describes a Windows local-user vector involving a privileged OVRRedir.exe process, a hard link to a log file, arbitrary-file writing, and consequent privilege gain. It does not state that system binaries or DLLs are overwritten, that SYSTEM is obtained, or that the host is fully compromised. The target prerequisite asks for local privilege escalation through OVRRedir.exe or another vector, so the source's generic privilege-gain statement is a potentially relevant but bounded bridge only after the missing applicability, privilege-level, and post-exploitation conditions are established. Because the target is unmapped and its full-host-control postcondition exceeds the supplied CVE evidence, this edge cannot enter a strict graph as supported.",
+      "source_cve_id": "CVE-2020-1885",
+      "suggested_status": "unsupported",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 3084,
+      "prompt_tokens": 1447,
+      "total_tokens": 4531,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2588,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1444,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.0040624,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.0040624,
+        "upstream_inference_prompt_cost": 0.0003616,
+        "upstream_inference_completions_cost": 0.0037008
+      }
+    },
+    "latency_seconds": 28.72579709999991,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "62c3955bd6d51a2bf2226010dd56d7110a47e65ff5e4e49f8639544d53523028",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 3084,
+        "prompt_tokens": 1447,
+        "total_tokens": 4531,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2588,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1444,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.0040624,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.0040624,
+          "upstream_inference_prompt_cost": 0.0003616,
+          "upstream_inference_completions_cost": 0.0037008
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Treating the target prerequisite's local privilege escalation as equivalent to the source description's unspecified ability to \\\"gain privileges\\\" is an inference, not evidence.\",\"Treating any resulting privilege as sufficient for SYSTEM-level access and complete host control is an inference, not evidence.\"],\"confidence\":0.96,\"edge_id\":\"edge-0003\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"a privileged OVRRedir.exe process\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"allows local users to write to arbitrary files\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"consequently gain privileges via vectors involving a hard link to a log file\"},{\"cve_id\":\"CVE-2020-1885\",\"quote\":\"on Windows\"}],\"missing_conditions\":[\"A Windows host running the vulnerable Oculus Desktop version is unverified; the supplied environment is absent.\",\"A local user able to exercise the hard-link-to-log-file vector is required; the description does not establish the source node's asserted local unprivileged code execution.\",\"The privilege level achieved by CVE-2020-1885 is unverified; \\\"gain privileges\\\" does not establish administrator or SYSTEM access.\",\"A write to a system binary or DLL is unverified; the description supports arbitrary-file writing but does not identify that specific target.\",\"Complete control over host data, processes, and configurations is unverified.\",\"A unique target CVE identity and target-specific description are missing.\"],\"reason\":\"CVE-2020-1885 describes a Windows local-user vector involving a privileged OVRRedir.exe process, a hard link to a log file, arbitrary-file writing, and consequent privilege gain. It does not state that system binaries or DLLs are overwritten, that SYSTEM is obtained, or that the host is fully compromised. The target prerequisite asks for local privilege escalation through OVRRedir.exe or another vector, so the source's generic privilege-gain statement is a potentially relevant but bounded bridge only after the missing applicability, privilege-level, and post-exploitation conditions are established. Because the target is unmapped and its full-host-control postcondition exceeds the supplied CVE evidence, this edge cannot enter a strict graph as supported.\",\"source_cve_id\":\"CVE-2020-1885\",\"suggested_status\":\"unsupported\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:37:16.229232+00:00"
+}

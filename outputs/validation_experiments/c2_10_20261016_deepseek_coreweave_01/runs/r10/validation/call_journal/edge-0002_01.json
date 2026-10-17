@@ -1,0 +1,122 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T15:05:24.693357+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "RaspAP is deployed on the same Raspberry Pi OS host.",
+        "RaspAP web administrative credentials are accessible to the pi account or its administrator privileges.",
+        "The default pi password has not been changed.",
+        "OS-level administrator access can directly extract or modify RaspAP web administrative credentials."
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "Target CVE description for CVE-2021-33357 is not supplied.",
+        "Target mapping status is missing (target_mapping.cve_id is null).",
+        "Evidence that RaspAP 2.5 is present on the same host as the affected Raspberry Pi OS.",
+        "Evidence that RaspAP web administrative credentials are stored in a location readable or modifiable by the pi account or its administrator privileges.",
+        "Evidence that default pi credentials are accepted by the RaspAP web interface or otherwise permit extraction/modification of its web administrative credentials.",
+        "Evidence that the default pi password remains unchanged in the actual environment.",
+        "Network/service reachability of the RaspAP web interface, if remote access is claimed.",
+        "Source description does not mention RaspAP, web credentials, extraction, or modification."
+      ],
+      "reason": "CVE-2021-38759 states Raspberry Pi OS through 5.10 has the default password for the pi account and, if not changed, attackers can gain administrator privileges. This supports a potential OS-level administrator effect on Raspberry Pi OS; it does not state RaspAP web administrative credential extraction or modification. Target node requires authenticated access to RaspAP 2.5 web interface, but the target CVE description is not supplied and target mapping status is missing. The edge label's bridge from default pi credentials to RaspAP web credential extraction/modification relies on unverified conditions such as same-host RaspAP deployment, readable/modifiable credential storage, or credential reuse. With absent environment data, this edge cannot enter a strict graph as stated; it is unsupported/overbroad, though it could become conditional if those missing conditions were verified.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "unsupported",
+      "target_cve_id": "CVE-2021-33357"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 8962,
+      "prompt_tokens": 1359,
+      "total_tokens": 10321,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 8444,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.005991262,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.005991262,
+        "upstream_inference_prompt_cost": 0.000165962,
+        "upstream_inference_completions_cost": 0.0058253
+      }
+    },
+    "latency_seconds": 44.37808229999973,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "2ad215267028c455e67150443b72acffc5c6f020bca00588e740fe729707478c",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 8962,
+        "prompt_tokens": 1359,
+        "total_tokens": 10321,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 8444,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.005991262,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.005991262,
+          "upstream_inference_prompt_cost": 0.000165962,
+          "upstream_inference_completions_cost": 0.0058253
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"RaspAP is deployed on the same Raspberry Pi OS host.\",\"RaspAP web administrative credentials are accessible to the pi account or its administrator privileges.\",\"The default pi password has not been changed.\",\"OS-level administrator access can directly extract or modify RaspAP web administrative credentials.\"],\"confidence\":0.9,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"}],\"missing_conditions\":[\"Target CVE description for CVE-2021-33357 is not supplied.\",\"Target mapping status is missing (target_mapping.cve_id is null).\",\"Evidence that RaspAP 2.5 is present on the same host as the affected Raspberry Pi OS.\",\"Evidence that RaspAP web administrative credentials are stored in a location readable or modifiable by the pi account or its administrator privileges.\",\"Evidence that default pi credentials are accepted by the RaspAP web interface or otherwise permit extraction/modification of its web administrative credentials.\",\"Evidence that the default pi password remains unchanged in the actual environment.\",\"Network/service reachability of the RaspAP web interface, if remote access is claimed.\",\"Source description does not mention RaspAP, web credentials, extraction, or modification.\"],\"reason\":\"CVE-2021-38759 states Raspberry Pi OS through 5.10 has the default password for the pi account and, if not changed, attackers can gain administrator privileges. This supports a potential OS-level administrator effect on Raspberry Pi OS; it does not state RaspAP web administrative credential extraction or modification. Target node requires authenticated access to RaspAP 2.5 web interface, but the target CVE description is not supplied and target mapping status is missing. The edge label's bridge from default pi credentials to RaspAP web credential extraction/modification relies on unverified conditions such as same-host RaspAP deployment, readable/modifiable credential storage, or credential reuse. With absent environment data, this edge cannot enter a strict graph as stated; it is unsupported/overbroad, though it could become conditional if those missing conditions were verified.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"unsupported\",\"target_cve_id\":\"CVE-2021-33357\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T15:06:09.073033+00:00"
+}

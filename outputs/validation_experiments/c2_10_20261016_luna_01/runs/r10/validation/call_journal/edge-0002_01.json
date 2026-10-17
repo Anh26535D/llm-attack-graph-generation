@@ -1,0 +1,112 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:38:26.450581+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference, never a fact: If the default password remains unchanged and an access path exists, the source condition might yield OS-level administrator privileges.",
+        "Inference, never a fact: If RaspAP were deployed on the same host and its web credentials were accessible or modifiable by that administrator, a conditional bridge might exist."
+      ],
+      "confidence": 0.96,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account."
+        },
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "The pi password is verified to remain unchanged.",
+        "A usable access path or service for the pi credentials is present; network reachability alone is not confirmation of such a service.",
+        "RaspAP 2.5 is deployed and reachable on the relevant host.",
+        "Authenticated access to the RaspAP web interface is obtained.",
+        "A demonstrated mechanism links OS administrator access to extraction or direct modification of RaspAP web administrative credentials.",
+        "The Raspberry Pi OS and RaspAP instances are verified to be the same host or otherwise have a documented causal relationship.",
+        "A unique target-CVE mapping and the target CVE description are supplied."
+      ],
+      "reason": "CVE-2021-38759 supports only a conditional potential for OS-level administrator privileges when the default pi password is unchanged. It does not state that pi credentials extract or directly modify RaspAP web administrative credentials. The supplied target-node precondition for authenticated RaspAP 2.5 access is an unverified claim, not confirming evidence, and the environment is absent. No bounded causal bridge establishes RaspAP deployment, target authentication, credential reuse, configuration access, or host identity. The claim therefore overreaches the source evidence and cannot enter a strict graph.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "unsupported",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 2495,
+      "prompt_tokens": 1298,
+      "total_tokens": 3793,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 2070,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1295,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00331835,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00331835,
+        "upstream_inference_prompt_cost": 0.00032435,
+        "upstream_inference_completions_cost": 0.002994
+      }
+    },
+    "latency_seconds": 21.728879700000107,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "e05e2edf9d1eed9d2fe50efe03bcb7f8ebef2b0eae4f3335e40462baad78327e",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 2495,
+        "prompt_tokens": 1298,
+        "total_tokens": 3793,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 2070,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1295,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00331835,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00331835,
+          "upstream_inference_prompt_cost": 0.00032435,
+          "upstream_inference_completions_cost": 0.002994
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inference, never a fact: If the default password remains unchanged and an access path exists, the source condition might yield OS-level administrator privileges.\",\"Inference, never a fact: If RaspAP were deployed on the same host and its web credentials were accessible or modifiable by that administrator, a conditional bridge might exist.\"],\"confidence\":0.96,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account.\"},{\"cve_id\":\"CVE-2021-38759\",\"quote\":\"If not changed, attackers can gain administrator privileges.\"}],\"missing_conditions\":[\"The pi password is verified to remain unchanged.\",\"A usable access path or service for the pi credentials is present; network reachability alone is not confirmation of such a service.\",\"RaspAP 2.5 is deployed and reachable on the relevant host.\",\"Authenticated access to the RaspAP web interface is obtained.\",\"A demonstrated mechanism links OS administrator access to extraction or direct modification of RaspAP web administrative credentials.\",\"The Raspberry Pi OS and RaspAP instances are verified to be the same host or otherwise have a documented causal relationship.\",\"A unique target-CVE mapping and the target CVE description are supplied.\"],\"reason\":\"CVE-2021-38759 supports only a conditional potential for OS-level administrator privileges when the default pi password is unchanged. It does not state that pi credentials extract or directly modify RaspAP web administrative credentials. The supplied target-node precondition for authenticated RaspAP 2.5 access is an unverified claim, not confirming evidence, and the environment is absent. No bounded causal bridge establishes RaspAP deployment, target authentication, credential reuse, configuration access, or host identity. The claim therefore overreaches the source evidence and cannot enter a strict graph.\",\"source_cve_id\":\"CVE-2021-38759\",\"suggested_status\":\"unsupported\",\"target_cve_id\":null}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:38:48.181257+00:00"
+}

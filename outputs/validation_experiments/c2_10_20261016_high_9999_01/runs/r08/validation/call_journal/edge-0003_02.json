@@ -1,0 +1,96 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T14:00:06.414362+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "piSignage and RaspAP are assumed to be deployed on the same Raspberry Pi host or share authentication credentials",
+        "piSignage process is assumed to possess file read permissions sufficient to access sensitive files such as /etc/shadow or RaspAP configuration files",
+        "Extracted files are assumed to contain usable plaintext credentials or crackable password hashes for RaspAP"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "Verification of co-location or shared credential store between piSignage and RaspAP",
+        "Verification that piSignage process privileges permit reading restricted files such as /etc/shadow or RaspAP config",
+        "Confirmation that readable files actually expose valid credentials for RaspAP",
+        "Possession of low-privilege credentials required for CVE-2019-20354"
+      ],
+      "reason": "The source vulnerability CVE-2019-20354 allows an attacker to 'download arbitrary files from the Raspberry Pi', but its description does not state that credential-bearing files are accessible or that RaspAP credentials are present. The target CVE-2020-24572 requires 'With authenticated access' to RaspAP. Bridging these vulnerabilities potentially enables credential access, but depends on unverified environmental prerequisites such as same-host deployment, appropriate read permissions, and the actual presence of valid credentials.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "e379327ce02c466b02554158f09d7a3fc5b9e822488660d7abfccdafae3b00c0",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "candidates_token_count": 475,
+      "prompt_token_count": 2231,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2231
+        }
+      ],
+      "thoughts_token_count": 1884,
+      "total_token_count": 4590
+    },
+    "cached_response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 475,
+        "prompt_token_count": 2231,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2231
+          }
+        ],
+        "thoughts_token_count": 1884,
+        "total_token_count": 4590
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:00:06.435110+00:00"
+}

@@ -1,0 +1,143 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T15:03:09.975800+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "Inference, never a fact: any code execution from CVE-2019-3562 occurs on the same Windows host as vulnerable Oculus Desktop.",
+        "Inference, never a fact: browser compromise yields a local unprivileged user context usable to stage the target hard-link file write.",
+        "Inference, never a fact: Oculus Desktop is installed/running in the vulnerable version and OVRRedir.exe is privileged."
+      ],
+      "confidence": 0.72,
+      "edge_id": "edge-0004",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "A remote web page could inject arbitrary HTML code into the Oculus Browser UI"
+        },
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "starting from version 5.2.7 until 5.7.11"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "allows local users"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "privileged OVRRedir.exe process"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "hard link to a log file"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "gain privileges"
+        }
+      ],
+      "missing_conditions": [
+        "Confirmed, not merely potential, code execution from CVE-2019-3562",
+        "Oculus Browser and Oculus Desktop co-resident on the same Windows host",
+        "Source compromise provides a local low-privilege user context on that Windows host",
+        "Target Oculus Desktop before 1.44.0.32849 is present",
+        "OVRRedir.exe runs as a privileged process",
+        "Attacker can create/stage the hard link to a log file needed by CVE-2020-1885"
+      ],
+      "reason": "Source CVE-2019-3562 describes remote web page HTML injection into Oculus Browser UI and only 'potentially execute code'; it does not confirm code execution or a local Windows user context. Target CVE-2020-1885 requires local users on Windows and a privileged OVRRedir.exe process in vulnerable Oculus Desktop, exploitable via a hard link to a log file to gain privileges. The edge overreaches by converting 'potentially execute code' into 'Initial code execution' and by assuming that browser compromise establishes the local unprivileged user context required for the target. No supplied environment observation confirms same-host deployment or the missing prerequisite chain, so the edge cannot enter a strict graph as supported; at most it is conditional if all missing conditions are verified.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "96f692a1609c7fce96c0ab149f99a7001a87d7caf650d588254174ea7c30ec65",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "cached_usage": {
+      "completion_tokens": 6297,
+      "prompt_tokens": 2232,
+      "total_tokens": 8529,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 5685,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.004389962,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.004389962,
+        "upstream_inference_prompt_cost": 0.000296912,
+        "upstream_inference_completions_cost": 0.00409305
+      }
+    },
+    "cached_response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 6297,
+        "prompt_tokens": 2232,
+        "total_tokens": 8529,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 5685,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.004389962,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.004389962,
+          "upstream_inference_prompt_cost": 0.000296912,
+          "upstream_inference_completions_cost": 0.00409305
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "stop"
+      ],
+      "actual_provider": "CoreWeave"
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T15:03:09.978404+00:00"
+}

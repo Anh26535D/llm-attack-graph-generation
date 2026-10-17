@@ -1,0 +1,90 @@
+{
+  "edge_id": "edge-0003",
+  "started_at": "2026-10-16T13:55:39.947100+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Valid credentials or an authenticated session for RaspAP 2.5 can be obtained without an identified credential-disclosure vulnerability",
+        "Source and target nodes refer to the same RaspAP deployment on the underlying Raspberry Pi OS"
+      ],
+      "confidence": 0.85,
+      "edge_id": "edge-0003",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system (including ones for uploading of files and execution of code)"
+        }
+      ],
+      "missing_conditions": [
+        "externally_verified_valid_raspap_credentials_or_session",
+        "verified_deployment_of_raspap_2.5_on_raspberry_pi",
+        "network_accessibility_of_includes_webconsole_php"
+      ],
+      "reason": "The source vulnerability CVE-2020-24572 has the actual effect to 'execute commands on the system (including ones for uploading of files and execution of code)', but does not document any credential recovery or authentication bypass mechanism. The target vulnerability CVE-2020-24572 explicitly requires 'With authenticated access'. The edge claims that an authenticated session enables access to the vulnerable endpoint, but this credential possession is an unverified claim. Because credentials cannot be inferred from absence of data, the transition is conditional on externally supplied credentials and cannot enter a strict graph without them.",
+      "source_cve_id": "CVE-2020-24572",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 381,
+      "prompt_token_count": 2208,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2208
+        }
+      ],
+      "thoughts_token_count": 7018,
+      "total_token_count": 9607
+    },
+    "latency_seconds": 56.93508860000111,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "12d9a69f846ff35b350b0dfc8f87b3aad53fdbd40c6224fac32b1368b30985b8",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 381,
+        "prompt_token_count": 2208,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2208
+          }
+        ],
+        "thoughts_token_count": 7018,
+        "total_token_count": 9607
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"Valid credentials or an authenticated session for RaspAP 2.5 can be obtained without an identified credential-disclosure vulnerability\", \"Source and target nodes refer to the same RaspAP deployment on the underlying Raspberry Pi OS\"], \"confidence\": 0.85, \"edge_id\": \"edge-0003\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2020-24572\", \"quote\": \"With authenticated access\"}, {\"cve_id\": \"CVE-2020-24572\", \"quote\": \"execute commands on the system (including ones for uploading of files and execution of code)\"}], \"missing_conditions\": [\"externally_verified_valid_raspap_credentials_or_session\", \"verified_deployment_of_raspap_2.5_on_raspberry_pi\", \"network_accessibility_of_includes_webconsole_php\"], \"reason\": \"The source vulnerability CVE-2020-24572 has the actual effect to 'execute commands on the system (including ones for uploading of files and execution of code)', but does not document any credential recovery or authentication bypass mechanism. The target vulnerability CVE-2020-24572 explicitly requires 'With authenticated access'. The edge claims that an authenticated session enables access to the vulnerable endpoint, but this credential possession is an unverified claim. Because credentials cannot be inferred from absence of data, the transition is conditional on externally supplied credentials and cannot enter a strict graph without them.\", \"source_cve_id\": \"CVE-2020-24572\", \"suggested_status\": \"conditional\", \"target_cve_id\": \"CVE-2020-24572\"}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:56:36.885332+00:00"
+}

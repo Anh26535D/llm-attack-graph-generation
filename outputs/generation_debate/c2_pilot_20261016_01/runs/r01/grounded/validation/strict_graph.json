@@ -1,0 +1,83 @@
+{
+  "nodes": [
+    {
+      "id": "CVE-2019-20354",
+      "label": "piSignage arbitrary file download via path traversal",
+      "precondition": "Authenticated as a low-privilege user with remote network access to piSignage player API",
+      "postcondition": "Arbitrary files downloaded from the Raspberry Pi"
+    },
+    {
+      "id": "CVE-2019-3562",
+      "label": "Oculus Browser HTML injection and potential code execution",
+      "precondition": "Victim visits a remote web page using vulnerable Oculus Browser",
+      "postcondition": "Attacker can spoof UI and potentially execute code"
+    },
+    {
+      "id": "CVE-2020-1885",
+      "label": "Oculus Desktop local privilege escalation via hard link log file",
+      "precondition": "Local user access on Windows running vulnerable Oculus Desktop",
+      "postcondition": "Ability to write to arbitrary files and gain elevated privileges"
+    },
+    {
+      "id": "CVE-2020-24572",
+      "label": "RaspAP web console arbitrary command execution",
+      "precondition": "Authenticated access to RaspAP web console",
+      "postcondition": "Command execution on the underlying Raspberry Pi OS, including file upload and code execution"
+    },
+    {
+      "id": "CVE-2021-24038",
+      "label": "Oculus Desktop local privilege escalation via exposed process handle",
+      "precondition": "Unprivileged process on system running vulnerable Oculus Desktop",
+      "postcondition": "Local privilege escalation via exposed privileged process handle"
+    },
+    {
+      "id": "CVE-2021-38545",
+      "label": "Raspberry Pi Glowworm acoustic eavesdropping via power LED",
+      "precondition": "Raspberry Pi powers audio equipment playing sound; line of sight to power indicator LED via telescope and electro-optical sensor",
+      "postcondition": "Remote attackers can recover speech signals/sound played by speakers"
+    },
+    {
+      "id": "CVE-2021-38759",
+      "label": "Raspberry Pi OS default credentials",
+      "precondition": "Default password for the pi account has not been changed",
+      "postcondition": "Attackers can gain administrator privileges"
+    },
+    {
+      "id": "CVE-2022-21819",
+      "label": "NVIDIA Jetson Linux IOMMU configuration memory access",
+      "precondition": "Physical access to the board and PCI bus access as an unprivileged attacker",
+      "postcondition": "Direct read/write access to the entire system address space, potential code execution, DoS, and privilege escalation"
+    }
+  ],
+  "edges": [],
+  "validation": {
+    "source_graph_sha256": "7a5b5bb523b02972a135ae402c9dc641e8594ec973d4ffa9c2ea45400af3f732",
+    "strict": true,
+    "excluded_edges": [
+      {
+        "from": "CVE-2019-3562",
+        "to": "CVE-2020-1885",
+        "label": "Potential code execution provides local access to exploit file write",
+        "validation": {
+          "edge_id": "edge-0001",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      },
+      {
+        "from": "CVE-2019-3562",
+        "to": "CVE-2021-24038",
+        "label": "Potential code execution provides unprivileged process to obtain privileged handle",
+        "validation": {
+          "edge_id": "edge-0002",
+          "original_edge_id": null,
+          "status": "conditional",
+          "offline_status": "conditional",
+          "reason": "A bounded capability bridge is plausible; listed prerequisites or claim details remain unverified."
+        }
+      }
+    ]
+  }
+}

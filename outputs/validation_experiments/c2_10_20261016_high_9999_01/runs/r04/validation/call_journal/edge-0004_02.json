@@ -1,0 +1,87 @@
+{
+  "edge_id": "edge-0004",
+  "started_at": "2026-10-16T13:59:32.215008+00:00",
+  "state": "finished",
+  "result": {
+    "state": "cache_hit",
+    "response": {
+      "assumptions": [
+        "CVE-2019-3562 can reliably achieve arbitrary code execution beyond UI spoofing",
+        "Oculus Browser and Oculus Desktop are co-located on the same host",
+        "Oculus Browser operates within the Windows environment and yields a local user context with filesystem access"
+      ],
+      "confidence": 0.7,
+      "edge_id": "edge-0004",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-3562",
+          "quote": "potentially execute code"
+        },
+        {
+          "cve_id": "CVE-2020-1885",
+          "quote": "on Windows allows local users"
+        }
+      ],
+      "missing_conditions": [
+        "Proof that potential code execution in Oculus Browser manifests as actual code execution",
+        "Verification that Oculus Browser runs on the same Windows host where Oculus Desktop is installed",
+        "Confirmation that code execution grants an unprivileged local user context capable of creating filesystem hard links"
+      ],
+      "reason": "CVE-2019-3562 notes that HTML injection allows an attacker to 'potentially execute code', while CVE-2020-1885 requires an existing execution context as 'local users' 'on Windows'. The causal bridge is conditional because the source effect uses modal language ('potentially') and does not guarantee code execution, nor does it establish that Oculus Browser runs on Windows co-located with Oculus Desktop.",
+      "source_cve_id": "CVE-2019-3562",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-1885"
+    },
+    "api_calls": 0,
+    "usage": null,
+    "latency_seconds": 0.0,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "96c1598c9425798d0dbdee49c38560e720fcb8cf663a50c3573753c7ae73d655",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "cached_usage": {
+      "candidates_token_count": 345,
+      "prompt_token_count": 2478,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 2478
+        }
+      ],
+      "thoughts_token_count": 2295,
+      "total_token_count": 5118
+    },
+    "cached_response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 345,
+        "prompt_token_count": 2478,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 2478
+          }
+        ],
+        "thoughts_token_count": 2295,
+        "total_token_count": 5118
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    }
+  },
+  "api_calls": 0,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T13:59:32.218394+00:00"
+}

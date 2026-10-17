@@ -1,0 +1,124 @@
+{
+  "edge_id": "edge-0001",
+  "started_at": "2026-10-16T14:36:22.151956+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "Inference, never a fact: a file readable through piSignage could contain valid RaspAP credentials or other usable authentication material.",
+        "Inference, never a fact: piSignage and RaspAP are deployed on the same Raspberry Pi or otherwise share an accessible host relationship.",
+        "Inference, never a fact: any extracted authentication material would be accepted by the vulnerable RaspAP web interface."
+      ],
+      "confidence": 0.92,
+      "edge_id": "edge-0001",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "authenticated as a low-privilege user"
+        },
+        {
+          "cve_id": "CVE-2019-20354",
+          "quote": "download arbitrary files from the Raspberry Pi"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "An issue was discovered in includes/webconsole.php in RaspAP 2.5."
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console"
+        },
+        {
+          "cve_id": "CVE-2020-24572",
+          "quote": "execute commands on the system"
+        }
+      ],
+      "missing_conditions": [
+        "Verified piSignage version before 2.6.4 and a valid low-privilege piSignage account.",
+        "Evidence that a file readable through CVE-2019-20354 contains RaspAP credentials or other usable authentication material.",
+        "Verification that any extracted material is valid and accepted by the RaspAP 2.5 web interface.",
+        "Verified host, deployment, or network relationship connecting the piSignage system to the RaspAP target.",
+        "Verified RaspAP 2.5 deployment with the described misconfigured web console.",
+        "Target web-interface reachability and any other prerequisites for authenticated RaspAP access."
+      ],
+      "reason": "CVE-2019-20354 actually describes authenticated remote download of arbitrary files from a Raspberry Pi through piSignage path traversal; it does not establish that the files contain credentials, that the credentials are usable, or that the source and target are the same host. CVE-2020-24572 requires authenticated access to a vulnerable RaspAP 2.5 web console and then potentially permits command execution. The causal bridge from file disclosure to RaspAP authentication is therefore plausible but unverified. The edge should not enter a strict graph as a supported edge; it is only conditional pending the missing evidence.",
+      "source_cve_id": "CVE-2019-20354",
+      "suggested_status": "conditional",
+      "target_cve_id": "CVE-2020-24572"
+    },
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 1804,
+      "prompt_tokens": 1950,
+      "total_tokens": 3754,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 1272,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 1947,
+        "cached_tokens": 0,
+        "video_tokens": 0
+      },
+      "cost": 0.00265215,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.00265215,
+        "upstream_inference_prompt_cost": 0.00048735,
+        "upstream_inference_completions_cost": 0.0021648
+      }
+    },
+    "latency_seconds": 16.41496290000032,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "b7e9ef8a747577b18fb5f2b26d5cc02ccdd96bd2ea3dddbd693a7fb978d9b17c",
+    "model_identity": {
+      "backend": "openrouter",
+      "model": "openai/gpt-5.6-luna",
+      "client_name": "openrouter",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "openai/gpt-5.6-luna",
+      "actual_model": "openai/gpt-5.6-luna",
+      "finish_reason": "stop",
+      "usage": {
+        "completion_tokens": 1804,
+        "prompt_tokens": 1950,
+        "total_tokens": 3754,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 1272,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 1947,
+          "cached_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost": 0.00265215,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.00265215,
+          "upstream_inference_prompt_cost": 0.00048735,
+          "upstream_inference_completions_cost": 0.0021648
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high"
+      },
+      "finish_reasons": [
+        "stop"
+      ]
+    },
+    "raw_response": "{\"assumptions\":[\"Inference, never a fact: a file readable through piSignage could contain valid RaspAP credentials or other usable authentication material.\",\"Inference, never a fact: piSignage and RaspAP are deployed on the same Raspberry Pi or otherwise share an accessible host relationship.\",\"Inference, never a fact: any extracted authentication material would be accepted by the vulnerable RaspAP web interface.\"],\"confidence\":0.92,\"edge_id\":\"edge-0001\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files from the Raspberry Pi\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"An issue was discovered in includes/webconsole.php in RaspAP 2.5.\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"With authenticated access, an attacker can use a misconfigured (and virtually unrestricted) web console\"},{\"cve_id\":\"CVE-2020-24572\",\"quote\":\"execute commands on the system\"}],\"missing_conditions\":[\"Verified piSignage version before 2.6.4 and a valid low-privilege piSignage account.\",\"Evidence that a file readable through CVE-2019-20354 contains RaspAP credentials or other usable authentication material.\",\"Verification that any extracted material is valid and accepted by the RaspAP 2.5 web interface.\",\"Verified host, deployment, or network relationship connecting the piSignage system to the RaspAP target.\",\"Verified RaspAP 2.5 deployment with the described misconfigured web console.\",\"Target web-interface reachability and any other prerequisites for authenticated RaspAP access.\"],\"reason\":\"CVE-2019-20354 actually describes authenticated remote download of arbitrary files from a Raspberry Pi through piSignage path traversal; it does not establish that the files contain credentials, that the credentials are usable, or that the source and target are the same host. CVE-2020-24572 requires authenticated access to a vulnerable RaspAP 2.5 web console and then potentially permits command execution. The causal bridge from file disclosure to RaspAP authentication is therefore plausible but unverified. The edge should not enter a strict graph as a supported edge; it is only conditional pending the missing evidence.\",\"source_cve_id\":\"CVE-2019-20354\",\"suggested_status\":\"conditional\",\"target_cve_id\":\"CVE-2020-24572\"}"
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:36:38.568259+00:00"
+}

@@ -1,0 +1,88 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:03:13.656682+00:00",
+  "state": "finished",
+  "result": {
+    "state": "completed",
+    "response": {
+      "assumptions": [
+        "RaspAP is deployed on the same host running Raspberry Pi OS",
+        "Host administrator privileges permit extracting or modifying RaspAP web administrative credentials",
+        "Remote or local access is available to authenticate with the default 'pi' credentials"
+      ],
+      "confidence": 0.9,
+      "edge_id": "edge-0002",
+      "evidence_quotes": [
+        {
+          "cve_id": "CVE-2021-38759",
+          "quote": "Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges."
+        }
+      ],
+      "missing_conditions": [
+        "Target CVE mapping and supplied description to determine target prerequisites",
+        "Verification of same-host deployment of RaspAP",
+        "Verification that RaspAP web administrative credentials can be extracted or altered via host administrator privileges",
+        "Confirmation that default 'pi' credentials remain unchanged on the target host"
+      ],
+      "reason": "Source CVE-2021-38759 provides that attackers can 'gain administrator privileges' if default credentials are unchanged on Raspberry Pi OS. However, the target CVE is unmapped and lacks a description, leaving target prerequisites unknown. Furthermore, the causal bridge assumes unverified same-host co-location and credential extraction capabilities not evidenced in the source description. Consequently, the edge cannot enter a strict graph.",
+      "source_cve_id": "CVE-2021-38759",
+      "suggested_status": "unknown",
+      "target_cve_id": null
+    },
+    "api_calls": 1,
+    "usage": {
+      "candidates_token_count": 321,
+      "prompt_token_count": 1452,
+      "prompt_tokens_details": [
+        {
+          "modality": "TEXT",
+          "token_count": 1452
+        }
+      ],
+      "thoughts_token_count": 6813,
+      "total_token_count": 8586
+    },
+    "latency_seconds": 55.31556190000083,
+    "error_type": null,
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "a87656d833166ae5ebe735abff4f007702a65946c33cdba251d62b21801057d6",
+    "model_identity": {
+      "backend": "gemini",
+      "model": "gemini-3.8-flash",
+      "client_name": "gemini",
+      "provider_config": null
+    },
+    "response_metadata": {
+      "requested_model": "gemini-3.8-flash",
+      "actual_model": "gemini-3.8-flash",
+      "finish_reason": "STOP",
+      "usage": {
+        "candidates_token_count": 321,
+        "prompt_token_count": 1452,
+        "prompt_tokens_details": [
+          {
+            "modality": "TEXT",
+            "token_count": 1452
+          }
+        ],
+        "thoughts_token_count": 6813,
+        "total_token_count": 8586
+      },
+      "generation_config": {
+        "max_output_tokens": 16384,
+        "thinking_level": "high"
+      },
+      "finish_reasons": [
+        "STOP"
+      ]
+    },
+    "raw_response": "{\"assumptions\": [\"RaspAP is deployed on the same host running Raspberry Pi OS\", \"Host administrator privileges permit extracting or modifying RaspAP web administrative credentials\", \"Remote or local access is available to authenticate with the default 'pi' credentials\"], \"confidence\": 0.9, \"edge_id\": \"edge-0002\", \"evidence_quotes\": [{\"cve_id\": \"CVE-2021-38759\", \"quote\": \"Raspberry Pi OS through 5.10 has the raspberry default password for the pi account. If not changed, attackers can gain administrator privileges.\"}], \"missing_conditions\": [\"Target CVE mapping and supplied description to determine target prerequisites\", \"Verification of same-host deployment of RaspAP\", \"Verification that RaspAP web administrative credentials can be extracted or altered via host administrator privileges\", \"Confirmation that default 'pi' credentials remain unchanged on the target host\"], \"reason\": \"Source CVE-2021-38759 provides that attackers can 'gain administrator privileges' if default credentials are unchanged on Raspberry Pi OS. However, the target CVE is unmapped and lacks a description, leaving target prerequisites unknown. Furthermore, the causal bridge assumes unverified same-host co-location and credential extraction capabilities not evidenced in the source description. Consequently, the edge cannot enter a strict graph.\", \"source_cve_id\": \"CVE-2021-38759\", \"suggested_status\": \"unknown\", \"target_cve_id\": null}",
+    "request_overrides": {
+      "max_output_tokens": 16384,
+      "reasoning_level": "high"
+    }
+  },
+  "api_calls": 1,
+  "recheck_complete": true,
+  "finished_at": "2026-10-16T14:04:08.974354+00:00"
+}

@@ -1,0 +1,89 @@
+{
+  "edge_id": "edge-0002",
+  "started_at": "2026-10-16T14:58:34.866175+00:00",
+  "state": "finished",
+  "result": {
+    "state": "invalid_response",
+    "response": null,
+    "api_calls": 1,
+    "usage": {
+      "completion_tokens": 9999,
+      "prompt_tokens": 1438,
+      "total_tokens": 11437,
+      "completion_tokens_details": {
+        "audio_tokens": 0,
+        "reasoning_tokens": 9798,
+        "image_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": 0,
+        "cached_tokens": 256,
+        "video_tokens": 0
+      },
+      "cost": 0.006677162,
+      "is_byok": false,
+      "cost_details": {
+        "upstream_inference_cost": 0.006677162,
+        "upstream_inference_prompt_cost": 0.000177812,
+        "upstream_inference_completions_cost": 0.00649935
+      }
+    },
+    "latency_seconds": 50.4361485999998,
+    "error_type": "ReviewSchemaError",
+    "confidence_semantics": "self-assessed, not a calibrated probability",
+    "cache_key": "34287299d494a0739b44d8e6f9aefc519b96846aadf7f48c7c05891a3a077a1c",
+    "model_identity": {
+      "backend": "openrouter_v2",
+      "model": "deepseek/deepseek-v4.1-flash",
+      "client_name": "openrouter_v2",
+      "provider_config": "{\"only\":[\"coreweave/fp8\"],\"allow_fallbacks\":false}"
+    },
+    "response_metadata": {
+      "requested_model": "deepseek/deepseek-v4.1-flash",
+      "actual_model": "deepseek/deepseek-v4.1-flash",
+      "finish_reason": "length",
+      "usage": {
+        "completion_tokens": 9999,
+        "prompt_tokens": 1438,
+        "total_tokens": 11437,
+        "completion_tokens_details": {
+          "audio_tokens": 0,
+          "reasoning_tokens": 9798,
+          "image_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "audio_tokens": 0,
+          "cache_write_tokens": 0,
+          "cached_tokens": 256,
+          "video_tokens": 0
+        },
+        "cost": 0.006677162,
+        "is_byok": false,
+        "cost_details": {
+          "upstream_inference_cost": 0.006677162,
+          "upstream_inference_prompt_cost": 0.000177812,
+          "upstream_inference_completions_cost": 0.00649935
+        }
+      },
+      "generation_config": {
+        "max_output_tokens": 9999,
+        "reasoning_effort": "high",
+        "provider": {
+          "only": [
+            "coreweave/fp8"
+          ],
+          "allow_fallbacks": false
+        }
+      },
+      "finish_reasons": [
+        "length"
+      ],
+      "actual_provider": "CoreWeave"
+    },
+    "raw_response": "{\"assumptions\":[\"Any equivalence between Raspberry Pi OS default credentials and piSignage application credentials is an inference, not a supplied fact.\",\"Any same-host deployment or shared authentication domain between Raspberry Pi OS and piSignage is an inference, not observed.\",\"The edge would require an assumption that the default credential session is low-privilege for piSignage, despite the source node claiming sudo shell access.\"],\"confidence\":0.84,\"edge_id\":\"edge-0002\",\"evidence_quotes\":[{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"authenticated as a low-privilege user\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"download arbitrary files\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"via api/settings/log?file=../ path traversal\"},{\"cve_id\":\"CVE-2019-20354\",\"quote\":\"In other words, this issue"
+  },
+  "api_calls": 1,
+  "recheck_complete": false,
+  "finished_at": "2026-10-16T14:59:25.305116+00:00"
+}
